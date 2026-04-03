@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs
+/DEMO/Website/bin/DataLayer.dll
+/DEMO/Website/bin/DataLayer.pdb
+/DEMO/Website/bin/Website.dll
+/DEMO/Website/bin/Website.pdb

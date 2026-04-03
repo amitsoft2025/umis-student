@@ -536,6 +536,7 @@ $("#parmanentcheckbox").change(function (event) {
         $("#PAddress").val($("#Address").val());
         $("#PPinCode").val($("#pincode").val());
         $("#Pcity").val($("#city").val());
+        $("#PState").val($("#State").val());
 
         $('#PCountry').val($("#Country").val());
         $("#Pcity").attr('readonly','readonly');

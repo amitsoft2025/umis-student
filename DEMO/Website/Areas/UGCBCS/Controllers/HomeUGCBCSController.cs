@@ -2817,9 +2817,6 @@ namespace Website.Areas.UGCBCS.Controllers
             {
                 return Redirect("change-password");
             }
-
-
-
             else if (result.is_basic_complete == false)
             {
                 return Redirect("profile");
@@ -3331,7 +3328,7 @@ namespace Website.Areas.UGCBCS.Controllers
                     }
 
                     //Amount1 = 2; //Add by jitendra 
-                    var obj = sbi.encriptDataadmissionAirPay(Amount1, EncriptDecript.Decrypt(ClsLanguage.GetCookies("ENBApplicationNo")), "studentPG/HomeUGCBCS/AirPayPGSucessAdmission", "studentPG/HomeUGCBCS/PGFailedadmission", result.mid, result.mkey, result.Collegeid, obj1.StudentYear);
+                    var obj = sbi.encriptDataadmissionAirPay(Amount1, EncriptDecript.Decrypt(ClsLanguage.GetCookies("ENBApplicationNo")), "UGCBCS/HomeUGCBCS/AirPayPGSucessAdmission", "UGCBCS/HomeUGCBCS/PGFailedadmission", result.mid, result.mkey, result.Collegeid, obj1.StudentYear);
                     //ViewBag.requestparams = obj.requestparams;
                     //ViewBag.merchantId = obj.merchantId;
                     //ViewBag.EncryptbillingDetails = obj.EncryptbillingDetails;

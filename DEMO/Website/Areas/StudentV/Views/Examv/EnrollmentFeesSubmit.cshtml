@@ -1,0 +1,394 @@
+﻿@model DataLayer.PrintExamForm
+@{
+    ViewBag.Title = "EnrollmentFeesSubmit"; Layout = "~/Areas/StudentV/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+<script>
+    var photurl = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+Model.objExamFrom.photo)";
+    var signurl = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+ Model.objExamFrom.sign)";
+    var logo1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/mu-logo-white.png")";
+    $(function () {
+
+        encodeImage2(logo1);
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    function encodeImage2(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+    
+            img = document.getElementById("logo");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+
+</script>
+<script src="~/scripts/Customjs/EnrollmentFeeSubmitvoc.js?id=@System.Configuration.ConfigurationManager.AppSettings["Commonjs"]"></script>
+
+<div class="container-fluid">
+    @{
+
+        if (TempData["msgfees"] == null) { }
+        else
+        {
+            <div class="alert-wrap1 shadow-inner wrap-alert-b">
+                <div class="alert alert-success " role="alert" style="text-align:center !important">
+                    <div>@TempData["msgfees"]</div>
+                </div>
+            </div>
+        }
+    }
+    <div class="sparkline8-list DocumentUpload">
+        <div class="row">
+            <div class="col-sm-8 col-xs-12 col-sm-offset-2">
+                <div class="sparkline8-hd">
+                    <div class="tab-content-details shadow-reset">
+                        <h3 id="pageheading">
+                            Registration No @if (Model.objfeesubmit.FeeStatus == "Paid")
+                            {<span> Fees Acknowledgement </span>
+                            }
+                            else
+                            { <span> Fees Submit </span>}
+                        </h3>
+                        @if (Model != null)
+                        {
+                            if (Model.objfeesubmit != null)
+                            {
+                                if (Model.objfeesubmit.IsFeeSubmit != null)
+                                {
+                                    if (Model.objfeesubmit.IsFeeSubmit == "0")
+                                    {
+                                        if (ViewBag.check_EnrollmentFeeSubmit_open == false)
+                                        {
+                                            <center>
+                                                <a style="color:red;font-size:30px"><span class="fa fa-times "></span></a><br /><br />
+                                                <h4>Application registration for UG- stream has been closed. You can not complete the application. !!</h4>
+                                            </center>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="text-danger text-center">
+                        @if (TempData["Msg"] != null)
+                        {
+                            @TempData["Msg"];
+                        }
+
+                    </div>
+                </div>
+
+                @*@if (ViewBag.showpayment == true)
+                    {*@
+                <div class="sparkline8-graph fee-submit">
+                    <div class="static-table-list table-responsive">
+                        @using (Html.BeginForm("EnrollmentFeesSubmit", "Examv", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data", id = "myform" }))
+                        {
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th class="blue-bg">Intermediate qualification  </th>
+                                        <th>@ViewBag.boardtypename </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="blue-bg">College Name </th>
+                                        <th> @Html.DisplayFor(model => model.objExamFrom.CollegeName)</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="blue-bg">Course</th>
+                                        <th> @Html.DisplayFor(model => model.objExamFrom.CourseCategory) &nbsp; @Html.DisplayFor(model => model.objExamFrom.YearName)</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="blue-bg">Subject</th>
+                                        <th> @Html.DisplayFor(model => model.objExamFrom.HonoursSubject)</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="blue-bg">Caste category</th>
+                                        <th> @Html.DisplayFor(model => model.objfeesubmit.CastCategort)</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="blue-bg">Session</th>
+                                        <th> @Html.DisplayFor(model => model.objfeesubmit.SessionName)</th>
+                                    </tr>
+                                    @if (Model.objfeesubmit.FeeStatus == "Paid")
+                                    {
+                                        <tr>
+                                            <th class="blue-bg">Registration Fees</th>
+                                            <th> @Html.DisplayFor(model => model.objPrintRecipt.Fees)</th>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <th class="blue-bg">Registration Fees</th>
+                                            <th> @Html.DisplayFor(model => model.objfeesubmit.Fees)</th>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <th class="blue-bg">Fee Status</th>
+                                        <th>
+                                            @if (Model.objfeesubmit.FeeStatus == "Paid")
+                                            {
+                                                <span style="color:green" id="">@Model.objfeesubmit.FeeStatus</span>
+                                            }
+                                            else
+                                            { <span style="color:red">@Model.objfeesubmit.FeeStatus</span>}
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        @if (Model.objfeesubmit.FeeStatus == "Paid")
+                                        {
+                                            <th class="blue-bg bdr-none">Registration No</th>
+                                            <th class="bdr-none"> @Html.DisplayFor(model => model.objExamFrom.RegistrationNo)</th>
+                                        }
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="modal-area-button text-center">
+                                <div class="document-btn">
+                                    <input type="hidden" name="GridHtml" />
+                                    @if (Model != null)
+                                    {
+                                        if (Model.objExamFrom != null)
+                                        {
+                                            if (Model.objExamFrom.IsAdmissionFee != false)
+                                            {
+                                                if (Model.objfeesubmit.IsRegistrationFee == false)
+                                                {
+                                                    if (ViewBag.check_EnrollmentFeeSubmit_open == true && ViewBag.check_EnrollmentFeeSubmit_Close == true)
+                                                    {
+
+                                                        if (Model.objExamFrom.migrationcertificate_iseligible == 0) // pending
+                                                        {
+                                                            <span style="color:red;font-weight:bold;"> Please Go to college for document Verification </span>
+                                                        }
+                                                        else if (Model.objExamFrom.migrationcertificate_iseligible == 1)
+                                                        {
+                                                            @*<button class="Danger danger-color" style="color: #fff;" id="submit1111" onclick="" name="BackandEdit" value="BackandEdit"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Back and Edit  </button>*@
+                                                            <button class="Danger danger-color" style="color: #fff;" id="submit" value="Pay Fees"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Pay Fees </button>
+                                                        }
+                                                        else if (Model.objExamFrom.migrationcertificate_iseligible == 2)
+                                                        {
+                                                            <span style="color:red;font-weight:bold;"> Your Documnet Is Rejected by College.<br /> </span>
+                                                            <span style="color:red;font-weight:bold;"> Reason :- @Model.objExamFrom.migrationRejectReaseon </span>
+                                                        }
+                                                        @*<button class="Danger danger-color" style="color: #fff;" id="submit1111" onclick="" name="BackandEdit" value="BackandEdit"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Back and Edit  </button>*@
+                                                        @*<button class="Danger danger-color" style="color: #fff;" id="submit" onclick="return submitpay();" value="Pay Fees"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Pay Fees </button>*@
+                                                    }
+                                                    else
+                                                    {
+                                                        <div>Date Closed</div>
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    <button class="Danger danger-color" style="color: #fff;" type="button" id="PrintRecipt"><i class="fa fa-print"></i>&nbsp;&nbsp;Download Receipt</button>
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                @*//}*@
+                @*else
+                        {
+                            <div class="sparkline8-graph fee-submit">
+                                <div class="static-table-list table-responsive document-btn">
+                    @using (Html.BeginForm("EnrollmentFeesSubmit", "Examv", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data", id = "myform" }))
+                    {
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <th class="blue-bg">Select Previous Board<BR />(Intermediate qualification )<span class="starvalid">*</span>   </th>
+
+                                                <td>
+
+                                                    @Html.DropDownList("boardtype", new SelectList(ViewBag.boardtype, "boardid", "boardname"), "Select Previous Board", new { @class = "form-control", @id = "boardtype", @required = "required" })
+                                                </td>
+                                            </tr>
+
+
+                                    </table>
+                                     <div class="modal-area-button text-center">
+                                        <div class="document-btn">
+                                            <center>
+                                                <button class="Danger danger-color" style="color: #fff;" id="submit1" onclick="" name="saveandnext" value="saveandnext"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Save and Next </button>
+                                            </center>
+                                            </div>
+                                    </div>
+                    }
+                                        </div>
+                                    </div>*@
+                @*}*@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="display:none">
+    <div class="sparkline8-list DocumentUpload">
+        <div style="display:none">
+            <div id="dvPrintRecipt">
+                <div style="border-bottom:5px solid #05046c; margin-bottom:25px; text-align:center; padding:15px 0;"><img id="logo" width="500px"></div>
+                <div style="width:100%; margin:auto; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:12px !important;">
+                    <h1 style="text-align:center; padding:15px 0; font-size:22px;"> Registration Number Fees Receipt</h1>
+                    <table width="600px" border="0" cellspacing="0" cellpadding="0" style="padding:0 15px; margin:auto;">
+                        <tr>
+                            <td colspan="2">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td colspan="3">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #ccc;">
+                                                <tr>
+                                                    <th colspan="2" align="left" valign="middle" style="border-bottom:1px solid #ccc;  background-color:#44438e; color:#FFF;  padding:5px 10px;">Fees Submit</th>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Name</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeeSubjectcate">@DataLayer.ClsLanguage.GetCookies("NBUserName")</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc;  padding:5px 10px; background-color:#eee; ">College</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; background-color:#eee; "><span id="FeeTitle"></span>@Model.objExamFrom.CollegeName</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Course</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeeSubjectcate">@Model.objExamFrom.CourseCategory @*@Model.objExamFrom.YearName*@</span></td>
+                                                </tr>
+                                                @*<tr>
+            <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Subject</td>
+            <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeeSubjectcate">@Model.objExamFrom.HonoursSubject </span></td>
+
+        </tr>*@
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px; background-color:#eee; ">Caste Category</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; background-color:#eee; "><span id="FeeCastCategory">@Model.objfeesubmit.CastCategort</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Session</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; "><span id="FeeSession">@Model.objfeesubmit.SessionName</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:5px 10px;">Fees</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; background-color:#eee; "><span id="FeesPrice">@Model.objPrintRecipt.Fees</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style=" border-right:1px solid #ccc; padding:5px 10px; ">Fee Status</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px; "><span id="FeeIsStatus">@Model.objfeesubmit.FeeStatus</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;background-color:#eee;">Application No</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;background-color:#eee;"><span id="">@Model.objfeesubmit.ApplicationNo </span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Registration No</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="">@Model.objExamFrom.RegistrationNo </span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+
+                        <!-- / Subject -->
+
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td width="100%">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #ccc;">
+                                    <tr>
+                                        <th colspan="2" align="left" valign="middle" style="border-bottom:1px solid #ccc;  background-color:#44438e; color:#FFF; padding:5px 10px;">Payment Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Transaction Status</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="bankName">@Model.objPrintRecipt.status</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee; border-right:1px solid #ccc;">Bank Reference Number</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee;"><span id="PayName">@Model.objPrintRecipt.banktrxid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Transaction ID</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="cardNum">@Model.objPrintRecipt.TransactionId</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee; border-right:1px solid #ccc;">Transaction Date</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee;"><span id="Expires">@Model.objPrintRecipt.trxdate</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Payment Mode</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="Expires">@Model.objPrintRecipt.PaymentType</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

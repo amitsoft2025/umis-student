@@ -1,0 +1,61 @@
+﻿
+
+@{
+    ViewBag.Title = "DoubleVerificationURlExam";
+    //Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoubleVerificationURl Exam Registration</title>
+</head>
+
+<body>
+    @if (TempData["responseString"] != null)
+    {
+        <div>@TempData["responseString"]</div><br /><br />
+    }
+
+    <div>
+        @using (Html.BeginForm("DoubleVerificationURlExam", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+        {
+            <br />
+            @Html.TextBox("trxid", "", new { @class = "form-control", @required = "required", @placeholder = "Orderno" })
+
+            <br />            <br />
+            @Html.TextBox("password", "", new { @class = "form-control", @required = "required", @placeholder = "password" })
+
+            <br />            <br />
+            <input type="submit" value=" Loop " />
+
+        }
+
+    </div>
+
+    <div>
+        @using (Html.BeginForm("DoubleVerificationURlExamSee", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+        {
+            <br />
+            @Html.TextBox("trxid", "", new { @class = "form-control", @required = "required", @placeholder = "Orderno" })
+
+            <br />            <br />
+            @Html.TextBox("password", "", new { @class = "form-control", @required = "required", @placeholder = "password" })
+
+            <br />            <br />
+
+            <br />            <br />
+            <input type="submit" value="Only See Status" />
+
+        }
+
+    </div>
+</body>
+</html>

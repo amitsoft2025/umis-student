@@ -1,0 +1,571 @@
+﻿@using DataLayer
+@model Tuple<DataLayer.StudentAdmissionQualification, List<DataLayer.StudentPreviousQualification>,DataLayer.Login>
+@{
+    ViewBag.Title = "SelectCollege";
+    Layout = "~/Areas/StudentV/Views/Shared/_LayoutStudent.cshtml";
+}
+<style>
+    .starvalid {
+        color: red;
+    }
+</style>
+<script>
+    var Coursecategory = '@ViewBag.Coursecategoryid';
+    var collegelist = '';
+    var countcollegelist = 0;
+    var gender = '@ViewBag.gender';
+    
+</script><style>
+    .DocumentUpload h3 {
+        margin-bottom: 20px !important;
+        margin-top: -30px !important;
+    }
+
+    .massages_innerblk {
+        border: 0px solid #ddd !important;
+        margin-bottom: 0px !important;
+        margin-top: -20px !important;
+    }
+</style>
+@{
+    if (ViewBag.sessionid != 39)
+    {
+        if (TempData["selectsubmsg"] != null)
+        {
+        <div class="container-fluid">
+            <div class="alert-wrap1 shadow-inner wrap-alert-b">
+
+                <div class="alert alert-success " role="alert">
+                    <div>@TempData["selectsubmsg"]</div>
+
+                </div>
+            </div>
+            </div>
+            }
+        } 
+    }
+            <div class="container-fluid">
+
+                <div class="sparkline8-list DocumentUpload">
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12 ">
+
+                            <div class="sparkline12-hd">
+                                @if (TempData["selectalready"] == null)
+                                {
+
+                                    if (TempData["selectsubmsg"] == null)
+                                    {
+                                        if (ViewBag.sessionid != 39)
+                                        {
+                                        <div class="main-sparkline12-hd sparkline8-list">
+                                            <h3 class="text-center">Choose  College </h3>
+                                        </div>
+                                        <div class="notification-part massages_innerblk">
+
+                                            <div class="mgs-content">
+                                                <ul>
+                                                    <li><strong> Note  : </strong>You should choose college  carefully ( आप कॉलेज का चयन सावधानी पूर्वक करें ) .</li>
+                                                    <li><strong> Note :   </strong> <img src="~/Content/img/new6.gif" style="" /> If you do not save the option, your form will be rejected.(अगर आप विकल्प सेव नहीं करते हो तो आपका फॉर्म रिजेक्ट हो जाएगा) |</li>
+                                                   
+                                                  </ul>
+                                            </div>
+                                        </div>
+                                        <div class="sparkline12-graph sparkline8-list">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="all-form-element-inner">
+
+                                                            <div class="text-danger text-center">
+                                                                @if (TempData["Msg"] != null)
+                                                                {
+                                                                    @TempData["Msg"];
+                                                                }
+                                                            </div>
+                                                            @using (Html.BeginForm())
+                                                            {
+                                                                <div class="form-group-inner">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                            <label class="login2 pull-right pull-right-pro"><span class="starvalid">*</span>Previous Qualification</label>
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-md- col-sm- col-xs-12">
+                                                                            <div class="form-select-list">
+                                                                                @Html.DropDownListFor(model => model.Item1.QualicationType, new SelectList(ViewBag.Qualification, "Value", "Text", ViewBag.que), new { @class = "", @id = "Qualification", @name = "Qualification", @required = "required", @disabled = "disabled", @style = "border:0px;background-color: white;" })
+                                                                                @if (Model.Item1 != null)
+                                                                                {
+                                                                                    @Html.HiddenFor(model => model.Item1.ID, new { @id = "hid" })
+                                                                                }
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                            <label class="login2 pull-right pull-right-pro"><span class="starvalid">*</span> Selected Course</label>
+                                                                        </div>
+                                                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                            @Html.DropDownListFor(model => model.Item3.CourseCategory, new SelectList(ViewBag.Course, "CourseCategoryID", "CourseCategory"), "Select Course..", new { @class = "", @id = "Coursetype", @required = "required", @disabled = "disabled", @style = "border:0px;background-color: white;" })
+
+
+                                                                        </div>
+                                                                        <div class="text-danger text-center">
+                                                                            <span id="Uerr"> </span>
+
+                                                                        </div>
+                                                                        <div class="text-danger">
+                                                                            <span id="Berr"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group-inner">
+                                                                    <div class="row">
+
+                                                                    </div>
+                                                                </div>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sparkline12-graph sparkline8-list">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-lg-offset-2">
+                                                        <div class="all-form-element-inner">
+                                                        
+                                                            <div class="text-danger text-center">
+
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <h3>Choose College  Priority Wise </h3>
+                                                            </div>
+                                                            @using (Html.BeginForm())
+                                                            {
+                                                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer document-table">
+                                                                    @Html.HiddenFor(model => model.Item1.ScopeIdentity, new { @id = "hid1" })
+                                                                   
+                                                                    <table ui-jq="dataTable" ui-options="dataTableOpt" class="table table-bordered table-condensed dataTable " id="subjecttable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    College
+                                                                                </th>
+                                                                               
+                                                                               
+                                                                                <th>
+                                                                                    Remove
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                            @foreach (var item in Model.Item2)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        @Html.DropDownList("College", new SelectList(ViewBag.College, "ID", "CollegeCode"), "--Select College--", new { @class = "form-control custom-select-value College", @id = "College", @required = "required" })
+
+                                                                                    </td>
+                                                                                   
+                                                                                  
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            }
+
+
+
+                                                                    </table>
+                                                                </div>
+                                                                <div class="form-group-inner">
+                                                                    <div class="login-btn-inner">
+                                                                        <div class="row  notification-part">
+                                                                          
+                                                                            <div class="col-lg-12 pull-right sa-right left" style="float:left">
+                                                                                @if (ViewBag.Collegecount == true)
+                                                                                {
+                                                                                    if (ViewBag.check_admissionopen == true)
+                                                                                    {
+                                                                                <input type="button" class="btn btn-primary" id="addRow" name="addRow" value="Add New Choice" style="float:left"/>
+                                                                                    }
+                                                                                }
+                                                                                <br />
+                                                                              </div>
+                                                                            <div class="col-lg-12 pull-right sa-right left" style="float:left">
+
+                                                                                <br />
+                                                                                <b>
+                                                                                    <ul>
+                                                                                        <li><span class="starvalid">*</span> Note: B.C.A. Student should be choose  minimun 2 college!! </li>
+                                                                                        <li><span class="starvalid">*</span> Note: Kindly dont choose/select the below 5 colleges from the list if your are MALE student . These are the GIRL Colleges. In the event that Male Student select the Above Colleges, at that point his application will be rejected.!! </li>
+                                                                                        <li> <strong> List Of Mahila College :-</strong></li>
+                                                                                        <li> 1. B R M College</li>
+                                                                                        <li>2. MAHILA COLLEGE KHAGARIA</li>
+                                                                                        <li>3. MAHILA COLLEGE BARAHIYA</li>
+                                                                                        <li>4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA</li>
+                                                                                        <li>5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI</li>
+                                                                                        <li></li>
+                                                                                    </ul>
+                                                                                </b>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                if (ViewBag.check_admissionopen == true)
+                                                                {
+                                                                <div class="form-group-inner">
+                                                                    <div class="login-btn-inner">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 text-center">
+                                                                                <div class="document-btn">
+                                                                                    @if (ViewBag.Statusrecruitny != true)
+                                                                                    {
+                                                                                        if (ViewBag.sessionid == 39)
+                                                                                        { }
+                                                                                        else
+                                                                                        {
+                                                                                    <a class="btn btn-primary waves-effect waves-light" id="savechoice">Save</a>
+                                                                                        }
+                                                                                    }
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                }
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-12  text-center">
+                                                    <div class="document-btn">
+                                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("PreviousyearQualification", "Homev")">Previous</a>
+                                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("FeesSubmit", "Homev")">Next</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="sparkline12-graph">
+                                        <div class="basic-login-form-ad">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="all-form-element-inner">
+
+                                                        <div class="text-danger text-center">
+                                                            @if (ViewBag.sessionid != 39)
+                                                            {
+                                                            if (TempData["Msg"] != null)
+                                                            {
+                                                                                        @TempData["Msg"];
+                                                                }
+                                                            }
+                                                        </div>
+                                                        @using (Html.BeginForm())
+                                                        {
+
+
+                                                        
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sparkline12-graph document-table">
+                                        <div class="basic-login-form-ad">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="all-form-element-inner">
+                                                        @*<form action="#">*@
+                                                        <div class="text-danger text-center">
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <h3>Your choices for  College Priority Wise </h3>
+                                                        </div>
+                                                        @using (Html.BeginForm())
+                                                        {
+                                                            <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer table-responsive">
+                                                                @Html.HiddenFor(model => model.Item1.ScopeIdentity, new { @id = "hid1" })
+                                                                <table ui-jq="dataTable" ui-options="dataTableOpt" class="table table-bordered table-condensed dataTable " id="subjecttable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>
+                                                                                Sr.No.
+                                                                            </th>
+                                                                            <th>
+                                                                               (College Code) College Name
+                                                                            </th>
+                                                                            
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @{ int a = 1;}
+                                                                        @foreach (DataLayer.Student_Admission_Choicesubject item in ViewBag.Choicesubject as List<DataLayer.Student_Admission_Choicesubject>)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@a</td>
+                                                                                <td>@item.collegeidlist</td>
+                                                                               
+                                                                              
+                                                                            </tr>  a++;
+                                                                        }
+                                                                </table>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="login-btn-inner">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-3"></div>
+                                                                        <div class="col-lg-12 pull-left sa-left left">
+                                                                            @*@if (Model.Item3.IsFeeSubmit == 0)
+                                                                            {*@
+                                                                                @if (ViewBag.check_admissionopen == true)
+                                                                                {
+                                                                                    if (ViewBag.Statusrecruitny != true)
+                                                                                    {
+                                                                                <input type="button" class="btn btn-primary" id="changeschoices" name="changeschoices" value="Change Choices" />
+
+                                                                                    } <br />
+                                                                                <b>
+                                                                                    @*<span class="starvalid">*</span> Note: If You Want to Change Choices Then You need to  Fill All Choice Again !!
+                                                                                    <br /><br />  <span class="starvalid">*</span> Note: Kindly dont choose/select the below 5 colleges from the list if your are MALE student . These are the GIRL Colleges. In the event that Male Student select the Above Colleges, at that point his application will be rejected.!! <br />
+                                                                                    <br /> List Of Mahila College :-<br />
+                                                                                    1. B R M College, <BR />2. MAHILA COLLEGE KHAGARIA,<BR />3. MAHILA COLLEGE BARAHIYA <br />4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA,<br />5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI*@
+
+                                                                                    <br />
+                                                                                </b>
+                                                                                    }
+                                                                            @*}*@
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                                            }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-lg-12 text-center">
+                                                <div class="document-btn">
+                                                    <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("PreviousyearQualification", "Homev")">Previous</a>
+                                                    <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("FeesSubmit", "Homev")">Next</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                                                            }
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <script>
+                $('body').delegate('.College', 'change', function () {
+                   
+                });
+               
+                $('body').delegate('.Clear', 'click', function () {
+                   
+                    if ($(this).val() == "") {
+                        return;
+                    }
+                    var res = $(this).val();
+                    var tr = $(this).closest("tr");
+                    tr.find('#College').val('');
+                });
+                $("#addRow").click(function (event) {
+                    
+                    var html555 = '';
+                    var itemvalues = $('Select[name="College"]').map(function () {
+                        return this.value
+                    }).get();
+                    if (itemvalues.length > 0) {
+                        for (var i = 0; i < itemvalues.length; i++)
+                        {
+                            if (itemvalues[i].length == 0)
+                            {
+                                        showAlert('Please Select College details  before entering next Choice !!');
+                                        return;
+                                    }
+                        }
+                    }
+                    if (itemvalues.length > 4) {
+
+                        showAlert('You can Add Maximum 5 Choice !!');
+                        return;
+
+                    }
+                   
+                    var res = $(this).val();
+                    var tr = $(this).closest("tr");
+                    var str = '';
+                    var SubjectCollegeID = $('select[name="College"]').map(function () {
+                        return this.value
+                    }).get();
+                    for (var i = 0; i < SubjectCollegeID.length; i++)
+                    {
+                        if (SubjectCollegeID[i] != "") {
+                            str += SubjectCollegeID[i] + ',';
+                        }
+                    }
+                    showloader();
+                    $.ajax({
+                        url: "/StudentV/Homev/College_bindDynamic/",
+                        data: { coursecategoryid: Coursecategory, res: str , isgender: gender},
+                        cache: false,
+                        type: "POST",
+                        dataType: "json",
+                        success: function (result)
+                        {
+                            hideloader();
+                            showloader();
+                            if (result.qlist.length == 0)
+                            {
+                                showAlert('You already filled all college for this course  !!');
+                                hideloader();
+                                return;
+                            }
+                           // console.log(result.qlist);
+                            var str = '';
+                            var saved = '';
+                            $.each(result.qlist, function (key, value) {
+                                saved += '<option value="' + value.ID + '">' + value.CollegeCode + '</option>';
+                            });
+                            html555 += '<tr>';
+                            html555 += '<td><select class="form-control custom-select-value College" id="College" name="College" required="required">';
+                            html555 += ' <option value="">--Select College--</option>';
+                            html555 += '' + saved + '';
+                            html555 += '</select>';
+                            html555 += '</td>';
+                            html555 += '  <td><input type="button" class="btn btn-primary " name="Remove" value="Remove" onclick="removeRow(this);" /></td>';
+                            html555 += '</tr>';
+                            $("#subjecttable").append(html555);
+                            tr.next('tr').find('.Subject ').html(str);
+                            $('#addRow').removeAttr("style");
+                            $('#addRow').attr("style", "display:block");
+                            hideloader();
+                        },
+                        error: function ()
+                        {
+                            hideloader();
+                            $('#addRow').removeAttr("style");
+                            $('#addRow').attr("style", "display:none");
+                       // showAlert("error")
+                    }
+                    });
+                });
+                $("#savechoice").click(function (event) {
+                    debugger;
+                    var Collegeitemvalues = $('Select[name="College"]').map(function () {
+                        return this.value
+                    }).get();
+                    
+                    var hounors_subjectidlist = '';
+                    var collegeidlist = '';;
+                    var Subsidiary1_subjectidlist = '';
+                    var Subsidiary2_subjectidlist = '';
+                    var Compulsory1_subjectidlist = '';
+                    var Compulsory2_subjectidlist = '';
+                    if (Collegeitemvalues.length > 0) {
+                        for (var i = 0; i < Collegeitemvalues.length; i++) {
+                            if (Collegeitemvalues[i].length == 0)
+                            {
+                                
+                                        showAlert('Please Fill All Above Choice of College  !!');
+                                        return;
+                                 
+                            }
+                            else
+                            {
+                                collegeidlist += (Collegeitemvalues[i] == "" ? "0" : Collegeitemvalues[i]) + ',';
+                                hounors_subjectidlist += "@ViewBag.coursestreamid" + ',';
+                                
+                            }
+                        }
+                    }
+                    if (Coursecategory == 26)
+                    {
+                        if (Collegeitemvalues.length < 2)
+                        {
+                            showAlert('Please atleast 2 College choose  !!');
+                            return; 
+                        }
+                    }
+                   
+                    showloader();
+                    $.ajax({
+                        url: "/StudentV/Homev/savest_choicesubject/",
+                        data: { collegeidlist: collegeidlist, hounors_subjectidlist: hounors_subjectidlist },
+                        cache: false,
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            hideloader();
+                            console.log(data.data);
+                            showAlert(data.data.Msg);
+                            showloader();
+                            window.location.reload();
+                        },
+                        error: function () {
+                            hideloader();
+                            showAlert("error")
+                        }
+                    });
+                    return;
+                });
+                function removeRow(oButton) {
+                    var empTab = document.getElementById('subjecttable');
+                    empTab.deleteRow(oButton.parentNode.parentNode.rowIndex);       // BUTTON -> TD -> TR.
+                }
+                $("#changeschoices").click(function (event) {
+                    debugger;
+                    var a = confirm("Your All Choices will be Deleted and you need to fill All Choices Again ??");
+                    if (a == true) {
+                        showloader();
+                        $.ajax({
+                            url: "/StudentV/Homev/againfillform/",
+                            data: {},
+                            cache: false,
+                            type: "POST",
+                            dataType: "json",
+                            success: function (data) {
+                                hideloader();
+                                showloader();
+                                window.location.reload();
+                            },
+                            error: function () {
+                                hideloader();
+
+                            }
+                        });
+                    }
+                    else {
+
+                        return;
+                    }
+                });
+            </script>
+            <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+            

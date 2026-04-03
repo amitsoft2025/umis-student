@@ -1,0 +1,832 @@
+﻿
+@using DataLayer
+@model Tuple<DataLayer.StudentAdmissionQualification, List<DataLayer.StudentPreviousQualification>, DataLayer.Login>
+@{
+    ViewBag.Title = "NewSubject";
+    Layout = "~/Areas/Student/Views/Shared/_LayoutStudent.cshtml";
+}
+<style>
+    .starvalid {
+        color: red;
+    }
+     .Clear {
+        padding: 4px !important;
+        font-size:11px !important;
+    } 
+    .Remove {
+        padding: 4px !important;
+        font-size:11px !important;
+    }
+
+</style>
+<style>
+    .DocumentUpload h3 {
+        margin-bottom: 20px !important;
+        margin-top: -20px !important;
+    }
+
+    .massages_innerblk {
+        border: 0px solid #ddd !important;
+        margin-bottom: 0px !important;
+        margin-top: -20px !important;
+    }
+</style>
+<script>
+    var Coursecategory = '@ViewBag.Coursecategoryid';
+    var collegelist = '';
+    var gender = '@ViewBag.gender';  
+    var hounors_subjectid='@ViewBag.hounors_subjectid'; 
+    var collegeid='@ViewBag.collegeid';
+</script>
+<style>
+    .starvalid {
+        color: red;
+    }
+
+    .spacebottom {
+        margin-bottom: 15px;
+    }
+
+    .spacebot {
+        padding-bottom: 15px;
+    }
+
+    .textsize {
+        font-size: 12px;
+    }
+
+    .form-group-inner label {
+        font-size: 18px;
+        color: #303030;
+        padding: 10px 0;
+    }
+
+    .fontnew {
+        font-size: 25px;
+        padding-left: 20px;
+    }
+</style>
+
+@{
+    if (TempData["selectsubmsg"] != null)
+    {
+        <div class="container-fluid">
+            <div class="alert-wrap1 shadow-inner wrap-alert-b">
+                <div class="alert alert-success " role="alert">
+                    <div>@TempData["selectsubmsg"]</div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<div class="container-fluid">
+    <div class="sparkline8-list DocumentUpload">         
+        <div class="">            
+            <div class="single-cards-item DocumentUpload">
+                @if (TempData["selectsubmsg"] == null)
+                {
+                    if (ViewBag.Statusrecruitny == true)
+                    {
+                       
+                        <div id="SubsidiaryDiv">
+                            <div class="row">
+                                <div class="sparkline12-hd">
+                                    <div class="main-sparkline12-hd">
+                                        <h3 class="text-center">
+                                            Subject Details
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="sparkline12-graph  sparkline8-list">
+                                    <div class="col-lg-6 col-lg-offset-3">
+                                        <div class="basic-login-form-ad">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="all-form-element-inner">
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <label class="login2">College Name:</label>
+                                                                    @if (ViewBag.CollegeName != null)
+                                                                    {
+                                                                        @ViewBag.CollegeName
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <label class="login2">Honours Subject:</label>
+                                                                    @if (ViewBag.hounors_subjectName != null)
+                                                                    {
+                                                                        @ViewBag.hounors_subjectName
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                            <label class="login2">College Name:</label>
+                                                            @if (ViewBag.CollegeName != null)
+                                                            {
+                                                                @ViewBag.CollegeName
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>*@
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                @*<a class="btn btn-sm btn-primary  waves-effect waves-light" id="submitapp" href="@Url.Action("feesSubmit_spot", "Home")"> Go to DashBoard</a>*@
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                @*@if (ViewBag.IsFeeSubmit_spot == 0)
+                                                        {*@
+                                                                <div class="" id=""><strong> Go to DashBoard </strong> </div>
+                                                                @*}*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-inner">
+                                        <div class="login-btn-inner">
+                                            <div class="row notification-part">
+                                                <div class="col-lg-3"></div><br /><br />
+                                                <div class="col-lg-12 pull-left sa-left left">
+
+                                                    <ul>
+
+
+                                                        <li>  <span class="starvalid">*</span> <strong>Note:</strong> 1. Select College and Subject to check Seat Available   .</li>
+                                                        <li><span class="starvalid">*</span> <strong>Note:</strong> 2. if seat Available  then proceed to next and then save subsidiary and Composition subject .</li>
+                                                        @*<li> <span class="starvalid">*</span> <strong>Note:</strong> 3. when your college and subject choice save then you can pay fees or you can change choice.  </li>*@
+                                                        <li><span class="starvalid">*</span> <strong>Note:</strong>  After Seat Lock and Update Subsidiary  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+
+                                                        <li><span class="starvalid">*</span> <strong>Note: </strong>  you choose College then its mandatory to select Honours  Subject,Subsidiary Subjects and Compositions Subjects.</li>
+                                                        <li><br /><br /><span class="starvalid">*</span> <strong> Note: </strong>Kindly dont choose / select the below 5 colleges from the list if your are MALE student.These are the GIRL Colleges.In the event that Male Student select the Above Colleges, at that point his application will be rejected. !! </li>
+                                                        <li> <strong> List Of Mahila College :- </strong></li>
+                                                        <li>   1. B R M College, </li>
+                                                        <li> 2. MAHILA COLLEGE KHAGARIA</li>
+                                                        <li>3. MAHILA COLLEGE BARAHIYA</li>
+                                                        <li>4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA</li>
+                                                        <li> 5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI</li>
+                                                        <li>
+                                                            <span class="starvalid">*</span><strong> Note:</strong>
+                                                            If you want to choose Geography and Mathematic in
+                                                            Honours Subject and Subsidiarys Subjects then It is Mandatory to have Geography and Mathematic in your intermidiate else your application will be rejected.
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        if (ViewBag.SpotadStatus != true)
+                        {
+                           
+                            <div id="SelectSub">
+                                <div class="row">
+                                    <div class="sparkline12-hd">
+                                        <div class="main-sparkline12-hd">
+                                            <h3 class="text-center">
+                                                Select Manual Choice and Check Seat Availability
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="sparkline12-graph  sparkline8-list">
+                                        <div class="col-lg-6 col-lg-offset-3">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="all-form-element-inner">
+
+                                                            @using (Html.BeginForm("NewSubject", "Home", FormMethod.Post, new { id = "myform" }))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+                                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                                if (Model != null)
+                                                                {
+                                                                    <div class="form-group-inner">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                <label class="login2">Select College :</label>
+                                                                                @Html.DropDownList("College", new SelectList(ViewBag.College, "ID", "CollegeCode"), "--Select College--", new { @class = "form-control custom-select-value College", @id = "College", @required = "required" })
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group-inner">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                <label class="login2">Select Honours Subject (check Seat availbale ):</label>
+                                                                                <select class="form-control custom-select-value Subject " tabindex="-1" title="Select Course" id="Subject" name="Subject">
+                                                                                    <option value="">Select Honours Subject</option>
+                                                                                </select>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group-inner" id="seatavaila">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                <label class="login2">Seat Available :</label>
+                                                                                <label class="login2" id="seat1"> </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group-inner" id="buttonShow" style="display:none">
+                                                                        <div class="login-btn-inner">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-12 text-center">
+                                                                                    <div class="document-btn">
+                                                                                        <div class="login-horizental cancel-wp form-bc-ele">
+                                                                                            @if (ViewBag.IsFeeSubmit_spot == 0)
+                                                                                            {
+                                                                                                //if (ViewBag.check_admissionopen == true)
+                                                                                                //{
+                                                                                                if (ViewBag.IsFeeSubmit == 1)
+                                                                                                {
+                                                                                                    if (ViewBag.Ismannualadmission == 0)
+                                                                                                    {
+                                                                                                        <button class="btn btn-sm btn-primary login-submit-cs" type="button" id="btn">Seat Lock and Next</button>
+                                                                                                    }
+                                                                                                }
+                                                                                                //}
+                                                                                            }
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <div class="login-btn-inner">
+                                                <div class="row notification-part">
+                                                    <div class="col-lg-3"></div><br /><br />
+                                                    <div class="col-lg-12 pull-left sa-left left">
+
+                                                        <ul>
+
+
+                                                            <li>  <span class="starvalid">*</span> <strong>Note:</strong> 1. Select College and Subject to check Seat Available   .</li>
+                                                            <li><span class="starvalid">*</span> <strong>Note:</strong> 2. if seat Available  then proceed to next and then save subsidiary and Composition subject .</li>
+                                                            @*<li> <span class="starvalid">*</span> <strong>Note:</strong> 3. when your college and subject choice save then you can pay fees or you can change choice.  </li>*@
+                                                            <li><span class="starvalid">*</span> <strong>Note:</strong>After Seat Lock and Update Subsidiary  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+
+                                                            <li><span class="starvalid">*</span> <strong>Note: </strong>  you choose College then its mandatory to select Honours  Subject,Subsidiary Subjects and Compositions Subjects.</li>
+                                                            <li><br /><br /><span class="starvalid">*</span> <strong> Note: </strong>Kindly dont choose / select the below 5 colleges from the list if your are MALE student.These are the GIRL Colleges.In the event that Male Student select the Above Colleges, at that point his application will be rejected. !! </li>
+                                                            <li> <strong> List Of Mahila College :- </strong></li>
+                                                            <li>   1. B R M College, </li>
+                                                            <li> 2. MAHILA COLLEGE KHAGARIA</li>
+                                                            <li>3. MAHILA COLLEGE BARAHIYA</li>
+                                                            <li>4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA</li>
+                                                            <li> 5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI</li>
+                                                            <li>
+                                                                <span class="starvalid">*</span><strong> Note:</strong>
+                                                                If you want to choose Geography and Mathematic in
+                                                                Honours Subject and Subsidiarys Subjects then It is Mandatory to have Geography and Mathematic in your intermidiate else your application will be rejected.
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (ViewBag.subsidiarySave == true)
+                        {
+                              <div id="SubsidiaryDiv">
+                                <div class="row">
+                                    <div class="sparkline12-hd">
+                                        <div class="main-sparkline12-hd">
+                                            <h3 class="text-center">
+                                                Subject Details
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="sparkline12-graph  sparkline8-list">
+                                        <div class="col-lg-6 col-lg-offset-3">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="all-form-element-inner">
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">College Name:</label>
+                                                                        @if (ViewBag.CollegeName != null)
+                                                                        {
+                                                                            @ViewBag.CollegeName
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">Honours Subject:</label>
+                                                                        @if (ViewBag.hounors_subjectName != null)
+                                                                        {
+                                                                            @ViewBag.hounors_subjectName
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @*<div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <label class="login2">College Name:</label>
+                                                                @if (ViewBag.CollegeName != null)
+                                                                {
+                                                                    @ViewBag.CollegeName
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    @*<a class="btn btn-sm btn-primary  waves-effect waves-light" id="submitapp" href="@Url.Action("feesSubmit_spot", "Home")"> Go to DashBoard</a>*@
+                                                                    <a class="btn btn-sm btn-primary  waves-effect waves-light" id="submitapp" href="@Url.Action("Index", "Home")"> Go to DashBoard</a>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    @*@if (ViewBag.IsFeeSubmit_spot == 0)
+                                                            {*@
+                                                                    <div class="" id=""><strong> Go to DashBoard </strong> </div>
+                                                                    @*}*@
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <div class="login-btn-inner">
+                                                <div class="row notification-part">
+                                                    <div class="col-lg-3"></div><br /><br />
+                                                    <div class="col-lg-12 pull-left sa-left left">
+
+                                                        <ul>
+
+
+                                                            <li>  <span class="starvalid">*</span> <strong>Note:</strong> 1. Select College and Subject to check Seat Available   .</li>
+                                                            <li><span class="starvalid">*</span> <strong>Note:</strong> 2. if seat Available  then proceed to next and then save subsidiary and Composition subject .</li>
+                                                            @*<li> <span class="starvalid">*</span> <strong>Note:</strong> 3. when your college and subject choice save then you can pay fees or you can change choice.  </li>*@
+                                                            <li><span class="starvalid">*</span> <strong>Note:</strong>  After Seat Lock and Update Subsidiary  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+
+                                                            <li><span class="starvalid">*</span> <strong>Note: </strong>  you choose College then its mandatory to select Honours  Subject,Subsidiary Subjects and Compositions Subjects.</li>
+                                                            <li><br /><br /><span class="starvalid">*</span> <strong> Note: </strong>Kindly dont choose / select the below 5 colleges from the list if your are MALE student.These are the GIRL Colleges.In the event that Male Student select the Above Colleges, at that point his application will be rejected. !! </li>
+                                                            <li> <strong> List Of Mahila College :- </strong></li>
+                                                            <li>   1. B R M College, </li>
+                                                            <li> 2. MAHILA COLLEGE KHAGARIA</li>
+                                                            <li>3. MAHILA COLLEGE BARAHIYA</li>
+                                                            <li>4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA</li>
+                                                            <li> 5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI</li>
+                                                            <li>
+                                                                <span class="starvalid">*</span><strong> Note:</strong>
+                                                                If you want to choose Geography and Mathematic in
+                                                                Honours Subject and Subsidiarys Subjects then It is Mandatory to have Geography and Mathematic in your intermidiate else your application will be rejected.
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="SubsidiaryDiv">
+                                <div class="row">
+                                    <div class="sparkline12-hd">
+                                        <div class="main-sparkline12-hd">
+                                            <h3 class="text-center">
+                                                Choose Subsidiary Subject Details
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="sparkline12-graph  sparkline8-list">
+                                        <div class="col-lg-6 col-lg-offset-3">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="all-form-element-inner">
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">College Name:</label>
+                                                                        @if (ViewBag.CollegeName != null)
+                                                                        {
+                                                                            @ViewBag.CollegeName
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                                                        <label class="login2">Honours Subject:</label>
+                                                                        @if (ViewBag.hounors_subjectName != null)
+                                                                        {
+                                                                            @ViewBag.hounors_subjectName
+                                                                        }
+
+                                                                    </div>
+                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                                                                        @*<button type="button" class="btn btn-primary waves-effect waves-light aligncenter" id="changechoice"> Change Choice</button>*@
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">Select Susidiary1 <span class="starvalid">*</span></label>
+                                                                        <div class="form-select-list">
+                                                                            @Html.DropDownList("Subsidiary1", new SelectList(ViewBag.subsidiary1, "StreamCategoryID", "streamCategory", ViewBag.subsi1), "--Select subsidiary1--", new { @class = "form-control custom-select-value", @id = "Subsidiary1", @name = "Subsidiary1", @required = "required" })
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">Select Susidiary2 <span class="starvalid">*</span></label>
+                                                                        <select class="form-control custom-select-value Subject " tabindex="-1" title="Select Subsidiary2" id="Susidiary2" name="Susidiary2">
+                                                                            <option value="">Select Susidiary2 Subject</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">Select Composition1 <span class="starvalid">*</span></label>
+                                                                        <div class="form-select-list">
+                                                                            @Html.DropDownList("Compulsory1", new SelectList(ViewBag.subcomposition1, "StreamCategoryID", "streamCategory"), "--Select Compulsory1--", new { @class = "form-control custom-select-value", @id = "Compulsory1", @name = "Compulsory1", @required = "required" })
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">Select Composition2 <span class="starvalid">*</span></label>
+                                                                        <select class="form-control custom-select-value Subject " tabindex="-1" title="Select Compulsory2" id="Compulsory2" name="Compulsory2">
+                                                                            <option value="">Select Composition2 Subject</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="login-btn-inner">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12 text-center">
+                                                                            <div class="document-btn">
+                                                                                <div class="login-horizental cancel-wp form-bc-ele">
+
+                                                                                    <button class="btn btn-sm btn-primary login-submit-cs" type="button" id="btnSavesub">Save Subsidiary</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group-inner">
+                                            <div class="login-btn-inner">
+                                                <div class="row notification-part">
+                                                    <div class="col-lg-3"></div><br /><br />
+                                                    <div class="col-lg-12 pull-left sa-left left">
+
+                                                        <ul>
+
+
+                                                            <li>  <span class="starvalid">*</span> <strong>Note:</strong> 1. Select College and Subject to check Seat Available   .</li>
+                                                            <li><span class="starvalid">*</span> <strong>Note:</strong> 2. if seat Available  then proceed to next and then save subsidiary and Composition subject .</li>
+                                                            @*<li> <span class="starvalid">*</span> <strong>Note:</strong> 3. when your college and subject choice save then you can pay fees or you can change choice.  </li>*@
+                                                            <li><span class="starvalid">*</span> <strong>Note:</strong> After Seat Lock and Update Subsidiary  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+
+                                                            <li><span class="starvalid">*</span> <strong>Note: </strong>  you choose College then its mandatory to select Honours  Subject,Subsidiary Subjects and Compositions Subjects.</li>
+                                                            <li><br /><br /><span class="starvalid">*</span> <strong> Note: </strong>Kindly dont choose / select the below 5 colleges from the list if your are MALE student.These are the GIRL Colleges.In the event that Male Student select the Above Colleges, at that point his application will be rejected. !! </li>
+                                                            <li> <strong> List Of Mahila College :- </strong></li>
+                                                            <li>   1. B R M College, </li>
+                                                            <li> 2. MAHILA COLLEGE KHAGARIA</li>
+                                                            <li>3. MAHILA COLLEGE BARAHIYA</li>
+                                                            <li>4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA</li>
+                                                            <li> 5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI</li>
+                                                            <li>
+                                                                <span class="starvalid">*</span><strong> Note:</strong>
+                                                                If you want to choose Geography and Mathematic in
+                                                                Honours Subject and Subsidiarys Subjects then It is Mandatory to have Geography and Mathematic in your intermidiate else your application will be rejected.
+                                                            </li>
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <script>
+            //$('body').delegate('.College', 'change', function () {
+                $(".College").change(function (event) {
+               // debugger;
+                var res = $(this).val();
+                var tr = $(this).closest("tr");
+                $('#Subject').find("option").remove();
+                $('#Subject').append($("<option></option>").val("").html("--Select Honours Subject (check Seat availbale )--"));
+                $('#buttonShow').attr("style", "display:none");
+                $('#seat1').html('');
+                if ($(this).val() == "") {
+                    return;
+                }
+                showloader();
+                $.ajax({
+                    url: "/Student/Home/getcollegesubjects/",
+                    data: { id: res },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                       // debugger;
+                        $('#Subject').find("option").remove();
+                        $('#Subject').append($("<option></option>").val("").html("--Select Honours Subject (check Seat availbale )--"));
+                        $.each(data.data, function (key, value) {
+                         //   debugger;
+                           $('#Subject').append($("<option></option>").val(value.StreamCategoryID).html(value.streamCategory));
+                        });
+                        hideloader();
+                    },
+                    error: function () {
+                        hideloader();
+                        //showAlert("error")
+                    }
+                });
+
+                });
+                $('body').delegate('.Subject', 'change', function () {
+                    var res = $(this).val();
+                    var collegeid = $('#College').val();
+                    showloader();
+                    $.ajax({
+                        url: "/Student/Home/getcollegesubjects_seatspot_availble/",
+                        data: { id: res, collegeid: collegeid },
+                        cache: false,
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            //debugger;
+                            $('#buttonShow').removeAttr("style");
+                            $('#seat1').html(data.data.TotalSeat);
+                            if (data.data.TotalSeat > 0) {
+                                $('#buttonShow').attr("style", "display:block");
+                            }
+                            else {
+                                $('#buttonShow').attr("style", "display:none");
+                            }
+                            hideloader();
+                        },
+                        error: function () {
+                            hideloader();
+                        }
+                    });
+                });
+                $('body').delegate('#btn', 'click', function () {
+                    debugger;
+                    var collegeid = $('#College').val();
+                    var subjectid = $('#Subject').val();
+
+                    if (collegeid == "")
+                    {
+                        showAlert('Please Select College  !!');
+                        return;
+                    
+                    }
+                    if (subjectid == "") {
+                        showAlert('Please Select Subject  !!');
+                        return;
+
+                    }
+                    showloader();
+                    $.ajax({
+                        url: "/Student/Home/savest_choicesubject_spot/",
+                        data: { hounors_subjectid: subjectid, collegeid: collegeid },
+                        cache: false,
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            //debugger;
+                            if (data.data.status == true)
+                            {
+                                showloader();
+                                //showAlert(data.data.Msg);
+                                // location.replace('/Student/Home/NewSubject');
+                                window.location.reload();
+                            }
+                            else
+                            {
+
+                                showAlert(data.data.Msg);
+                                hideloader();
+                            }                           
+                        },
+                        error: function () {
+                            hideloader();
+                        }
+                    });
+                });
+        </script>
+        <script>          
+            $("#Subsidiary1").change(function (event) {
+                var res = $("#Subsidiary1").val();
+                $('#Susidiary2').find("option").remove();
+                $("#Susidiary2").append($("<option></option>").val("").html("--Select Subsidiary2--"));
+                var res = $(this).val();
+                if (res == "") {
+                    res = 0;
+                    return;
+                }
+                showloader();
+                $.ajax({
+                    url: "/Student/Home/getcollegesubsidiary2/",
+                    data: { collegeid: collegeid, subjectid: hounors_subjectid, subsidiary1: res },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+
+                        $('#Susidiary2').find("option").remove();
+                        $('#Susidiary2').append($("<option></option>").val("").html("Select Subsidiary2"));
+                        $.each(data.data, function (key, value) {
+                            $('#Susidiary2').append($("<option></option>").val(value.StreamCategoryID).html(value.streamCategory));
+                        });
+                        hideloader();
+                    },
+                    error: function () {
+                        hideloader();
+                        showAlert("error")
+                    }
+                });
+            });
+            $("#Compulsory1").change(function (event) {
+                $('#Compulsory2').find("option").remove();
+                $("#Compulsory2").append($("<option></option>").val("").html("--Select Compulsory1--"));
+                var res = $("#Compulsory1").val();
+                if (res == "") {
+                    res = 0;
+                    return;
+                }
+                showloader();
+                $.ajax({
+                    url: "/Student/Home/getcollegecompulsory2/",
+                    data: { collegeid: collegeid,compulsory1: res },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+
+
+                        $('#Compulsory2').find("option").remove();
+                        $('#Compulsory2').append($("<option></option>").val("").html("Select Composition 2"));
+                        $.each(data.data, function (key, value) {
+                            $('#Compulsory2').append($("<option></option>").val(value.StreamCategoryID).html(value.streamCategory));
+                        });
+                        hideloader();
+                    }
+                                  ,
+                    error: function () {
+                        hideloader();
+                        // showAlert("error");
+                    }
+                });
+            });
+            $('body').delegate('#btnSavesub', 'click', function () {
+                debugger;
+                var Subsidiary1 = $('#Subsidiary1').val();
+                var Susidiary2 = $('#Susidiary2').val();
+                var Compulsory1 = $('#Compulsory1').val();
+                var Compulsory2 = $('#Compulsory2').val();
+                if (Subsidiary1 == "") {
+                    showAlert('Please Select Subsidiary1 Subject  !!');
+                    return;
+
+                }
+                if (Susidiary2 == "") {
+                    showAlert('Please Select Susidiary2 Subject  !!');
+                    return;
+
+                }
+                if (Compulsory1 == "") {
+                    showAlert('Please Select Susidiary2 Subject  !!');
+                    return;
+
+                }
+                if (Compulsory1 == "1063" || Compulsory1 == "1066" || Compulsory1 == "1067" || Compulsory1 == "1068" || Compulsory1 == "1069" || Compulsory1 == "1070") {
+
+                }
+                else {
+                    if (Compulsory2 == "") {
+                        showAlert('Please Select Compulsory2 Subject  !!');
+                        return;
+                    }
+                }
+                
+                showloader();
+                $.ajax({
+                    url: "/Student/Home/savest_Susidiarychoicesubject_spot/",
+                    data: { Subsidiary1: Subsidiary1, Susidiary2: Susidiary2, Compulsory1: Compulsory1, Compulsory2: Compulsory2 },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        //debugger;
+                        if (data.data.status == true) {
+                            showAlert(data.data.Msg);
+                            showloader();
+                            //location.replace('/Student/Home/NewSubject');
+                            window.location.reload();
+                        }
+                        else {
+                            hideloader();
+                            showAlert(data.data.Msg);
+                        }                       
+                    },
+                    error: function () {
+                        hideloader();
+                    }
+                });
+            });
+            $('body').delegate('#changechoice', 'click', function () {
+                debugger;               
+               
+                var a = confirm('Are you sure to change choice, if you change then current lock seat will be free and Lock Another Seat !!');
+                if (a == false)
+                {
+                    return;
+                }
+                showloader();
+                $.ajax({
+                    url: "/Student/Home/Changechoicesubject_spot??/",                    
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        //debugger;
+                        if (data.data.status == true) {
+                            showAlert(data.data.Msg);
+                            showloader();
+                            //location.replace('/Student/Home/NewSubject');
+                            window.location.reload();
+                        }
+                        else {
+                            hideloader();
+                            showAlert(data.data.Msg);
+                        }                      
+                    },
+                    error: function () {
+                        hideloader();
+                    }
+                });
+            });            
+        </script>
+    </div>
+</div>

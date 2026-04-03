@@ -1,0 +1,550 @@
+﻿@model DataLayer.PrintExamForm
+@{
+    ViewBag.Title = "EnrollmentFeesSubmit";
+
+    Layout = "~/Areas/StudentLLB/Views/Shared/_LayoutStudentLLB.cshtml";
+}
+
+
+<script>
+    var photurl = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+Model.objExamFrom.photo)";
+    var signurl = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+ Model.objExamFrom.sign)";
+    var logo1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/mu-logo-white.png")";
+    $(function () {
+
+        encodeImage2(logo1);
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    function encodeImage2(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("logo");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+
+</script>
+<script src="~/scripts/Customjs/EnrollmentFeeSubmitLLB.js?id=@System.Configuration.ConfigurationManager.AppSettings["Commonjs"]"></script>
+
+<div class="container-fluid">
+    @{
+
+        if (TempData["msgfees"] == null) { }
+        else
+        {
+            <div class="alert-wrap1 shadow-inner wrap-alert-b">
+                <div class="alert alert-success " role="alert" style="text-align:center !important">
+                    <div>@TempData["msgfees"]</div>
+                </div>
+            </div>
+        }
+    }
+    <div class="sparkline8-list DocumentUpload">
+        <div class="row">
+            <div class="col-sm-8 col-xs-12 col-sm-offset-2">
+                <div class="sparkline8-hd">
+                    <div class="tab-content-details shadow-reset">
+                        <h3 id="pageheading">
+                            Registration Number @if (Model.objfeesubmit.FeeStatus == "Paid")
+                            {<span> Fees Acknowledgement </span>
+                            }
+                            else
+                            { <span> Fees Submit </span>}
+                        </h3>
+                        @if (Model != null)
+                        {
+                            if (Model.objfeesubmit != null)
+                            {
+
+
+                                if (ViewBag.check_EnrollmentFeeSubmit_open == false || ViewBag.check_EnrollmentFeeSubmit_Close == false)
+                                {
+                                    <center>
+                                        <a style="color:red;font-size:30px"><span class="fa fa-times "></span></a><br /><br />
+
+
+
+                                        <h3>Last Date of Fees submission is @ViewBag.ViewBagenrollExtenddateValue</h3>
+
+
+
+                                    </center>
+                                }
+
+
+                            }
+                        }
+                    </div>
+                    <div class="text-danger text-center">
+                        @if (TempData["Msg"] != null)
+                        {
+                            @TempData["Msg"];
+                        }
+
+                    </div>
+                </div>
+
+                @if (1 == 1)
+                {
+                    <div class="sparkline8-graph fee-submit">
+                        <div class="static-table-list table-responsive">
+                            @using (Html.BeginForm("EnrollmentFeesSubmit", "ExamLLB", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data", id = "myform" }))
+                            {
+                                <table class="table">
+                                    <tbody>
+
+                                        <tr>
+                                            <th class="blue-bg"> View Migration File </th>
+                                            <th> <a title="View" href="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Document/@Model.objExamFrom.migrationcertificate" target="_blank" class="">Click here</a></th>
+                                        </tr>
+                                        <tr>
+                                            <th class="blue-bg">College Name </th>
+                                            <th> @Html.DisplayFor(model => model.objExamFrom.CollegeName)</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="blue-bg">Course</th>
+                                            <th> @Html.DisplayFor(model => model.objExamFrom.CourseCategory) &nbsp; @Html.DisplayFor(model => model.objExamFrom.YearName)</th>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="blue-bg">Caste category</th>
+                                            <th> @Html.DisplayFor(model => model.objfeesubmit.CastCategort)</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="blue-bg">Session</th>
+                                            <th> @Html.DisplayFor(model => model.objfeesubmit.SessionName)</th>
+                                        </tr>
+                                        @if (Model.objfeesubmit.FeeStatus == "Paid")
+                                        {
+                                            <tr>
+                                                <th class="blue-bg">Registration Fees</th>
+                                                <th> @Html.DisplayFor(model => model.objPrintRecipt.Fees)</th>
+                                            </tr>
+                                        }
+                                        else
+
+                                        {
+                                            <tr>
+                                                <th class="blue-bg">Registration Fees</th>
+                                                <th> @Html.DisplayFor(model => model.objfeesubmit.Fees)</th>
+                                            </tr>
+}
+
+
+                                        <tr>
+                                            <th class="blue-bg">Fee Status</th>
+                                            <th>
+                                                @if (Model.objfeesubmit.FeeStatus == "Paid")
+                                                {
+                                                    <span style="color:green" id="">@Model.objfeesubmit.FeeStatus</span>
+                                                }
+                                                else
+                                                { <span style="color:red">@Model.objfeesubmit.FeeStatus</span>}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            @if (Model.objfeesubmit.FeeStatus == "Paid")
+                                            {
+                                                <th class="blue-bg bdr-none">Registration No</th>
+                                                <th class="bdr-none"> @Html.DisplayFor(model => model.objExamFrom.RegistrationNo)</th>
+                                            }
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="modal-area-button text-center">
+                                    <div class="document-btn">
+                                        <input type="hidden" name="GridHtml" />
+                                        @if (Model != null)
+                                        {
+                                            if (Model.objExamFrom != null)
+                                            {
+                                                if (Model.objExamFrom.IsAdmissionFee != false)
+                                                {
+                                                    if (Model.objfeesubmit.IsRegistrationFee == false)
+                                                    {
+                                                        if (ViewBag.check_EnrollmentFeeSubmit_open == true && ViewBag.check_EnrollmentFeeSubmit_Close == true)
+                                                        {
+                                                            if (Model.objExamFrom.migrationcertificate_iseligible == 0)
+                                                            {
+                                                                <div>Please go to college, for verify form</div>
+                                                            }
+                                                            else if (Model.objExamFrom.migrationcertificate_iseligible == 2)
+                                                            {
+                                                                <br />
+                                                                <div>@Model.objExamFrom.migrationRejectReaseon </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button class="Danger danger-color" style="color: #fff;" id="submit" onclick="return submitpay();" value="Pay Fees"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Pay Fees </button>
+                                                            }
+                                                        }
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <button class="Danger danger-color" style="color: #fff;" type="button" id="PrintRecipt"><i class="fa fa-print"></i>&nbsp;&nbsp;Download Receipt</button>
+                                                        <a onclick="" class="Danger danger-color" href="/StudentLLB/examLLB/PrintDownloadenrollmentslipReceipt"> Download Your Regsitration No Slip </a>
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="sparkline8-graph fee-submit">
+                        <div class="static-table-list table-responsive document-btn">
+                            @using (Html.BeginForm("EnrollmentFeesSubmit", "ExamLLB", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data", id = "myform" }))
+                            {
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="box-col">
+                                        <div class="">
+                                            <label class="login2">Upload Migration Certificate(माइग्रेशन प्रमाण पत्र) </label>
+                                            <div class="file-upload-inner file-upload-inner-right ts-forms">
+                                                <div class="input append-big-btn">
+                                                    @if (Model.objExamFrom.migrationcertificate_iseligible == 0 || Model.objExamFrom.migrationcertificate_iseligible == 2)
+                                                    {
+                                                        <label class="icon-left" for="append-big-btn">
+                                                            <i class=""></i>
+                                                        </label>
+                                                        <div class="file-button">
+                                                            Browse
+                                                            <input type="file" onchange="document.getElementById('append-big-btn').value = this.value; check();" id="file" name="file" required>
+                                                        </div>
+                                                        <input type="hidden" class="link">
+                                                        <input type="text" id="append-big-btn" placeholder="no file selected" readonly value="">
+                                                        <div class="text-danger textsize pt-10">Allowed .ext is.jpg,.jpeg,.pdf,Size should be less then 500KB</div>
+
+                                                        <input type="hidden" id="hfile" name="hfile" value="@Model.objExamFrom.migrationcertificate_iseligible " />
+                                                    }
+                                                    <br />
+                                                    @if (Model.objExamFrom.migrationcertificate == null || Model.objExamFrom.migrationcertificate == "")
+                                                    {
+
+                                                        <button class="btn btn-sm btn-primary" type="button" onclick="submitapplication()" id="btn">Upload Document </button>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        if (Model.objExamFrom.migrationcertificate_iseligible == 0 || Model.objExamFrom.migrationcertificate_iseligible == 2)
+                                                        {
+                                                            <br />
+                                                            <button class="btn btn-sm btn-primary" type="button" onclick="submitapplication()" id="btn">Edit document</button>
+                                                            <br />
+                                                        }
+                                                        <br />
+                                                        <div class="notification-part ">
+                                                            <ul>
+                                                                <li>
+                                                                    View File/Document       <a title="View" href="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Document/@Model.objExamFrom.migrationcertificate" target="_blank" class="">Click here</a>
+                                                                </li>
+
+                                                                <li>
+                                                                    Status: <span style="color:red">
+                                                                        @(Model.objExamFrom.migrationcertificate_iseligible == 0 ? " Pending" : (Model.objExamFrom.migrationcertificate_iseligible == 1 ? "Eligible" : "Not Eligible"))
+
+                                                                    </span> <a> @(Model.objExamFrom.migrationcertificate_iseligible == 0 ? " , Please reach college and verify document" : (Model.objExamFrom.migrationcertificate_iseligible == 1 ? "" : "Your document is reject"))</a>
+
+                                                                </li>
+                                                                @if (Model.objExamFrom.migrationcertificate_iseligible == 2)
+                                                                {
+                                                                    <li>
+                                                                        Reject Reason: <a> @(Model.objExamFrom.migrationcertificate_iseligible == 2 ? Model.objExamFrom.migrationRejectReaseon : "")</a>
+
+                                                                    </li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+
+                                                        <br />
+                                                        <div>      </div>
+                                                    }
+
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid" style="display:none">
+    <div class="sparkline8-list DocumentUpload">
+        <div style="display:none">
+            <div id="dvPrintRecipt">
+                <div style="border-bottom:5px solid #05046c; margin-bottom:25px; text-align:center; padding:15px 0;"><img id="logo" width="300px"></div>
+                <div style="width:100%; margin:auto; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:12px !important;">
+                    <h1 style="text-align:center; padding:15px 0; font-size:22px;"> Registration Number Fees Receipt</h1>
+                    <table width="600px" border="0" cellspacing="0" cellpadding="0" style="padding:0 15px; margin:auto;">
+                        <tr>
+                            <td colspan="2">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td colspan="3">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #ccc;">
+                                                <tr>
+                                                    <th colspan="2" align="left" valign="middle" style="border-bottom:1px solid #ccc;  background-color:#44438e; color:#FFF;  padding:5px 10px;">Fees Submit</th>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc;  padding:5px 10px;background-color:#eee; ">College</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;background-color:#eee; "><span id="FeeTitle"></span>@Model.objExamFrom.CollegeName</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Course</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeeSubjectcate">@Model.objExamFrom.CourseCategory @Model.objExamFrom.YearName</span></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px; ">Caste Category</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;  "><span id="FeeCastCategory">@Model.objfeesubmit.CastCategort</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee; padding:5px 10px;">Session</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; background-color:#eee;"><span id="FeeSession">@Model.objfeesubmit.SessionName</span></td>
+                                                </tr>
+                                                @if (Model.objfeesubmit.FeeStatus == "Paid")
+                                                {
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc;  padding:5px 10px;">Fees</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeesPrice">@Model.objPrintRecipt.Fees</span></td>
+                                                    </tr>
+                                                }
+                                                else
+
+                                                {
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc;  padding:5px 10px;">Fees</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeesPrice">@Model.objfeesubmit.Fees</span></td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td align="left" valign="middle" style=" border-right:1px solid #ccc; padding:5px 10px;background-color:#eee; ">Fee Status</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;background-color:#eee; "><span id="FeeIsStatus">@Model.objfeesubmit.FeeStatus</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Applicationno No</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="">@Model.objfeesubmit.ApplicationNo </span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc;background-color:#eee;  padding:5px 10px;">Registration No</td>
+                                                    <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;background-color:#eee; "><span id="">@Model.objExamFrom.RegistrationNo </span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+
+                        <!-- / Subject -->
+
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+
+                        <tr>
+                            <td width="100%">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #ccc;">
+                                    <tr>
+                                        <th colspan="2" align="left" valign="middle" style="border-bottom:1px solid #ccc;  background-color:#44438e; color:#FFF; padding:5px 10px;">Payment Details</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Transaction Status</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="bankName">@Model.objPrintRecipt.status</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee; border-right:1px solid #ccc;">Bank Reference Number</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee;"><span id="PayName">@Model.objPrintRecipt.banktrxid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Transaction ID</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="cardNum">@Model.objPrintRecipt.TransactionId</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee; border-right:1px solid #ccc;">Transaction Date</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee;"><span id="Expires">@Model.objPrintRecipt.trxdate</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Payment Mode</td>
+                                        <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="Expires">@Model.objPrintRecipt.PaymentType</span></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">&nbsp;</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    check = function () {
+        //debugger;
+        var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png", ".pdf"];
+        var arrInputs = document.getElementsByTagName("input");
+        for (var i = 0; i < arrInputs.length; i++) {
+            var oInput = arrInputs[i];
+            if (oInput.type == "file") {
+                var sFileName = oInput.value;
+                var sFileNamesize = document.getElementById('file').files[0].size;
+                if (sFileName.length > 0) {
+                    var blnValid = false;
+                    for (var j = 0; j < _validFileExtensions.length; j++) {
+                        var sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                        }
+                    }
+                    if (!blnValid) {
+                        oInput.value = "";
+                        document.getElementById("append-big-btn").value = "";
+                        showAlert("Sorry, file is invalid ");
+                        return false;
+                    }
+                    else {
+                        if (sFileNamesize > 500000) {
+                            oInput.value = "";
+                            document.getElementById("append-big-btn").value = "";
+                            showAlert("File is too big!");
+                            break;
+                        }
+                    }
+
+                }
+                var fileSize = document.getElementById('file').files[0].size;
+
+            }
+        }
+
+        return true;
+    }
+    function submitapplication() {
+        debugger;
+        var ID = 0;
+        //showAlert(ID);
+        var FileURl;
+        var file;
+        if ($("#file").val() == "") {
+            showAlert('Please Select Document !!');
+            $("#sign").focus();
+            return false;
+        }
+        var fileUpload = $("#file").get(0);
+        var files = fileUpload.files;
+        var fileData = new FormData();
+        if (files.length > 0) {
+            for (var i = 0; i < files.length; i++) {
+                fileData.append("file", files[i]);
+            }
+        }
+        else {
+            //showAlert($('#hfile').val());
+            fileData.append("hfile", $('#hfile').val());
+        }
+        // debugger;
+        fileData.append('ID', ID);
+        res = 0;
+        showloader();
+        $.ajax({
+            url: '/StudentLLB/ExamLLB/ADDmigrationcertificate',
+            type: "POST",
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            data: fileData,
+            success: function (result) {
+                hideloader();
+                if (result.Status) {
+                    showAlert(result.Msg);
+                    hideloader();
+                    showloader();
+                    location.replace('/StudentLLB/ExamLLB/EnrollmentFeesSubmit');
+                }
+                else {
+                    hideloader();
+                    showAlert(result.Msg);
+
+                }
+            },
+            error: function (errormessage) {
+
+                hideloader();
+                showAlert(errormessage.responseText);
+            }
+
+
+        });
+
+
+    }
+
+</script>

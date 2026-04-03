@@ -1,0 +1,162 @@
+@media screen and (max-width:1600px){
+/*.banner_slider img{height:500px;max-width:160%;width:100%!important;}*/
+}
+
+@media screen and (max-width:1400px) {
+.banner_register { right: 30px; top: 8px; }
+.account_box ul li label { width: 35%; }
+.numberarea { width: calc(100% - 38%); }
+.pay-listing ul li { margin-left: 30px; }
+.refer-social ul li { width: 18%; }
+}
+ @media screen and (max-width:1199px) {
+.container { width: 100%; }
+.header_nav { margin-top: 30px; }
+header { min-height: 1px; }
+.header_nav { margin-top: 45px; }
+footer .container-fluid { padding: 0 20px; }
+.inner_body { padding: 50px 0; }
+.mainNav ul li a { font-size: 16px; padding: 18px 10px; }
+.innerbody_rightarea { padding: 15px 20px 50px; }
+.pay-listing ul li:first-child { margin-bottom: 20px; width: 100%; }
+.pay-listing ul li { margin-left: 0; margin-right: 35px; }
+.protmo-imagleft { height:186px; width: 330px; }
+.promo-innerright { width: calc(100% - 350px); }
+.home_bannerarea { padding-top: 314px; }
+.banner_register { right: 0; top: 0; width: 100%; }
+.register_form { background: rgba(0, 0, 0, 0.9); border-radius: 0; width: 100%; }
+.register_form .form-group { float: left; padding: 0 15px; width: 50%; }
+.register_form .form-group.register_btn { width: 100%; }
+.register_btn .fab_btn { background: #415dae; color: #fff; line-height: 42px; margin-top: 10px; }
+.register_btn .sign_play, .register_btn .fab_btn { margin-top: 10px; width: 45%; }
+.mid_footer {padding: 15px 0 0;}
+.banner_slider img{height:auto;max-width:100%;width:100%!important;}
+.banner_register{position:initial;}
+.home_bannerarea{padding-top:initial;}
+.register_form .form-group{margin-bottom:40px;}
+.register_form h2{margin-top:25px;padding-bottom:25px;}
+.register_btn{text-align:center;}
+.hd_login_section .col-sm-4{padding-left:15px;}
+}
+ @media screen and (max-width:1023px) {
+.wsmenu-list > li { margin-left: 0px; }
+.animated-arrow { margin: 48px 10px 0 0; padding: 13px 26px 16px 0; }
+.header_nav { margin-right: 60px; }
+.footer_rightcol ul li a { font-size: 20px; height: 40px; line-height: 40px; text-align: center; width: 40px; }
+.left_navarea { min-height: 1px; }
+.footer_rightcol ul li { margin: 0 2px; }
+.register_btn .sign_play, .register_btn .fab_btn {width: 45%; }
+
+
+}
+
+ @media screen and (max-width:1050px) {
+	.promo-innerright{
+		padding-top: 40px;
+	}
+ }
+
+@media screen and (max-width:991px){
+	.promo-innerright{
+		padding-top: 0;
+	}
+}
+
+@media screen and (max-width:780px){
+.navigation_panel{display:none;}
+}
+
+ @media screen and (max-width:767px) {
+header .navbar-brand { width: 125px; }
+.header_nav { margin-top: 35px; }
+.animated-arrow { margin: 38px 10px 0 0; }
+.footer_bottom ul li { width: 32%; margin-bottom: 20px; }
+.footer_nav { margin-bottom: 30px; }
+.clientlogo { margin-bottom: 30px; }
+.footer_rightcol { margin-bottom: 30px; text-align: left; }
+.protmo-imagleft { height: auto; margin-bottom: 15px; width: 100%; text-align: center;border-radius: 10px; }
+.promo-innerright { width: 100%; }
+.more-btn { width: 100%; display: inline-block; float: left; text-align: left; margin-right: 0; }
+.pay-listing ul li { width: 100%; margin-left: 0; padding-bottom: 20px; }
+.pay-listing ul li:first-child { margin-bottom: 0; }
+.pay-listing ul li { margin-right: 0; }
+.pay-listing h3 { font-size: 20px; margin-top: 0; }
+.innerbody_rightarea h2 { font-size: 26px; padding-bottom: 25px; }
+.innerbody_rightarea { padding: 15px; }
+.addto-cashtop p { color: #000; font-size: 14px; line-height: 30px; margin-bottom: 21px; }
+.redeem-pagecontent p { font-size: 14px; }
+.refer-social ul li { width: 22%; }
+.register_form .form-group { float: left; padding: 0; width: 100%; }
+.home_bannerarea { padding-top: 428px; }
+.register_btn .sign_play, .register_btn .fab_btn { width: 49%; }
+.topcta { margin-bottom:60px; }
+.custom_popup .modal-dialog {width: auto;}
+.custom_popup .close {right: -5px;top: -10px;}
+	 
+/*Updates*/
+	 .hd_login_section .col-sm-4 { padding-left: 15px;}
+	 .banner_register{position: relative;}
+	 .home_bannerarea{padding-top: 0px;}
+	 /*.hd_login_section{margin-top: 0px;}*/
+.wsmenu-list > li.active > a{color: #ff7700!important;}
+.wsmenu-list > li > a:hover{color:#ff7700!important;}
+.wsmenu-list li:hover > a{color:#ff7700!important;}	
+.hd_login_section{max-width:initial;} 
+.hd_login_section{margin-top: 20px;}
+.offers h1{font-size: 25px;}
+.offer_sec{margin-bottom: 30px;}
+.offers .offer_sec a{font-size: 20px;}
+.offer_sec{/*background: #f3f3f3;*/}
+.offer_img{margin: 0!important;}
+.offer_sec p{margin: 0;padding: 25px;}
+.getting_started h2{font-size: 25px;font-weight: 600;}
+.footer h2{font-size:20px!important;}
+.clientlogo{text-align: center;}
+.footer_rightcol{text-align: center;}
+.mid_footer>.col-lg-8>.col-sm-3{text-align:center;}
+
+
+	 
+	 
+
+
+	 
+
+}
+ @media screen and (max-width:479px) {
+.header_nav { margin-right: 0; margin-top: 0; text-align: center; width: 100%; }
+.login_nav { width: 100%; }
+.footer_bottom ul li { width: 48%; }
+.login_nav ul li { margin: 0 8px; }
+	 /* py css */
+	 /*
+.hd_login_section .col-sm-4 {
+    width: 33.33%;
+    float: left;
+}*/
+
+.navigation_a{width:80px!important;display:inline-block;}
+.hd_login_section .longi_input input{margin-bottom:10px;}
+.offers{padding-bottom: 0;}
+.offers h1{font-size: 30px; font-weight: 600;}
+.getting_started h2{font-size:20px;}
+.offers .offer_sec a{font-size: 18px;}
+.offer_sec p{padding: 15px;}
+.offers{padding-top: 40px;padding-bottom: 0;}
+.getting_started{padding-top: 40px;padding-bottom: 0; background: #eee; margin-top: 20px;}
+}
+
+/* py css */
+
+
+
+
+
+
+
+
+
+
+
+
+

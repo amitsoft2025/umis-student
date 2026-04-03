@@ -1,0 +1,2006 @@
+﻿@*﻿@model DataLayer.AdmissionFeesSubmit*@
+@model Tuple<DataLayer.AdmissionFeesSubmit, List<DataLayer.AdmissionFeesSubmit>, DataLayer.Login, List<DataLayer.OtherSubjectModel>>
+@{
+    ViewBag.Title = "Admission Process";
+    Layout = "~/Areas/UGCBCS/Views/Shared/_LayoutStudentPG.cshtml";
+    var applicationno = @DataLayer.ClsLanguage.GetCookies("NBApplicationNo");
+}
+<script>
+    var sid = '@DataLayer.ClsLanguage.GetCookies("ENNBStID");';
+</script>
+<script>
+    $(function () {
+        $("#myform").submit(function (e) {
+            showloader();
+        });
+    });
+</script>
+
+<script type="text/javascript">
+
+    function encodeImage3(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("logo2");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+    function encodeImage4(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("logo3");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+    function encodeImage5(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("userSign1");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+</script>
+<div class="container-fluid">
+
+    <style>
+
+
+
+
+        /* Card Styling */
+        .structure-card.fee-card {
+            background: #f8f9fa; /* soft light background */
+            border-radius: 12px; /* rounded corners */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* subtle shadow */
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+            /* Heading */
+            .structure-card.fee-card .card-title {
+                color: #0d6efd; /* bootstrap primary color */
+                font-size: 1.25rem;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+            }
+
+                .structure-card.fee-card .card-title i {
+                    margin-right: 10px;
+                }
+
+            /* Fee rows */
+            .structure-card.fee-card .fee-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 15px;
+                font-size: 0.95rem;
+                border-radius: 6px;
+                margin-bottom: 4px;
+                transition: background 0.3s;
+            }
+
+                /* Alternating row colors */
+                .structure-card.fee-card .fee-row:nth-child(odd) {
+                    background: #ffffff;
+                }
+
+                .structure-card.fee-card .fee-row:nth-child(even) {
+                    background: #e9f2ff;
+                }
+
+                /* Hover effect */
+                .structure-card.fee-card .fee-row:hover {
+                    background: #d0e5ff;
+                }
+
+                /* Total row styling */
+                .structure-card.fee-card .fee-row.total {
+                    font-weight: 700;
+                    background: #0d6efd;
+                    color: #fff;
+                    border-radius: 8px;
+                    padding: 14px 15px;
+                    margin-top: 8px;
+                }
+
+
+
+        .custom-alert {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 15px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #28a745, #5cd65c);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+            .custom-alert .icon {
+                font-size: 20px;
+                margin-right: 10px;
+            }
+
+            .custom-alert .message {
+                flex: 1;
+            }
+
+            .custom-alert .close-btn {
+                cursor: pointer;
+                font-size: 18px;
+                margin-left: 15px;
+                opacity: 0.8;
+            }
+
+                .custom-alert .close-btn:hover {
+                    opacity: 1;
+                }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <style>
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 22px;
+            border-radius: 14px;
+            background: #ffffff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .app-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .app-title span {
+                font-size: 13px;
+                background: #eef2ff;
+                color: #4f46e5;
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-weight: 500;
+            }
+
+        .status-pill {
+            background: #ecfeff;
+            color: #0891b2;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .alert-modern {
+            margin-top: 15px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: slideFade 0.4s ease;
+        }
+
+            .alert-modern .msg {
+                flex: 1;
+                text-align: center;
+                font-weight: 500;
+            }
+
+            .alert-modern .close {
+                cursor: pointer;
+                font-size: 16px;
+                opacity: 0.6;
+            }
+
+                .alert-modern .close:hover {
+                    opacity: 1;
+                }
+
+        @@keyframes slideFade {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+
+    <style>
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+            .step::before {
+                content: "";
+                position: absolute;
+                top: 18px;
+                left: -50%;
+                width: 100%;
+                height: 3px;
+                background: #e5e7eb;
+                z-index: 0;
+            }
+
+            .step:first-child::before {
+                display: none;
+            }
+
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            line-height: 36px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            color: #6b7280;
+            margin: 0 auto;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 🔥 number hide when tick comes */
+        .step.completed .step-circle {
+            font-size: 0;
+        }
+
+            /* Tick */
+            .step.completed .step-circle::after {
+                content: "✔";
+                font-size: 16px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+            }
+
+        /* Title */
+        .step-title {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* Active (blue current step) */
+        .step.active .step-circle {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .step.active .step-title {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        /* Completed (green) */
+        .step.completed .step-circle {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        .step.completed::before {
+            background: #22c55e;
+        }
+    </style>
+
+    <style>
+        .step a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+            .step a:hover {
+                transform: scale(1.05);
+                transition: 0.2s;
+            }
+    </style>
+
+
+    <style>
+        .alert-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            color: #9a3412;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+            .alert-box .icon {
+                font-size: 20px;
+            }
+
+            .alert-box h4 {
+                margin: 0;
+                font-size: 16px;
+            }
+
+            .alert-box p {
+                margin: 3px 0;
+                font-size: 13px;
+            }
+    </style>
+
+
+    <style>
+        /* next step highlight (yellow glow) */
+        .step.active-next .step-circle {
+            background: #facc15;
+            color: #000;
+            animation: pulse 1.5s infinite;
+        }
+
+        .step.active-next .step-title {
+            color: #ca8a04;
+            font-weight: 600;
+        }
+
+        @@keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0px rgba(250,204,21,0.6);
+            }
+
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 10px rgba(250,204,21,0.9);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0px rgba(250,204,21,0.6);
+            }
+        }
+    </style>
+    <style>
+        .step a[style*="pointer-events:none"] {
+            cursor: not-allowed;
+        }
+    </style>
+    <style>
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+    <style>
+        .content-box {
+            display: none;
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+            .content-box.active {
+                display: block;
+            }
+
+        .disabled-link {
+            pointer-events: none;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+
+    <style>
+        .affidavit-card {
+            max-width: 900px;
+            margin: 25px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        /* HEADER */
+        .affidavit-header {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: #fff;
+            padding: 18px 20px;
+        }
+
+            .affidavit-header h3 {
+                margin: 0;
+                font-size: 20px;
+            }
+
+            .affidavit-header span {
+                font-size: 12px;
+                opacity: 0.8;
+            }
+
+        /* BODY */
+        .affidavit-body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.9;
+            color: #222;
+            padding: 12px 15px;
+            background: #f9fafb;
+            border-left: 4px solid #2563eb;
+            border-radius: 6px;
+        }
+
+            .affidavit-body p {
+                margin-bottom: 10px;
+                text-align: justify;
+            }
+
+            .affidavit-body strong {
+                color: #111;
+                font-weight: 600;
+            }
+
+        /* FOOTER */
+        .affidavit-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            border-top: 1px solid #eee;
+            flex-wrap: wrap;
+        }
+
+        .student-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* SIGN */
+        .signature-block {
+            text-align: right;
+        }
+
+        .sign-img {
+            max-height: 60px;
+            margin-top: 8px;
+        }
+
+        /* BUTTON */
+        .affidavit-action {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .btn-accept {
+            background: #16a34a;
+            color: #fff;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .btn-accept:hover {
+                background: #15803d;
+                transform: translateY(-1px);
+            }
+
+        /* CLOSED MSG */
+        .closed-msg {
+            color: #dc2626;
+            font-weight: 500;
+        }
+    </style>
+
+    <style>
+        .info-banner {
+            background: #eef2ff;
+            color: #1e3a8a;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 500;
+        }
+    </style>
+
+    <style>
+        .btn-theme {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+            .btn-theme:hover {
+                background: linear-gradient(135deg, #1e40af, #1e3a8a);
+                color: #fff;
+            }
+
+        .btn-outline-theme {
+            border: 2px solid #2563eb;
+            color: #2563eb;
+            background: #fff;
+            border-radius: 8px;
+            padding: 8px 16px;
+            transition: 0.3s;
+        }
+
+            .btn-outline-theme:hover {
+                background: #2563eb;
+                color: #fff;
+            }
+
+        .card-modern {
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+    </style>
+
+    <style>
+        .section-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .badge-modern {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-right: 8px;
+        }
+
+        .btn-theme {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+            .btn-theme:hover {
+                background: linear-gradient(135deg, #1e40af, #1e3a8a);
+            }
+
+        .form-control-modern {
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .label-modern {
+            font-weight: 500;
+            margin-bottom: 6px;
+            display: block;
+            color: #374151;
+        }
+    </style>
+
+    @{
+        int step = ViewBag.IsCurrent != null ? Convert.ToInt32(ViewBag.IsCurrent) : 1;
+    }
+    <script>
+function handleStepClick(stepNumber, bypassBlock = false) {
+
+    var currentStep = @step;
+
+    // 🚫 Future step block
+    if (!bypassBlock) {
+        if (stepNumber > currentStep) {
+            return;
+        }
+    }
+
+    // ✅ Show content
+    document.querySelectorAll('.content-box').forEach(function (el) {
+        el.classList.remove('active');
+    });
+
+    document.getElementById('step' + stepNumber).classList.add('active');
+}
+
+// ✅ Page load → CURRENT step open
+window.onload = function () {
+    handleStepClick(@step, true);
+};
+    </script>
+
+    <style>
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 0;
+        }
+
+        .card-header {
+            padding: 12px 16px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+
+        .affidavit-footer-new {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            border-top: 2px dashed #999;
+            padding-top: 20px;
+            gap: 30px;
+        }
+
+        /* LEFT BOX */
+        .student-info-box {
+            flex: 1;
+            background: #f8fafc;
+            padding: 15px 18px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #475569;
+            width: 45%;
+        }
+
+        .value {
+            width: 55%;
+            text-align: right;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        /* RIGHT SIGNATURE */
+        .signature-box {
+            width: 220px;
+            text-align: center;
+        }
+
+        .sign-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .sign-area {
+            height: 80px;
+            border-bottom: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sign-img {
+            max-height: 70px;
+        }
+
+        .no-sign {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* PRINT FIX */
+        @@media print {
+            .affidavit-footer-new {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+
+
+    @{
+        if (TempData["msgerror"] != null)
+        {
+            <div class="custom-alert">
+                <div class="icon">✔</div>
+                <div class="message">@TempData["msgerror"]</div>
+                <div class="close-btn" onclick="this.parentElement.style.display='none'">✖</div>
+            </div>
+        }
+    }
+    <div class="sparkline8-list DocumentUpload">
+        <div class="row">
+            <div class="col-sm-8 col-xs-12 col-sm-offset-2">
+
+                <div class="sparkline8-hd">
+                    <div class="tab-content-details shadow-reset">
+                        <h3 id="pageheading">Admission Workflow</h3>
+                        <small style="color:#6b7280;">Track your admission progress step by step</small>
+                    </div>
+                    <div class="text-danger text-center">
+                        @if (TempData["Msg"] != null)
+                        {
+                            <div class="alert-modern">
+                                <div class="msg">@TempData["Msg"]</div>
+                                <div class="close" onclick="this.parentElement.style.display='none'">✖</div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+
+
+                <ul class="stepper">
+
+                    <!-- STEP 1 -->
+                    <li class="step @(step == 1 ? "active" : step > 1 ? "completed" : "")">
+                        <a href="javascript:void(0)" onclick="handleStepClick(1)">
+                            <div class="step-circle">@(step > 1 ? "✓" : "1")</div>
+                            <div class="step-title">Subject Selection</div>
+                        </a>
+                    </li>
+
+                    <!-- STEP 2 -->
+                    <li class="step @(step == 2 ? "active" : step > 2 ? "completed" : "")">
+                        <a href="javascript:void(0)" onclick="handleStepClick(2)">
+                            <div class="step-circle">@(step > 2 ? "✓" : "2")</div>
+                            <div class="step-title"> Apply Admission Form</div>
+                        </a>
+                    </li>
+
+                    <!-- STEP 3 -->
+                    <li class="step @(step == 3 ? "active" : step > 3 ? "completed" : "")">
+                        <a href="javascript:void(0)" onclick="handleStepClick(3)">
+                            <div class="step-circle">@(step > 3 ? "✓" : "3")</div>
+                            <div class="step-title">Documents Verification</div>
+                        </a>
+                    </li>
+
+                    <!-- STEP 4 -->
+                    <li class="step @(step == 4 ? "active" : step > 4 ? "completed" : "")">
+                        <a href="javascript:void(0)" onclick="handleStepClick(4)">
+                            <div class="step-circle">@(step > 4 ? "✓" : "4")</div>
+                            <div class="step-title">Fee Payment</div>
+                        </a>
+                    </li>
+
+                    <!-- STEP 5 -->
+                    <li class="step @(step == 5 ? "active" : step > 5 ? "completed" : "")">
+                        <a href="javascript:void(0)" onclick="handleStepClick(5)">
+                            <div class="step-circle">@(step > 5 ? "✓" : "5")</div>
+                            <div class="step-title">Receipt</div>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+
+
+                @if (ViewBag.addmissionExtenddate == false && ViewBag.addmissionStartdate == true)
+                {
+                    <div class="alert-box">
+                        <div class="icon">⚠</div>
+                        <div class="content">
+                            <h4>Fee Submission Closed</h4>
+
+                            @if (ViewBag.addmissionExtenddateValue != null)
+                            {
+                                <p>
+                                    Last date for fee submission was
+                                    <strong>@ViewBag.addmissionExtenddateValue</strong>.
+                                </p>
+                            }
+
+                            <p>Please contact your college for further assistance.</p>
+                        </div>
+                    </div>
+                }
+                @if (ViewBag.Status == true)
+                {
+                    if (1 == 1)
+                    {
+
+
+                        <div class="sparkline8-graph fee-submit">
+                            <div class="static-table-list table-responsive">
+                                @using (Html.BeginForm("AdmissionFeeSubmit", "HomeUGCBCS", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data", id = "myform" }))
+                                {
+
+
+                                    <div id="step2" class="content-box">
+
+                                        <div class="card shadow-sm border-0 rounded-3">
+                                            <div class="card-header bg-primary text-white">
+                                                <h5 class="mb-0">Admission Process</h5>
+                                            </div>
+
+                                            <div class="card-body">
+                                                @if (Model.Item1.is_affidavitapply == 0)
+                                                {
+                                                    <div class="affidavit-card">
+
+                                                        <!-- HEADER -->
+                                                        <div class="affidavit-header">
+                                                            <h3>Declaration & Consent</h3>
+                                                            <span>Please review and confirm your details</span>
+                                                        </div>
+
+                                                        <!-- BODY -->
+                                                        <div class="affidavit-body">
+
+                                                            <p>
+                                                                मैं <strong>@Model.Item3.FirstName @Model.Item3.MiddleName @Model.Item3.LastName</strong>,
+                                                                पिता/पति श्री <strong>@Model.Item3.FatherName</strong> यह घोषणा करता/करती हूँ कि
+                                                                मेरे द्वारा admission हेतु दी गई सभी जानकारी  सही एवं सत्य हैं।
+                                                            </p>
+
+
+
+                                                            <p>
+                                                                यदि मेरा शुल्क (Fee) जमा हो चुका है, तो मैं उसका Transaction ID / Payment Slip
+                                                                आवश्यक होने पर महाविद्यालय / विश्वविद्यालय में प्रस्तुत
+                                                                <strong>@(Model.Item3.Gender == 9 ? "करूँगी" : "करूँगा")</strong>।
+                                                            </p>
+
+                                                            <p>
+                                                                मैं वर्तमान सेमेस्टर के लिए विषय (Subjects) का चयन ध्यानपूर्वक एवं सही तरीके से
+                                                                <strong>@(Model.Item3.Gender == 9 ? "करूँगी" : "करूँगा")</strong>।
+                                                            </p>
+
+
+                                                            <p>
+                                                                यदि मेरे द्वारा चयनित विषय (Subjects) अथवा दी गई किसी भी जानकारी में कोई त्रुटि पाई जाती है,
+                                                                तो उसके लिए मैं स्वयं पूर्ण रूप से जिम्मेदार
+                                                                <strong>@(Model.Item3.Gender == 9 ? "रहूँगी" : "रहूँगा")</strong> ।
+                                                            </p>
+
+                                                        </div>
+
+                                                        <!-- FOOTER -->
+                                                        <div class="affidavit-footer-new">
+
+                                                            <!-- LEFT SIDE (Student Details) -->
+                                                            <div class="student-info-box">
+
+                                                                <div class="info-row">
+                                                                    <span class="label">Name</span>
+                                                                    <span class="value">
+                                                                        @Model.Item3.FirstName @Model.Item3.MiddleName @Model.Item3.LastName
+                                                                    </span>
+                                                                </div>
+
+                                                                <div class="info-row">
+                                                                    <span class="label">Father / Husband</span>
+                                                                    <span class="value">@Model.Item3.FatherName</span>
+                                                                </div>
+
+                                                                <div class="info-row">
+                                                                    <span class="label">Application No</span>
+                                                                    <span class="value">@Model.Item3.ApplicationNo</span>
+                                                                </div>
+
+                                                                <div class="info-row">
+                                                                    <span class="label">Category</span>
+                                                                    <span class="value">@ViewBag.CastCategory</span>
+                                                                </div>
+
+                                                                <div class="info-row">
+                                                                    <span class="label">Date</span>
+                                                                    <span class="value">@System.DateTime.Now.ToString("dd MMM yyyy")</span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <!-- RIGHT SIDE (Signature) -->
+                                                            <div class="signature-box">
+
+                                                                <div class="sign-title"> Signature</div>
+
+                                                                <div class="sign-area">
+                                                                    @if (!string.IsNullOrEmpty(Model.Item3.stsign))
+                                                                    {
+                                                                        <img src="@Url.Content("~/Content/uploads/Student/" + Model.Item3.stsign)"
+                                                                             class="sign-img"
+                                                                             onerror="this.src='/Content/no-sign.png';" />
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <div class="no-sign">No Signature</div>
+                                                                    }
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!-- ACTION -->
+                                                        <div class="affidavit-action">
+                                                            @if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                            {
+                                                                <button type="submit" name="applyaffdavit" value="applyaffdavit" class="btn-accept">
+                                                                    ✔ Agree & Continue
+                                                                </button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="closed-msg">⚠ Submission Closed</div>
+                                                            }
+                                                        </div>
+
+                                                    </div>
+
+                                                }
+
+                                                else
+                                                {
+                                                    <div class="admission-details-card">
+
+                                                        @if (Model.Item1.IsApplied == 1)
+                                                        {
+                                                            <!-- SUCCESS STATE -->
+                                                            <div class="apply-card success-card">
+                                                                <div class="icon">✔</div>
+                                                                <h4>Admission Applied Successfully</h4>
+                                                                <p>
+                                                                    आपने admission के लिए successfully apply कर दिया है।
+                                                                    अगले स्टेप में, कृपया अपने college जाकर document verification कराएँ।
+                                                                </p>
+
+                                                                <div class="details-grid">
+                                                                    <div><label>Application No:</label> <span>@Model.Item1.ApplicationNo</span></div>
+                                                                    <div><label>Session:</label> <span>@Model.Item1.Session</span></div>
+                                                                    <div><label>Course Type:</label> <span>@Model.Item1.Title</span></div>
+                                                                    <div><label>College:</label> <span>@Model.Item1.CollegeName</span></div>
+                                                                    <div><label>Course:</label> <span>@Model.Item1.Course @Model.Item1.yearname</span></div>
+                                                                    <div><label>Major Subject:</label> <span>@Model.Item1.Stream</span></div>
+                                                                    <div><label>Category:</label> <span>@Model.Item1.CastCategort</span></div>
+                                                                </div>
+
+                                                                <div class="status-badge">
+                                                                    Status: Applied
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <!-- APPLY STATE -->
+                                                            <div class="apply-card">
+                                                                <div class="icon">🎓</div>
+                                                                <h4>Apply for Admission</h4>
+                                                                <p>
+                                                                    Admission process शुरू करने के लिए नीचे दिए गए बटन पर क्लिक करें।
+                                                                    कृपया सभी जानकारी ध्यान से भरें।
+                                                                    Apply करने के बाद, अपने college जाकर document verification करना अनिवार्य है।
+                                                                </p>
+
+                                                                <div class="details-grid">
+                                                                    <div><label>Application No:</label> <span>@Model.Item1.ApplicationNo</span></div>
+                                                                    <div><label>Session:</label> <span>@Model.Item1.Session</span></div>
+                                                                    <div><label>Programme:</label> <span>@Model.Item1.Title</span></div>
+                                                                    <div><label>College:</label> <span>@Model.Item1.CollegeName</span></div>
+                                                                    <div><label>Course:</label> <span>@Model.Item1.Course @Model.Item1.yearname</span></div>
+                                                                    <div><label>Subject:</label> <span>@Model.Item1.Stream</span></div>
+                                                                    <div><label>Category:</label> <span>@Model.Item1.CastCategort</span></div>
+                                                                </div>
+
+                                                                <button class="apply-btn" type="submit" name="applyadmissionform" value="applyadmissionform">
+                                                                    <i class="fa fa-paper-plane"></i> Apply Now
+                                                                </button>
+                                                            </div>
+                                                        }
+                                                    </div>
+
+                                                    <style>
+                                                        .admission-details-card {
+                                                            max-width: 800px;
+                                                            margin: 20px auto;
+                                                            font-family: 'Segoe UI', sans-serif;
+                                                        }
+
+                                                        .apply-card {
+                                                            border: 1px solid #ccc;
+                                                            border-radius: 10px;
+                                                            padding: 20px;
+                                                            margin-bottom: 20px;
+                                                            background: #f9f9f9;
+                                                            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                                                        }
+
+                                                            .apply-card .icon {
+                                                                font-size: 40px;
+                                                                text-align: center;
+                                                                margin-bottom: 10px;
+                                                            }
+
+                                                            .apply-card h4 {
+                                                                text-align: center;
+                                                                margin-bottom: 15px;
+                                                            }
+
+                                                            .apply-card p {
+                                                                text-align: center;
+                                                                margin-bottom: 15px;
+                                                            }
+
+                                                        .details-grid {
+                                                            display: grid;
+                                                            grid-template-columns: repeat(2, 1fr);
+                                                            gap: 10px;
+                                                            margin-bottom: 15px;
+                                                        }
+
+                                                            .details-grid label {
+                                                                font-weight: 600;
+                                                            }
+
+                                                            .details-grid span {
+                                                                margin-left: 5px;
+                                                            }
+
+                                                        .status-badge {
+                                                            text-align: center;
+                                                            padding: 8px 12px;
+                                                            background: #4caf50;
+                                                            color: white;
+                                                            font-weight: bold;
+                                                            border-radius: 5px;
+                                                        }
+
+                                                        .success-card {
+                                                            border-color: #4caf50;
+                                                            background: #e6f9ea;
+                                                        }
+
+                                                        .apply-btn {
+                                                            display: block;
+                                                            margin: 0 auto;
+                                                            padding: 10px 20px;
+                                                            background: #2563eb;
+                                                            color: white;
+                                                            border: none;
+                                                            border-radius: 5px;
+                                                            font-size: 16px;
+                                                            cursor: pointer;
+                                                        }
+
+                                                            .apply-btn i {
+                                                                margin-right: 5px;
+                                                            }
+
+                                                            .apply-btn:hover {
+                                                                background: #1e4db7;
+                                                            }
+                                                    </style>
+
+                                                }
+
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="step1" class="content-box">
+
+                                        <h4 class="mb-3">🎓 Subject Selection </h4>
+
+                                        @{
+                                            var groupedSubjects = ViewBag.SubjectGroups as List<IGrouping<string, DataLayer.OtherSubjectModel>>;
+                                            var saved = ViewBag.SavedSubjects as List<DataLayer.OtherSubjectModel>;
+
+                                            bool isEditMode = (Request.QueryString["editSubject"] ?? "") == "1";
+                                            bool isLocked = saved != null && saved.Count > 0 && !isEditMode;
+                                        }
+
+
+                                        <!-- ✅ SUCCESS MESSAGE -->
+                                        @if (TempData["msg"] != null)
+                                        {
+                                            <div class="alert alert-success">@TempData["msg"]</div>
+                                        }
+
+                                        <!-- ✅ SAVED SUBJECT SHOW -->
+                                        @if (saved != null && saved.Count > 0 && Request["editSubject"] != "1")
+                                        {
+                                            <div class="section-card">
+                                                <div class="section-title">✅ Your Selected Subjects</div>
+
+                                                <div class="mb-2">
+                                                    @foreach (var item in saved)
+                                                    {
+                                                        <span class="badge-modern">
+                                                            @item.HeadingName : @item.SubjectName
+                                                        </span>
+                                                    }
+                                                </div>
+                                                @if (Model.Item1.IsApplied != 1)
+                                                {
+                                                    <div style="margin-top:25px;">
+                                                        <a href="?editSubject=1" class="btn btn-theme mt-2">
+                                                            ✏️ Edit Subjects
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </div>
+
+                                        }
+
+                                        <div class="section-card">
+
+                                            <div class="section-title">  Subjects List</div>
+
+                                            <!-- ✅ SUBJECT DROPDOWN -->
+                                            <div class="row">
+                                                @if (groupedSubjects != null)
+                                                {
+                                                    int index = 0;
+
+                                                    foreach (var group in groupedSubjects)
+                                                    {
+                                                        <div class="col-md-4 mb-3">
+                                                            <label class="fw-bold">@group.Key</label>
+
+                                                            <select name="SubjectList[@index].SubjectID"
+                                                                    class="form-control shadow-sm"
+                                                                    @(isLocked ? "disabled" : "")>
+
+                                                                <option value="">-- Select Subject --</option>
+
+                                                                @foreach (var item in group)
+                                                                {
+                                                                    var isSelected = saved != null && saved.Any(s => s.SubjectID == item.SubjectID);
+
+                                                                    <option value="@item.SubjectID" @(isSelected ? "selected" : "")>
+                                                                        @item.SubjectName
+                                                                    </option>
+                                                                }
+                                                            </select>
+
+                                                            <input type="hidden"
+                                                                   name="SubjectList[@index].SubjectTypeID"
+                                                                   value="@group.First().SubjectTypeID" />
+                                                        </div>
+
+                                                        index++;
+                                                    }
+                                                }
+                                            </div>
+
+                                            <!-- ✅ SAVE BUTTON -->
+                                            @if (saved == null || saved.Count == 0 || isEditMode)
+                                            {
+                                                if (Model.Item1.IsApplied != 1)
+                                                {
+                                                    <button type="submit"
+                                                            name="saveSubject"
+                                                            value="1"
+                                                            class="btn btn-success px-4 py-2 mt-3 shadow">
+                                                        💾 Save Subjects
+                                                    </button>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div id="step3" class="content-box">
+
+                                        <style>
+                                            /* MAIN */
+                                            .dv-wrapper {
+                                                max-width: 1000px;
+                                                margin: auto;
+                                                background: #f1f5f9;
+                                                padding: 20px;
+                                                border-radius: 12px;
+                                            }
+
+                                            /* CARD */
+                                            .dv-card {
+                                                background: #fff;
+                                                border-radius: 16px;
+                                                padding: 25px;
+                                                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+                                            }
+
+                                            /* TITLE */
+                                            .dv-title {
+                                                font-size: 20px;
+                                                font-weight: 600;
+                                                color: #1e3a8a;
+                                                margin-bottom: 20px;
+                                            }
+
+                                            /* TOP BAR */
+                                            .dv-top {
+                                                background: linear-gradient(135deg, #2563eb, #1e3a8a);
+                                                color: #fff;
+                                                padding: 18px;
+                                                border-radius: 12px;
+                                                display: flex;
+                                                justify-content: space-between;
+                                                flex-wrap: wrap;
+                                                margin-bottom: 20px;
+                                            }
+
+                                                .dv-top div {
+                                                    font-size: 14px;
+                                                }
+
+                                            /* GRID */
+                                            .dv-grid {
+                                                display: grid;
+                                                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                                                gap: 15px;
+                                            }
+
+                                            .dv-box {
+                                                background: #f8fafc;
+                                                padding: 15px;
+                                                border-radius: 12px;
+                                                border-left: 4px solid #2563eb;
+                                                box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+                                            }
+
+                                                .dv-box label {
+                                                    font-size: 12px;
+                                                    color: #6b7280;
+                                                }
+
+                                                .dv-box span {
+                                                    font-weight: 600;
+                                                    font-size: 15px;
+                                                }
+
+                                            /* STATUS BOX */
+                                            .status-box {
+                                                margin-top: 20px;
+                                                padding: 14px;
+                                                border-radius: 10px;
+                                                font-weight: 500;
+                                            }
+
+                                            .status-success {
+                                                background: #ecfdf5;
+                                                border: 1px solid #22c55e;
+                                                color: #166534;
+                                            }
+
+                                            .status-failed {
+                                                background: #fef2f2;
+                                                border: 1px solid #ef4444;
+                                                color: #991b1b;
+                                            }
+
+                                            .status-pending {
+                                                background: #fff7ed;
+                                                border: 1px solid #f97316;
+                                                color: #9a3412;
+                                            }
+
+                                            .status-info {
+                                                background: #eff6ff;
+                                                border: 1px solid #3b82f6;
+                                                color: #1e3a8a;
+                                            }
+                                        </style>
+
+
+                                        <div class="dv-wrapper">
+
+                                            <div class="dv-card">
+
+                                                <div class="dv-title">📄 Document Verification Status</div>
+
+                                                <!-- TOP STRIP -->
+                                                <div class="dv-top">
+                                                    <div>
+                                                        <strong>Application No</strong><br />
+                                                        @Model.Item1.ApplicationNo
+                                                    </div>
+
+                                                    <div>
+                                                        <strong>Session</strong><br />
+                                                        @Model.Item1.Session
+                                                    </div>
+
+                                                    <div>
+                                                        <strong>Course Type</strong><br />
+                                                        @Model.Item1.Title
+                                                    </div>
+                                                </div>
+
+                                                <!-- GRID -->
+                                                <div class="dv-grid">
+
+                                                    <div class="dv-box">
+                                                        <label>🏫Your College</label><br />
+                                                        <span>@Model.Item1.CollegeName</span>
+                                                    </div>
+
+                                                    <div class="dv-box">
+                                                        <label>📘 Admission Course</label><br />
+                                                        <span>@Model.Item1.Course @Model.Item1.yearname</span>
+                                                    </div>
+
+                                                    <div class="dv-box">
+                                                        <label>📚 Major Subject</label><br />
+                                                        <span>@Model.Item1.Stream</span>
+                                                    </div>
+
+                                                    <div class="dv-box">
+                                                        <label>🧾 Cast Category</label><br />
+                                                        <span>@Model.Item1.CastCategort</span>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- STATUS -->
+                                                @if (Model.Item1.IsApplied == 1)
+                                                {
+                                                    if (Model.Item1.IsDocVerify == 1)
+                                                    {
+                                                        <div class="status-box status-success">
+                                                            ✔ Your document verification will be done by the college.
+                                                            Proceed to the next step.
+                                                        </div>
+                                                    }
+                                                    else if (Model.Item1.IsDocVerify == 2)
+                                                    {
+                                                        <div class="status-box status-failed">
+                                                            ❌ Rejected: <strong>@Model.Item1.rejectreason</strong><br />
+                                                            Please contact your college.
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="status-box status-pending">
+                                                            ⏳ Pending — Visit your college for verification.
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div class="status-box status-info">
+                                                        ⚠ Please apply first to continue admission process.
+                                                    </div>
+                                                }
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div id="step4" class="content-box">
+                                        <h4 class="payment-heading">📄 Payment Detail</h4>
+                                        <!-- Fees Summary -->
+                                        @if (ViewBag.isfeesubmitt == true)
+                                        {
+                                            <div class="fee-box mb-4 p-3 border rounded bg-light">
+                                                <h5>📄 Fee Summary</h5>
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Fees</span>
+                                                    <strong>₹ @Model.Item1.Fees</strong>
+                                                </div>
+                                                <div class="d-flex justify-content-between">
+                                                    <span>Processing (incl. GST)</span>
+                                                    <strong>₹ @Model.Item1.surcharge</strong>
+                                                </div>
+                                                <hr />
+                                                <div class="d-flex justify-content-between font-weight-bold">
+                                                    <span>Total</span>
+                                                    <strong>₹ @(Convert.ToDecimal(Model.Item1.Fees) + Convert.ToDecimal(Model.Item1.surcharge))</strong>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        <div class="details-grid">
+                                            <div><label>Application No:</label> <span>@Model.Item1.ApplicationNo</span></div>
+                                            <div><label>Session:</label> <span>@Model.Item1.Session</span></div>
+                                            <div><label>Programme:</label> <span>@Model.Item1.Title</span></div>
+                                            <div><label>College:</label> <span>@Model.Item1.CollegeName</span></div>
+                                            <div><label>Course:</label> <span>@Model.Item1.Course @Model.Item1.yearname</span></div>
+                                            <div><label>Subject:</label> <span>@Model.Item1.Stream</span></div>
+                                            <div><label>Category:</label> <span>@Model.Item1.CastCategort</span></div>
+                                        </div>
+
+
+                                        <!-- Fee Breakdown -->
+                                        <div class="structure-card fee-card mb-4 p-3 border rounded bg-white">
+                                            <div class="card-title h6 mb-3">🎓 Student Fee Structure</div>
+                                            @if (Model.Item3.CastCategory == 5 || Model.Item3.CastCategory == 6 || Model.Item3.Gender == 9)
+                                            {
+                                                <div class="fee-row total d-flex justify-content-between font-weight-bold py-2 mt-2 border-top">
+                                                    <span>Total Fees</span>
+                                                    <span>₹ 0.00</span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+
+
+                                                int i = 0;
+                                                decimal amt = 0;
+
+
+
+                                                foreach (var item in Model.Item2)
+                                                {
+                                                    i++;
+                                                    amt += item.amount;
+
+                                                    <div class="fee-row d-flex justify-content-between py-1 border-bottom">
+                                                        <span>@i. @item.headname</span>
+                                                        <span>₹ @item.amount</span>
+                                                    </div>
+                                                }
+
+                                                <div class="fee-row total d-flex justify-content-between font-weight-bold py-2 mt-2 border-top">
+                                                    <span>Total Fees</span>
+                                                    <span>₹ @amt</span>
+                                                </div>
+                                            }
+                                        </div>
+
+                                        <!-- Action Buttons -->
+                                        <div class="modal-area-button text-center mb-4">
+                                            <div class="document-btn">
+
+                                                @if (ViewBag.isfeesubmitt != true)
+                                                {
+                                                    if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                    {
+                                                        <!-- First year students / special categories -->
+                                                        if (Model.Item1.studentyear > 52)
+                                                        {
+                                                            if (Model.Item3.CastCategory == 5 || Model.Item3.CastCategory == 6 || Model.Item3.Gender == 9)
+                                                            {
+
+                                                                if (Model.Item1.IsApplied == 1)
+                                                                {
+                                                                    if (Model.Item1.IsDocVerify == 1)
+                                                                    {
+
+                                                                        <div class="text-center mb-3">
+                                                                            <button class="btn btn-success" type="submit" name="paywith0Rs" value="paywith0Rs">
+                                                                                <i class="fa fa-check-circle"></i> Confirm Admission (No Fees) ₹0
+                                                                            </button>
+                                                                            <div class="mt-2 text-danger small">
+                                                                                ⚠️ Note: Submission with ₹0 fee is mandatory. Admission will not be processed otherwise.
+                                                                            </div>
+                                                                        </div>
+
+                                                                    }
+                                                                }
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <button class="btn btn-primary" type="submit" id="submit">
+                                                                    <i class="fa fa-money"></i> Pay Fees
+                                                                </button>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <!-- Non-first year students -->
+                                                            if (Model.Item1.IsApplied == 1)
+                                                            {
+                                                                if (Model.Item1.IsDocVerify == 1)
+                                                                {
+                                                                    <button class="btn btn-primary" type="submit" id="submit">
+                                                                        <i class="fa fa-money"></i> Pay Fees
+                                                                    </button>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="text-center my-4">
+                                                                        @if (Model.Item1.IsDocVerify == 1)
+                                                                        {
+                                                                            <div class="alert alert-success shadow-sm border-success p-3 rounded" role="alert">
+                                                                                <i class="fa fa-thumbs-up me-2"></i>
+                                                                                <strong>🎉 Congratulations!</strong> Your documents have been approved. You can now proceed with the college admission fees.
+                                                                            </div>
+                                                                        }
+                                                                        else if (Model.Item1.IsDocVerify == 2)
+                                                                        {
+                                                                            <div class="alert alert-danger shadow-sm border-danger p-3 rounded" role="alert">
+                                                                                <i class="fa fa-ban me-2"></i>
+                                                                                <strong>⚠️ Form Rejected!</strong> Unfortunately, your submission could not be verified. Reason: <em>@Model.Item1.rejectreason</em>
+                                                                            </div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div class="alert alert-warning shadow-sm border-warning p-3 rounded" role="alert">
+                                                                                <i class="fa fa-hourglass-half me-2"></i>
+                                                                                <strong>⏳ Verification Pending</strong> Your documents are still under review. Please visit the college to complete verification.
+                                                                            </div>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="text-center my-4">
+                                                                    <div class="alert alert-info shadow-sm border-info p-3 rounded" role="alert">
+                                                                        <i class="fa fa-info-circle me-2"></i>
+                                                                        <strong>📝 Application Pending</strong> You have not applied yet. Please submit your admission form at the college portal to proceed.
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div class="text-center my-4">
+                                                        <div class="card border-light shadow-sm d-inline-block p-3 bg-light">
+                                                            <h6 class="mb-3 text-primary"><i class="fa fa-file-invoice"></i> Your Payment Receipt</h6>
+                                                            <p class="mb-3">Click below to print your receipt for record and submission purposes.</p>
+                                                            <button class="btn btn-outline-primary btn-lg" type="button" id="PrintRecipt">
+                                                                <i class="fa fa-print me-2"></i> Print Receipt
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    if (ViewBag.isfeesubmitt == true)
+                                                    {
+                                                        <div class="fee-box">
+                                                            <div><span>Fees</span><strong>₹ @Model.Item1.Fees</strong></div>
+                                                            <div><span>Processing (incl. GST)</span><strong>₹ @Model.Item1.surcharge</strong></div>
+                                                            <div class="total">
+                                                                <span>Total</span>
+                                                                <strong>₹ @(Convert.ToDecimal(Model.Item1.Fees) + Convert.ToDecimal(Model.Item1.surcharge))</strong>
+                                                            </div>
+                                                        </div>
+                                                    }
+
+                                                }
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div id="step5" class="content-box">
+                                        🧾 Receipt
+                                        <div class="text-center my-4">
+                                            <div class="card border-light shadow-sm d-inline-block p-3 bg-light">
+                                                <h6 class="mb-3 text-primary"><i class="fa fa-file-invoice"></i> Your Payment Receipt</h6>
+                                                <p class="mb-3">Click below to print your receipt for record and submission purposes.</p>
+                                                <button class="btn btn-outline-primary btn-lg" type="button" id="PrintRecipt">
+                                                    <i class="fa fa-print me-2"></i> Print Receipt
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                }
+                            </div>
+                        </div>
+                        //}
+                        //else
+                        //{
+
+                        //}
+                    }
+
+                }
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).on('click', '#PrintRecipt', function () {
+
+        var DivName = $('#dvPrintRecipt');
+
+        if (DivName.length == 0) {
+            alert("Receipt not found!");
+            return;
+        }
+
+        var printContents = `
+            <html>
+            <head>
+                <title>Receipt</title>
+                <meta charset="utf-8"/>
+            </head>
+            <body>` + DivName.html() + `</body></html>`;
+
+        // REMOVE OLD FORM IF EXISTS
+        $('#tempForm2').remove();
+
+        // CREATE NEW FORM
+        var form = `
+            <form method="post" action="/UGCBCS/HomeUGCBCS/PrintApplicationCallReceipt" id="tempForm2">
+                <input type="hidden" name="data1" value='${printContents.replace(/'/g, "&apos;")}' />
+                <input type="hidden" name="dataname1" value="AdmissionFeeRecipt" />
+                <input type="hidden" name="PageType1" value="Portrait" />
+            </form>`;
+
+        $('body').append(form);
+
+        // SUBMIT
+        $('#tempForm2').submit();
+
+        // CLEANUP
+        setTimeout(function () {
+            $('#tempForm2').remove();
+        }, 1000);
+    });
+</script>
+
+@*<script>
+    $(document).on('click', '#PrintRecipt', function () {
+        //ExportToPDFApplicationform($('#dvPrintRecipt'), [], '', PDFPageType.Portrait, 'AdmissionFeeRecipt');
+        ExportToPDFApplicationformfeesrec($('#dvPrintRecipt'), [], '', PDFPageType.Portrait, 'AdmissionFeeRecipt');
+    });
+    function ExportToPDFApplicationformfeesrec(DivName, TableColumnHide, ReportHeading, PageType, Applicationform) {
+        debugger;
+        /// <summary>Function to convert HTML to PDF.</summary>
+        /// <param name="DivName">Name of the Div  with selector which contains all the html to print.</param>
+        /// <param name="TableColumnHide" type="array">Pass array of columns to be hidden like [2,5,6] in a Table.</param>
+        /// <param name="ReportHeading">Heading of the Report</param>
+        /// <param name="PageType">Provide page type from enum PDFPageType </param>
+        /// <returns>PDF File</returns>
+        var PDFtable = DivName.find('table');
+        if (TableColumnHide) {
+            $.each(TableColumnHide, function (index, value) {
+                PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').hide();  //hiding the columns of the table inside Div
+            });
+        }
+        PDFtable.attr('border', '0');//applied 1 to table attribute border so we can get border in the Table
+        var printContents = '<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><div style="font-size: 25px;" ><center>' + ReportHeading + '</center></div><br />' + DivName.html() + '</body></html>';
+
+        $('body').prepend("<form method='post' action='/UGCBCS/HomeUGCBCS/PrintApplicationCallReceipt' id='tempForm2'><input type='hidden' name='data1' value='" + printContents + "' ><input type='hidden' name='dataname1' value='" + Applicationform + "' ><input type='hidden' name='PageType1' value='" + PageType + "' ></form>");
+        $('#tempForm2').submit();
+        $("tempForm2").remove();
+        if (TableColumnHide) {
+            $.each(TableColumnHide, function (index, value) {
+                PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').show(); // //Again Showing the columns of the table inside Div
+            });
+        }
+    }
+    /// <summary>Enum for Page Type</summary>
+    var PDFPageType = {
+        Default: 'Default',
+        Portrait: 'Portrait',
+        Landscape: 'Landscape'
+    }
+</script>*@
+@{
+    var othersubjectlist = ViewBag.SavedSubjects as List<DataLayer.OtherSubjectModel>;
+}
+
+<div class="container-fluid" style="display:none">
+    <div class="sparkline8-list DocumentUpload">
+        <div style="display:none">
+            <div id="dvPrintRecipt">
+
+                @if (Model.Item1.yearname == "Semester - 1")
+                {
+                    <div style="border-bottom:5px solid #05046c; margin-bottom:25px; text-align:center; padding:15px 0;">
+                        <img id="logo3" width="500">
+                    </div>
+
+                    <table width="800px" cellpadding="0" cellspacing="0" style="margin:auto;">
+                        <tr>
+                            <td colspan="2" align="center">
+                                <strong style="text-decoration:underline">AFFIDAVIT</strong>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div style="page-break-before: always;"></div>
+                }
+
+                <!-- HEADER -->
+                <div style="border-bottom:5px solid #05046c; margin-bottom:20px; text-align:center; padding:15px 0;">
+                    <img id="logo2" width="500px">
+                </div>
+
+                <!-- MAIN RECEIPT -->
+                <div class="receipt-box">
+
+                    <!-- TITLE -->
+                    <div class="receipt-header">
+                        <img id="logo2" class="logo">
+                        <div class="title">ADMISSION FEE RECEIPT</div>
+                    </div>
+
+                    <!-- BASIC INFO -->
+                    <div class="info-block">
+                        <div><span>Application No</span><b>@Model.Item1.ApplicationNo</b></div>
+                        <div><span>Session</span><b>@Model.Item1.Session</b></div>
+                        <div><span>Programme</span><b>@Model.Item1.Title</b></div>
+                        <div><span>Course</span><b>@Model.Item1.Course @Model.Item1.yearname</b></div>
+                        <div><span>Caste</span><b>@Model.Item1.CastCategort</b></div>
+                        <div><span>College</span><b>@Model.Item1.CollegeName</b></div>
+                    </div>
+
+                    <!-- SUBJECT -->
+                    <div class="box">
+                        <div class="box-title">Subjects</div>
+
+                        <div class="row-flex">
+                            <div class="mini-box">
+                                <b>Major</b>
+                                <div>Subject Name 1</div>
+                            </div>
+
+                            <div class="mini-box">
+                                <b>Minor</b>
+                                <div>Subject Name 2</div>
+                            </div>
+                        </div>
+
+                        <div class="sub-list">
+                            <b>Other Subjects</b>
+
+                            @if (othersubjectlist != null && othersubjectlist.Count > 0)
+                            {
+                                foreach (var m in othersubjectlist)
+                                {
+                                    <div class="dot">@m.SubjectName</div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="dot">Not Selected</div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- FEES -->
+                    <div class="box">
+                        <div class="box-title">Fees Details</div>
+
+                        <div class="line">
+                            <span>Fees</span>
+                            <span>₹ @Model.Item1.Fees</span>
+                        </div>
+
+                        <div class="line">
+                            <span>Processing</span>
+                            <span>₹ @Model.Item1.surcharge</span>
+                        </div>
+
+                        <div class="line total">
+                            <span>Total</span>
+                            <span>₹ @(Convert.ToDecimal(Model.Item1.Fees) + Convert.ToDecimal(Model.Item1.surcharge))</span>
+                        </div>
+                    </div>
+
+                    <!-- PAYMENT -->
+                    <div class="box">
+                        <div class="box-title">Payment Details</div>
+
+                        <div class="line"><span>Status</span><span>@Model.Item1.FeeStatus</span></div>
+                        <div class="line"><span>Bank Ref</span><span>@Model.Item1.banktrxid</span></div>
+                        <div class="line"><span>Txn ID</span><span>@Model.Item1.clienttrxid</span></div>
+                        <div class="line"><span>Date</span><span>@Model.Item1.banktxndate</span></div>
+                        <div class="line"><span>Mode</span><span>@Model.Item1.PaymentType</span></div>
+                    </div>
+
+                    <!-- SIGN -->
+                    <div class="sign">
+                        <div class="line-sign"></div>
+                        <div>Authorized Sign</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+/* MAIN */
+.receipt-box {
+    width: 720px;
+    margin: auto;
+    border: 2px solid #000;
+    padding: 15px;
+    font-family: "Segoe UI", Arial;
+    background: #fff;
+}
+
+/* HEADER */
+.receipt-header {
+    text-align: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 8px;
+}
+
+.logo {
+    height: 55px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+/* INFO */
+.info-block {
+    margin-top: 10px;
+}
+
+.info-block div {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ccc;
+    padding: 4px 0;
+    font-size: 13px;
+}
+
+/* BOX */
+.box {
+    border: 1px solid #000;
+    margin-top: 12px;
+    padding: 10px;
+}
+
+.box-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* FLEX */
+.row-flex {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.mini-box {
+    flex: 1;
+    border: 1px dashed #999;
+    padding: 6px;
+}
+
+/* SUBJECT LIST */
+.sub-list {
+    margin-top: 5px;
+}
+
+.dot {
+    font-size: 12px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.dot:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+}
+
+/* LINE */
+.line {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 0;
+}
+
+.total {
+    font-weight: bold;
+}
+
+/* SIGN */
+.sign {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.line-sign {
+    border-top: 1px solid #000;
+    width: 160px;
+    margin-left: auto;
+}
+
+/* PRINT */
+@@media print {
+    .receipt-box {
+        border: 2px solid #000;
+    }
+}
+
+</style>

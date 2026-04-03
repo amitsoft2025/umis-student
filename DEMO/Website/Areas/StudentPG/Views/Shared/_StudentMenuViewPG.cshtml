@@ -1,0 +1,137 @@
+﻿@using DataLayer;
+@using Website.Models;
+<div class="header-advance-area">
+    <div class="header-top-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="header-top-wraper">
+                        <div class="row">
+                            <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                <div class="menu-switcher-pro">
+                                    <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+                                        <i class="educate-icon educate-nav"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                <div class="header-top-menu tabl-d-n">
+                                    <ul class="nav navbar-nav mai-top-nav">
+                                        <li class="nav-item">
+                                            <a href="/StudentPG/HomePG/Index" class="nav-link">@DataLayer.ClsLanguage.GetCookies("NBUserName")&nbsp; &nbsp;(@DataLayer.ClsLanguage.GetCookies("courseyear"))</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                <div class="header-right-info">
+                                    <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                        <li class="nav-item dropdown">
+
+
+                                        <li class="nav-item">
+                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                <img src='@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@DataLayer.ClsLanguage.GetCookies("NBphoto")' alt="" onerror="this.src = '../../../images/noimage.png';" style="max-height:26px">
+                                                <span class="admin-name">@DataLayer.ClsLanguage.GetCookies("NBApplicationNo")</span>
+                                                <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                            </a>
+                                            <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+
+
+                                                <li>
+                                                    <a href="#"> <i class="fa fa-id-card-o" aria-hidden="true"><span class="edu-icon edu-user-rounded author-log-ic">&nbsp;&nbsp;@DataLayer.ClsLanguage.GetCookies("NBApplicationNo")</span></i></a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="~/StudentPG/HomePG/Changepassword"><i class="fa fa-unlock-alt" aria-hidden="true"><span class="edu-icon edu-user-rounded author-log-ic">&nbsp;&nbsp;Change Password</span></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/StudentPG/HomePG/BasicDetail"><i class="fa fa-user" aria-hidden="true"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</i></a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="~/Student/login/Logout" class="logout"><i class="fa fa-sign-out" aria-hidden="true"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</i></a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                       
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu start -->
+    <div class="mobile-menu-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mobile-menu">
+                        <nav id="dropdown">
+                            <ul class="mobile-menu-nav">
+                                <li>
+                                    <a href="/StudentPG/HomePG/Index">
+                                        Dashboard
+                                        <span class="admin-project-icon edu-icon edu-down-arrow"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#Charts" href="#">Personal Detail <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li><a href="~/StudentPG/HomePG/BasicDetail">Basic Detail</a></li>
+                                        <li><a href="~/StudentPG/HomePG/StudentQualification">Qualification</a></li>
+                                        <li><a href="~/StudentPG/HomePG/SelectSubject">Choose Subject</a></li>
+                                        <li><a href="~/StudentPG/HomePG/FeesSubmit">Fees Submit</a></li>
+
+                                    </ul>
+                                </li>
+                                @if (Convert.ToInt32(EncriptDecript.Decrypt(ClsLanguage.GetCookies("ENNBcollegeid"))) > 0)
+                                {
+                                    <li>
+                                        <a class="" href="~/StudentPG/ResultPG/Index">
+                                            <span class="fa fa-list-alt "></span>
+                                            <span class="">Result</span>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu end -->
+    <div class="breadcome-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="container-fluid height50">
+                        <div class="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).on("click", ".logout", function () {
+        localStorage.removeItem("logged_in");
+        window.localStorage.setItem('logged_in', false)
+    });
+    function storageChange(event) {
+        if (event.key === 'logged_in') {
+            localStorage.removeItem("logged_in");
+            window.location.href = "/Student/login/Logout";
+        }
+    }
+    window.addEventListener('storage', storageChange, false)
+</script>

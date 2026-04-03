@@ -1,0 +1,836 @@
+﻿@model DataLayer.Login
+@{
+    
+     Layout = "~/Areas/UGCBCS/Views/Shared/_LayoutStudentPG.cshtml";
+}
+<style>
+    label {
+        padding: 10px;
+    }
+
+    .starvalid {
+        color: red;
+    }
+
+    .spacetop {
+        padding-top: 20px;
+    }
+    /* Alert container */
+.custom-alert-wrap {
+    position: fixed; /* top pe dikhaye */
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    width: auto;
+    max-width: 500px;
+    animation: slideDownFade 0.5s ease-out;
+}
+
+/* Alert box */
+.custom-alert {
+    background: linear-gradient(135deg, #6DD5FA, #2980B9); /* stylish blue gradient */
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    text-align: center;
+    font-weight: 500;
+    border-left: 5px solid #fff; /* accent line */
+    animation: fadeOut 0.3s ease-in 3s forwards; /* fade out after 3s */
+}
+
+/* Slide down + fade in */
+@@keyframes slideDownFade {
+    0% { transform: translate(-50%, -50px); opacity: 0; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Fade out */
+@@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+</style>
+<script type="text/javascript">
+
+    function show(input) {
+        debugger;
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#userImage').attr('src', e.target.result);
+                $('#hstphoto').val(e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+
+        }
+    }
+
+    function show1(input) {
+        if (input.files && input.files[0]) {
+            var filerdr1 = new FileReader();
+            filerdr1.onload = function (e) {
+                $('#signImage').attr('src', e.target.result);
+                $('#hstsign').val(e.target.result);
+
+            }
+            filerdr1.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script src="~/JS/Commonjs.js"></script>
+
+<div class="container-fluid">
+    <div class="all-content-wrapper" style="margin-left:0px !important">
+        <!-- Advanced Form Start -->
+        <div class="advanced-form-area mg-b-15">
+            @if (TempData["StMessage"] != null)
+            {
+                <div class="custom-alert-wrap">
+                    <div class="custom-alert" role="alert">
+                        @TempData["StMessage"]
+                    </div>
+                </div>
+            }
+
+            <div class="sparkline10-graph">
+                <div class="input-knob-dial-wrap">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+
+                            <div class="form-group-inner">
+                                <div class="login-btn-inner">
+                                    <div>
+                                        <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0" style="text-align: left;">
+                                            <div class="sparkline10-graph">
+                                                <div class="input-knob-dial-wrap">
+                                                    <div class="row all-form-element-inner">
+                                                        <div class="form-group-inner">
+                                                            <div class="row login-btn-inner">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="product-payment-inner-st">
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                                                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                                                                    <div>
+                                                                                        <div>
+                                                                                            <div class="review-content-section basic-detail-part">
+                                                                                                @*@using (Html.BeginForm("BasicDetail", "HomeUGCBCS", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+
+        {*@
+                                                                                                <form id="myform" method="post">
+                                                                                                    @Html.AntiForgeryToken()
+                                                                                                    <style>
+                                                                                                        .form-card {
+                                                                                                            background: #fff;
+                                                                                                            padding: 15px;
+                                                                                                            border-radius: 10px;
+                                                                                                            margin-bottom: 15px;
+                                                                                                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                                                                                                        }
+
+                                                                                                            .form-card h5 {
+                                                                                                                border-left: 4px solid #007bff;
+                                                                                                                padding-left: 10px;
+                                                                                                                margin-bottom: 15px;
+                                                                                                                font-weight: 600;
+                                                                                                            }
+
+                                                                                                        .form-group label {
+                                                                                                            font-weight: 500;
+                                                                                                            margin-bottom: 5px;
+                                                                                                        }
+
+                                                                                                        .form-control {
+                                                                                                            border-radius: 6px;
+                                                                                                        }
+
+                                                                                                        .section-title {
+                                                                                                            background: #f5f7fa;
+                                                                                                            padding: 8px 10px;
+                                                                                                            border-radius: 6px;
+                                                                                                            font-weight: 600;
+                                                                                                            margin-bottom: 10px;
+                                                                                                        }
+
+                                                                                                        .custom-heading {
+                                                                                                            width: fit-content; /* jitna content utni width */
+                                                                                                            margin: 0 auto; /* center me le aata hai */
+                                                                                                        }
+                                                                                                    </style>
+
+                                                                                                    <div id="dropzone1" class="pro-ad container-fluid">
+
+                                                                                                        <!-- Programme -->
+                                                                                                        <div class="form-card" style="display:none;">
+                                                                                                            <div class="custom-heading">  <h5 class="section-heading ">🎓 Programme Details</h5> </div>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-4 form-group">
+                                                                                                                    <label>Admission Category  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.DropDownListFor(model => model.EducationType,
+                                                                                                                    new SelectList(ViewBag.Educationtype, "CommonId", "title", ViewBag.eduid),
+                                                                                                                    "Select Programme Type..",
+                                                                                                                    new { @class = "form-control", @id = "Educationtype", @readonly = "readonly", @disabled = "disabled" })
+
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-4 form-group">
+                                                                                                                    <label>Course  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.DropDownListFor(model => model.CourseCategory,
+                                                                                                                    new SelectList(ViewBag.Course, "CourseCategoryID", "CourseCategory"),
+                                                                                                                    "Select Course..",
+                                                                                                                    new { @class = "form-control", @id = "Coursetype" })
+                                                                                                                </div>
+
+
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <!-- Personal -->
+                                                                                                        <div class="form-card">
+                                                                                                            <h5 class="section-heading">🧑 Personal Details</h5>
+
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Title  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.DropDownListFor(model => model.title,
+                                                                                                                    new SelectList(ViewBag.stitle, "CommonId", "title"),
+                                                                                                                    "Select Title..",
+                                                                                                                    new { @class = "form-control", @id = "title", @required = "required" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Gender <span class="starvalid">*</span></label>
+                                                                                                                    @Html.DropDownListFor(model => model.Gender,
+                                                                                                                    new SelectList(ViewBag.Gender, "CommonId", "title"),
+                                                                                                                    "Select Gender",
+                                                                                                                    new { @class = "form-control", @id = "Gender", @required = "required", @readonly = "readonly", @disabled = "disabled" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Full Name  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.FirstName,
+                                                                                                                    new { @class = "form-control", @placeholder = "First Name", @required = "required", @readonly = "readonly",  })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label> नाम  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.FirstNameInHindi,
+                                                                                                                    new { @class = "form-control", @id = "FirstNameInHindi", @required = "required", @readonly = "readonly" })
+                                                                                                                </div>
+
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <span><label>Title <span class="starvalid">*</span></label></span>
+                                                                                                                    @Html.DropDownListFor(model => model.Ftitle, new SelectList(ViewBag.ftitle, "CommonId", "title"), "Select Title..", new { @class = "form-control", @id = "Ftitle", @required = "required" })
+                                                                                                                </div>
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <span><label>Parent Name <span class="starvalid">*</span></label></span>
+                                                                                                                    @Html.TextBoxFor(model => model.FatherName, "", new { @class = "form-control", @placeholder = "Father Name", @required = "required", @readonly = "readonly", @disabled = "disabled" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <span><label>Mother Name <span class="starvalid">*</span></label></span>
+                                                                                                                    @Html.TextBoxFor(model => model.MotherName, "", new { @class = "form-control", @placeholder = "Mother Name", @required = "required", @readonly = "readonly" })
+
+                                                                                                                </div>
+
+                                                                                                            </div>
+
+
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>DOB *</label>
+                                                                                                                    @Html.TextBoxFor(model => model.DOB,
+                                                                                                                    new { @class = "form-control", @id = "datepicker", @required = "required", @readonly = "readonly" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Category  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.DropDownListFor(model => model.CastCategory,
+                                                                                                                    new SelectList(ViewBag.CasteCategory, "CommonId", "title"),
+                                                                                                                    "Select",
+                                                                                                                    new { @class = "form-control", @id = "Cast", @required = "required", @readonly = "readonly" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Mobile  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.MobileNo,
+                                                                                                                    new { @class = "form-control", @maxlength = "10", @oninput = "OnlyIntvalue(this);", @required = "required", @readonly = "readonly" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Email  <span class="starvalid">*</span>*</label>
+                                                                                                                    @Html.TextBoxFor(model => model.Email,
+                                                                                                                    new { @class = "form-control", @type = "email", @required = "required", @readonly = "readonly" })
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <!-- Address -->
+                                                                                                        <div class="form-card">
+                                                                                                            <h5 class="section-heading">📬 Correspondence Address</h5>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Address  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.CurrentAddress, "", new { @class = "form-control", @id = "Address", @placeholder = "Address", @required = "required" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>City  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.CA_City, "", new { @class = "form-control", @id = "city", @placeholder = "City", @required = "required" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>PinCode  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.CA_PinCode, "", new { @class = "form-control", @id = "pincode", @placeholder = "PinCode", @required = "required" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>State  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.DropDownListFor(model => model.CA_State,
+                                                                                                                    new SelectList(ViewBag.CAState, "stateID", "statename"),
+                                                                                                                    "Select State",
+                                                                                                                    new { @class = "form-control", @id = "State", @required = "required" })
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <!-- Permanent -->
+                                                                                                        <div class="form-card">
+                                                                                                            <style>
+                                                                                                                .section-heading {
+                                                                                                                    background: linear-gradient(90deg, #667eea, #764ba2);
+                                                                                                                    color: #fff;
+                                                                                                                    padding: 8px 12px;
+                                                                                                                    border-radius: 6px;
+                                                                                                                    font-size: 15px;
+                                                                                                                    font-weight: 600;
+                                                                                                                    text-align: center;
+                                                                                                                    display: inline-block;
+                                                                                                                }
+                                                                                                            </style>
+
+                                                                                                            <h5 class="section-heading">🏠 Residential Details</h5>
+
+                                                                                                            <div class="checkbox-content mb-2">
+                                                                                                                @Html.CheckBoxFor(model => model.is_permanentaddress, new { @id = "parmanentcheckbox" })
+                                                                                                                Same as Correspondence
+                                                                                                            </div>
+
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>Address  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.PA_Address, "", new { @class = "form-control", @id = "PAddress" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>City  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.PA_City, "", new { @class = "form-control", @id = "Pcity" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>PinCode <span class="starvalid">*</span></label>
+                                                                                                                    @Html.TextBoxFor(model => model.PA_PinCode, "", new { @class = "form-control", @id = "PPinCode" })
+                                                                                                                </div>
+
+                                                                                                                <div class="col-md-3 form-group">
+                                                                                                                    <label>State  <span class="starvalid">*</span></label>
+                                                                                                                    @Html.DropDownListFor(model => model.PA_State,
+                                                                                                                    new SelectList(ViewBag.PAState, "stateID", "statename"),
+                                                                                                                    "Select State",
+                                                                                                                    new { @class = "form-control", @id = "PState" })
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+
+                                                                                                        <div class="row">
+
+
+                                                                                                            <style>
+                                                                                                                .preview-card {
+                                                                                                                    border: 2px solid #ddd;
+                                                                                                                    border-radius: 10px;
+                                                                                                                    padding: 15px;
+                                                                                                                    text-align: center;
+                                                                                                                    background: #fafafa;
+                                                                                                                    width: 220px;
+                                                                                                                    margin: auto;
+                                                                                                                    margin-top: 10px;
+                                                                                                                }
+
+                                                                                                                .preview-img {
+                                                                                                                    width: 120px;
+                                                                                                                    height: 120px;
+                                                                                                                    border: 1px solid #ccc;
+                                                                                                                    object-fit: cover;
+                                                                                                                    margin-bottom: 10px;
+                                                                                                                }
+
+                                                                                                                .preview-sign {
+                                                                                                                    width: 120px;
+                                                                                                                    height: 50px;
+                                                                                                                    border: 1px solid #ccc;
+                                                                                                                    object-fit: contain;
+                                                                                                                }
+                                                                                                            </style>
+                                                                                                            <style>
+                                                                                                                .upload-btn {
+                                                                                                                    background: #0dcaf0; /* fresh green */
+                                                                                                                    color: #fff;
+                                                                                                                    padding: 8px 16px; /* thoda bada aur comfortable */
+                                                                                                                    border-radius: 8px; /* soft corners */
+                                                                                                                    cursor: pointer;
+                                                                                                                    display: inline-block;
+                                                                                                                    font-weight: 600;
+                                                                                                                    font-size: 14px;
+                                                                                                                    transition: all 0.3s ease;
+                                                                                                                    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow */
+                                                                                                                    margin-top: 20px;
+                                                                                                                }
+
+                                                                                                                    .upload-btn:hover {
+                                                                                                                        background: #45a049; /* darken on hover */
+                                                                                                                        box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+                                                                                                                        transform: translateY(-2px);
+                                                                                                                    }
+
+                                                                                                                    .upload-btn input[type="file"] {
+                                                                                                                        display: none; /* hide the actual input */
+                                                                                                                    }
+                                                                                                            </style>
+                                                                                                            <style>
+                                                                                                                .custom-heading {
+                                                                                                                    background: linear-gradient(90deg, #36d1dc, #5b86e5);
+                                                                                                                    padding: 10px 15px;
+                                                                                                                    border-radius: 8px;
+                                                                                                                    color: #fff;
+                                                                                                                    font-weight: 600;
+                                                                                                                    font-size: 15px;
+                                                                                                                    display: inline-block;
+                                                                                                                }
+
+                                                                                                                    .custom-heading i {
+                                                                                                                        margin-right: 8px;
+                                                                                                                    }
+                                                                                                            </style>
+
+                                                                                                            <ul id="myTabedu1" class="tab-review-design" style="border:none;">
+                                                                                                                <li class="active" style="list-style:none;">
+                                                                                                                    <span class="custom-heading">
+                                                                                                                        📁 Upload Section / (दस्तावेज़ अपलोड)
+                                                                                                                    </span>
+                                                                                                                </li>
+                                                                                                            </ul>
+
+                                                                                                            <div class="row">
+
+                                                                                                                <!-- LEFT SIDE: PREVIEW -->
+                                                                                                                <div class="col-md-6 text-center">
+
+                                                                                                                    <div class="preview-card">
+
+                                                                                                                        <!-- PHOTO -->
+                                                                                                                        @if (Model != null && !string.IsNullOrEmpty(Model.stphoto))
+                                                                                                                        {
+                                                                                                                            @*<img id="userImage" class="preview-img"
+                                src='@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.stphoto' />*@
+
+                                                                                                                            <img id="userImage" class="preview-img"
+                                                                                                                                 src='@Url.Content("~/Content/uploads/Student/" + Model.stphoto)' />
+                                                                                                                        }
+                                                                                                                        else
+                                                                                                                        {
+                                                                                                                            <img id="userImage" class="preview-img" src='~/images/noimage.png' />
+                                                                                                                        }
+
+                                                                                                                        <div><small>Photo</small></div>
+
+                                                                                                                        <!-- SIGNATURE -->
+                                                                                                                        @if (Model != null && !string.IsNullOrEmpty(Model.stsign))
+                                                                                                                        {
+                                                                                                                            <img id="signImage" class="preview-sign"
+                                                                                                                                 src='@Url.Content("~/Content/uploads/Student/" + Model.stsign)' />
+                                                                                                                        }
+                                                                                                                        else
+                                                                                                                        {
+                                                                                                                            <img id="signImage" class="preview-sign" src='~/images/noimage.png' />
+                                                                                                                        }
+
+                                                                                                                        <div><small>Signature</small></div>
+
+                                                                                                                    </div>
+
+                                                                                                                </div>
+
+                                                                                                                <!-- RIGHT SIDE: UPLOAD -->
+                                                                                                                <div class="col-md-6">
+
+                                                                                                                    <form id="uploadForm" method="post" enctype="multipart/form-data" onsubmit="return validateFiles();">
+
+                                                                                                                        <!-- PHOTO UPLOAD -->
+                                                                                                                        <div class="mb-3 text-center">
+                                                                                                                            <label class="upload-btn">
+                                                                                                                                <i class="fa fa-upload"> Upload Photo </i>
+                                                                                                                                <input type="file" id="photo" name="photo"
+                                                                                                                                       onchange="document.getElementById('append-big-btn').value = this.value; checkphoto();show(this)"
+                                                                                                                                       style="display:none;" required>
+                                                                                                                            </label>
+
+                                                                                                                            @Html.TextBoxFor(model => model.stphoto, "",
+                                                                                                                            new { @class = "form-control mt-2", @id = "append-big-btn", @readonly = "readonly", @disabled = "disabled", @style = "display:none;" })
+
+                                                                                                                            <input type="hidden" name="hstphoto" id="hstphoto"
+                                                                                                                                   value='@Url.Content("~/Content/uploads/Student/" + (Model != null ? Model.stphoto : ""))' />
+                                                                                                                            <small class="text-danger">Max 50KB</small>
+                                                                                                                        </div>
+
+                                                                                                                        <!-- SIGNATURE UPLOAD -->
+                                                                                                                        <div class="text-center">
+                                                                                                                            <label class="upload-btn">
+                                                                                                                                <i class="fa fa-pencil"> Upload Signature </i>
+                                                                                                                                <input type="file" id="sign" name="sign"
+                                                                                                                                       onchange="document.getElementById('append-big-btn2').value = this.value; checksigh();show1(this);"
+                                                                                                                                       style="display:none;" required>
+                                                                                                                            </label>
+
+                                                                                                                            @Html.TextBoxFor(model => model.stsign, "",
+                                                                                                                            new { @class = "form-control mt-2", @id = "append-big-btn2", @readonly = "readonly", @disabled = "disabled", @style = "display:none;" })
+
+                                                                                                                            <input type="hidden" name="hstsign" id="hstsign"
+                                                                                                                                   value='@Url.Content("~/Content/uploads/Student/" + (Model != null ? Model.stsign : ""))' />
+                                                                                                                            <small class="text-danger">Max 50KB</small>
+                                                                                                                        </div>
+
+
+
+                                                                                                                    </form>
+                                                                                                                </div>
+
+                                                                                                            </div>
+
+                                                                                                            <script>
+                                                                                                                function validateFiles() {
+                                                                                                                    var photo = document.getElementById('photo').files.length;
+                                                                                                                    var sign = document.getElementById('sign').files.length;
+
+                                                                                                                    if (photo === 0) {
+                                                                                                                        showAlert("Please upload your photo.");
+                                                                                                                        return false;
+                                                                                                                    }
+
+                                                                                                                    if (sign === 0) {
+                                                                                                                        showAlert("Please upload your signature.");
+                                                                                                                        return false;
+                                                                                                                    }
+
+                                                                                                                    return true; // Submit form
+                                                                                                                }
+
+
+
+
+                                                                                                            </script>
+
+                                                                                                        </div>
+
+
+                                                                                                        <!-- Declaration -->
+                                                                                                        <div class="form-card">
+                                                                                                            <div class="checkbox-content">
+                                                                                                                <input type="checkbox" id="checkAgree" checked>
+                                                                                                                I confirm details are correct. मैं पुष्टि करता हूँ कि सभी दी गई जानकारी सही है। यदि किसी जानकारी में त्रुटि पाई जाती है, तो आवश्यक कार्रवाई की जा सकती है।
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <!-- Submit -->
+                                                                                                        <div class="text-center mb-3">
+                                                                                                            @if (Model != null)
+                                                                                                            {
+                                                                                                                if (ViewBag.addmissionExtenddate == true)
+                                                                                                                {
+                                                                                                                    if (Model.IsFeeSubmit != null)
+                                                                                                                    {
+                                                                                                                        <button type="button" class="btn btn-primary px-5" onclick=" alert('Confirm'); submitForm()">
+                                                                                                                            Submit
+                                                                                                                        </button>
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                </form>
+                                                                                                    @*}*@
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+                            <script>
+                                $(function ()
+                                {
+                                    $("#Educationtype option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.eduid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Gender option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.genderid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#CastCategory option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.castid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+
+                                $(function ()
+                                {
+                                    $("#Blood_Group option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.bloodgroupid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#title option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.titileid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Ftitle option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.ftitileid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Nationality option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.Nationalityid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Religion option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.Religionid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#MotherTongue option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.MotherTongueid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Gender option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.genderid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Gender option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.genderid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-content-wrapper" style="margin-left:0px !important">
+                <!-- Advanced Form Start -->
+                <div class="container-fluid col-md-10 col-md-offset-1 col-sm-12" id="basicinfo" style="display:none">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="progress" class="modal">
+            <div class="center">
+                <img src="~/images/loader4.gif" /> loading...................
+            </div>
+        </div>
+        <script src="~/JS/StudentadminissionformPG.js?id=@System.Configuration.ConfigurationManager.AppSettings["ScriptFileVersion"]"></script>
+        @*<script src="~/Content/js/datapicker/bootstrap-datepicker_back10year.js"></script>*@
+    </div>
+</div>
+<script>
+    $("#myform").submit(function (e) {
+        showloader();
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var abc=@Convert.ToInt16(DataLayer.CommonSetting.Religion.OtherReligion);
+        // console.log("abc"+ abc);
+        if ($('#Religion').val() == abc) {
+            $('#ReligonOther').css('display', 'block');
+            $('#lblrgn').css('display', 'block');
+            $('#txtReligonOther').attr('required', 'required');
+        }
+
+        $('#Religion').change(function () {
+            //debugger;
+            if ($('#Religion').val() == abc) {
+                $('#ReligonOther').css('display', 'block');
+                $('#txtReligonOther').attr('required', 'required');
+                $('#lblrgn').css('display', 'block');
+
+            }
+            else {
+                $('#ReligonOther').css('display', 'none');
+                $('#txtReligonOther').removeAttr('required');
+                $('#lblrgn').css('display', 'none');
+                $('#txtReligonOther').val('');
+            }
+        });
+    });
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+    //  google.load("elements", "1", { packages: "transliteration" });
+</script>
+<script>
+
+
+</script>
+<script>
+    function checkphotosign() {
+        showAlert('test');
+        var photo = document.getElementById('photo').files.length;
+        var sign = document.getElementById('sign').files.length;
+
+        if (photo === 0) {
+            showAlert("Please upload your photo.");
+            return false;
+        }
+
+        if (sign === 0) {
+            showAlert("Please upload your signature.");
+            return false;
+        }
+
+        return true; // Form submit ho jayega
+    }
+   
+</script>
+
+<script>
+   function submitForm() {
+       alert('test');
+    if (!checkphotosign()) return;
+
+    var form = $("#myform");
+
+    if (!form[0].checkValidity()) {
+        form[0].reportValidity();
+        return;
+    }
+
+    var formData = new FormData(form[0]);
+
+    $(".btn").prop("disabled", true);
+    showloader();
+
+    $.ajax({
+        url: '/update-profile', // 👈 route use ho raha hai
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        success: function (res) {
+
+            hideloader();
+            $(".btn").prop("disabled", false);
+
+            if (res.Status == 1) {
+                showAlert(res.Msg || "Saved Successfully");
+
+                setTimeout(function () {
+                    location.href = '/dashboard';
+                }, 1000);
+            } else {
+                showAlert(res.Msg || "Something went wrong");
+            }
+        },
+        error: function (err) {
+
+            hideloader();
+            $(".btn").prop("disabled", false);
+
+            console.log(err);
+            showAlert("Server error, try again!");
+        }
+    });
+}
+</script>

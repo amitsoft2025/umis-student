@@ -1,0 +1,484 @@
+﻿@model DataLayer.BL_student_formcomplete
+@{
+    ViewBag.Title = "Student Dashboard";
+    Layout = "~/Areas/StudentBPharma/Views/Shared/_LayoutStudentBPharma.cshtml";
+}
+<style>
+    .single-product-text {
+        text-align: left !important;
+        min-height: 400px;
+    }
+
+    .header-height {
+        min-height: 10px;
+    }
+
+    .modal-header {
+        padding: 5px;
+        text-align: center;
+    }
+
+    .date-style {
+        font-size: 12px;
+    }
+
+    .single-product-text img {
+        width: 30px !important;
+        height: 30px !important;
+        margin-top: 0px !important;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="single-cards-item" style="text-align:left">
+                <div class="single-product-text dashboard-part">
+                    <div class="massages_mainarea">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="notification-part massages_innerblk">
+                                    <div class="mgs-heading">
+                                        Notification:
+                                    </div>
+                                    <div class="mgs-content">
+                                        <ul>
+
+                                            @if (ViewBag.sessionid == 41) // sessionid 41
+                                            {
+                                                if (Model.isfeesubmitt == true)// check  application fee
+                                                {
+                                                    if (ViewBag.isfeesubmitt == true)// check college admision fee
+                                                    {
+
+
+                                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Note </strong>: Before filling the registration fee, the documents have to be verified from the college, then the payment link will be opened.(पंजीकरण शुल्क भरने से पहले, दस्तावेजों को कॉलेज से सत्यापित करना होगा, फिर भुगतान लिंक खोला जाएगा) |</li>
+
+                                                        <li>
+                                                            <strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />   16/11/2022  से  19/11/2022</strong>@*//(With Rs 500/- including Rs 200/- fine)*@
+                                                            BPharma कोर्स पार्ट 1 (BPharma Sem - 1) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamBPharma")">यहां क्लिक करें</a>
+                                                        </li>
+
+                                                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />  <strong>28/11/2022</strong> से <strong>04/12/2022</strong> तक Exam Fees <strong>(1000 Rs)</strong> शुल्क जमा कर सकते हैं <a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamBPharma")">Click Here </a></li>
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />पहले आप रजिस्ट्रेशन फीस सबमिट करे उसके बाद एग्जामिनेशन फीस सबमिट कर  सकते हैं | </li>*@
+
+                                                        <!--if (ViewBag.studentyear == 48)//part- 2
+                                                    {
+                                                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />  <strong>28/06/2022</strong> से <strong>02/07/2022</strong> तक Exam Fees <strong>(1000 Rs)</strong> शुल्क जमा कर सकते हैं (For @((ViewBag.studentyear == 29 ? "Part -2" : "Part -1"))  )  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamBPharma")">Click Here </a></li>
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>26/10/2021 से 30/10/2021</strong> तक आप एग्जामिनेशन फीस  <strong>(1000 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamBPharma")">Click Here </a></li>*@
+                                                        <!--if (ViewBag.isback == 1)
+                {
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />   <strong>28/06/2022</strong> से <strong>02/07/2022</strong>  तक Backlog Exam form (B Pharma Part -1)  <strong>(1000 Rs)</strong> शुल्क जमा कर सकते हैं |<a href="@Url.Action("BAckExamFeesSubmit", "ExamBPharma",new { courseyearidenc=ViewBag.courseyearidenc })">Click Here </a></li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>26/10/2021 से 30/10/2021</strong> तक आप BackLog एग्जामिनेशन फीस  <strong>(1000 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a href="@Url.Action("BAckExamFeesSubmit", "ExamBPharma",new { courseyearidenc=ViewBag.courseyearidenc })">Click Here </a></li>*@
+                                                        <!--}
+                }-->
+                                                        <!--else//part -1
+                {
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />  <strong>28/06/2022</strong> से <strong>02/07/2022</strong> तक Exam Fees <strong>(1000 Rs)</strong> शुल्क जमा कर सकते हैं (For @((ViewBag.studentyear == 29 ? "Part -2" : "Part -1"))  )  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamBPharma")">Click Here </a></li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>26/10/2021 से 30/10/2021</strong> तक आप BackLog एग्जामिनेशन फीस  <strong>(1000 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamBPharma")">Click Here </a></li>*@
+
+                                                        <!--}-->
+                                                        @*if (ViewBag.studentyear == 28)//part- 1
+                    {
+                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />  <strong>27/06/2022</strong> से <strong>01/07/2022</strong> तक Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं (For @((ViewBag.studentyear == 29 ? "Part -2" : "Part -1"))  )  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamBPharma",new { courseyearidenc=ViewBag.courseyearidenc })">Click Here </a></li>
+                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong> 02/07/2022  से 04/07/2022</strong> तक आप एग्जामिनेशन फीस  <strong>(500 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamBPharma",new { courseyearidenc=ViewBag.courseyearidenc })">Click Here </a></li>
+
+                    }*@
+
+
+
+
+                                                        if (ViewBag.enrollnmentno != "")
+                                                        {
+                                                            <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentBPharma/examBPharma/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                                        }
+                                                        <li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong></li>
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />
+                                                            Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomeBPharma")" style="float:right;">Click Here </a>
+                                                        </li>
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <li>1. अपना मूल विवरण भरना अनिवार्य है|(कृपया अपना नाम, पिता का नाम और माता का नाम सही ढंग से हिंदी और अंग्रेजी दोनों में भरें|)<a href="@Url.Action("BasicDetail", "HomeBPharma")">यहां क्लिक करें</a></li>
+                                                    <li>2. अपनी 10 वीं ,12 वीं और यूजी की योग्यता का विवरण अपलोड करना अनिवार्य है।<a href="@Url.Action("PreviousyearQualificationO", "HomeBPharma")">यहां क्लिक करें</a></li>
+                                                    <li>3. कृपया अपने बी फार्मा कोर्स कॉलेज की पुष्टि करें ,यदि उनकी कोई गलती है तो अपने संबंधित कॉलेज से संपर्क करें|<a href="@Url.Action("SelectSubject", "HomeBPharma")">यहां क्लिक करें</a></li>
+                                                    <li>4. फॉर्म भरने के बाद, आपको पंजीकरण शुल्क के रूप में 500 रुपये का भुगतान करना अनिवार्य है |<a href="@Url.Action("FeesSubmit", "HomeBPharma")">यहां क्लिक करें</a></li>
+                                                    <li>5.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> आप 22/09/2022 से 27/09/2022 तक पंजीकरण शुल्क जमा कर सकते हैं |</li>
+
+
+                                                }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div> <!--Col-->
+
+                        </div>
+                    </div>
+
+
+
+                    <h4><a class="" href="#">Instructions for Application Submission</a></h4>
+                    <span class="counter">
+                        Following are the stages for Application Submission  in the following order
+                    </span>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="cards-dtn">
+                                <h6></h6>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentBPharma/HomeBPharma/BasicDetail">
+                                    @if (Model.is_basic_complete == true)
+                                    {    <div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon1"><i class="fa fa-info"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Basic Details</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6" style="display:none">
+                            <div class="box-col">
+                                <a href="/StudentBPharma/HomeBPharma/DocumentUpload">
+                                    @if (Model.isdoccomplete == true)
+                                    {   <div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon2"><i class="fa fa-upload"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Upload Documents @if (Model.isdoccomplete == true) { }</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentBPharma/HomeBPharma/PreviousyearQualificationO">
+                                    @if (Model.isqua_complete == true)
+                                    {   <div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon3"><i class="fa fa-graduation-cap"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Upload Qualification @if (Model.isqua_complete == true) { }</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentBPharma/HomeBPharma/SelectSubject">
+                                    @if (Model.ischoice_complete == true)
+                                    {
+                                        <div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon4"><i class="fa fa-book"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Choose Subject</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentBPharma/HomeBPharma/FeesSubmit">
+
+                                    @if (Model.isfeesubmitt == true)
+                                    {
+                                        <div class="check-icon">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+
+                                    }
+
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon5"><i class="fa fa-money"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Payment of Fee</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var photurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+ViewBag.stphoto)";
+    var signurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/" + ViewBag.stsign)";
+    var logo11 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/mu-logo-white.png")";
+    var registrar1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/registrarsign.jpg")";
+    $(function () {
+        rencodeImage(photurl1);
+        rencodeImage1(signurl1);
+        rencodeImage2(logo11);
+        //rencodeImage3(logo11);
+        rencodeImage4(registrar1);
+    });
+
+</script>
+<script type="text/javascript">
+    function rencodeImage(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("userImage1");
+        img.onload = function () {
+            canvas.width = 160;
+            canvas.height = 150;
+            ctx.drawImage(img, 0, 0, 160, 150);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+    function rencodeImage1(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("userSign1");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+    function rencodeImage2(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("logo11");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+
+    function rencodeImage4(src, callback) {
+
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("registratrara11");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+
+    $(document).on('click', '#PrintReciptenroll', function () {
+        //debugger;
+        ExportToPDFApplicationformfeesrec($('#divtoPrint'), [], '', PDFPageType.Portrait, 'RegistrationNoSlip');
+        return;
+    });
+    function ExportToPDFApplicationformfeesrec(DivName, TableColumnHide, ReportHeading, PageType, Applicationform) {
+        // debugger;
+        return;
+        /// <summary>Function to convert HTML to PDF.</summary>
+        /// <param name="DivName">Name of the Div  with selector which contains all the html to print.</param>
+        /// <param name="TableColumnHide" type="array">Pass array of columns to be hidden like [2,5,6] in a Table.</param>
+        /// <param name="ReportHeading">Heading of the Report</param>
+        /// <param name="PageType">Provide page type from enum PDFPageType </param>
+        /// <returns>PDF File</returns>
+        var PDFtable = DivName.find('table');
+        if (TableColumnHide) {
+            $.each(TableColumnHide, function (index, value) {
+                PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').hide();  //hiding the columns of the table inside Div
+            });
+        }
+        PDFtable.attr('border', '0');//applied 1 to table attribute border so we can get border in the Table
+        var printContents = '<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><div style="font-size: 25px;" ><center>' + ReportHeading + '</center></div><br />' + DivName.html() + '</body></html>';
+
+        $('body').prepend("<form method='post' action='/StudentBPharma/HomeBPharma/EnrollSlipdownload' id='tempForm2'><input type='hidden' name='data1' value='" + printContents + "' ><input type='hidden' name='dataname1' value='" + Applicationform + "' ><input type='hidden' name='PageType1' value='" + PageType + "' ></form>");
+        $('#tempForm2').submit();
+        $("tempForm2").remove();
+        if (TableColumnHide) {
+            $.each(TableColumnHide, function (index, value) {
+                PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').show(); // //Again Showing the columns of the table inside Div
+            });
+        }
+    }
+    /// <summary>Enum for Page Type</summary>
+    var PDFPageType = {
+        Default: 'Default',
+        Portrait: 'Portrait',
+        Landscape: 'Landscape'
+    }
+</script>
+@if (Model.isfeesubmitt == true)
+{
+    @*<div class="container-fluid" style="display:none">
+            <div class="sparkline8-list DocumentUpload">
+                <div style="display:none">
+                    <div id="divtoPrint">
+
+                        <div style="width:640px; margin:auto; padding:0; font-size:14px; color:#333; font-family:Arial, Helvetica, sans-serif; border:5px solid #333; padding:20px">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle"><img id="logo11" width="300"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle" style="font-size:16px; text-transform:uppercase; border-bottom:1px solid #000; padding-bottom:13px"><strong>Registration Slip</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2" valign="middle">Registration No: @ViewBag.enrollnmentno </td>
+                                    <td width="182" align="left" valign="middle">Session : @ViewBag.Sessionname</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2" valign="middle">College Roll No : @ViewBag.rollno</td>
+                                    <td width="182" align="left" valign="middle">Course : @ViewBag.course</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="3" valign="middle">Subject: <strong>@ViewBag.Stream </strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="175" align="left" valign="top">Name :</td>
+                                    <td width="283" align="left" valign="top">@ViewBag.studentname</td>
+                                    <td rowspan="19" align="left" valign="top" style="padding:0 5px; width:150px;">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" valign="middle" style="border:1px solid #333; height:150px;"><img id="userImage1" width="160" style=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" valign="middle">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" valign="middle" style="border:1px solid #333; height:50px;"><img id="userSign1" width="160" style="max-height:50px"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">@(ViewBag.ftitle == 20 ? " Father Name" : (ViewBag.ftitle == 21 ? "  Husband  Name" : " Father Name") ) : </td>
+                                    <td align="left">@ViewBag.fathername </td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Mother Name : </td>
+                                    <td align="left">@ViewBag.mothername</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Date of Birth :</td>
+                                    <td align="left"> @ViewBag.DOb</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Gender :</td>
+                                    <td align="left">@ViewBag.Gender</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Category :</td>
+                                    <td align="left">@ViewBag.category</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Nationlity :</td>
+                                    <td align="left">@ViewBag.Nationlity</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="right" valign="middle"><img id="registratrara11" style="max-height:50px"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="right" valign="top" width="25%" style="padding:0 25px 0 0px;">Registrar</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>*@
+}

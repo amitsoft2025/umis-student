@@ -1,0 +1,463 @@
+﻿@using DataLayer
+@using Website.Models
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>  @DataLayer.ClsLanguage.GetCookies("NBApplicationNo") </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <style>
+        body {
+            user-select: none; /* Prevent text selection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.8);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #007BFF;
+        }
+
+        /* Topbar */
+        .topbar-modern {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #e3f2fd, #f1f9ff);
+            border-bottom: 1px solid #d0e7ff;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #007BFF;
+        }
+
+        .user-info {
+            font-size: 14px;
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #007BFF;
+        }
+
+        .user-details {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Menu items directly visible */
+        /*     .topbar-menu {
+            display: flex;
+            gap: 15px;
+        }
+
+            .topbar-menu a {
+                text-decoration: none;
+                color: #007BFF;
+                font-weight: 500;
+                padding: 6px 12px;
+                border-radius: 5px;
+                transition: 0.3s;
+            }
+
+                .topbar-menu a:hover {
+                    background: rgba(0,123,255,0.1);
+                }*/
+
+        .logout-btn {
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: none;
+            background: #eee;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .logout-btn:hover {
+                background: #ddd;
+            }
+
+        /* Footer */
+        .footer-area {
+            background-color: #f1f9ff;
+            border-top: 1px solid #d0e7ff;
+            padding: 12px 20px;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+            .footer-content i {
+                color: #007BFF;
+                margin-right: 4px;
+            }
+
+
+
+
+        /* Container styling */
+        .portal-header {
+            padding: 30px 20px;
+            background: linear-gradient(90deg, #f0f4ff, #d9e4ff); /* soft gradient */
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Lora', serif;
+        }
+
+            /* Heading styling */
+            .portal-header h2 {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                font-size: 28px;
+                color: #1a1a1a;
+                margin-bottom: 10px;
+                letter-spacing: 1px;
+            }
+
+            /* User details styling */
+            .portal-header .user-details {
+                font-family: 'Lora', serif;
+                font-size: 18px;
+                color: #555;
+                background-color: rgba(255,255,255,0.3);
+                display: inline-block;
+                padding: 6px 12px;
+                border-radius: 8px;
+            }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .user-avatar {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4a90e2;
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .user-avatar .live-indicator {
+                position: absolute;
+                bottom: -1px;
+                right: -1px;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #28a745;
+                border: 2px solid #fff;
+            }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #1a1a1a;
+        }
+
+
+
+        /* ===== Desktop ===== */
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    </style>
+
+
+    <style>
+
+/* ============================= */
+/* 🔥 DESKTOP SETTINGS           */
+/* ============================= */
+
+/* Main menu (visible on desktop) */
+.main-menu {
+    display: flex;
+    gap: 15px;
+}
+
+/* Extra menu (hidden in desktop, toggle me) */
+.extra-menu {
+    display: none;
+}
+
+/* Toggle button visible */
+.menu-toggle {
+    display: block;
+    cursor: pointer;
+}
+
+/* IMPORTANT: dropdown ke liye */
+.topbar-modern {
+    position: relative;
+}
+        .extra-menu a::before {
+            content: "➤";
+            margin-right: 8px;
+            color: #007bff;
+            font-size: 12px;
+        }
+
+/* ============================= */
+/* 📱 MOBILE SETTINGS            */
+/* ============================= */
+
+media (max-width: 768px) {
+
+    /* Hide main menu */
+    .main-menu {
+        display: none !important;
+    }
+
+    /* Hide extra menu initially */
+ /* Dropdown container */
+        .extra-menu.show {
+            display: block !important; /* 👈 flex hata diya */
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: #fff;
+            z-index: 9999;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #f0f6ff, #ffffff);
+            border-top: 1px solid #e0e0e0;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            z-index: 9999;
+        }
+
+
+/* EACH MENU ITEM */
+        .extra-menu a {
+            display: block !important; /* 👈 LINE BREAK FORCE */
+            width: 100%;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+            color: #333;
+        }
+
+/* Hover effect */
+.extra-menu a:hover {
+    background: #f5f9ff;
+    color: #007bff;
+    padding-left: 25px;  /* 👈 slight move */
+}
+
+/* Last item border remove */
+.extra-menu a:last-child {
+    border-bottom: none;
+}
+
+/* Animation */
+keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+}
+
+    </style>
+
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("mainMenu");
+
+            if (menu.classList.contains("show")) {
+                menu.classList.remove("show");
+                menu.style.display = "none";
+            } else {
+                menu.classList.add("show");
+
+                // 🔥 FORCE POSITION BELOW TOPBAR
+                menu.style.display = "flex";
+                menu.style.position = "absolute";
+                menu.style.top = "60px";   // 👈 adjust if needed
+                menu.style.left = "0";
+                menu.style.right = "0";
+                menu.style.width = "100%";
+                menu.style.flexDirection = "column";
+                menu.style.background = "#fff";
+                menu.style.zIndex = "9999";
+            }
+        }
+    </script>
+
+
+
+
+
+</head>
+<body>
+
+    <!-- Loader -->
+  
+
+    <!-- Topbar -->
+    <div class="topbar-modern">
+        <div class="topbar-left">
+            @*<img src='@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@DataLayer.ClsLanguage.GetCookies("NBphoto")'
+            alt="Profile Photo" onerror="this.src='~/images/noimage.png'" class="profile-photo">*@
+            <div class="user-info">
+                <div class="user-avatar">
+                    @{
+                        // Get the full name from cookie
+                        var fullName = DataLayer.ClsLanguage.GetCookies("NBUserName") ?? "";
+                        string initials = "";
+
+                        // Split by space
+                        var parts = fullName.Split(' ');
+
+                        // First letter of first part
+                        if (parts.Length > 0)
+                        {
+                            initials += parts[0].Substring(0, 1).ToUpper();
+                        }
+
+                        // First letter of second part (if exists)
+                        if (parts.Length > 1)
+                        {
+                            initials += parts[1].Substring(0, 1).ToUpper();
+                        }
+                    }
+
+                    @initials
+                    <span class="live-indicator"></span>
+                </div>
+
+                <div class="user-name">
+                    @fullName
+                </div>
+            </div>
+
+
+        </div>
+
+        @*<div class="topbar-right">
+            <div class="topbar-menu">
+
+                <a href="@Url.RouteUrl("Dashboard")">Notification</a>
+                <a href="@Url.RouteUrl("Profile")">Update Profile</a>
+                <a href="@Url.RouteUrl("Admission")">Apply Admission</a>
+                <a href="@Url.RouteUrl("ChangePassword")">Change Password</a>
+            </div>
+            <button class="logout-btn">Logout <i class="fa fa-sign-out-alt"></i></button>
+        </div>*@
+    <div class="topbar-right">
+
+        <!-- Important menu (desktop pe dikhega) -->
+        <div class="topbar-menu main-menu">
+            <a href="@Url.RouteUrl("Dashboard")">Dashboard</a>
+            <a href="@Url.RouteUrl("Profile")">Profile</a>
+        </div>
+
+        <!-- Toggle button -->
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+        </button>
+
+        <!-- Extra menu (toggle me jayega) -->
+        <div class="topbar-menu extra-menu" id="mainMenu">
+            <a href="@Url.RouteUrl("Admission")">Admission</a>
+            <a href="@Url.RouteUrl("ChangePassword")">Password</a>
+        </div>
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <button class="logout-btn" onclick="window.location.href='custom-Logout'">
+            <i class="fas fa-sign-out-alt"></i>
+        </button>
+    </div>
+
+    </div>
+
+    <!-- Page Content -->
+    <div class="portal-header">
+        <h2 style="font-weight:600;">
+            🎓 Welcome,
+            <span style="text-transform:uppercase; color:#2563eb; letter-spacing:1px;">
+                @DataLayer.ClsLanguage.GetCookies("NBUserName")
+            </span>
+        </h2>
+
+        <p style="margin-top:5px; color:#475569;">
+            CBCS Academic Portal | <b>Munger University</b>
+        </p>
+        <div class="user-details">@DataLayer.ClsLanguage.GetCookies("courseyear")</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-area">
+        <div class="container-fluid">
+            <div class="footer-content">
+                <span><i class="fa fa-university"></i> CBCS Academic Portal</span> •
+                <span><i class="fa fa-lock"></i> Secure Access</span> •
+                <span><i class="fa fa-user-shield"></i> Authorized Access Only</span>
+            </div>
+        </div>
+    </div>
+
+
+   
+</body>
+</html>

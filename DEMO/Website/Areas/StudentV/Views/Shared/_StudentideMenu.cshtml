@@ -1,0 +1,38 @@
+﻿@using DataLayer;
+@using Website.Models;
+<div class="left-custom-menu-adp-wrap comment-scrollbar">
+    <nav class="sidebar-nav left-sidebar-menu-pro">
+        <ul class="metismenu" id="menu1">
+            <li>
+                <a class="" href="/StudentV/Homev/Index">
+                    <span class="fa fa-dashboard"></span>
+                    <span class="mini-click-non">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="has-arrow" href="/StudentV/Homev/Index">
+                    <span class="fa fa-list "></span>
+                    <span class="mini-click-non">Personal Detail</span>
+                </a>
+                <ul class="submenu-angle" aria-expanded="true">
+                    <li><a title="BasicDetail" href="~/StudentV/Homev/BasicDetail"><span class="mini-sub-pro"><span class="fa fa-angle-double-right"></span> Basic Detail</span></a></li>
+                    <li><a title="PreviousyearQualification" href="~/StudentV/Homev/PreviousyearQualification"><span class="mini-sub-pro"><span class="fa fa-angle-double-right"></span> Upload Qualification</span></a></li>
+                    <li><a title="SelectSubject" href="~/StudentV/Homev/SelectSubject"><span class="mini-sub-pro"><span class="fa fa-angle-double-right"></span> Choose College </span></a></li>
+                    <li><a title="FeesSubmit" href="~/StudentV/Homev/FeesSubmit"><span class="mini-sub-pro"><span class="fa fa-angle-double-right"></span> Fees Submit</span></a></li>
+
+                </ul>
+
+            </li>
+            @if (Convert.ToInt32(EncriptDecript.Decrypt(ClsLanguage.GetCookies("ENNBcollegeid"))) > 0)
+            {
+                <li>
+                    <a class="" href="~/StudentV/Resultv/Index">
+                        <span class="fa fa-list-alt "></span>
+                        <span class="">Result</span>
+                    </a>
+                </li>
+                }
+               
+                </ul>
+    </nav>
+</div>

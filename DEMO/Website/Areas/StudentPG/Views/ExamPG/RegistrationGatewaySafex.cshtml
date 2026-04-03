@@ -1,0 +1,138 @@
+﻿
+
+@{
+    ViewBag.Title = "Registration Fee";
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Munger University -Payment Gateway </title>
+    <script>
+
+        $(document).ready(function ()
+        { generateAction(); });
+             function generateAction()
+             {
+                   @*var url='@ViewBag.url';
+                 var me_id = '@ViewBag.me_id';
+                 var merchant_request='@ViewBag.merchant_request';
+                 var hash = '@ViewBag.hash';*@
+
+                 //document.frmPost.me_id.value = '20220329007';
+                 //document.frmPost.merchant_request.value = 'nOSBA6A9B1byBO0oAhqijI8W6nCqeMhWMCc9qLF8HoQvlOvEFTjLQlmHPHaVWGJQbURG7f6SWbmKHnS+MpKFb6M90IwzAOhoZ67f5GaCOT2L/n3v7J1Hsaimm3MfjLtsHV9P+M5Tzvf4mbCWxHHIvsiS98OP5KfTlCzFZjWQiXkyRF5VBEwU2KtGVW5AZs+I62YArP4kK85sl6NyVNZqldvFOXbkZm55Utt25SIvZEqiA5G4Ven8z0T/j+qKNgXXmEofSiuCWze7THdwZZCnjEV68YYXEya1rWD8cwXTqNX1m9DZgqgyn/ZLRk+m87Azma0Clwjh9sKquBBpOSCwwmXWdeSuUBmE1z7WvWo3SkqScfYu6QHjmZUeE2ZlBRRitORL0lxrpLtgvsxDlJ0oGw==';
+                 //document.frmPost.hash.value = 'Ok6Zst9bVLXebtZKkksW9bc3jYriJsGpiwqCSLAo44oVpPZR+UrFIXejM1AvjP/521QzZd5HOl1ONMTWsMrRVxtFXf/y4tk9auQcvFGTKHI=';
+                 //document.frmPost.action = 'https://www.avantgardepayments.com/agcore/paymentProcessing';
+                 var url = '@ViewBag.url';
+                 var me_id = '@ViewBag.me_id';
+                 var merchant_request = '@ViewBag.merchant_request';
+                 var hash = '@ViewBag.hash';
+                 document.frmPost.me_id.value = me_id;
+                 document.frmPost.merchant_request.value = merchant_request;
+                 document.frmPost.hash.value = hash;
+                 document.frmPost.action = url;
+                 document.frmPost.submit();
+            }
+    </script>
+</head>
+<body>
+
+
+    <form name="frmPost" method="post">
+        <table width="300px">
+            <tr>
+                <td width="120px"></td>
+                <td width="20px">
+                    @*<input type="hidden" name="orderid" value="" />*@
+                    <input type="hidden" name="me_id" value="" />
+                    <input type="hidden" name="merchant_request" value="" />
+                    <input type="hidden" name="hash" value="" />
+                </td>
+
+                <td>
+                    <input type="submit" value="Pay Now" onclick="generateAction();" id="Submit1" name="Submit1" style="display:none" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            window.onload = function () {
+                document.frmPost.Submit1.click();
+            }
+        </script>
+    </form>
+</body>
+</html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>500 Page | Munger University</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- favicon
+        ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png" />
+    <!-- Google Fonts
+        ============================================ -->
+    <link href="~/Content/https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet" />
+    <!-- Bootstrap CSS
+            =====================================
+    <link href="~/Content/~/Content/css/bootstrap.min.css" rel="stylesheet" />======= -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <!-- owl.carousel CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/Content/css/owl.theme.css" />
+    <link rel="stylesheet" href="~/Content/css/owl.transitions.css" />
+    <!-- animate CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/animate.css" />
+    <!-- normalize CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css" />
+    <!-- main CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/main.css" />
+    <!-- morrisjs CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/morrisjs/morris.css" />
+    <!-- mCustomScrollbar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/scrollbar/jquery.mCustomScrollbar.min.css" />
+    <!-- metisMenu CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu.min.css" />
+    <link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu-vertical.css" />
+    <!-- calendar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.min.css" />
+    <link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.print.min.css" />
+    <!-- style CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <!-- responsive CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css" />
+    <!-- modernizr JS
+        ============================================ -->
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    @*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" /*@>
+</head>
+
+</html>
+
+
+
+

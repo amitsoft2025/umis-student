@@ -1,0 +1,270 @@
+﻿@{
+    ViewBag.Title = "EaseBuzzPGGatewayExam";
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Munger University -Payment Gateway Ease Buzz </title>
+    <script>
+
+        $(document).ready(function () { generateAction(); });
+        function generateAction() {
+            var currency = '@ViewBag.currency';
+            var txnid = '@ViewBag.Key';
+            //var Key = 'ViewBag.Key' ;
+            //var amount = 'ViewBag.amount';
+            //var firstname = 'ViewBag.firstname';
+            //var email = 'ViewBag.email';
+            //var phone = 'ViewBag.phone';
+            //var productinfo = 'ViewBag.productinfo';          
+            //var surl = 'ViewBag.surl';
+            //var furl = 'ViewBag.furl';
+            //var udf1 = 'ViewBag.udf1';
+            //var udf2 = 'ViewBag.udf2';
+            //var udf3 = 'ViewBag.udf3';
+            //var udf4 = 'ViewBag.udf4';
+            //var udf5 = 'ViewBag.udf5';
+            //var saltvalue = 'ViewBag.saltvalue';
+            var easebuzz_action_url = 'ViewBag.easebuzz_action_url';
+            var hash_string = 'ViewBag.hash_string' 
+         
+
+            //document.frmPost.Key.value = Key;
+            //document.frmPost.amount.value = amount;
+            //document.frmPost.firstname.value = firstname;
+            //document.frmPost.email.value = email;
+            //document.frmPost.phone.value = phone;
+            //document.frmPost.productinfo.value = productinfo;
+            //document.frmPost.surl.value = surl;
+            //document.frmPost.furl.value = furl;
+            //document.frmPost.udf1.value = udf1;
+            //document.frmPost.udf2.value = udf2;
+            //document.frmPost.udf3.value = udf3;
+            //document.frmPost.udf4.value = udf4;
+            //document.frmPost.udf5.value = udf5;
+            //document.frmPost.saltvalue.value = saltvalue;
+            //document.hash_string.value = hash_string;
+            document.frmPost.action = easebuzz_action_url;
+
+
+            //@* <input type="hidden" name="Key" value="" /> *@
+            //        <input type="hidden" name="amount" value="" />
+            //    <input type="hidden" name="firstname" value="" />
+            //    <input type="hidden" name="email" value="" />
+            //    <input type="hidden" name="phone" value="" />
+            //    <input type="hidden" name="productinfo" value="" />
+            //    <input type="hidden" name="surl" value="" />
+            //    <input type="hidden" name="furl" value="" />
+            //    <input type="hidden" name="udf1" value="" />
+            //    <input type="hidden" name="udf2" value="" />
+            //    <input type="hidden" name="udf3" value="" />
+            //    <input type="hidden" name="udf4" value="" />
+            //    <input type="hidden" name="udf5" value="" />
+            //    <input type="hidden" name="saltvalue" value="" />
+            //    <input type="hidden" name="hash_string" value="" />
+
+
+            document.frmPost.submit();
+
+        }
+    </script>
+</head>
+<body>
+
+
+    <form name="frmPost" method="post">
+        <table width="300px">
+            <tr>
+                <td width="120px"></td>
+                <td width="20px">
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </td>
+
+                <td>
+                    <input type="submit" value="Pay Now" onclick="generateAction();" id="Submit1" name="Submit1" style="display:none" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            window.onload = function () {
+                document.frmPost.Submit1.click();
+            }
+        </script>
+    </form>
+</body>
+</html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>500 Page | Munger University</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- favicon
+        ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/img/favicon.png" />
+    <!-- Google Fonts
+        ============================================ -->
+    <link href="~/Content/https://fonts.googleapis.com/css?family=Play:400,700" rel="stylesheet" />
+    <!-- Bootstrap CSS
+            =====================================
+    <link href="~/Content/~/Content/css/bootstrap.min.css" rel="stylesheet" />======= -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <!-- Bootstrap CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" />
+    <!-- owl.carousel CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css" />
+    <link rel="stylesheet" href="~/Content/css/owl.theme.css" />
+    <link rel="stylesheet" href="~/Content/css/owl.transitions.css" />
+    <!-- animate CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/animate.css" />
+    <!-- normalize CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css" />
+    <!-- main CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/main.css" />
+    <!-- morrisjs CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/morrisjs/morris.css" />
+    <!-- mCustomScrollbar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/scrollbar/jquery.mCustomScrollbar.min.css" />
+    <!-- metisMenu CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu.min.css" />
+    <link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu-vertical.css" />
+    <!-- calendar CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.min.css" />
+    <link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.print.min.css" />
+    <!-- style CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <!-- responsive CSS
+        ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css" />
+    <!-- modernizr JS
+        ============================================ -->
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="~/Content/http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="container footer">
+        <div class="d-flex justify-content-between" style="padding-top:30px;">
+            <div class="p-1">
+            </div>
+
+            <div class="p-1">
+                <div class="align-center">
+                    <center>
+                        <img src="~/images/LeafyFairIchneumonfly-size_restricted.gif" width="400" />
+                    </center>
+                </div>
+                <h4>
+                    <p>Please don't Refesh the page OR Click on Back Button.....</p>
+                </h4>
+
+                <br />
+                <br />
+            </div>
+
+            <div class="p-1">
+            </div>
+        </div>
+
+        <!-- jquery
+            ============================================ -->
+        <script src="js/vendor/jquery-1.12.4.min.js"></script>
+        <!-- bootstrap JS
+            ============================================ -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- wow JS
+            ============================================ -->
+        <script src="js/wow.min.js"></script>
+        <!-- price-slider JS
+            ============================================ -->
+        <script src="js/jquery-price-slider.js"></script>
+        <!-- meanmenu JS
+            ============================================ -->
+        <script src="js/jquery.meanmenu.js"></script>
+        <!-- owl.carousel JS
+            ============================================ -->
+        <script src="js/owl.carousel.min.js"></script>
+        <!-- sticky JS
+            ============================================ -->
+        <script src="js/jquery.sticky.js"></script>
+        <!-- scrollUp JS
+            ============================================ -->
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <!-- mCustomScrollbar JS
+            ============================================ -->
+        <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
+        <!-- metisMenu JS
+            ============================================ -->
+        <script src="js/metisMenu/metisMenu.min.js"></script>
+        <script src="js/metisMenu/metisMenu-active.js"></script>
+        <!-- counterup JS
+            ============================================ -->
+        <script src="js/counterup/jquery.counterup.min.js"></script>
+        <script src="js/counterup/waypoints.min.js"></script>
+        <script src="js/counterup/counterup-active.js"></script>
+        <!-- morrisjs JS
+            ============================================ -->
+        <script src="js/sparkline/jquery.sparkline.min.js"></script>
+        <script src="js/sparkline/jquery.charts-sparkline.js"></script>
+        <!-- calendar JS
+            ============================================ -->
+        <script src="js/calendar/moment.min.js"></script>
+        <script src="js/calendar/fullcalendar.min.js"></script>
+        <script src="js/calendar/fullcalendar-active.js"></script>
+        <!-- tab JS
+            ============================================ -->
+        <script src="js/tab.js"></script>
+        <!-- plugins JS
+            ============================================ -->
+        <script src="js/plugins.js"></script>
+        <!-- main JS
+            ============================================ -->
+        <script src="js/main.js"></script>
+        <!-- tawk chat JS
+            ============================================ -->
+        <script src="js/tawk-chat.js"></script>
+    </div>
+
+</body>
+
+</html>
+

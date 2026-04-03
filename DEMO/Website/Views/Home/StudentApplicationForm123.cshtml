@@ -1,0 +1,1371 @@
+﻿@using DataLayer;
+@{
+Layout = null;
+ViewBag.Title = "Student Application Form";
+}
+<html class="no-js" lang="">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>@( ViewBag.Title + " - " + DataLayer.CommonSetting.ProjectName )</title>
+
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="icon" href="https://www.mungeruniversity.ac.in/wp-content/uploads/2018/11/favicon.png" sizes="32x32">
+<link rel="icon" href="https://www.mungeruniversity.ac.in/wp-content/uploads/2018/11/favicon.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://www.mungeruniversity.ac.in/wp-content/uploads/2018/11/favicon.png">
+<meta name="msapplication-TileImage" content="https://www.mungeruniversity.ac.in/wp-content/uploads/2018/11/favicon.png">
+
+<!-- favicon
+============================================ -->
+<!-- Google Fonts
+============================================ -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+<!-- Bootstrap CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+<!-- Bootstrap CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+<!-- owl.carousel CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/owl.carousel.css">
+<link rel="stylesheet" href="~/Content/css/owl.theme.css">
+<link rel="stylesheet" href="~/Content/css/owl.transitions.css">
+<!-- animate CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/animate.css">
+<!-- normalize CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/normalize.css">
+<!-- meanmenu icon CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/meanmenu.min.css">
+<!-- main CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/main.css">
+<!-- educate icon CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/educate-custon-icon.css">
+<!-- morrisjs CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/morrisjs/morris.css">
+<!-- mCustomScrollbar CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/scrollbar/jquery.mCustomScrollbar.min.css">
+<!-- metisMenu CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu.min.css">
+<link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu-vertical.css">
+<!-- calendar CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.min.css">
+<link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.print.min.css">
+<!-- touchspin CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/touchspin/jquery.bootstrap-touchspin.min.css">
+<!-- datapicker CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/datapicker/datepicker3.css">
+<!-- forms CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/form/themesaller-forms.css">
+<!-- modals CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/modals.css">
+<!-- style CSS forms CSS  ============================================ -->
+<link rel="stylesheet" href="~/Content/css/form/all-type-forms.css">
+<!-- colorpicker CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/colorpicker/colorpicker.css">
+<link rel="stylesheet" href="~/Content/css/select2/select2.min.css">
+<!-- chosen CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/chosen/bootstrap-chosen.css">
+<!-- select2 CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/select2/select2.min.css">
+
+<!-- ionRangeSlider CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/ionRangeSlider/ion.rangeSlider.css">
+<link rel="stylesheet" href="~/Content/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
+<!-- normalize CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/data-table/bootstrap-table.css">
+<link rel="stylesheet" href="~/Content/css/data-table/bootstrap-editable.css">
+<!-- style CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/style.css">
+<!-- responsive CSS
+============================================ -->
+<link rel="stylesheet" href="~/Content/css/responsive.css">
+<!-- modernizr JS
+============================================ -->
+<script src="~/Content/js/vendor/modernizr-2.8.3.min.js"></script>
+
+<style>
+.header--row:not(.header--transparent).header-top .header--row-inner {
+    background-color: #e31e24;
+}
+
+element.style {
+}
+
+.header--row:not(.header--transparent).header-top .header--row-inner {
+    background-color: #e31e24;
+}
+
+.header-top .header--row-inner, .button, button, input[type="button"], input[type="reset"], input[type="submit"], .pagination .nav-links > *:hover, .pagination .nav-links span, .nav-menu-desktop.style-full-height .primary-menu-ul > li.current-menu-item > a, .nav-menu-desktop.style-full-height .primary-menu-ul > li.current-menu-ancestor > a, .nav-menu-desktop.style-full-height .primary-menu-ul > li > a:hover, .posts-layout .readmore-button:hover {
+    background-color: #05046c;
+}
+
+.header-top .dark-mode {
+    background: #235787;
+}
+
+.header--row .dark-mode {
+    color: rgba(255,255,255,.99);
+    background: rgba(0,0,0,.9);
+}
+</style>
+<style>
+label {
+    padding: 10px;
+}
+
+.starvalid {
+    color: red;
+}
+</style>
+<script>
+
+</script>
+
+<script src="~/JS/Commonjs.js"></script>
+<link href="~/Content/css/preloader/preloader-style.css" rel="stylesheet" />
+<style>
+/*!
+// 3. Loader
+// --------------------------------------------------*/
+.loader {
+    top: 0;
+    left: 0;
+    position: fixed;
+    opacity: 0.8;
+    z-index: 10000000;
+    background: Black;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+.strip-holder {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 50%;
+    margin-left: -50px;
+    position: relative;
+}
+
+.strip-1,
+.strip-2,
+.strip-3 {
+    width: 20px;
+    height: 20px;
+    background: #0072bc;
+    position: relative;
+    -webkit-animation: stripMove 2s ease infinite alternate;
+    animation: stripMove 2s ease infinite alternate;
+    -moz-animation: stripMove 2s ease infinite alternate;
+}
+
+.strip-2 {
+    -webkit-animation-duration: 2.1s;
+    animation-duration: 2.1s;
+    background-color: #23a8ff;
+}
+
+.strip-3 {
+    -webkit-animation-duration: 2.2s;
+    animation-duration: 2.2s;
+    background-color: #89d1ff;
+}
+
+@@-webkit-keyframes stripMove {
+    0% {
+        transform: translate3d(0px, 0px, 0px);
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        -moz-transform: translate3d(0px, 0px, 0px);
+    }
+
+    50% {
+        transform: translate3d(0px, 0px, 0px);
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        -moz-transform: translate3d(0px, 0px, 0px);
+        transform: scale(4, 1);
+        -webkit-transform: scale(4, 1);
+        -moz-transform: scale(4, 1);
+    }
+
+    100% {
+        transform: translate3d(-50px, 0px, 0px);
+        -webkit-transform: translate3d(-50px, 0px, 0px);
+        -moz-transform: translate3d(-50px, 0px, 0px);
+    }
+}
+
+@@-moz-keyframes stripMove {
+    0% {
+        transform: translate3d(-50px, 0px, 0px);
+        -webkit-transform: translate3d(-50px, 0px, 0px);
+        -moz-transform: translate3d(-50px, 0px, 0px);
+    }
+
+    50% {
+        transform: translate3d(0px, 0px, 0px);
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        -moz-transform: translate3d(0px, 0px, 0px);
+        transform: scale(4, 1);
+        -webkit-transform: scale(4, 1);
+        -moz-transform: scale(4, 1);
+    }
+
+    100% {
+        transform: translate3d(50px, 0px, 0px);
+        -webkit-transform: translate3d(50px, 0px, 0px);
+        -moz-transform: translate3d(50px, 0px, 0px);
+    }
+}
+
+@@keyframes stripMove {
+    0% {
+        transform: translate3d(-50px, 0px, 0px);
+        -webkit-transform: translate3d(-50px, 0px, 0px);
+        -moz-transform: translate3d(-50px, 0px, 0px);
+    }
+
+    50% {
+        transform: translate3d(0px, 0px, 0px);
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        -moz-transform: translate3d(0px, 0px, 0px);
+        transform: scale(4, 1);
+        -webkit-transform: scale(4, 1);
+        -moz-transform: scale(4, 1);
+    }
+
+    100% {
+        transform: translate3d(50px, 0px, 0px);
+        -webkit-transform: translate3d(50px, 0px, 0px);
+        -moz-transform: translate3d(50px, 0px, 0px);
+    }
+}
+</style>
+<style>
+.preloader-single {
+    height: 100% !important;
+}
+</style>
+
+
+<style type="text/css">
+
+
+@@font-face {
+    font-family: kruti dev;
+    src: url( '../../scripts/k010.TTF' ) format("truetype");
+}
+
+.hinditext {
+    font-family: kruti dev;
+    font-size: 21px;
+}
+</style>
+<script type="text/javascript" src="HTTPS://www.google.com/jsapi"></script>
+
+<script type="text/javascript" src="//google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.google.com/inputtools/"></script>
+
+<script type="text/javascript">
+google.load("elements", "1", { packages: "transliteration" });
+</script>
+
+<script>
+function OnLoad() {
+
+    var options = {
+        sourceLanguage:
+            google.elements.transliteration.LanguageCode.ENGLISH,
+        destinationLanguage:
+            [google.elements.transliteration.LanguageCode.HINDI],
+        shortcutKey: 'ctrl+g',
+        transliterationEnabled: true
+    };
+
+    var control = new
+        google.elements.transliteration.TransliterationControl(options);
+    control.makeTransliteratable(["firstnameHindi"]);
+    control.makeTransliteratable(["middlenameHindi"]);
+    control.makeTransliteratable(["lastnameHindi"]);
+    control.makeTransliteratable(["fathernameHindi"]);
+    control.makeTransliteratable(["mothernameHindi"]);
+
+} //end onLoad function
+
+google.setOnLoadCallback(OnLoad);
+
+</script>
+
+<script type="text/javascript" src="HTTPS://www.google.com/jsapi"></script>
+
+</head>
+
+<body>
+<div class="top-heading">
+<div class="container" data-item-id="html" data-section="header_html" style="transition-delay: 0.2s;">
+    <p><b>Address: </b>Science Block, R. D. &amp; D. J. College, Munger Campus, Munger – 811201 (Bihar) India</p>
+</div>
+</div>
+<div class="header-col">
+<div class="" data-item-id="html" data-section="header_html" style="transition-delay: 0.2s;">
+    <div class="">
+        <a href="/" class="logo-link" rel="home" itemprop="url" style="text-align:center">
+            <center>  <img class="site-img-logo" src="~/Content/WEB/mu-logo-white.png" alt="Logo"> </center>
+        </a>
+    </div>
+</div>
+</div>
+
+<div class="all-content-wrapper" style="margin-left:0px !important">
+<!-- Advanced Form Start -->
+@*@//if(1==1)//*@
+    @if(ViewBag.check_admissionopen == true)
+
+    {
+        <div class="advanced-form-area mg-b-15 ">
+            <div class="container-fluid col-md-10 col-md-offset-1 col-sm-12 " style="display:block" id="Instructionview">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="container sparkline10-list OnlineApplicationform-part" style="text-align: left;">
+                            <div class="sparkline10-hd">
+                                <div class="main-sparkline10-hd">
+                                    <h1></h1>
+                                </div>
+                            </div>
+                            <div class="sparkline10-graph">
+                                <div class="input-knob-dial-wrap">
+                                    <div>
+                                        <div class="form-group-inner">
+                                            <div class="row login-btn-inner" style="margin:15px 0 !important">
+                                                <div class="">
+                                                    <div class="OnlineApplicationform">
+
+
+                                                        <div class="step-part"><img src="~/Img/step-img.png"></div>
+                                                        <div class="" style="height:20px">&nbsp;</div>
+                                                        <h1>Instructions for Filling the Online Application form</h1>
+                                                        <h2>Please ensure that you have the following documents ready at hand before you fill the online Application Form:</h2>
+
+                                                        <ul class="normal-content">
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Scan copies of class-Xth, XIIth mark sheet (In Pdf, Jpeg or Jpg format and size not more than 500 KB)</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Scan copies of SLC/CLS (In Pdf, Jpeg or Jpg format and size not more than 500 KB)</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Scan copy your passport size colour photograph only (In Jpeg or Jpg format and size not more than 50 KB).</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Scan copy of your signature either in English or Hindi (In Jpeg or Jpg format and size not more than 50 KB)</li>
+                                                        </ul>
+
+                                                        <h2>Steps to apply Online</h2>
+
+                                                        <ul class="normal-content">
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Fill Basic Details</li>
+                                                        </ul>
+
+                                                        <h2>After Filling Basic Details you will get Email regarding your Login Username and Password. you can submit the rest of the details after login in portal in the following manner: -</h2>
+
+                                                        <ul class="normal-content">
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Review/Change Basic Details</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Upload Documents other than Qualifications</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Add Qualification including previous year subjects</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Subjects & College Selection</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Pay Application Fee</li>
+                                                            <li><i><img src="~/Img/check-icon.png"></i> Download Payment Receipt</li>
+                                                        </ul>
+
+                                                        <a href="#" class="click-btn" onclick="continuephase();">Click here to Proceed</a>
+
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                @*<div class="login-horizental cancel-wp pull-left form-bc-ele col-md-offset-5">
+
+                                                        <div class="payment-adress col-lg-6">
+
+                                                            <center> <button class="btn btn-sm btn-primary login-submit-cs" type="button" onclick="continuephase();">Continue</button></center>
+                                                        </div>
+
+                                                    </div>*@
+                                        </div>
+
+                                    </div>
+                                    @* <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>*@
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid col-md-8 col-md-offset-2 col-sm-12" style="display:none" id="adminissiontype">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0 StudentSpplicationForm" style="text-align: left;">
+                        <div class="sparkline10-hd">
+                            <div class="main-sparkline10-hd">
+                                <h1></h1>
+                            </div>
+                        </div>
+                        <div class="sparkline10-graph">
+                            <div class="input-knob-dial-wrap">
+                                <p>
+                                    @*Please
+                                        <a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#PrimaryModalhdbgcl">Click Here </a>
+
+
+                                        to Read the Instructions before Submitting the Form.*@
+                                </p>
+                                <div>
+
+                                    <h3 style="text-align:center">Application Form -@ViewBag.CurrentSession  (Step - 1)</h3>
+
+
+                                    <div class="form-group-inner">
+                                        <div class="row login-btn-inner">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <div class="form-group">
+                                                            <label>Admission  Category <span class="starvalid">*</span> :</label>
+                                                            @Html.DropDownList("AdminissionType", new SelectList(ViewBag.Admissiontype, "CommonId", "title"), new { @class = "form-control", @id = "AdminissionType", @required = "required" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Programme <span class="starvalid">*</span>  :</label>
+                                                            @Html.DropDownList("Educationtype", new SelectList(ViewBag.Educationtype, "CommonId", "title", ""), new { @class = "form-control", @id = "Educationtype", @required = "required" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Select Previous Stream <span class="starvalid">*</span>  :</label>
+                                                            @Html.DropDownList("iastream", new SelectList(ViewBag.previousqua, "ID", "QualificationType"), "Select Previous Stream", new { @class = "form-control", @id = "iastream", @required = "required" })
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Select Course <span class="starvalid">*</span> :</label>
+                                                            <select data-placeholder="Choose a Course..." class="form-control " tabindex="-1" title="Select Course" id="Coursetype" name="Coursetype">
+                                                                <option value="">Select Course</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group" style="display:none">
+                                                            <label>Select  Stream <span class="starvalid">*</span> : </label>
+                                                            <select data-placeholder="Choose a Course..." class="form-control " tabindex="-1" title="Select Stream" id="Streamtype" name="Streamtype">
+                                                                <option value="">Select Stream</option>
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-lg-5 text-center">
+                                                        <div class="edu-img"><img src="~/Img/admission-form.jpg"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-sm-12 login-horizental cancel-wp form-bc-ele">
+
+                                                <div class="payment-adress text-center">
+                                                    <button type="button" class="btn btn-primary waves-effect waves-light" onclick="Prevoius1()"><i class="fa fa-chevron-left"></i> Previous</button>
+                                                    <button class="btn btn-primary waves-effect waves-light" type="button" onclick="nextphase();">Next <i class="fa fa-chevron-right"></i></button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @*<script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>*@
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="all-content-wrapper" style="margin-left:0px !important">
+            <!-- Advanced Form Start -->
+            <div class="container-fluid col-md-10 col-md-offset-1 col-sm-12" id="basicinfo" style="display:none">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0 StudentSpplicationForm" style="text-align: left;">
+                            <div class="sparkline10-hd">
+                                <div class="input-knob-dial-wrap text-center">
+                                    <h3>Application Form - @ViewBag.CurrentSession (Step - 2)</h3>
+                                </div>
+                            </div>
+                            <div class="sparkline10-graph">
+                                <div class="input-knob-dial-wrap">
+                                    <div class="all-form-element-inner">
+                                        <div class="form-group-inner">
+                                            <div class="row login-btn-inner">
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="product-payment-inner-st pt-0">
+                                                        <div class="row">
+															<ul id="myTabedu1" class="tab-review-design">
+																<li class="active"><a href="#description">Basic Information (व्यक्तिगत विवरण)</a></li>
+															</ul>
+														</div>
+                                                        <div id="myTabContent" class="tab-content custom-product-edit">
+                                                            <div class="product-tab-list tab-pane fade active in" id="description">
+                                                                <div class="row">
+
+                                                                    <div class="review-content-section">
+                                                                        <form class="dropzone dropzone-custom needsclick add-professors" method="post">
+                                                                            @*@using (Html.BeginForm())
+                                                                                {*@
+                                                                            <div id="dropzone1" class="pro-ad">
+
+                                                                                <div class="row">
+                                                                                    <div>
+                                                                                        <div class="row">
+                                                                                            <span><label class="col-md-12 pl-10 pt-0">(Name of applicant in English)</label></span>
+                                                                                            <div class="col-md-3">
+                                                                                                @*<span class="form-group col-md-4"><label><span class="starvalid">*</span>Title</label></span>*@
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Title<span class="starvalid">*&nbsp;</span></label></span>
+                                                                                                    @Html.DropDownList("Title", new SelectList(ViewBag.stitle, "CommonId", "title"), "Select Title.", new { @class = "form-control", @id = "Title", @required = "required" })
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>First Name&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input type="hidden" id="administype1">
+                                                                                                    <input type="hidden" id="educationtype1">
+                                                                                                    <input type="hidden" id="coursetype1">
+                                                                                                    <input type="hidden" id="stream1">
+                                                                                                    <input type="hidden" id="prevoiustreamid">
+                                                                                                    <input type="hidden" id="cseesionid" value="@ViewBag.CurrentSessionid">
+                                                                                                    <input name="firstname" id="firstname" type="text" class="form-control" placeholder="First Name" title="First Name" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Middle Name</label></span>
+                                                                                                    <input name="middlename" id="middlename" type="text" class="form-control" placeholder="Middle Name" title="Middle Name">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Last Name</label></span>
+                                                                                                    <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Last Name" title="Last Name" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <span><label class="col-md-12 pl-10 pt-5">(आवेदक का नाम हिन्दी में)</label></span>
+
+                                                                                            <div class="col-md-4">
+
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>पहला नाम&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="firstname" id="firstnameHindi" type="text" class="form-control" placeholder="पहला नाम" title="First Name" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-4">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>मध्य नाम</label></span>
+                                                                                                    <input name="middlename" id="middlenameHindi" type="text" class="form-control" placeholder="मध्य नाम" title="Middle Name">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-4">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>अंतिम नाम </label></span>
+                                                                                                    <input name="lastname" id="lastnameHindi" type="text" class="form-control" placeholder="अंतिम नाम" title="Last Name" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group pt-10 mt-0">
+                                                                                                    <span><label>Sex (लिंग)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    @Html.DropDownList("Gender", new SelectList(ViewBag.Gender, "CommonId", "title", ""), "Select Gender ..", new { @class = "form-control", @id = "Gender", @required = "required" })
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group pt-10 mt-0">
+                                                                                                    <span><label>Date of birth (जन्म की तारीख)&nbsp;<span class="starvalid">*</span></label></span>
+
+                                                                                                    <div class="form-group" id="data_2" style="margin-top:0px">
+                                                                                                        <div class="mg-b-22 input-group date">
+                                                                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                                                            <input type="text" class="form-control" placeholder="dd/mm/yyyy" title="Date of Birth" id="dob" required="required" autocomplete="off" onkeypress="return false;">
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group pt-10 mt-0">
+                                                                                                    <span><label>Category.(जाति की श्रेणी) <span class="starvalid">*</span></label></span>
+                                                                                                    @*<img src="~/Img/name.png" class="lable-text"><span class="starvalid"></span>*@
+                                                                                                    @Html.DropDownList("Cast", new SelectList(ViewBag.CasteCategory, "CommonId", "title", ""), "Select Category", new { @class = "form-control", @id = "Cast", @required = "required" })
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+
+                                                                                                <span class="form-group pt-10 mt-0">
+                                                                                                    <span><label>Mobile No. (मोबाइल नंबर)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="mobileno" id="mobileno" type="text" class="form-control" placeholder="Mobile no." title="Mobile no" oninput="OnlyIntvalue(this);" maxlength="10" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Email Id (ईमेल आईडी)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="email" id="email" type="email" class="form-control" placeholder="Email Address" title="Email Address" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span><label>Blood Group (रक्त समूह)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                <span class="form-group">
+
+                                                                                                    @Html.DropDownList("Blood_Group", new SelectList(ViewBag.bloodgroup, "bloodgrouid", "BloodGroup", ""), "Select Blood Group ..", new { @class = "form-control", @id = "Blood_Group" })
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Nationality  @*<img src="~/Img/national.png" />*@(राष्ट्रीयता)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    @Html.DropDownList("Nationality", new SelectList(ViewBag.Nationality, "CommonId", "title", ""), "Select Nationality ..", new { @class = "form-control", @id = "Nationality" })
+
+
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3" style="display:none;">
+
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Mother Tongue (मातृ भाषा)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    @Html.DropDownList("MotherTongue", new SelectList(ViewBag.MotherTongue, "CommonId", "title", ""), "Select MotherTongue ..", new { @class = "form-control", @id = "MotherTongue" })
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Religion (धर्म)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    @Html.DropDownList("Religion", new SelectList(ViewBag.Religion, "CommonId", "title", ""), "Select Religion ..", new { @class = "form-control", @id = "Religion" })
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-12">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label id="lblrgn" style="display: none;">Mention your Religon (अपने धर्म का उल्लेख करें)&nbsp;<span class="starvalid">*</span> </label></span>
+                                                                                                    <input name="other" style="display: none;" id="ReligonOther" type="text" class="form-control" placeholder="Mention your Religon (अपने धर्म का उल्लेख करें)" title="Religon" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-12 mt-10">
+                                                                                                <ul id="myTabedu1" class="tab-review-design mt-10">
+                                                                                                    <li class="active">
+                                                                                                        <a href="#description">
+                                                                                                            Special Category विशेष श्रेणी  @*<img src="~/Img/Sharani.png" />*@
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                            <div class="col-md-12">
+                                                                                                <span><label class="readio-label">If you are handicapped/(यदि आप विकलांग/दिव्यांग हैं)?</label></span>
+                                                                                                @Html.RadioButton("ishandicapped", "True", new { @class = "", @id = "ishandicapped" })Yes
+                                                                                                @Html.RadioButton("ishandicapped", "False", new { @class = "", @id = "ishandicapped", @checked = "checked" })No
+
+                                                                                            </div>
+
+                                                                                            <div class="col-md-12" style="">
+
+                                                                                                <span><label class="readio-label">If you are Ex-Servicemen /(यदि आप पूर्व-सेवा मैन हैं)?</label></span>
+                                                                                                @Html.RadioButton("isex_service_man", "True", new { @class = "", @id = "isex_service_man" })Yes
+                                                                                                @Html.RadioButton("isex_service_man", "False", new { @class = "", @id = "isex_service_man", @checked = "checked" })No
+
+                                                                                            </div>
+                                                                                            <div class="col-md-12" style="">
+                                                                                                <span><label class="readio-label">If you are NCC Candidate/(यदि आप एनसीसी कैंडिडेट हैं)?</label></span>
+                                                                                                @Html.RadioButton("is_ncc_candidate", "True", new { @class = "", @id = "is_ncc_candidate" })Yes
+                                                                                                @Html.RadioButton("is_ncc_candidate", "False", new { @class = "", @id = "is_ncc_candidate", @checked = "checked" })No
+
+                                                                                            </div>
+                                                                                            <div class="col-md-12" style="">
+                                                                                                <span><label class="readio-label">If you are sports candidate/(यदि आप खेल उम्मीदवार हैं)?</label></span>
+                                                                                                @Html.RadioButton("IsSports", "True", new { @class = "", @id = "IsSports" })Yes
+                                                                                                @Html.RadioButton("IsSports", "False", new { @class = "", @id = "IsSports", @checked = "checked" })No
+
+                                                                                            </div>
+                                                                                            <div class="col-md-12">
+                                                                                                <span><label class="readio-label">If you are belong to staff /(यदि आप कर्मचारियों के हैं)?</label></span>
+                                                                                                @Html.RadioButton("IsStaff", "True", new { @class = "", @id = "IsStaff" })Yes
+                                                                                                @Html.RadioButton("IsStaff", "False", new { @class = "", @id = "IsStaff", @checked = "checked" })No
+
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-12">
+                                                                                                <ul id="myTabedu1" class="tab-review-design mt-10">
+                                                                                                    <li class="active">
+                                                                                                        <a href="#description">
+                                                                                                            @*<img src="~/Img/address.png" />*@Correspondence   Address (पत्राचार का पता)
+                                                                                                        </a>
+                                                                                                    </li>
+                                                                                                </ul>
+
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>Address/(पता)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="Address" id="Address" type="text" class="form-control" placeholder="Address" title="Address" required="required">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>City/(शहर)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="city" id="city" type="text" class="form-control" placeholder="City" title="City" required="required">
+                                                                                                </span>
+
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+                                                                                                <span class="form-group">
+                                                                                                    <span><label>PinCode/(पिन कोड)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="pincode" id="pincode" type="text" class="form-control" placeholder="PinCode" title="PinCode" required="required" oninput="OnlyIntvalue(this);" maxlength="6">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <div class="col-md-3" style="display:none;">
+                                                                                                @*<span class="form-group col-md-4"><label>Country <span class="starvalid">*</span></label></span>*@
+                                                                                                @*<span class="form-group">*@
+                                                                                                <span><label>Country/(देश)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                @Html.DropDownList("Country", new SelectList(ViewBag.country, "ID", "Name", ""), new { @class = "form-control", @id = "Country", @required = "required" })
+                                                                                                @*</span>*@
+                                                                                            </div>
+                                                                                            <div class="col-md-3">
+
+                                                                                                <span><label>State/(राज्य)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                @Html.DropDownList("State", new SelectList(ViewBag.State, "Value", "Text", ""), "Select State ..", new { @class = "form-control", @id = "State", @required = "required" })
+
+                                                                                            </div>
+
+
+                                                                                        </div>
+                                                                                        
+                                                                                        
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm-12">
+                                                                                                
+                                                                                            	<div class="row">
+                                                                                                	<div class="col-md-12">
+                                                                                                        <ul id="myTabedu1" class="tab-review-design mt-10">
+                                                                                                            <li class="active"><a href="#description">Permanent  Address (स्थाई पता)</a></li>
+        
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-12">
+                                                                                                        <div class="dec-body checkbox-content">
+                                                                                                        <input type="checkbox" value="" id="parmanentcheckbox" /> 
+                                                                                                        ( if Your Permanent Address and Correspondence  Address are Same/अगर आपका स्थायी पता और @*<img src="~/Img/patrachar.png" />*@पत्राचार पता समान है)
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+    
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Address/(पता)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            <input name="PAddress" id="PAddress" type="text" class="form-control" placeholder="Address" title="Address " required="required">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>City/(पता)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            <input name="Pcity" id="Pcity" type="text" class="form-control" placeholder="City" title="City" required="required">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>PinCode/(पिन कोड)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            <input name="PPinCode" id="PPinCode" type="text" class="form-control" placeholder="PinCode" title="PinCode" required="required" oninput="OnlyIntvalue(this);" maxlength="6">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3" style="display:none;">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Country/(देश)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            @Html.DropDownList("PCountry", new SelectList(ViewBag.Pcountry, "ID", "name", ""), new { @class = "form-control", @id = "PCountry", @required = "required" })
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span><label>State/(राज्य)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                        @Html.DropDownList("PState", new SelectList(ViewBag.PState, "Value", "Text", ""), "Select State ..", new { @class = "form-control", @id = "PState", @required = "required" })
+    
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <ul id="myTabedu1" class="tab-review-design mt-10">
+                                                                                                            <li class="active"><a href="#description">Father /Husband Details (पिता / पति का विवरण)</a></li>
+                                                                                                        </ul>
+    
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Title/(शीर्षक)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            @Html.DropDownList("typeTitle", new SelectList(ViewBag.ftitle, "CommonId", "title"), "Select Title.", new { @class = "form-control", @id = "typeTitle", @required = "required" })
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span>
+                                                                                                                <label>
+                                                                                                                    Name/(नाम
+                                                                                                                    अंग्रेज़ी में)&nbsp;<span class="starvalid">*</span>
+                                                                                                                </label>
+                                                                                                            </span>
+                                                                                                            <input name="fathername" id="fathername" type="text" class="form-control" placeholder="Name" title="Name" required>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Name/(नाम हिन्दी में)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            <input name="fathername" id="fathernameHindi" type="text" class="form-control" placeholder="नाम हिन्दी में" title="Name" required>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Mobile No/(मोबाइल नंबर)</label></span>
+                                                                                                            <input name="fathermobile" id="fathermobile" type="text" class="form-control" placeholder="Mobile" title="Mobile" oninput="OnlyIntvalue(this);" maxlength="10" required>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+    
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Email/(ईमेल)</label></span>
+                                                                                                            <input name="fatheremail" id="fatheremail" type="email" class="form-control" placeholder="Email" title="Email">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Qualification/(योग्यता)</label></span>
+                                                                                                            <input name="fatherqulification" id="fatherqulification" type="text" class="form-control" placeholder=" Qualification" title=" Qualification">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Occupation/(व्यवसाय)</label></span>
+                                                                                                            <input name="fatheroccupation" id="fatheroccupation" type="text" class="form-control" placeholder=" Occupation" title=" Occupation">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-12">
+                                                                                                        <ul id="myTabedu1" class="tab-review-design mt-10">
+                                                                                                            <li class="active"><a href="#description">Mother Details (माँ का विवरण)</a></li>
+                                                                                                        </ul>
+    
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group ">
+                                                                                                            <span><label>Name/(नाम अंग्रेज़ी @*<img src="~/Img/english.png" />*@ में)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            <input name="mothername" id="mothername" type="text" class="form-control" placeholder="Mother Name" title="Mother Name" required="required">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group ">
+                                                                                                            <span><label>Name/(नाम हिन्दी में)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                            <input name="mothername" id="mothernameHindi" type="text" class="form-control" placeholder="माँ का नाम हिन्दी में" title="Mother Name" required="required">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Name/(मोबाइल)</label></span>
+                                                                                                            <input name="mothermobile" id="mothermobile" type="text" class="form-control" placeholder="Mother Mobile" title="Mother Mobile" oninput="OnlyIntvalue(this);" maxlength="10" required>
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Email/(ईमेल)</label></span>
+                                                                                                            <input name="motheremail" id="motheremail" type="email" class="form-control" placeholder="Mother Email" title="Mother Email">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+                                                                                                    
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Qualification/(योग्यता)</label></span>
+                                                                                                            <input name="motherqulicafication" id="motherqulicafication" type="text" class="form-control" placeholder="Mother Qualification" title="Mother Qualification">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-3">
+    
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Occupation/(व्यवसाय)</label></span>
+                                                                                                            <input name="motheroccupation" id="motheroccupation" type="text" class="form-control" placeholder="Mother Occupation" title="Mother Occupation">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row" style="display:none">
+                                                                                                    <div class="col-md-3">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Guardian Name/(अभिभावक का नाम)</label></span>
+                                                                                                            <input name="Guardianname" id="Guardianname" type="text" class="form-control" placeholder="Gargion Name" title="Gargion Name">
+                                                                                                        </span>
+                                                                                                    </div>
+    
+                                                                                                    <div class="col-md-4">
+    
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Guardian Mobile/(अभिभावक मोबाइल)</label></span>
+                                                                                                            <input name="Guardianmobile" id="Guardianmobile" type="text" class="form-control" placeholder="Gargion Mobile" title="Gargion Mobile" oninput="OnlyIntvalue(this);" maxlength="10">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-4">
+                                                                                                        <span class="form-group">
+                                                                                                            <span><label>Guardian Relation/(अभिभावक संबंध)</label></span>
+                                                                                                            <input name="Guardianrelation" id="Guardianrelation" type="text" class="form-control" placeholder="Gargion  Relation" title="Gargion  Relation">
+                                                                                                        </span>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+                                                                                                    <div class="form-group col-md-12">
+                                                                                                        <ul id="myTabedu1" class="tab-review-design mt-10">
+                                                                                                            <li class="active"><a href="#description">Photo And Signature Details/(फोटो और हस्ताक्षर का विवरण)</a></li>
+                                                                                                        </ul>
+    
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                                <div class="row">
+                                                                                                    <div class="col-md-6">
+                                                                                                        <div class="row">
+                                                                                                            <span class="col-md-4"><label style="padding-top:14px;">Upload Photo<br />(फोटो अपलोड करें) <span class="starvalid">*</span></label></span>
+                                                                                                            <span class="col-md-8">
+                                                                                                                <div class="form-group-inner">
+                                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                                                            <div class="file-upload-inner file-upload-inner-right ts-forms">
+                                                                                                                                <div class="input append-big-btn">
+                                                                                                                                    <div class="file-button">
+                                                                                                                                        Browse
+                                                                                                                                        <input type="file" onchange="document.getElementById('append-big-btn').value = this.value; checkphoto();" id="photo" required>
+                                                                                                                                    </div>
+                                                                                                                                    <input type="text" id="append-big-btn" placeholder="no file selected" readonly="readonly">
+    
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                </div>
+                                                                                                            </span>
+                                                                                                        </div>
+																										<div class="row">
+																											<div class="col-sm-12"><span class="starvalid starvalid1">* Allow File Extension (.jpg,.jpeg,.bmp,.jif.png) File Size(50 KB Maximum)/(फ़ाइल एक्सटेंशन (.jpg, .jpeg, .bmp, .jif.png) की अनुमति दें फ़ाइल का आकार (50 KB))</span></div>
+																										</div>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-6">
+                                                                                                        <div class="row">
+                                                                                                            <span class="col-md-4"><label style="padding-top:14px;">Upload Signature / <br /> (हस्ताक्षर अपलोड करें) <span class="starvalid">*</span></label></span>
+                                                                                                            <span class="col-md-8 ">
+                                                                                                                <div class="form-group-inner">
+                                                                                                                  
+                                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                                                            <div class="file-upload-inner file-upload-inner-right ts-forms">
+                                                                                                                                <div class="input append-big-btn">
+                                                                                                                                    <div class="file-button">
+                                                                                                                                        Browse
+                                                                                                                                        <input type="file" onchange="document.getElementById('append-big-btn2').value = this.value; checksigh();" id="sign" required>
+                                                                                                                                    </div>
+                                                                                                                                    <input type="text" id="append-big-btn2" placeholder="no file selected" readonly="readonly">
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                 
+                                                                                                                </div>
+                                                                                                            </span>
+                                                                                                        </div>
+																										<div class="row">
+																											<div class="col-sm-12"><span class="starvalid starvalid1">* Allow File Extension (.jpg,.jpeg,.bmp,.jif.png) File Size(50 KB Maximum)/(फ़ाइल एक्सटेंशन (.jpg, .jpeg, .bmp,.jif.png) की अनुमति दें फ़ाइल का आकार (50 KB))</span></div>
+																										</div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="dec-body checkbox-content">
+                                                                                        <input class="marginR10px ng-pristine ng-valid" type="checkbox" id="checkAgree" name="tnc"> I hereby declare that the information given in this application is true and any false statement detected any time even after my admission is liable for cancellation
+                                                                                        of my candidature without any refund of the deposited fees. I promise to abide by the rules and regulations of the Munger University, Bihar. <br> <br>
+                                                                                        उम्मीदवार की
+                                                                                        घोषणा: मैं इसके द्वारा घोषणा करता/करती हूं
+                                                                                        कि इस आवेदन में दी गई जानकारी सही है और किसी
+
+                                                                                         भी गलत विवरण का पता लगने के बाद किसी भी समय
+                                                                                        मेरे @*<img src="~/Img/parwesh.png" />*@प्रवेश को शुल्क वापसी के बिना मेरे
+                                                                                        उम्मीदवारी को रद्द करने के लिए विश्वविद्यालय उत्तरदायी
+                                                                                        है। मैं मुंगेर विश्वविद्यालय, बिहार
+                                                                                        के नियमों और विनियमों का पालन करने का वचन
+                                                                                        देता/देती हूं।
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-5 col-sm-offset-3">
+                                                                                        <div class="payment-adress col-lg-6">
+                                                                                            <button type="button" class="btn btn-primary waves-effect waves-light" id="privious" onclick="Prevoius()">Previous</button>
+                                                                                            <script>
+
+                                                                                            </script>
+                                                                                        </div>
+                                                                                        <div class="payment-adress col-lg-6">
+                                                                                            <button type="button" class="btn btn-primary waves-effect waves-light" id="btnUpload" onclick="onsave()">Submit</button>
+                                                                                            <script>
+                                                                                            </script>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                @*}*@
+                                                                            </form>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs-center" id="welcome" style="display:none">
+                <div class="col-md-6 col-md-offset-3 col-sm-12">
+                    <div class="single-cards-item thankyou-msg-part">
+                        <div class="single-product-text">
+                            <a style="color:green;font-size:35px"><span class="fa fa-check "></span></a>
+                            <h4><a class="cards-hd-dn">Thank You For Registration!</a></h4>
+                            <div class="cards-dtn">
+                                <strong>Please check your email</strong> for further instructions  how to complete your Next Steps.
+                                <br /><br />
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <table class="table table-no-bordered thankyou-table">
+                                        <tr>
+                                            <td width="50%">
+                                                Name
+                                            </td>
+                                            <td>
+                                                <span id="welnamename"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="50%">
+                                                Application No
+                                            </td>
+                                            <td>
+                                                <span id="applicationno"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="50%">
+                                                Password
+                                            </td>
+                                            <td>
+                                                <span id="showpassword"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="50%">
+                                                Mobile No
+                                            </td>
+                                            <td>
+                                                <span id="welMobileno"></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-md-offset-3 col-sm-12">
+                                    <div class="cards-dtn">
+                                        <p><a href="/">Go to Home Page</a></p>
+                                    </div>
+                                    <div class="cards-dtn">
+                                        <p><a href="/Student/Login">Click here to Login</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+    }
+    else
+
+    {
+
+
+        <div class="advanced-form-area mg-b-15 ">
+            <div class="container-fluid col-md-10 col-md-offset-1 col-sm-12 " style="display:block" id="">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0" style="text-align: left;">
+
+                            <div class="sparkline10-graph">
+                                <div class="input-knob-dial-wrap">
+                                    <div>
+                                        <div class="form-group-inner">
+                                            <div class="row login-btn-inner" style="margin:15px !important">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                                    <div class="">
+
+                                                        <center>
+                                                            <a style="color:red;font-size:60px"><span class="fa fa-times "></span></a><br /><br />
+                                                            <h3>UG Admission for this Session Over Now</h3>
+
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+</div>
+@*<div id="PrimaryModalhdbgcl" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-footer">
+                <a data-dismiss="modal" href="#">Close</a>
+            </div>
+        </div>
+    </div>
+</div>*@
+<script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+<div class="loader" id="AjaxLoader" style="display:none;">
+<div class="preloader-single shadow-inner">
+    <div class="ts_preloading_box">
+        <div id="ts-preloader-absolute22">
+            <div class="tsperloader22" id="first_tsperloader22"></div>
+            <div class="tsperloader22" id="second_tsperloader22"></div>
+            <div class="tsperloader22" id="third_tsperloader22"></div>
+        </div>
+    </div>
+</div>
+<div class="strip-holder">
+    <div class="strip-1"></div>
+    <div class="strip-2"></div>
+    <div class="strip-3"></div>
+</div>
+</div>
+
+<script>
+
+$(document)
+    .ajaxStart(function () {
+        $('#AjaxLoader').show();
+    })
+    .ajaxStop(function () {
+        $('#AjaxLoader').hide();
+    });
+function showloader() {
+    $('#AjaxLoader').show();
+}
+function hideloader() {
+    $('#AjaxLoader').hide();
+}
+</script>
+<script src="~/JS/Studentadminissionform.js?id=@System.Configuration.ConfigurationManager.AppSettings["ScriptFileVersion"].ToString()"></script>
+<!-- Advanced Form End-->
+@*<script src="~/JS/Studentadminissionform.js"></script>*@
+<!-- jquery
+============================================ -->
+<script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+<!-- bootstrap JS
+============================================ -->
+<script src="~/Content/js/bootstrap.min.js"></script>
+<!-- wow JS
+============================================ -->
+<script src="~/Content/js/wow.min.js"></script>
+<!-- price-slider JS
+============================================ -->
+<script src="~/Content/js/jquery-price-slider.js"></script>
+<!-- meanmenu JS
+============================================ -->
+<script src="~/Content/js/jquery.meanmenu.js"></script>
+<!-- owl.carousel JS
+============================================ -->
+<script src="~/Content/js/owl.carousel.min.js"></script>
+<!-- sticky JS
+============================================ -->
+<script src="~/Content/js/jquery.sticky.js"></script>
+<!-- scrollUp JS
+============================================ -->
+<script src="~/Content/js/jquery.scrollUp.min.js"></script>
+<!-- mCustomScrollbar JS
+============================================ -->
+<script src="~/Content/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="~/Content/js/scrollbar/mCustomScrollbar-active.js"></script>
+<!-- metisMenu JS
+============================================ -->
+<script src="~/Content/js/metisMenu/metisMenu.min.js"></script>
+<script src="~/Content/js/metisMenu/metisMenu-active.js"></script>
+<!-- pwstrength JS
+============================================ -->
+<script src="~/Content/js/password-meter/pwstrength-bootstrap.min.js"></script>
+<script src="~/Content/js/password-meter/zxcvbn.js"></script>
+<script src="~/Content/js/password-meter/password-meter-active.js"></script>
+<!-- data table JS
+============================================ -->
+<script src="~/Content/js/data-table/bootstrap-table.js"></script>
+<script src="~/Content/js/data-table/tableExport.js"></script>
+<script src="~/Content/js/data-table/data-table-active.js"></script>
+<script src="~/Content/js/data-table/bootstrap-table-editable.js"></script>
+<script src="~/Content/js/data-table/bootstrap-editable.js"></script>
+<script src="~/Content/js/data-table/bootstrap-table-resizable.js"></script>
+<script src="~/Content/js/data-table/colResizable-1.5.source.js"></script>
+<script src="~/Content/js/data-table/bootstrap-table-export.js"></script>
+<!-- touchspin JS
+============================================ -->
+<script src="~/Content/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+<script src="~/Content/js/touchspin/touchspin-active.js"></script>
+<!-- colorpicker JS
+============================================ -->
+<script src="~/Content/js/colorpicker/jquery.spectrum.min.js"></script>
+<script src="~/Content/js/colorpicker/color-picker-active.js"></script>
+<!-- datapicker JS
+============================================ -->
+<script src="~/Content/js/datapicker/bootstrap-datepicker_back10year.js"></script>
+<script src="~/Content/js/datapicker/datepicker-active.js"></script>
+<!-- input-mask JS
+============================================ -->
+<script src="~/Content/js/input-mask/jasny-bootstrap.min.js"></script>
+<!-- chosen JS
+============================================ -->
+<script src="~/Content/js/chosen/chosen.jquery.js"></script>
+<script src="~/Content/js/chosen/chosen-active.js"></script>
+<!-- select2 JS ============================================ -->
+<script src="~/Content/js/select2/select2.full.min.js"></script>
+<script src="~/Content/js/select2/select2-active.js"></script>
+
+<!-- ionRangeSlider JS
+
+============================================ -->
+<script src="~/Content/js/ionRangeSlider/ion.rangeSlider.min.js"></script>
+<script src="~/Content/js/ionRangeSlider/ion.rangeSlider.active.js"></script>
+<!-- rangle-slider JS
+============================================ -->
+<script src="~/Content/js/rangle-slider/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="~/Content/js/rangle-slider/jquery-ui-touch-punch.min.js"></script>
+<script src="~/Content/js/rangle-slider/rangle-active.js"></script>
+<!-- knob JS
+============================================ -->
+<script src="~/Content/js/knob/jquery.knob.js"></script>
+<script src="~/Content/js/knob/knob-active.js"></script>
+<!-- tab JS
+============================================ -->
+<script src="~/Content/js/tab.js"></script>
+<!-- plugins JS
+============================================ -->
+<script src="~/Content/js/plugins.js"></script>
+<!-- main JS
+============================================ -->
+<script src="~/Content/js/main.js"></script>
+
+<!-- tawk chat JS
+============================================ -->
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#Religion').change(function () {
+        debugger;
+        if ($('#Religion').val() == '28') {
+            $('#ReligonOther').css('display', 'block');
+            $('#lblrgn').css('display', 'block');
+
+        }
+        else {
+            $('#ReligonOther').css('display', 'none');
+            $('#lblrgn').css('display', 'none');
+        }
+    });
+});
+</script>
+
+</body>
+
+</html>

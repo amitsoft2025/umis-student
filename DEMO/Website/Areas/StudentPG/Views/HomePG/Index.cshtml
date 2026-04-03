@@ -1,0 +1,1140 @@
+﻿@model DataLayer.BL_student_formcomplete
+@{
+    ViewBag.Title = "Student Dashboard";
+    Layout = "~/Areas/StudentPG/Views/Shared/_LayoutStudentPG.cshtml";
+}
+<style>
+    .single-product-text {
+        text-align: left !important;
+        min-height: 400px;
+    }
+
+    .header-height {
+        min-height: 10px;
+    }
+
+    .modal-header {
+        padding: 5px;
+        text-align: center;
+    }
+
+    .date-style {
+        font-size: 12px;
+    }
+
+    .single-product-text img {
+        width: 30px !important;
+        height: 30px !important;
+        margin-top: 0px !important;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="single-cards-item" style="text-align:left">
+                <div class="single-product-text dashboard-part">
+                    <div class="massages_mainarea">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                @if (ViewBag.sessionid == 42)
+                                {
+                                    <div class="notification-part massages_innerblk">
+                                        <div class="mgs-heading">
+                                            Notification:
+                                        </div>
+                                        <div class="mgs-content">
+                                            <ul>
+                                                @*// for sessionid =41*@
+                                                @if (Model.isfeesubmitt == true)// check  application fee
+                                                {
+                                                    if (ViewBag.isfeesubmitt == true)// check college admision fee
+                                                    {
+
+                                                        <!--if (ViewBag.Examfeesubmit == 1)
+                                                        {-->
+                                                        @*<li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>05/02/2022</strong> से <strong>13/02/2022</strong> तक PG कोर्स सेमेस्टर 1(PG Semester - I)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+                                                            <li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2022</strong> से <strong>15/02/2022</strong> तक आप एग्जामिनेशन फीस  <strong></strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>*@
+
+                                                        <!--}
+                                                        else
+                                                        {
+                                                            <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>05/02/2022</strong> से <strong>13/02/2022</strong> तक PG कोर्स सेमेस्टर 1(PG Semester - I) का   Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+                                                            <li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2022</strong> से <strong>15/02/2022</strong> तक आप एग्जामिनेशन फीस  <strong></strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+                                                        }-->
+                                                        @*<li><strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Withought Document Verify  05/02/2022  से  06/02/2022 तक</strong> P.G. कोर्स  (P.G.) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a></li>
+                                                            <li><strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Withought Document Verify Date Extend with late fees (500)  05/02/2022 to  06/02/2022  </strong> P.G. कोर्स  (P.G.) रजिस्ट्रेशन नंबर  |  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a></li>
+
+                                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Note </strong>: Before filling the registration fee, the documents have to be verified from the college, then the payment link will be opened.(पंजीकरण शुल्क भरने से पहले, दस्तावेजों को कॉलेज से सत्यापित करना होगा, फिर भुगतान लिंक खोला जाएगा) |</li>*@
+                                                        @*<li>
+                                                             Upload the migration certificate before you get your registration number,(अपना पंजीकरण संख्या प्राप्त से पहले  माइग्रेशन प्रमाणपत्र अपलोड करें  |)<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+                                                            </li>*@
+                                                        <li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream )</strong></li>
+
+
+                                                        if (ViewBag.enrollnmentno != "")
+                                                        {
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomePG")" style="float:right;">Click Here </a></li>
+
+                                                            <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentPG/examPG/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                                        }
+
+
+                                            <li>
+                                                <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Note </strong>: जो स्टूडेंट तिलका मांझी भागलपुर विश्वविद्यालय से कोई भी कोर्स पूर्व में पास कर चुके है ऐसे छात्र दुबारा से रजिस्ट्रेशन  का पेमेंट  जमा करने की आवस्य्क्ता नहीं है
+                                                जो छात्र डेमो यूनिवर्सिटी से डिग्री एंड बीएड  पास कर चुके है  लेकिन ऐसे स्टूडेंट का रजिस्ट्रेशन नंबर पोर्टल पर अभी तक अपडेट नहीं हुआ है उनको अपना  पूर्व  डिग्री या बीएड के रजिस्ट्रेशन नंबर संबंधित  कॉलेज अधिकारी को  जमा  करवा कर अपडेट करवा सकते है।
+                                                (रजिस्ट्रेशन  नंबर अपडेट करवाने की अंतिम तिथि 11-03 2023 है| )
+                                            </li>
+
+
+
+
+                                                        <li><strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप 10/03/2023  से  11/03/2023 तक</strong> P.G. कोर्स  (P.G.) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a></li>
+
+
+                                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Note </strong>: Before filling the registration fee, the documents have to be verified from the college, then the payment link will be opened.(पंजीकरण शुल्क भरने से पहले, दस्तावेजों को कॉलेज से सत्यापित करना होगा, फिर भुगतान लिंक खोला जाएगा) |</li>
+
+
+
+                                                        @*<li>
+                                                                <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /><strong> Fees Receipt  </strong>
+
+                                                                .<a href="@Url.Action("AdmissionFeeSubmit", "HomePG")" style="float:right;color:blue">Click Here </a>
+                                                            </li>*@
+                                                    }
+                                                    else
+                                                    {
+                                                        if (ViewBag.IsAdmisApplied == true)
+                                                        {
+
+                                                            if (ViewBag.IsDocVerify == 1)
+                                                            {
+                                                                //Spot Admission
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 19-10-2022 and 21-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन ( 19-10-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                                                @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong> 19-10-2022    से 21-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>
+
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+                                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream)</strong>  .</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://docs.google.com/viewerng/viewer?url=https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/Admission-Notice.pdf&hl=en">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>*@
+
+
+                                                                @*<li>
+                                                                        <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                                                                    </li>*@
+                                                                <li>
+
+                                                                    <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Dear Student, Your Document has been verified.
+                                                                </li>
+                                                                if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                                {
+                                                                    <li>
+                                                                        <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Admission fees. @*Last Time of Fees Submisstion is <strong> @ViewBag.addmissionExtenddateValue  </strong>*@
+
+                                                                        .<a href="@Url.Action("AdmissionFeeSubmit", "HomePG")" style="float:right;color:blue">Click Here </a>
+                                                                    </li>
+                                                                }
+
+
+                                                            }
+                                                            else if (ViewBag.IsDocVerify == 0)
+                                                            {
+                                                                //Spot Admission
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 19-10-2022 and 21-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन ( 19-10-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                                                @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong> 19-10-2022    से 21-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>*@
+
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream)</strong>  .</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>*@
+
+                                                                @*<li>
+                                                                        <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                                                                    </li>*@
+                                                                <li>
+                                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Dear Student, Document verification of Selected student start from
+                                                                    <strong>  @ViewBag.addmissionStartdateValuedoc  </strong> to <strong>
+                                                                        @*@ViewBag.addmissionExtenddateValuedoc*@
+                                                                    </strong>.
+                                                                </li>
+                                                                <li>
+                                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" /> @* Pleasevisit your respective college and
+                                                                        verify your document.*@ @*Last Time of Fees submission is <strong> @ViewBag.addmissionExtenddateValue  </strong>*@<strong> </strong>
+                                                                        .
+                                                                    </li>
+
+                                                                    <li><strong>Note :</strong>Payment link will open after your document verified from college.(कॉलेज से आपके दस्तावेज़ सत्यापित होने के बाद भुगतान लिंक खुलेगा |) </li>
+
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    //Spot Admission
+
+                                                                    <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 19-10-2022 and 21-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                                                    <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन ( 19-10-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                                                    @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                    <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong> 19-10-2022    से 21-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                                                    <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                                                    <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                                                    <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>
+
+                                                                    <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                                                    @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                                                    <li><img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream)</strong> .</li>
+                                                                    <li>
+
+                                                                        <img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />Your documents are Rejected for PG admission Courses  !!!
+                                                                        @if (ViewBag.rejectreason != "")
+                                                                        {
+                                                                            <div> Due to- @ViewBag.rejectreason Reason on  @ViewBag.IsDocVerifyDate.</div>
+                                                                        }
+                                                                    </li>
+                                                                }
+
+
+                                                            }
+                                                            else
+                                                            {
+                                                                //Spot Admission
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-09-2022 and 01-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (28-09-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                                                @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>28-09-2022    से 01-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>
+
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                                            }
+
+                                                        }
+                                                    }
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (ViewBag.sessionid == 41)
+                                {
+                                    <div class="notification-part massages_innerblk">
+                                        <div class="mgs-heading">
+                                            Notification:
+                                        </div>
+                                        <div class="mgs-content">
+                                            <ul>
+                                                @*// for sessionid =41*@
+                                                @if (Model.isfeesubmitt == true)// check  application fee
+                                                {
+                                                    if (ViewBag.isfeesubmitt == true)// check college admision fee
+                                                    {
+                                                        <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2023</strong> से <strong>20/02/2023</strong> तक PG कोर्स सेमेस्टर 2nd(PG Semester - II)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+
+
+                                                        if (ViewBag.isbackpart2 == 1)
+                                                        {
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>  Backlog Exam form (PG Semeter -2)  के  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamPG", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>
+
+                                                        }
+
+                                                        <!--if (ViewBag.Examfeesubmit == 1)
+            {-->
+                                                        @*<li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>05/02/2022</strong> से <strong>13/02/2022</strong> तक PG कोर्स सेमेस्टर 1(PG Semester - I)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+                <li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2022</strong> से <strong>15/02/2022</strong> तक आप एग्जामिनेशन फीस  <strong></strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>*@
+
+                                                        <!--}
+            else
+            {
+                <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>05/02/2022</strong> से <strong>13/02/2022</strong> तक PG कोर्स सेमेस्टर 1(PG Semester - I) का   Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+                <li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2022</strong> से <strong>15/02/2022</strong> तक आप एग्जामिनेशन फीस  <strong></strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+            }-->
+                                                        @*<li>
+                 Upload the migration certificate before you get your registration number,(अपना पंजीकरण संख्या प्राप्त से पहले  माइग्रेशन प्रमाणपत्र अपलोड करें  |)<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+                </li>*@
+
+
+                                                        if (ViewBag.enrollnmentno != "")
+                                                        {
+                                                            <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentPG/examPG/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                                        }
+                                                        <li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream )</strong></li>
+                                                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomePG")" style="float:right;">Click Here </a></li>
+
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /><strong> Fees Receipt  </strong>
+
+                                                            .<a href="@Url.Action("AdmissionFeeSubmit", "HomePG")" style="float:right;color:blue">Click Here </a>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (ViewBag.IsAdmisApplied == true)
+                                                        {
+
+                                                            if (ViewBag.IsDocVerify == 1)
+                                                            {
+                                                                //Spot Admission
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-09-2022 and 01-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (28-09-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                                                @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>28-09-2022    से 01-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>
+
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+
+                                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream)</strong>  .</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://docs.google.com/viewerng/viewer?url=https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/Admission-Notice.pdf&hl=en">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>*@
+
+
+                                                                @*<li>
+                            <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                        </li>*@
+                                                                <li>
+
+                                                                    <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Dear Student, Your Document has been verified.
+                                                                </li>
+                                                                if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                                {
+                                                                    <li>
+                                                                        <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Admission fees. @*Last Time of Fees Submisstion is <strong> @ViewBag.addmissionExtenddateValue  </strong>*@
+
+                                                                        .<a href="@Url.Action("AdmissionFeeSubmit", "HomePG")" style="float:right;color:blue">Click Here </a>
+                                                                    </li>
+                                                                }
+
+
+                                                            }
+                                                            else if (ViewBag.IsDocVerify == 0)
+                                                            {
+                                                                //Spot Admission
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-09-2022 and 01-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (28-09-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                                                @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>28-09-2022    से 01-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                                                <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>*@
+
+                                                                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                                                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream)</strong>  .</li>
+                                                                @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>*@
+
+                                                                @*<li>
+                            <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                        </li>*@
+                                                                <li>
+                                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Dear Student, Document verification of Selected student start from
+                                                                    <strong>  @ViewBag.addmissionStartdateValuedoc  </strong> to <strong>
+                                                                        @*@ViewBag.addmissionExtenddateValuedoc*@
+                                                                    </strong>.
+                                                                </li>
+                                                                <li>
+                                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" /> @* Pleasevisit your respective college and
+                            verify your document.*@ @*Last Time of Fees submission is <strong> @ViewBag.addmissionExtenddateValue  </strong>*@<strong> </strong>
+                                            .
+                                            </li>
+
+                                            <li><strong>Note :</strong>Payment link will open after your document verified from college.(कॉलेज से आपके दस्तावेज़ सत्यापित होने के बाद भुगतान लिंक खुलेगा |) </li>
+
+
+                                        }
+                                        else
+                                        {
+                                            //Spot Admission
+
+                                            <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-09-2022 and 01-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                            <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (28-09-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                            @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                            <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>28-09-2022    से 01-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                            <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                            <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                            <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                            <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>
+
+                                            <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                            @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                            <li><img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream)</strong> .</li>
+                                            <li>
+
+                                                <img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />Your documents are Rejected for PG admission Courses  !!!
+                                                @if (ViewBag.rejectreason != "")
+                                                {
+                                                    <div> Due to- @ViewBag.rejectreason Reason on  @ViewBag.IsDocVerifyDate.</div>
+                                                }
+                                            </li>
+                                        }
+
+
+                                    }
+                                    else
+                                    {
+                                        //Spot Admission
+                                            <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-09-2022 and 01-10-2022 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+                                            <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (28-09-2022 11AM) से ओपन होगा (Spot Admission will open from (28-09-2022  11AM) | </strong></li>
+                                            @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                            <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>28-09-2022    से 01-10-2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in PG (1st Part) This Session(2021-23) from( सभी को सूचित करता हु कि छात्र पैनल  PG (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                            <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@</li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://DemoUniversity.com/images/document/P.G_._On_Spot_Admission_2021-23_.pdf" target="_blank">Seat Availability</a></li>
+                                            <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomePG")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                                            <li>@*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@</li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                            <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / PG. Part-I, Semester-I for Session – 2021-23 , Click Here  </a>  </li>
+
+                                            <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                            @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                        }
+
+                                    }
+                                }
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                }
+                                @if (ViewBag.sessionid == 40)
+                                {
+                                    <div class="notification-part massages_innerblk">
+                                        <div class="mgs-heading">
+                                            Notification:
+                                        </div>
+                                        <div class="mgs-content">
+                                            <ul>
+                                                @if (Model.isfeesubmitt == true)// for 300 rs check
+                                                {
+
+                                                    if (ViewBag.IsAdmisApplied == true)
+                                                    {
+                                                        if (ViewBag.isfeesubmitt == true)// college admission check
+                                                        {
+
+                                                            <li>
+                                                                <div>
+                                                                    एग्जाम फॉर्म भरने से पहले एडमिशन फीस चेक कर लेवे अगर एडमिशन फीस जमा नहीं होगा तो एग्जाम फॉर्म कैंसिल कर दिया जायेगा  . जिसका एडमिशन फीस 0 ह उनको भी 0 फीस वाले बटन से सबमिट करना होगा |
+                                                                </div>
+                                                                <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Part 2 Admission fees. @*Last Time of Fees Submisstion is*@ <strong> @*@ViewBag.addmissionExtenddateValue*@  </strong>
+
+                                                                .<a href="@Url.Action("AdmissionFeeSubmit", "HomePG")" style="float:right;color:blue">Pay Now </a>
+                                                            </li>
+
+
+
+                                                            <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2023</strong> से <strong>20/02/2023</strong> तक PG कोर्स सेमेस्टर 4th(PG Semester - IV)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+
+
+
+                                                            <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2023</strong> से <strong>20/02/2023</strong> तक PG कोर्स सेमेस्टर 2nd(PG Semester - II)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+
+
+                                                            @*if (ViewBag.isback == 1)
+                    {
+
+                        <li>
+                            --><img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />
+                            आप <strong>09/02/2022</strong> से <strong>13/02/2022</strong> तक Backlog Exam form (P.G. Semester -1)  <strong></strong> शुल्क जमा कर सकते हैं |<a href="@Url.Action("BAckExamFeesSubmit", "ExamPG", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a>
+                        </li>
+
+                    }*@
+                                                            if (ViewBag.isbackpart2 == 1)
+                                                            {
+                                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>  Backlog Exam form (PG Semeter -2)  के  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamPG", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>
+
+                                                            }
+
+
+                                                            <!--<li>
+                <strong>--> @*<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />*@
+                                            <!--आप 23/11/2020  से  30/11/2020</strong> (Without Fine of Rs 300)
+    P.G.  पार्ट 1 (P.G. Part - 1) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+</li>-->
+                                            @*<li>
+        <strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  आप 01/12/2020  से  03/12/2020</strong>(With Rs 500/- including Rs 200/- fine)
+        P.G.  पार्ट 1 (P.G. Part - 1) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+    </li>*@
+                                            @*<li>
+        <strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  आप 01/12/2020  से  03/12/2020</strong>(With Rs 500/- including Rs 200/- fine)
+        P.G.  पार्ट 1 (P.G. Part - 1) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+    </li>*@
+                                            <!--<li>
+<strong>--> @*<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />*@
+                                            <!--Date Extend   06/12/2020</strong>(Without Fine of Rs 300)
+    P.G.  पार्ट 1 (P.G. Part - 1) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+</li>-->
+                                            @*<li>
+        <strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Date Extend   06/12/2020</strong>(Without Fine of Rs 300)
+        P.G.  पार्ट 1 (P.G. Part - 1) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+    </li>*@
+                                            @*<li>
+        <strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Date Extend आप 12/01/2021  से  12/01/2021</strong>(With Rs 500/- including Rs 200/- fine)
+        P.G.  पार्ट 1 (P.G. Part - 1) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamPG")">यहां क्लिक करें</a>
+    </li>*@
+
+                                            <!--<li>-->@*><img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />*@ <!--आप <strong>16/12/2020</strong> से <strong>21/12/2020</strong> तक Exam Fees <strong>(400 Rs)</strong> शुल्क जमा कर सकते हैं (For Semester - 1  )  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>-->
+                                            @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong> 22/12/2020 से 23/12/2020</strong> तक आप एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>*@
+                                            <!--<li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>Date Extend 9/01/2021 से 9/01/2021</strong> तक आप एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+<li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>Note : </strong> परीक्षा  प्रपत्र  उन्हीं  छात्रों  का भरा  जा सकेगा , जो आंतरिक / मौखिक  / प्रायोगिक  परीक्षा में  उत्तीर्ण  हुए हों  | </li>-->
+                                            @*<li>पहले आप रजिस्ट्रेशन फीस सबमिट करे उसके बाद एग्जामिनेशन फीस सबमिट कर  सकते हैं | </li>*@
+
+                                            if (ViewBag.enrollnmentno != "")
+                                            {
+                                                <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentPG/examPG/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                            }
+
+                                            <li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course (@ViewBag.Stream)</strong></li>
+
+                                            <li> Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomePG")" style="float:right;">Click Here </a></li>
+
+                                        }
+                                        else
+                                        {
+
+                                            if (ViewBag.IsDocVerify == 1)
+                                            {
+
+                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+
+
+
+                                                <li>
+
+                                                    <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Dear Student, Your Document has been verified.
+                                                </li>
+                                                //if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                //{
+                                                <li>
+                                                    <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Admission fees. Last Time of Fees Submisstion is <strong> @ViewBag.addmissionExtenddateValue  </strong>
+
+                                                    .<a href="@Url.Action("AdmissionFeeSubmit", "HomePG")" style="float:right;color:blue">Click Here </a>
+                                                </li>
+                                                //}
+
+                                            }
+                                            else if (ViewBag.IsDocVerify == 0)
+                                            {
+
+                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+
+
+                                                <li>
+                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Dear Student, Document verification of Selected student start from
+                                                    <strong>  @ViewBag.addmissionStartdateValuedoc  </strong> to <strong>
+                                                        @ViewBag.addmissionExtenddateValuedoc
+                                                    </strong>.
+                                                </li>
+                                                <li>
+                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Please visit your respective college and
+                                                    verify your document. Last Time of Fees submission is <strong> @ViewBag.addmissionExtenddateValue  </strong><strong> </strong>
+                                                    .
+                                                </li>
+
+
+                                            }
+                                            else
+                                            {
+                                                <li><img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong> .</li>
+                                                <li>
+
+                                                    <img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />Your documents are Rejected for PG admission Courses  !!!
+                                                    @if (ViewBag.rejectreason != "")
+                                                    {
+                                                        <div><strong> Due to </strong>- @ViewBag.rejectreason Reason on  @ViewBag.IsDocVerifyDate.</div>
+                                                    }
+                                                </li>
+                                            }
+
+                                        }
+                                    }
+
+
+                                }
+                                else
+                                {
+                                            <li>1. अपना मूल विवरण भरना अनिवार्य है|(कृपया अपना नाम, पिता का नाम और माता का नाम सही ढंग से हिंदी और अंग्रेजी दोनों में भरें|)<a href="@Url.Action("BasicDetail", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>2. अपनी 10 वीं ,12 वीं और यूजी की योग्यता का विवरण अपलोड करना अनिवार्य है।<a href="@Url.Action("PreviousyearQualificationO", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>3.  कृपया अपने पीजी कोर्स  के लिए कॉलेज का चॉइस भरे  |<a href="@Url.Action("SelectSubject", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>4. फॉर्म भरने के बाद, आपको पंजीकरण शुल्क के रूप में 700 रुपये का भुगतान करना अनिवार्य है |<a href="@Url.Action("FeesSubmit", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>5.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> आप <strong>22/11/2019 से 11/01/2020</strong> तक पंजीकरण शुल्क जमा करा सकते हैं |</li>
+                                        }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                }
+                                @if (ViewBag.sessionid == 39)
+                                {
+
+                                    <div class="notification-part massages_innerblk">
+                                        <div class="mgs-heading">
+                                            Notification:
+                                        </div>
+                                        <div class="mgs-content">
+                                            <ul>
+
+                                                @*if (Model.isfeesubmitt == true)// check  application fee
+        {
+        if (ViewBag.isfeesubmitt == true)// check college admision fee
+        {*@
+
+                                                @if (Model.isfeesubmitt == true)// check application fee
+                                                {
+
+
+                                                    <li>
+                                                        <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /><strong>Date Extend 14/12/2022</strong> से <strong>20/12/2022</strong> तक Admission Fees (Sem -3)<strong></strong> शुल्क जमा कर सकते हैं |.
+                                                        <a href="@Url.Action("AdmissionFeeSubmit", "HomePG")">Click Here </a>
+                                                    </li>
+
+
+                                                    <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2023</strong> से <strong>20/02/2023</strong> तक PG कोर्स सेमेस्टर 4th(PG Semester - IV)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+
+
+
+                                                    <li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/02/2023</strong> से <strong>20/02/2023</strong> तक PG कोर्स सेमेस्टर 2nd(PG Semester - II)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+
+
+
+                                                    if (ViewBag.IsAdmisApplied == true)
+                                                    {
+
+
+
+                                                        if (ViewBag.isfeesubmitt == true)// college admission fee
+
+                                                        {
+
+                                                            if (ViewBag.isbackpart2 == 1)
+                                                            {
+                                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>  Backlog Exam form (PG Semeter -2)  के  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamPG", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>
+
+                                                            }
+
+
+                                                            if (ViewBag.studentyear == 38 || ViewBag.studentyear == 40 || ViewBag.studentyear == 36)//semester - 3
+                                                            {
+
+
+                                                                if (ViewBag.isbackpart3 == 1)
+                                                                {
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>14/12/2022</strong> से <strong>20/12/2022</strong> तक Backlog Exam form (PG Semeter -3)  के  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit1", "ExamPG", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>14/12/2022</strong> से <strong>20/12/2022</strong>  तक Backlog  Exam form (PG Semeter -3) एग्जामिनेशन फीस  <strong></strong>  के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit1", "ExamPG", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/12/2022</strong> से <strong>20/12/2022</strong> तक PG कोर्स सेमेस्टर 3rd(PG Semester - III)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+                                                                }
+                                                            }
+                                                            else if (ViewBag.studentyear == 37 || ViewBag.studentyear == 39 || ViewBag.studentyear == 41)//semester - 4th
+                                                            {
+
+                                                                <li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> आप <strong>14/12/2022</strong> से <strong>20/12/2022</strong> तक PG कोर्स सेमेस्टर 4th(PG Semester - VI)  का  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+                                                            }
+
+
+
+                                                        }
+
+
+                                                    }
+
+                                                    <!--if (ViewBag.studentyear == 17 || ViewBag.studentyear == 27 || ViewBag.studentyear == 25)//semester -2
+                    {
+                        <li>@*<img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />*@
+                                                    <!--आप <strong>02/12/2020</strong> से <strong>05/12/2020</strong> तक Exam Fees <strong>(400 Rs)</strong> शुल्क जमा कर सकते हैं (For Semester -2  )  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+        <li>-->@*<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />*@
+                                            <!--<strong>Date Extend 14/12/2020 से 15/12/2020</strong> तक आप एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+}
+if (ViewBag.studentyear == 16 || ViewBag.studentyear == 26 || ViewBag.studentyear == 24)//semester  -1
+{
+    <li>-->@*<img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />*@
+                                            <!--आप <strong>16/12/2020</strong> से <strong>21/12/2020</strong> तक Exam Fees <strong>(400 Rs)</strong> शुल्क जमा कर सकते हैं (For Semester -1  )  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+<li>-->@*<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />*@
+                                            <!--आप <strong>22/12/2020 से 23/12/2020</strong> तक आप एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>Date Extend 08/01/2021 से 09/01/2021</strong> तक आप एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamPG")">Click Here </a></li>
+    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>Note : </strong> परीक्षा  प्रपत्र  उन्हीं  छात्रों  का भरा  जा सकेगा , जो आंतरिक / मौखिक  / प्रायोगिक  परीक्षा में  उत्तीर्ण  हुए हों  | </li>
+}
+if (ViewBag.isback == 1)
+{
+
+    <li>-->@*<img src="~/Content/img/new6.gif" width="20" style="float:left;;height:20px !important" />*@
+                                            <!--आप <strong>16/12/2020</strong> से <strong>21/12/2020</strong> तक Backlog Exam form (P.G. Semester -1)  <strong>(400 Rs)</strong> शुल्क जमा कर सकते हैं |<a href="@Url.Action("BAckExamFeesSubmit", "ExamPG")">Click Here </a></li>
+<li>-->@*<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />*@
+                                            <!--आप <strong>22/12/2020 से 23/12/2020</strong> तक आप BackLog एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a href="@Url.Action("BAckExamFeesSubmit", "ExamPG")">Click Here </a></li>
+    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>Date Extend 08/01/2021 से 09/01/2021</strong> तक आप एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamPG")">Click Here </a></li>
+    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />  <strong>Note : </strong> परीक्षा  प्रपत्र  उन्हीं  छात्रों  का भरा  जा सकेगा , जो आंतरिक / मौखिक  / प्रायोगिक  परीक्षा में  उत्तीर्ण  हुए हों  | </li>
+}-->
+                                            @*<li> Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomePG")" style="float:right;">Click Here </a></li>*@
+                                            if (ViewBag.studentyear == 38 || ViewBag.studentyear == 40 || ViewBag.studentyear == 36)//semester - 3
+                                            {
+
+                                                <li>
+                                                    <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /><strong>Date Extend 22/11/2021</strong> से <strong>25/11/2021</strong> तक Admission Fees (Sem -3)<strong></strong> शुल्क जमा कर सकते हैं |. <a href="@Url.Action("AdmissionFeeSubmit", "HomePG")" style="float:right;color:blue">Click Here </a>
+                                                </li>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li>1. अपना मूल विवरण भरना अनिवार्य है|(कृपया अपना नाम, पिता का नाम और माता का नाम सही ढंग से हिंदी और अंग्रेजी दोनों में भरें|)<a href="@Url.Action("BasicDetail", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>2. अपनी 10 वीं ,12 वीं और यूजी की योग्यता का विवरण अपलोड करना अनिवार्य है।<a href="@Url.Action("PreviousyearQualificationO", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>3. कृपया अपने पीजी कोर्स कॉलेज की पुष्टि करें ,यदि उनकी कोई गलती है तो अपने संबंधित कॉलेज से संपर्क करें|<a href="@Url.Action("SelectSubject", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>4. फॉर्म भरने के बाद, आपको पंजीकरण शुल्क के रूप में 300 रुपये का भुगतान करना अनिवार्य है |<a href="@Url.Action("FeesSubmit", "HomePG")">यहां क्लिक करें</a></li>
+                                            <li>5.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> आप <strong>07/11/2019 से 09/11/2019</strong> तक पंजीकरण शुल्क जमा  करने के बाद आप एग्जामिनेशन फीस  जमा  करा सकते हैं |</li>
+                                            <li>6.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> आप <strong>07/11/2019 से 15/11/2019</strong> तक आप एग्जामिनेशन फीस  <strong>(400 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |</li>
+                                        }
+                                                @if (Model.isfeesubmitt == true)
+                                                {
+                                                    <li>@*<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" />*@Download Your Regsitration No Slip<a id="PrintReciptenroll" href="/StudentPG/examPG/PrintDownloadenrollmentslipReceipt">Click Here </a></li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div> <!--Col-->
+
+                        </div>
+                    </div>
+                    @if (ViewBag.sessionid == 43)
+                    {
+                        <h4><a class="" href="#">Instructions for Application Submission</a></h4>
+                        <span class="counter">
+                            Following are the stages for Application Submission  in the following order
+                        </span>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="cards-dtn">
+                                    <h6></h6>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 col-sm-6">
+                                <div class="box-col">
+                                    <a href="/StudentPG/HomePG/BasicDetail">
+                                        @if (Model.is_basic_complete == true)
+                                        {<div class="check-icon"><i class="fa fa-check"></i></div>}
+                                        <div class="row">
+                                            <div class="col-xs-3 text-left">
+                                                <div class="box-icon icon1"><i class="fa fa-info"></i></div>
+                                            </div>
+                                            <div class="col-xs-9 text-right"><span class="text-head">Basic Details</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6" style="display:none">
+                                <div class="box-col">
+                                    <a href="/StudentPG/HomePG/DocumentUpload">
+                                        @if (Model.isdoccomplete == true)
+                                        {<div class="check-icon"><i class="fa fa-check"></i></div>}
+                                        <div class="row">
+                                            <div class="col-xs-3 text-left">
+                                                <div class="box-icon icon2"><i class="fa fa-upload"></i></div>
+                                            </div>
+                                            <div class="col-xs-9 text-right"><span class="text-head">Upload Documents @if (Model.isdoccomplete == true) { }</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="box-col">
+                                    <a href="/StudentPG/HomePG/PreviousyearQualificationO">
+                                        @if (Model.isqua_complete == true)
+                                        {<div class="check-icon"><i class="fa fa-check"></i></div>}
+                                        <div class="row">
+                                            <div class="col-xs-3 text-left">
+                                                <div class="box-icon icon3"><i class="fa fa-graduation-cap"></i></div>
+                                            </div>
+                                            <div class="col-xs-9 text-right"><span class="text-head">Upload Qualification @if (Model.isqua_complete == true) { }</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="box-col">
+                                    <a href="/StudentPG/HomePG/SelectSubject">
+                                        @if (Model.ischoice_complete == true)
+                                        {
+                                            <div class="check-icon"><i class="fa fa-check"></i></div>}
+                                        <div class="row">
+                                            <div class="col-xs-3 text-left">
+                                                <div class="box-icon icon4"><i class="fa fa-book"></i></div>
+                                            </div>
+                                            <div class="col-xs-9 text-right"><span class="text-head">Choose Subject</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="box-col">
+                                    <a href="/StudentPG/HomePG/FeesSubmit">
+
+                                        @if (Model.isfeesubmitt == true)
+                                        {
+                                            <div class="check-icon">
+                                                <i class="fa fa-check"></i>
+                                            </div>
+
+                                        }
+
+                                        <div class="row">
+                                            <div class="col-xs-3 text-left">
+                                                <div class="box-icon icon5"><i class="fa fa-money"></i></div>
+                                            </div>
+                                            <div class="col-xs-9 text-right"><span class="text-head">Payment of Fee</span></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var photurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+ViewBag.stphoto)";
+    var signurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/" + ViewBag.stsign)";
+    var logo11 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/mu-logo-white.png")";
+    var registrar1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/registrarsign.jpg")";
+    //$(function () {
+    //    rencodeImage(photurl1);
+    //    rencodeImage1(signurl1);
+    //    rencodeImage2(logo11);
+    //    //rencodeImage3(logo11);
+    //    rencodeImage4(registrar1);
+    //});
+
+</script>
+@*<script type="text/javascript">
+        function rencodeImage(src, callback) {
+            var canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d'),
+                img = document.getElementById("userImage1");
+            img.onload = function () {
+                canvas.width = 160;
+                canvas.height = 150;
+                ctx.drawImage(img, 0, 0, 160, 150);
+                callback(canvas.toDataURL());
+            }
+            img.src = src;
+        }
+        function rencodeImage1(src, callback) {
+            var canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d'),
+                img = document.getElementById("userSign1");
+            img.onload = function () {
+                canvas.width = 140;
+                canvas.height = 100;
+                ctx.drawImage(img, 0, 0, 140, 100);
+                callback(canvas.toDataURL());
+            }
+            img.src = src;
+        }
+        function rencodeImage2(src, callback) {
+            var canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d'),
+                img = document.getElementById("logo11");
+            img.onload = function () {
+                canvas.width = 140;
+                canvas.height = 100;
+                ctx.drawImage(img, 0, 0, 140, 100);
+                callback(canvas.toDataURL());
+            }
+            img.src = src;
+        }
+
+        function rencodeImage4(src, callback) {
+
+            var canvas = document.createElement('canvas'),
+                ctx = canvas.getContext('2d'),
+                img = document.getElementById("registratrara11");
+            img.onload = function () {
+                canvas.width = 140;
+                canvas.height = 100;
+                ctx.drawImage(img, 0, 0, 140, 100);
+                callback(canvas.toDataURL());
+            }
+            img.src = src;
+        }
+
+        $(document).on('click', '#PrintReciptenroll', function () {
+            //debugger;
+            return;
+            ExportToPDFApplicationformfeesrec($('#divtoPrint'), [], '', PDFPageType.Portrait, 'RegistrationNoSlip');
+        });
+        function ExportToPDFApplicationformfeesrec(DivName, TableColumnHide, ReportHeading, PageType, Applicationform) {
+            // debugger;
+            /// <summary>Function to convert HTML to PDF.</summary>
+            /// <param name="DivName">Name of the Div  with selector which contains all the html to print.</param>
+            /// <param name="TableColumnHide" type="array">Pass array of columns to be hidden like [2,5,6] in a Table.</param>
+            /// <param name="ReportHeading">Heading of the Report</param>
+            /// <param name="PageType">Provide page type from enum PDFPageType </param>
+            /// <returns>PDF File</returns>
+            var PDFtable = DivName.find('table');
+            if (TableColumnHide) {
+                $.each(TableColumnHide, function (index, value) {
+                    PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').hide();  //hiding the columns of the table inside Div
+                });
+            }
+            PDFtable.attr('border', '0');//applied 1 to table attribute border so we can get border in the Table
+            var printContents = '<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><div style="font-size: 25px;" ><center>' + ReportHeading + '</center></div><br />' + DivName.html() + '</body></html>';
+
+            $('body').prepend("<form method='post' action='/StudentPG/HomePG/EnrollSlipdownload' id='tempForm2'><input type='hidden' name='data1' value='" + printContents + "' ><input type='hidden' name='dataname1' value='" + Applicationform + "' ><input type='hidden' name='PageType1' value='" + PageType + "' ></form>");
+            $('#tempForm2').submit();
+            $("tempForm2").remove();
+            if (TableColumnHide) {
+                $.each(TableColumnHide, function (index, value) {
+                    PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').show(); // //Again Showing the columns of the table inside Div
+                });
+            }
+        }
+        /// <summary>Enum for Page Type</summary>
+        var PDFPageType = {
+            Default: 'Default',
+            Portrait: 'Portrait',
+            Landscape: 'Landscape'
+        }
+    </script>*@
+@if (Model.isfeesubmitt == true)
+{
+    @*<div class="container-fluid" style="display:none">
+            <div class="sparkline8-list DocumentUpload">
+                <div style="display:none">
+                    <div id="divtoPrint">
+
+                        <div style="width:640px; margin:auto; padding:0; font-size:14px; color:#333; font-family:Arial, Helvetica, sans-serif; border:5px solid #333; padding:20px">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle"><img id="logo11" width="300"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle" style="font-size:16px; text-transform:uppercase; border-bottom:1px solid #000; padding-bottom:13px"><strong>Registration Slip</strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2" valign="middle">Registration No: @ViewBag.enrollnmentno </td>
+                                    <td width="182" align="left" valign="middle">Session : @ViewBag.Sessionname</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="2" valign="middle">College Roll No : @ViewBag.rollno</td>
+                                    <td width="182" align="left" valign="middle">Course : @ViewBag.course</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" colspan="3" valign="middle">Subject: <strong>@ViewBag.Stream </strong></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td width="175" align="left" valign="top">Name :</td>
+                                    <td width="283" align="left" valign="top">@ViewBag.studentname</td>
+                                    <td rowspan="19" align="left" valign="top" style="padding:0 5px; width:150px;">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" valign="middle" style="border:1px solid #333; height:150px;"><img id="userImage1" width="160" style=""></td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" valign="middle">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" valign="middle" style="border:1px solid #333; height:50px;"><img id="userSign1" width="160" style="max-height:50px"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">@(ViewBag.ftitle == 20 ? " Father Name" : (ViewBag.ftitle == 21 ? "  Husband  Name" : " Father Name") ) : </td>
+                                    <td align="left">@ViewBag.fathername </td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Mother Name : </td>
+                                    <td align="left">@ViewBag.mothername</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Date of Birth :</td>
+                                    <td align="left"> @ViewBag.DOb</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Gender :</td>
+                                    <td align="left">@ViewBag.Gender</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Category :</td>
+                                    <td align="left">@ViewBag.category</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td colspan="2" align="left">&nbsp;</td>
+                                </tr>
+                                <tr valign="top">
+                                    <td align="left">Nationlity :</td>
+                                    <td align="left">@ViewBag.Nationlity</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="right" valign="middle"><img id="registratrara11" style="max-height:50px"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="right" valign="top" width="25%" style="padding:0 25px 0 0px;">Registrar</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>*@
+}

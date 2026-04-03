@@ -1,0 +1,40 @@
+***************************Start Block***************************
+
+**ID >>>>=MU48780801
+**Path >>>>=/studentLLB/ExamLLb/PGFailedEnrollment
+**Remarks >>>>= pgsucessdecrypt url hit payment gatway for Enrollment Fee
+**DateTime >>>>02/Sep/2020 10:22:17 AM
+**DateTime  Plus 5.30 hours>>>>02/Sep/2020 15:52:17 PM
+==================================================================
+**endata >>>>=G1HFkKeK2fo1ZFPC+9I1tuiFZwlfTk9sTQ+bqSv9WkcdkLLrod47PAEBFOak6Z8PMte5EjbPFC8Arr2jjNawOuLWDVUSLQpbuLR+DAGVTbhgxObaSgUGq2IlWt3+gv18hNK1St2GorQMj+peYDQ9ya33UhW6UpnTRCCr3vQIQzhj4VQdkMZAKbf4xqHHkGCh
+**dendata >>>>=
+*************************** END BLOCK***************************
+
+***************************Start Block***************************
+
+**ID >>>>=MU48780801
+**Path >>>>=/studentLLB/ExamLLb/PGFailedEnrollment
+**Remarks >>>>= url hit payment PaymentGateway gatway for Enrollment Fee
+**DateTime >>>>02/Sep/2020 10:22:17 AM
+**DateTime  Plus 5.30 hours >>>>02/Sep/2020 15:52:17 PM
+=================================================================
+**endata >>>>=G1HFkKeK2fo1ZFPC+9I1tuiFZwlfTk9sTQ+bqSv9WkcdkLLrod47PAEBFOak6Z8PMte5EjbPFC8Arr2jjNawOuLWDVUSLQpbuLR+DAGVTbhgxObaSgUGq2IlWt3+gv18hNK1St2GorQMj+peYDQ9ya33UhW6UpnTRCCr3vQIQzhj4VQdkMZAKbf4xqHHkGCh
+**dendata >>>>=5694529210222015274|NA|FAIL|200|INR|NB|MU48780801,Enrollment|Wrong Source URL|NA|NA|2020-09-02 10:22:19|IN|00|1000852|0.00^0.00|||||||||
+*************************** END BLOCK***************************
+
+***************************Start Block***************************
+
+**ID >>>>=ok
+**Path >>>>=/Defaulttest.aspx
+**Remarks >>>>= Request parameter time 
+**DateTime >>>>02/Sep/2020 11:01:37 AM
+**DateTime  Plus 5.30 hours >>>>02/Sep/2020 16:31:37 PM
+=================================================================
+**endata >>>>=Invalid length for a Base-64 char array or string.
+**dendata >>>>=   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at Website.Models.EncriptDecript.Decrypt(String cipherText) in D:\munger live\Live Project\Munger University\Munger University\Website\Models\EncriptDecript.cs:line 37
+   at DirecPay._Defaulttest.encriptData() in D:\munger live\Live Project\Munger University\Munger University\Website\Defaulttest.aspx.cs:line 78
+*************************** END BLOCK***************************
+

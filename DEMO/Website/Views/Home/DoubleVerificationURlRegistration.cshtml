@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "DoubleVerificationURlRegistration";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoubleVerificationURl Registration</title>
+</head>
+
+<body>
+    @if (TempData["responseString"] != null)
+    {
+        <div>@TempData["responseString"]</div><br /><br />
+    }
+
+    <h1> Application fees Verification</h1>
+    <div>
+        @using (Html.BeginForm("DoubleVerificationURlsingleRegistration", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+        {
+            <br />
+            @Html.TextBox("trxid", "", new { @class = "form-control", @required = "required", @placeholder = "Orderno" })
+
+            <br />            <br />
+            @Html.TextBox("password", "", new { @class = "form-control", @required = "required", @placeholder = "password" })
+
+            <br />            <br />
+            <input type="submit" value="Admision registration Single submit" />
+
+        }
+
+    </div>
+
+    <div>
+        @using (Html.BeginForm("DoubleVerificationURlRegistration", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+        {
+            <br />
+            @Html.TextBox("trxid", "", new { @class = "form-control", @required = "required", @placeholder = "Orderno" })
+
+            <br />            <br />
+            @Html.TextBox("password", "", new { @class = "form-control", @required = "required", @placeholder = "password" })
+
+            <br />            <br />
+            <input type="submit" value="Admision registration loop submit" />
+
+        }
+
+    </div>
+
+    <div>
+        @using (Html.BeginForm("DoubleVerificationURlseeRegistration", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+        {
+            <br />
+            @Html.TextBox("trxid", "", new { @class = "form-control", @required = "required", @placeholder = "Orderno" })
+
+            <br />            <br />
+            @Html.TextBox("password", "", new { @class = "form-control", @required = "required", @placeholder = "password" })
+
+            <br />            <br />
+
+            <br />            <br />
+            <input type="submit" value="Only See Status" />
+
+        }
+
+    </div>
+</body>
+</html>

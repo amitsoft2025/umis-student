@@ -1,0 +1,150 @@
+﻿@model List<DataLayer.StudentPreviousQualification>
+@{
+    ViewBag.Title = "StudentQualification";
+    Layout = "~/Areas/StudentBPharma/Views/Shared/_LayoutStudentBPharma.cshtml";
+}
+<script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+<script src="~/scripts/Customjs/StudentQualification.js?id=@System.Configuration.ConfigurationManager.AppSettings["StudentQualification"]"></script>
+<script src="~/scripts/Customjs/QualificationDetails.js?id=@System.Configuration.ConfigurationManager.AppSettings["QualificationDetails"]"></script>
+
+<style>
+    .starvalid {
+        color: red;
+    }
+    .spacebottom
+    {
+        margin-bottom:30px;}
+</style>
+<div class="container-fluid">
+    <div class="sparkline8-list DocumentUpload">
+	<div class="text-danger text-center">
+        @if (TempData["Msg"] != null)
+        {
+            <div class="alert-wrap1 shadow-inner wrap-alert-b">
+
+                <div class="alert alert-success " role="alert" style="text-align:center !important">
+                    <div>@TempData["Msg"]</div>
+
+                </div>
+            </div>          
+        }
+    </div>
+	
+    <div class="row ">
+        <div>
+            <h3 class="text-center">Student Qualification </h3>
+        </div>
+    </div>
+    
+
+
+        <div class="row">
+            @*<div class="sparkline12-hd">
+                    <div class="main-sparkline12-hd">
+                        <h3 class="text-center">Student Qualification Details</h3>
+                    </div>
+                </div>*@
+            <div class="col-lg-10 col-sm-12 col-xs-12 col-lg-offset-1 ">
+			  
+				
+                <div ng-app="qualificationlistApp" ng-controller="qualificationlistCtrl">        
+                    <div class="text-right">
+                        @if (@ViewBag.IsSubmit != 1)
+                    {
+                        <div ng-show="(qlist |filter:search).length != 3">
+                            <a class="btn btn-primary waves-effect waves-light add-quali-btn" href="@Url.Action("PreviousyearQualificationO", "HomeBPharma")">Add Qualification</a>
+                        </div>
+                    }
+                </div>
+          
+                    <div class="document-table">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer table-responsive">
+                            <table ui-jq="dataTable" ui-options="dataTableOpt" class="table table-bordered table-condensed dataTable ">
+                                <thead>
+                                    <tr role="row">
+                                        <th width="80px">S. No.</th>
+                                        <th ng-click="sortBy('qualificationTypeName')">
+                                            Qualification
+                                            <span class="sortorder" ng-show="propertyName === 'qualificationTypeName'" ng-class="{reverse: reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortBy('board_UniversityName')">
+                                            University Name
+                                            <span class="sortorder" ng-show="propertyName === 'board_UniversityName'" ng-class="{reverse: reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortBy('rollNo')">
+                                            Roll No
+                                            <span class="sortorder" ng-show="propertyName === 'rollNo'" ng-class="{reverse: reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortBy('RollNo')">
+                                            Percentage
+                                            <span class="sortorder" ng-show="propertyName === 'percentage'" ng-class="{reverse: reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortBy('passingYear')">
+                                            PassingYear
+                                            <span class="sortorder" ng-show="propertyName === 'passingYear'" ng-class="{reverse: reverse}"></span>
+                                        </th>
+                                        <th ng-click="sortBy('')">
+                                            Document
+                                            <span class="sortorder" ng-show="propertyName === ''" ng-class="{reverse: reverse}"></span>
+                                        </th>
+                                        @if (ViewBag.addmissionExtenddate == true)
+                                        {
+                                            if (ViewBag.IsSubmit == 0)
+                                            {
+                                                <th ng-click="sortBy('')">
+                                                    Action
+                                                    <span class="sortorder" ng-show="propertyName === ''" ng-class="{reverse: reverse}"></span>
+                                                </th>
+                                            }
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr ng-repeat="qualidetail in qlist | filter:search  | orderBy:propertyName:reverse">
+                                        <td>{{ ((pageIndex-1)*pageSizeSelected)+$index+1 }}</td>
+                                        <td>{{qualidetail.qualificationTypeName}}</td>
+                                        <td>{{qualidetail.board_UniversityName}}</td>
+                                        <td>{{qualidetail.rollNo}}</td>
+                                        <td>{{qualidetail.percentage}}</td>
+                                        <td>{{qualidetail.passingYear}}</td>
+                                        <td>
+                                            <a title="View" href="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Document/{{qualidetail.fileURl}}" target="_blank" class="btn btn-info btn-sm">View</a>
+                                        </td>
+                                        @if (ViewBag.addmissionExtenddate == true)
+                                        {
+                                            if (ViewBag.IsSubmit == 0)
+                                            {
+                                                <td>
+                                                    <a title="Edit" href="~/StudentBPharma/HomeB/PreviousyearQualificationO/{{qualidetail.encriptedID}}" class="btn btn-success btn-sm fa fa-edit " onclick="return confirm('Are You Sure You Want To Edit Your Qualification!!');"></a>
+                                                    <a title="Delete" href="~/StudentBPharma/HomeB/StudentDelete/{{qualidetail.encriptedID}}" class="btn btn-danger btn-sm fa fa-trash " onclick="return confirm('Are You Sure You Want To Edit Your Qualification!!!');"></a>
+                                                </td>
+                                            }
+                                        }
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    
+   
+        <div class="row spacebottom">
+
+            <div class="col-lg-12 text-center">
+                <div class="document-btn">
+                    <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("BasicDetail", "HomeBPharma")">Previous</a>
+                    <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("SelectSubject", "HomeBPharma")">Next</a>
+                </div>
+            </div>
+
+        </div>
+</div>
+</div>

@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "EaseBuzzPGGatewayExam";
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Munger University -Payment Gateway Ease Buzz </title>
+    <script>
+
+        $(document).ready(function () { generateAction(); });
+        function generateAction() {
+
+            var txnid = '@ViewBag.txnid';
+            var Key = '@ViewBag.Key' ;
+            var amount = '@ViewBag.amount';
+            var firstname = '@ViewBag.firstname';
+            var email = '@ViewBag.email';
+            var phone = '@ViewBag.phone';
+            var productinfo = '@ViewBag.productinfo';
+            var surl = '@ViewBag.surl';
+            var furl = '@ViewBag.furl';
+            var udf1 = '@ViewBag.udf1';
+            var udf2 = '@ViewBag.udf2';
+            var udf3 = '@ViewBag.udf3';
+            var udf4 = '@ViewBag.udf4';
+            var udf5 = '@ViewBag.udf5';
+            var hash_string = '@ViewBag.hash_string'
+var easebuzz_action_url = '@ViewBag.easebuzz_action_url';
+
+            var show_payment_mode = '';
+
+             document.frmPost.txnid.value = txnid;
+            document.frmPost.key.value = Key;
+            document.frmPost.amount.value = amount;
+            document.frmPost.firstname.value = firstname;
+            document.frmPost.email.value = email;
+            document.frmPost.phone.value = phone;
+            document.frmPost.productinfo.value = productinfo;
+            document.frmPost.surl.value = surl;
+            document.frmPost.furl.value = furl;
+            document.frmPost.udf1.value = udf1;
+            document.frmPost.udf2.value = udf2;
+            document.frmPost.udf3.value = udf3;
+            document.frmPost.udf4.value = udf4;
+            document.frmPost.udf5.value = udf5;
+            document.frmPost.show_payment_mode.value = show_payment_mode;
+            //document.frmPost.saltvalue.value = saltvalue;
+            document.frmPost.hash.value = hash_string;
+            document.frmPost.action = easebuzz_action_url;
+            document.frmPost.submit();
+        }
+    </script>
+</head>
+<body>
+
+
+    <form name="frmPost" method="post">
+        <table width="300px">
+            <tr>
+                <td width="120px"></td>
+                <td width="20px">
+
+
+                    <input type="hidden" name="txnid" value="" />
+                    <input type="hidden" name="key" value="" />
+                    <input type="hidden" name="amount" value="" />
+                    <input type="hidden" name="firstname" value="" />
+                    <input type="hidden" name="email" value="" />
+                    <input type="hidden" name="phone" value="" />
+                    <input type="hidden" name="productinfo" value="" />
+                    <input type="hidden" name="surl" value="" />
+                    <input type="hidden" name="furl" value="" />
+                    <input type="hidden" name="udf1" value="" />
+                    <input type="hidden" name="udf2" value="" />
+                    <input type="hidden" name="udf3" value="" />
+                    <input type="hidden" name="udf4" value="" />
+                    <input type="hidden" name="udf5" value="" />
+                    <input type="hidden" name="show_payment_mode" value="" />
+                    <input type="hidden" name="hash" value="" />
+                </td>
+
+                <td>
+                    <input type="submit" value="Pay Now" onclick="generateAction();" id="Submit1" name="Submit1" style="display:none" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            window.onload = function () {
+                document.frmPost.Submit1.click();
+            }
+        </script>
+    </form>
+</body>
+</html>
+
+@*<form id="PostForm" name="PostForm" action="https://testpay.easebuzz.in/pay/secure" method="POST"><input type="hidden" name="udf5" value="ghfg" /><input type="hidden" name="txnid" value="34532453" /><input type="hidden" name="udf4" value="gfdhg" /><input type="hidden" name="udf3" value="gfhgf" /><input type="hidden" name="furl" value="http://localhost:8080/success.aspx" /><input type="hidden" name="phone" value="8562889437" /><input type="hidden" name="udf2" value="gfhfdg" /><input type="hidden" name="amount" value="60" /><input type="hidden" name="email" value="hr@brsoftech.com" /><input type="hidden" name="show_payment_mode" value="" /><input type="hidden" name="hash" value="cd8b1f5e39dd57cd433a55be91c7cbf980f86d780234f56398ea44a129df289a835df7a8fc7a7b0135277f9e74d8e8ec8152ae74a2b8bba3ce389e3aca0c36e1" /><input type="hidden" name="key" value="2PBP7IABZ2" /><input type="hidden" name="surl" value="http://localhost:8080/success.aspx" /><input type="hidden" name="firstname" value="dfgsdf" /><input type="hidden" name="udf1" value="ghfd" /><input type="hidden" name="productinfo" value="dfasd" /></form>
+    <script language='javascript'>var vPostForm = document.PostForm; vPostForm.submit();</script>*@
+@*<form id="PostForm" name="PostForm" action="https://testpay.easebuzz.in/pay/secure" method="POST"><input type="hidden" name="udf5" value="1"><input type="hidden" name="txnid" value="10265933111542223526"><input type="hidden" name="udf4" value="10265933111542223526"><input type="hidden" name="udf3" value="2"><input type="hidden" name="furl" value="http://localhost:33166/student/Exam/EaseBuzzPGSucessExam"><input type="hidden" name="phone" value="6206767352"><input type="hidden" name="udf2" value="MainYear"><input type="hidden" name="amount" value="50.00"><input type="hidden" name="email" value="rkumar18032001@gmail.com"><input type="hidden" name="show_payment_mode" value=""><input type="hidden" name="hash" value="259793f29663f0b942bb7fdbad9b5e7f40b91bbcffd25269ed3f5a40721f02b133f36c3e328a2c7de53c82323076adfe34676760e92253c0714dbb30435a81c0"><input type="hidden" name="key" value="2PBP7IABZ2"><input type="hidden" name="surl" value="http://localhost:33166/student/Exam/EaseBuzzPGSucessExam"><input type="hidden" name="firstname" value="RAJ KUMAR"><input type="hidden" name="udf1" value="MU21587151"><input type="hidden" name="productinfo" value="Exam Form"></form>
+    <script language='javascript'>var vPostForm = document.PostForm; vPostForm.submit();</script>*@
+
+@*<form id="PostForm" name="PostForm" action="https://testpay.easebuzz.in/pay/secure" method="POST">
+        <input type="hidden" name="udf5" value="1" />
+        <input type="hidden" name="txnid" value="51783332412512245460" />
+        <input type="hidden" name="udf4" value="51783332412512245460" />
+        <input type="hidden" name="udf3" value="2" />
+        <input type="hidden" name="furl" value="http://localhost:33166/student/Exam/EaseBuzzPGSucessExam" />
+        <input type="hidden" name="phone" value="6206767352" />
+        <input type="hidden" name="udf2" value="MainYear" />
+        <input type="hidden" name="amount" value="50.00" />
+        <input type="hidden" name="email" value="rkumar18032001@gmail.com" />
+        <input type="hidden" name="show_payment_mode" value="" />
+        <input type="hidden" name="hash" value="fc9a699c8330b6247a0f0c48712a56dc961d93b2865b4cdbebf52b54b40c2a07ce69615d6d834ccfaa2414835d1589e9c93b06f3d85c8b0a3b3499b2bbe20a4f" />
+        <input type="hidden" name="key" value="2PBP7IABZ2" />
+        <input type="hidden" name="surl" value="http://localhost:33166/student/Exam/EaseBuzzPGSucessExam" />
+        <input type="hidden" name="firstname" value="RAJ KUMAR" />
+        <input type="hidden" name="udf1" value="MU21587151" />
+        <input type="hidden" name="productinfo" value="Exam Form" />
+    </form>
+    <script language='javascript'>var vPostForm = document.PostForm; vPostForm.submit();</script>*@
+
+
+@*<form id="PostForm" name="PostForm" action="https://testpay.easebuzz.in/pay/secure" method="POST">
+        <input type="hidden" name="udf5" value="1" />
+        <input type="hidden" name="txnid" value="51783332412512245460" />
+        <input type="hidden" name="udf4" value="51783332412512245460" />
+        <input type="hidden" name="udf3" value="2" />
+        <input type="hidden" name="furl" value="http://localhost:33166/student/Exam/EaseBuzzPGSucessExam" />
+        <input type="hidden" name="phone" value="6206767352" />
+        <input type="hidden" name="udf2" value="MainYear" />
+        <input type="hidden" name="amount" value="50.00" />
+        <input type="hidden" name="email" value="rkumar18032001@gmail.com" />
+        <input type="hidden" name="show_payment_mode" value="" />
+        <input type="hidden" name="hash" value="934a79af64d71191d6d56d2f9ff2955094215b89fe1b38d57e44c507a6a3f559f87fbc44750460de7eac3019f31ef6b762fe02c646075c2448d11be0c4fe389d" />
+        <input type="hidden" name="key" value="2PBP7IABZ2" /><input type="hidden" name="surl" value="http://localhost:33166/student/Exam/EaseBuzzPGSucessExam" />
+        <input type="hidden" name="firstname" value="RAJ KUMAR" />
+        <input type="hidden" name="udf1" value="MU21587151" />
+        <input type="hidden" name="productinfo" value="" /></form>
+    <script language='javascript'>var vPostForm = document.PostForm; vPostForm.submit();</script>*@
+
+
+
+
+
+@*<form id="PostForm" name="PostForm" action="https://testpay.easebuzz.in/pay/secure" method="POST">
+        <input type="hidden" name="udf5" value="" />
+        <input type="hidden" name="txnid" value="452345234" />
+        <input type="hidden" name="udf4" value="1" />
+        <input type="hidden" name="udf3" value="1" /><input type="hidden" name="furl" value="http://localhost:8080/success.aspx" />
+        <input type="hidden" name="phone" value="563453645634" /><input type="hidden" name="udf2" value="1" />
+        <input type="hidden" name="amount" value="125" /><input type="hidden" name="email" value="hr@brsoftech.com" />
+        <input type="hidden" name="show_payment_mode" value="" />
+        <input type="hidden" name="hash" value="92356df4eeb436f497c092302b59b8af758958fbd7144d9591a67eed755c4e441de37e45deb803bbc06d78b18013dfb368e496a8bbdd7453b90ea5788bcdced6" />
+        <input type="hidden" name="key" value="2PBP7IABZ2" />
+        <input type="hidden" name="surl" value="http://localhost:8080/success.aspx" />
+        <input type="hidden" name="firstname" value="wert" />
+        <input type="hidden" name="udf1" value="1" />
+        <input type="hidden" name="productinfo" value="fgsdfgsdf" />
+    </form>
+    <script language='javascript'>var vPostForm = document.PostForm; vPostForm.submit();</script>*@

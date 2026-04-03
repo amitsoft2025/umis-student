@@ -1,0 +1,1123 @@
+﻿﻿@model DataLayer.FeesSubmit
+@{
+    ViewBag.Title = "FeesSubmit";
+    Layout = "~/Areas/Student/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnPrint").click(function () {
+            var contents = $("#dvContents").html();
+            console.log(contents);
+            var frame1 = $('<iframe />');
+            frame1[0].name = "frame1";
+            frame1.css({ "position": "absolute", "top": "-1000000px" });
+            $("body").append(frame1);
+            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+            frameDoc.document.open();
+            //Create a new HTML document.
+            frameDoc.document.write('<html><head><title>.</title>');
+
+            frameDoc.document.write('</head><body>');
+            //Append the external CSS file.
+            frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+            //Append the DIV contents.
+            frameDoc.document.write(contents);
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                frame1.remove();
+            }, 500);
+        });
+    });
+    $(function () {
+        $("#printrecipt").click(function () {
+            var contents = $("#dvPrintRecipt").html();
+            console.log(contents);
+            var frame1 = $('<iframe />');
+            frame1[0].name = "frame1";
+            frame1.css({ "position": "absolute", "top": "-1000000px" });
+            $("body").append(frame1);
+            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+            frameDoc.document.open();
+            //Create a new HTML document.
+            frameDoc.document.write('<html><head><title>.</title>');
+
+            frameDoc.document.write('</head><body>');
+            //Append the external CSS file.
+            frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+            //Append the DIV contents.
+            frameDoc.document.write(contents);
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                frame1.remove();
+            }, 500);
+        });
+    });
+</script>
+
+        <div class="container-fluid">
+		    <div class="sparkline8-list DocumentUpload">
+            <div class="row">
+                <div class="col-sm-8 col-xs-12 col-sm-offset-2">
+                    
+                        <div class="sparkline8-hd">
+                            <div class="tab-content-details shadow-reset">
+                                <h3 id="pageheading">Fees Acknowledgement </h3>
+                            </div>
+                            <div class="text-danger text-center">
+                                @if (TempData["Msg"] != null)
+                                {
+                                @TempData["Msg"];
+                                }
+                            </div>
+                        </div>
+                        <div class="sparkline8-graph fee-submit">
+                            <div class="static-table-list table-responsive">
+                                @using (Html.BeginForm("FeesSubmit", "Home", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data" }))
+                                {
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="blue-bg bdr-none">Application No</th>
+                                            <th class="bdr-none"> @Html.DisplayFor(model => model.ApplicationNo)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th class="blue-bg">Session</th>
+                                            <th> @Html.DisplayFor(model => model.Session)</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="blue-bg">Programme </th>
+                                            <th> @Html.DisplayFor(model => model.Title)</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="blue-bg">Fees</th>
+                                            <th> @Html.DisplayFor(model => model.Fees)</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="blue-bg">Course</th>
+                                            <th> @Html.DisplayFor(model => model.Course)</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="blue-bg">Caste category</th>
+                                            <th> @Html.DisplayFor(model => model.CastCategort)</th>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="blue-bg">Fee Status</th>
+                                            <th> @Html.EditorFor(model => model.FeeStatus, new { @id = "lblFeeStatus", @readonly = true })</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                }
+@using (Html.BeginForm("PrintApplicationCallPreview", "Home", FormMethod.Post))
+    {
+                                <div class="modal-area-button text-center">
+								    <div class="document-btn">
+                                        <input type="hidden" name="GridHtml" />
+                                    <button class="Danger danger-color" style="color: #fff;" type="button" id="submit"><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Pay Fees</button>
+                                    <button class="Danger danger-color" style="color: #fff;" type="button" id="PrintApplication"><i class="fa fa-print"></i>&nbsp;&nbsp;Print Application</button>
+                                    @*<a class="Danger danger-color" href="#" data-toggle="modal" data-target="#DangerModalalert">Danger</a>*@
+                                    @*data-toggle="modal" data-target="#DangerModalalert"*@
+                                    <button class="Danger danger-color" style="color: #fff;" type="button" id="PrintRecipt"><i class="fa fa-print"></i>&nbsp;&nbsp;Print Receipt</button>
+									</div>
+                                </div>
+}
+                            </div>
+                        </div>
+                 
+                </div>
+
+            </div>
+        </div>
+	</div>
+
+
+<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-md-offset1">
+    <div class="">
+        <div id="InformationproModalhdbgcl" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
+            <div class="modal-dialog" style="width:95%">
+                <div class="modal-content">
+                    <div class="modal-close-area modal-close-df">
+                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                    </div>
+                    <div class="modal-body" style="text-align: inherit;">
+                        
+                        <div id="dvContents" name="Grid">
+                            <div style="border-bottom:5px solid #05046c; margin-bottom:25px; text-align:center; padding:15px 0;"><img src="~/images/mu-logo-white.png" width="450px"></div>
+                            <div style="width:100%; margin:auto; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:13px;">
+                                <h1 style="text-align:center; padding:15px 0; font-size:22px;">Admission Form</h1>
+                                <table width="90%" align="center" border="0" cellspacing="0" cellpadding="0" style="padding:0 15px; border:1px solid #666;">
+                                    <tr>
+                                        <td colspan="3">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                                                <tr>
+                                                    <td colspan="3" style="padding:15px 15px 0;">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="40%" alight="left">
+																	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Application No.</label></td>
+																				<td width="80%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="Applicationpp"></span></td>
+																			</tr>
+																		</table>
+																</td>
+																<td width="20%" alight="left">&nbsp;</td>
+                                                                <td width="40%" alighn="right">
+																	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																		<tr>
+																			<td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Applied Course</label></td>
+																			<td width="80%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="AppliedCoursepp"></span></td>
+																		</tr>
+																	</table>
+																</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+						
+									<tr>
+                                        <td colspan="3"><h2 style="color:#06056c; font-size:16px; padding:25px 15px 0;">Name of the Board from which you have passed the Intermediate exam.</h2></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2" width="90%" style="padding:15px;" valign="top">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                
+                                                <tr>
+                                                    <td width="33%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Name of the Examination Board <br> प्रवेश श्रेणी @*<img src="~/Img/cateprint.png" class="hindi-text" />*@</label></td>
+                                                    <td width="34%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Year of Passing <br>  उत्तीर्ण होने का वर्ष</label></td>
+                                                    <td width="33%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Date of Birth  <br> जन्म की तारीख</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="33%" style="border:1px solid #666; border-right:0; padding:10px;" id="BoardName"><span style="color:#666;"></span></td>
+                                                    <td width="34%" style="border:1px solid #666; border-right:0; padding:10px;" id="Passingyear"><span style="color:#666;"></span></td>
+                                                    <td width="33%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="DOB"></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Applicant's Name<br> आवेदक का नाम</label></td>
+                                                                <td style="border:1px solid #666; padding:10px; width:80%;"><label><span style="color:#666;" id="Name"></span></label></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Father's Name<br> आवेदक के पिता का नाम</label></td>
+                                                                <td style="border:1px solid #666; padding:10px; width:80%;"><label><span style="color:#666;" id="FatherName"></span></label></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Mother's Name <br> आवेदक के माता का नाम</label></td>
+                                                                <td style="border:1px solid #666; padding:10px; width:80%;"><label><span style="color:#666;" id="MotherName"></span></label></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">&nbsp;</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td width="10%" valign="top" style="padding-top:51px; margin-right:20px;">
+                                            <table width="80%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td colspan="3">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" style="border:1px solid #666;"><img width="160px" id="userImage" onerror="this.src='../../images/noimage.png';"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" style="border:1px solid #666; padding:5px; "><img  width="140px" id="userSign"  onerror="this.src='../../images/No-SignatureAVE.jpg';"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border-bottom:1px solid #ccc;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td colspan="3"><h2 style="color:#06056c; font-size:16px; padding:15px 15px 0;">Details of Mark Secured in Intermediate Examination  </h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3" style="padding:15px 15px 0;">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                                                            <tr>
+                                                                <td width="60%"><label style="font-weight:bold;">Stream / संकाय</label></td>
+                                                                <td width="40%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="lblintermediatestream"></span></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2">&nbsp;</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <div id="intermidatesubjectys"></div>                                                                  
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2">&nbsp;</td>
+                                                            </tr>                                                            
+                                                            <tr>
+                                                                <td width="90%"><label style="font-weight:bold;">Document List / दस्तावेज़ सूची</label></td>
+                                                                @*<td width="10%" style="border:1px solid #666; padding:10px;"><span style="color:#666;">Science</span></td>*@
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2">&nbsp;</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <div id="document"></div>                                                                  
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="90%"><label style="font-weight:bold;">Educational Qualification / शैक्षिक योग्यता</label></td>
+                                                                @*<td width="10%" style="border:1px solid #666; padding:10px;"><span style="color:#666;">Science</span></td>*@
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">&nbsp;</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2">
+                                                                    <div id="Qualification"></div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border-bottom:1px solid #ccc;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="padding:0 15px">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td colspan="5"><h2 style="color:#06056c; font-size:16px; padding:15px 15px 0 0;">Personal Details / व्यक्तिगत विवरण</h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Gender / लिंग</label></td>
+                                                    <td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Nationality / @*<img src="~/Img/printnational.png" class="hindi-text" />*@(राष्ट्रीयता) :</label></td>
+                                                    <td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Religion / धर्म :</label></td>
+                                                    <td width="20%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Blood Group / रक्त समूह :</label></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%" style="border:1px solid #666; border-right:0; padding:10px;"><span style="color:#666;" id="Gender"></span></td>
+                                                    <td width="20%" style="border:1px solid #666; border-right:0; padding:10px;"><span style="color:#666;" id="Nationality"></span></td>
+                                                    <td width="20%" style="border:1px solid #666; border-right:0; padding:10px;"><span style="color:#666;" id="Religion"></span></td>
+                                                    <td width="20%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="BloodGroup"></span></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">&nbsp;</td>
+                                                </tr>
+
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border-bottom:1px solid #ccc;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td colspan="3"><h2 style="color:#06056c; font-size:16px; padding:15px 15px 0;">Correspondence Address / पत्राचार@*<img src="~/Img/printpatrachar.png" />*@ का पता </h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3" style="padding:15px 15px 0;">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                                                            <tr>
+                                                                <td width="10%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>State / राज्य</label></td>
+                                                                <td width="20%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="CAstate"></span></td>
+                                                                <td width="15px">&nbsp;</td>
+                                                                <td width="13%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>District / जिला</label></td>
+                                                                <td width="15%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="CAdistrict"></span></td>
+                                                                <td width="15px">&nbsp;</td>
+                                                                <td width="15%"><label style="font-weight:bold;"><span style="color:#e51515;"></span> Address / पता</label></td>
+                                                                <td style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="CAaddress"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="7">&nbsp;</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td width="10%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>PIN Code / पिन कोड</label></td>
+                                                                <td width="20%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="CApincode"></span></td>
+                                                                <td width="15px">&nbsp;</td>
+                                                                <td width="13%"><label style="font-weight:bold;"><span style="color:#e51515;"></span>Mobile No. / मोबाइल नंबर</label></td>
+                                                                <td width="15%" style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="Mobile"></span></td>
+                                                                <td width="15px">&nbsp;</td>
+                                                                <td width="15%">
+                                                                    <label style="font-weight:bold;">
+                                                                        <span style="color:#e51515;"></span>Caste Category/
+                                                                        जाति की श्रेणी
+                                                                        @*<img src="~/Img/castcate.png" class="hindi-text" />*@
+                                                                    </label>
+                                                                </td>
+                                                                <td style="border:1px solid #666; padding:10px;"><span style="color:#666;" id="castecategory"></span></td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="border-bottom:1px solid #ccc;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>                                  
+
+
+                                    <tr>
+                                        <td colspan="3" style="border-bottom:1px solid #ccc;">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3" style="padding:0 15px">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td colspan="5"><h2 style="color:#06056c; font-size:16px; padding:15px 15px 0 0;">Weightage Details</h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%" style="text-align:center;"><label style="font-weight:bold;"><span style="color:#e51515;"></span>NCC </label></td>
+                                                    <td width="20%" style="text-align:center;"><label style="font-weight:bold;"><span style="color:#e51515;"></span>SPORTS QUOTA</label></td>
+                                                    <td width="20%" style="text-align:center;"><label style="font-weight:bold;"><span style="color:#e51515;"></span>EX-SERVICEMEN </label></td>
+                                                    <td width="20%" style="text-align:center;"><label style="font-weight:bold;"><span style="color:#e51515;"></span>SPECIALLY ABLED </label></td>
+                                                    <td width="20%" style="text-align:center;"><label style="font-weight:bold;"><span style="color:#e51515;"></span>WARD</label></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%" style="border:1px solid #666; border-right:0; padding:10px;text-align:center;"><span style="color:#666;" id="lblNCC"></span></td>
+                                                    <td width="20%" style="border:1px solid #666; border-right:0; padding:10px;text-align:center;"><span style="color:#666;" id="lblsports"></span></td>
+                                                    <td width="20%" style="border:1px solid #666; border-right:0; padding:10px;text-align:center;"><span style="color:#666;" id="lblExServiceman"></span></td>
+                                                    <td width="20%" style="border:1px solid #666; border-right:0; padding:10px;text-align:center;"><span style="color:#666;" id="lbldisabled"></span></td>
+                                                    <td width="20%" style="border:1px solid #666; padding:10px;text-align:center;"><span style="color:#666;" id="lblward">NO</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">&nbsp;</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3" style="border-bottom:1px solid #ccc;">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3" style="padding:0 15px">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td><h2 style="color:#06056c; font-size:16px; padding:15px 15px 0 0;">Details of the Subjects for Admission</h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div id="choicesubject"></div>                                                       
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3" style="border-bottom:1px solid #ccc;">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3" style="padding:0 15px">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td><h2 style="color:#06056c; font-size:16px; padding:15px 15px 0 0;">Transaction Details / शुल्क का विवरण</h2></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #666; text-align:left;">
+                                                            <tr>
+                                                                <th width="12%" style="border-right:1px solid #666; padding:10px; background-color:#eee;" >Client Transaction Id</th>
+                                                                <td width="12%" style="border-right:1px solid #666; padding:10px;"><span style="color:#666;" id="lbltranactionID"></span></td>
+                                                                <th width="12%" style="border-right:1px solid #666; padding:10px; background-color:#eee;">Payment BY</th>
+                                                                <td width="12%" style="border-right:1px solid #666; padding:10px;"><span style="color:#666;" id="lblpaymentby"></span></td>
+                                                                <th width="12%" style="border-right:1px solid #666; padding:10px; background-color:#eee;">Amount</th>
+                                                                <td width="12%" style="border-right:1px solid #666; padding:10px;"><span style="color:#666;" id="lblfees"></span></td>
+                                                                <th width="12%" style="border-right:1px solid #666; padding:10px; background-color:#eee;">Status</th>
+                                                                <td width="12%" style="padding:10px;"><span style="color:#666;" id="lblfeesstatus"></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="3" style="padding:0 15px; font-size:20px;">Date:- @string.Format("{0:MMMM dd, yyyy}", DateTime.Now) </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="padding:0 15px; font-size:20px;" id="placeho">Place:- -------------------</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">&nbsp;</td>
+                                    </tr>
+
+                                </table>
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">&nbsp;</td>
+                                </tr>
+                            </div>
+                            <div style="height:70px; background-color:#05046c; color:#FFF; line-height:70px; text-align:center; font-family:Arial, Helvetica, sans-serif;">Copyright © 2019 Munger University. All rights reserved.</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer info-md">
+                        <a href="#" id="btnPrint" onclick="return printdiv();">
+                            <i class="fa fa-print" aria-hidden="true"></i>
+                            Print
+                        </a>
+                        <a data-dismiss="modal" href="#">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="DangerModalalert" class="modal modal-edu-general FullColor-popup-DangerModal fade" role="dialog">
+    <div class="modal-dialog" style="width: 80%;">
+        <div class="modal-content">
+            <div class="modal-close-area modal-close-df">
+                <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+            </div>
+            <div class="modal-body">
+                <div id="dvPrintRecipt">
+                    <div style="border-bottom:5px solid #05046c; margin-bottom:25px; text-align:center; padding:15px 0;"><img src="~/images/mu-logo-white.png" width="300px"></div>
+                    <div style="width:100%; margin:auto; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:12px !important;">
+                        <h1 style="text-align:center; padding:15px 0; font-size:22px;">Fees Receipt</h1>
+                        <table width="600px" border="0" cellspacing="0" cellpadding="0" style="padding:0 15px; margin:auto;">
+                            <!-- / Fees Submit -->
+
+                            <tr>
+                                <td colspan="2">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td colspan="3">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #ccc;">
+                                                    <tr>
+                                                        <th colspan="2" align="left" valign="middle" style="border-bottom:1px solid #ccc;  background-color:#44438e; color:#FFF;  padding:5px 10px;">Fees Submit</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Application No</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeeApplication"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee; padding:5px 10px;">Session</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; background-color:#eee;"><span id="FeeSession"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc;  padding:5px 10px;">Programme</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeeTitle"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:5px 10px;">Fees</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; background-color:#eee; "><span id="FeesPrice"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px;">Course</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc;"><span id="FeeSubjectcate"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; padding:5px 10px; background-color:#eee; ">Caste Category</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;; border-bottom:1px solid #ccc; background-color:#eee; "><span id="FeeCastCategory"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="middle" style=" border-right:1px solid #ccc; padding:5px 10px;">Fee Status</td>
+                                                        <td align="left" valign="middle" style="padding:5px 10px;"><span id="FeeIsStatus"></span></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+
+                            <!-- / Subject -->
+
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td width="100%">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #ccc;">
+                                        <tr>
+                                            <th colspan="2" align="left" valign="middle" style="border-bottom:1px solid #ccc;  background-color:#44438e; color:#FFF; padding:5px 10px;">Payment Details</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Type</td>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="bankName"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee; border-right:1px solid #ccc;">Name</td>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee;"><span id="PayName"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc; border-right:1px solid #ccc;">Card Number</td>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc;"><span id="cardNum"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee; border-right:1px solid #ccc;">Expires</td>
+                                            <td style="padding:5px 10px; border-bottom:1px solid #ccc; background-color:#eee;"><span id="Expires"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding:5px 10px; border-right:1px solid #ccc;">Nuth Num</td>
+                                            <td style="padding:5px 10px;"><span id="NuthNum"></span></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+
+                            @*<tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td><h2 style="color:#000; font-size:15px; font-weight:normal;">Signature of Authority</h2></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>*@
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer danger-md">
+                <a href="#" id="printrecipt" onclick="return printdiv();">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    Print
+                </a>
+                <a data-dismiss="modal" href="#">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+  
+        $("[id*=PrintApplication]").bind("click", function () {
+            $("#InformationproModalhdbgcl").modal();
+
+            $.ajax({
+                url: "/Student/Home/PrintApplicationCall",
+                data: { id: 0 },
+
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                  $("#InformationproModalhdbgcl").modal();
+                    //console.log("data" + JSON.stringify(data));
+
+                    var intermidatesubjectys = "";
+                    $("#document").html('');
+                    intermidatesubjectys = intermidatesubjectys + "<table width='100%' border='0' cellspacing='0' cellpadding='0' style='border:1px solid #666; text-align:left;'>";
+                    intermidatesubjectys = intermidatesubjectys + "<tr>";
+                    intermidatesubjectys = intermidatesubjectys + '<th style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px; background-color:#eee; width:50px;"><span style="color:#666;">Sr.No</span></th>';
+                    intermidatesubjectys = intermidatesubjectys + '<th style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px; background-color:#eee; width:50px;"><span style="color:#666;">Subject Name</span></th>';
+                    intermidatesubjectys = intermidatesubjectys + '<th style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px; background-color:#eee; width:50px;"><span style="color:#666;">Total Marks</span></th>';
+                    intermidatesubjectys = intermidatesubjectys + '<th style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px; background-color:#eee; width:50px;"><span style="color:#666;">Marks Obtained</span></th>';
+                    intermidatesubjectys = intermidatesubjectys + '<th style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px; background-color:#eee; width:50px;"><span style="color:#666;">Percentage</span></th>';
+
+
+                    intermidatesubjectys = intermidatesubjectys + "</tr>";
+                    var i = 1;
+                    $.each(data.ObjIntermidataeSubjects, function (index, value) {
+                       
+                       // console.log(value);
+                        intermidatesubjectys = intermidatesubjectys + '<tr>';    
+                        intermidatesubjectys = intermidatesubjectys + '<td style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px;"><span style="color:#666;">'+ i + '</span></td>';
+                        intermidatesubjectys = intermidatesubjectys + '<td style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px;"><span style="color:#666;">' + value.SubjectName + '</td>';
+                        intermidatesubjectys = intermidatesubjectys + '<td style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px;"><span style="color:#666;">' + value.TotalMarks + '</td>';
+                        intermidatesubjectys = intermidatesubjectys + '<td style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px;"><span style="color:#666;">' + value.MarksObtain + '</td>';
+                        intermidatesubjectys = intermidatesubjectys + '<td style="border-right:1px solid #666; border-bottom:1px solid #666; padding:10px;"><span style="color:#666;">' + value.SubjectPercentage  + '</td>';
+                        intermidatesubjectys = intermidatesubjectys + '</tr>';
+                        i = i + 1;
+
+                    });
+                    intermidatesubjectys = intermidatesubjectys + "</table>";
+                    $("#intermidatesubjectys").html(intermidatesubjectys);
+
+                    var result1 = "";
+                    $("#document").html('');
+                    result1 = result1 + "<table width='100%' border='0' cellspacing='0' cellpadding='0' style='border: 1px solid #ccc;'>";
+                    result1 = result1 + "<tr>";
+                    result1 = result1 + '<th width="20%" align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee; padding:10px 15px; width:40px;">S. No.</th>';
+                    result1 = result1 + '  <th width="40%" align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee; padding:10px 15px;">Document</th>';
+                    result1 = result1 + '  <th width="40%" align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Status</th>';
+
+
+                    result1 = result1 + "</tr>";
+                    var i = 1;
+                    $.each(data.ObjDocument, function (index, value) {
+                        //debugger;
+                        //console.log(value);
+                        result1 = result1 + '   <tr>';
+                        result1 = result1 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + i + '</td>';
+                        result1 = result1 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + value.DocumentType + '</td>';
+                        result1 = result1 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + value.DocStatus + '</td>';
+                        result1 = result1 + '   </tr>';
+                        i = i + 1;
+
+                    });
+                    result1 = result1 + "</table>";
+                    $("#document").html(result1);
+
+                    var result2 = "";
+                    $("#Qualification").html('');
+                    result2 = result2 + "<table width='100%' border='0' cellspacing='0' cellpadding='0' style='border: 1px solid #ccc;'>";
+                    result2 = result2 + "<tr>";
+                    result2 = result2 + '<th width="8%" align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">S. No.</th>';
+                    result2 = result2 + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee; padding:10px 15px;">Qualification</th>';
+                    result2 = result2 + '  <th " align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Board</th>';
+                    result2 = result2 + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Roll No</th>';
+                    result2 = result2 + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Percentage</th>';
+                    result2 = result2 + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Passing Year</th>';
+
+                    result2 = result2 + "</tr>";
+                    var i = 1;
+                    $.each(data.ObjQualification, function (index, Qvalue) {
+                        //debugger;
+                        //console.log(Qvalue);
+                        result2 = result2 + '   <tr>';
+                        result2 = result2 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + i + '</td>';
+                        result2 = result2 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.Qualication + '</td>';
+                        result2 = result2 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.Board + '</td>';
+                        result2 = result2 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.RollNo + '</td>';
+                        result2 = result2 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.Percentage + '</td>';
+                        result2 = result2 + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.PassingYear + '</td>';
+                        result2 = result2 + '   </tr>';
+                        i = i + 1;
+
+                    });
+                    result2 = result2 + "</table>";
+                    $("#Qualification").html(result2);
+                    //-------------
+                    var choicesubject = "";
+                    $("#choicesubject").html('');
+                    choicesubject = choicesubject + "<table width='100%' border='0' cellspacing='0' cellpadding='0' style='border: 1px solid #ccc;'>";
+                    choicesubject = choicesubject + "<tr>";
+                    choicesubject = choicesubject + '<th width="8%" align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">S. No.</th>';
+                    choicesubject = choicesubject + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee; padding:10px 15px;">College Name</th>';
+                    choicesubject = choicesubject + '  <th " align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Honours Subjects</th>';
+                    choicesubject = choicesubject + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Subsidiary Subject 1</th>';
+                    choicesubject = choicesubject + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Subsidiary Subject 2</th>';
+                    choicesubject = choicesubject + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Compulsory Subject1</th>';
+                    choicesubject = choicesubject + '  <th  align="left" valign="middle" style="border-bottom:1px solid #ccc; border-right:1px solid #ccc; background-color:#eee;  padding:10px 15px;">Compulsory Subject2</th>';
+
+                    choicesubject = choicesubject + "</tr>";
+                    var i = 1;
+                    $.each(data.objChoices, function (index, Qvalue) {
+                        //debugger;
+                        //console.log(Qvalue);
+                        choicesubject = choicesubject + '   <tr>';
+                        choicesubject = choicesubject + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + i + '</td>';
+                        choicesubject = choicesubject + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.CollegeName + '</td>';
+                        choicesubject = choicesubject + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.hounors_subject + '</td>';
+                        choicesubject = choicesubject + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.Subsidiary1_subject + '</td>';
+                        choicesubject = choicesubject + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.Subsidiary2_subject + '</td>';
+                        choicesubject = choicesubject + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.Compulsory1_subject + '</td>';
+                        choicesubject = choicesubject + '    <td align="left" valign="middle" style="border-right:1px solid #ccc; border-bottom:1px solid #ccc; padding:10px 15px;">' + Qvalue.Compulsory2_subject + '</td>';
+                        choicesubject = choicesubject + '   </tr>';
+                        i = i + 1;
+
+                    });
+                    choicesubject = choicesubject + "</table>";
+                    $("#choicesubject").html(choicesubject);
+                    //---
+                  //  console.log(data.ObjApplication);
+                    $("#BoardName").text(data.ObjApplication.board_universityName);
+                    $("#Passingyear").text(data.ObjApplication.passingyear);
+                    
+                    $("#Applicationpp").text(data.ObjApplication.ApplicationNo);
+                    $("#AppliedCoursepp").text(data.ObjApplication.CourseCategory);
+
+                    $("#Name").text(data.ObjApplication.Name);
+                    $("#DOB").text(data.ObjApplication.DOB);
+                    //$("#castcategory").text(data.ObjApplication.CastCategory);
+                    $("#Gender").text(data.ObjApplication.Gender);
+                    $("#Nationality").text(data.ObjApplication.NewNationality);
+                    $("#Religion").text(data.ObjApplication.NewReligion);
+                    $("#BloodGroup").text(data.ObjApplication.BloodGroup);
+                    $("#Mobile").text(data.ObjApplication.MobileNo);
+                    $("#CAstate").text(data.ObjApplication.CA_State);
+                    $("#CAdistrict").text(data.ObjApplication.CA_City);
+                    $("#CAaddress").text(data.ObjApplication.CurrentAddress);
+                    $("#CApincode").text(data.ObjApplication.CA_PinCode);
+                    $("#castecategory").text(data.ObjApplication.CastCategory);
+                    $("#placeho").text("Place:- "+data.ObjApplication.CA_City);
+                    //--Reservation Quoata
+                    var sports = ""; var NCC = ""; var ExServiceMan = "";
+                    var Handicapped = ""; var Ward = "";
+                    if (data.ObjApplication.IsSports == true)
+                        sports = "Yes";
+                    else sports = "NO";
+                    
+                    if (data.ObjApplication.is_ncc_candidate == true)
+                        NCC = "Yes";
+                    else NCC = "NO";
+
+                    if (data.ObjApplication.isex_service_man == true)
+                        ExServiceMan = "Yes";
+                    else ExServiceMan = "NO";
+
+                    if (data.ObjApplication.ishandicapped == true)
+                        Handicapped = "Yes";
+                    else Handicapped = "NO";
+
+                    if (data.ObjApplication.IsStaff == true)
+                        Ward = "Yes";
+                    else Ward = "NO";
+
+                    $("#lblsports").text(sports);
+                    $("#lblNCC").text(NCC);
+                    $("#lblExServiceman").text(ExServiceMan);
+                    $("#lbldisabled").text(Handicapped);
+                    $("#lblward").text(Ward);
+                    //----
+                    $("#FatherName").text(data.ObjApplication.FatherName);                
+                    $("#MotherName").text(data.ObjApplication.MotherName);                
+                    //---- Payment Details
+                    $("#lbltranactionID").text(data.ObjApplication.transactionID);
+                    $("#lblpaymentby").text(data.ObjApplication.paymentBY);
+                    $("#lblfees").text(data.ObjApplication.admissionFee);
+                    $("#lblfeesstatus").text(data.ObjApplication.IsFeeSubmit);
+                    //--- intermediate stream
+                    $("#lblintermediatestream").text(data.ObjApplication.intermediatstream);
+                    //----------
+
+                    var signpath = "@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/" + data.ObjApplication.stsign
+                    var Photo = "@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/" + data.ObjApplication.stphoto
+                    $("#userImage").attr('src', Photo);
+                    $("#userSign").attr('src', signpath); 
+
+
+
+
+
+                },
+                error: function (data) {
+                    alert('Error');
+                }
+
+            });
+          //  $("input[name='GridHtml']").val($("#dvContents").html());
+            
+        });
+
+    </script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //alert("calling");
+        //var datas = document.getElementById('lblFeeStatus').value;
+        debugger
+        var datas = $("#FeeStatus").val();
+        // console.log("value aa rahi hai kya" + datas);
+        if (datas == 'Pending') {
+            $("#FeeStatus").css("color", "red");
+            $("#FeeStatus").css("border", "none");
+            $('#FeeStatus').attr('readonly', 'true');
+            $('#submit').show();
+            $('#PrintRecipt').hide();
+            $('#pageheading').html('Fees Submit');;
+        }
+        else {
+            $("#FeeStatus").css("color", "green");
+            $("#FeeStatus").css("border", "none");
+            $('#FeeStatus').attr('readonly', 'true');
+            $('#submit').hide();
+            $('#PrintRecipt').show();
+            $('#pageheading').html('Fees Acknowledgement');;
+        }
+    });
+</script>
+<script>
+    $(function () {
+        
+        $("[id*=submit]").bind("click", function () {
+            //debugger
+            //feeStatus
+            $.ajax({
+                type: "POST",
+                url: "/Student/Home/feeStatus",
+
+                success: function (response) {
+                    //debugger;
+                    //console.log(response);
+                    if (response.Status) {
+                        // alert(response.Message);
+                        $.ajax({
+                            type: "POST",
+                            url: "/Student/Home/FeesSubmitStudent",
+
+                            success: function (response) {
+                                //console.log("value jo aa rahi hai" + JSON.stringify(response));
+                                if (response.status) {
+                                    alert(response.Message);
+                                    window.location.href = "/Student/Home/FeesSubmit";
+                                }
+                                else {
+                                    alert(response.Message);
+                                    window.location.href = "/Student/Home/FeesSubmit";
+                                }
+                            },
+                            Error: function (response) { alert("coming in error"); }
+                        });
+                    }
+                    else {
+                        alert(response.Message);
+                        //alert('Please upload your 10th and 12th marksheet before  submitting fees');
+                    }
+
+                },
+                Error: function (response) { alert("coming in error"); }
+            });
+
+            return false;
+        });
+    });
+</script>
+<script type="text/javascript">
+    //debugger;
+    $("[id*=PrintRecipt]").bind("click", function () {
+        //debugger;
+        $.ajax({
+            url: "/Student/Home/PrintFeeRecipt",
+            data: { id: 0 },
+
+            cache: false,
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                $("#DangerModalalert").modal();
+                //console.log("data" + JSON.stringify(data));
+                $("#FeeApplication").text(data.ApplicationNo);
+                $("#FeeSession").text(data.Session);
+                $("#FeeTitle").text(data.Title);
+                $("#FeesPrice").text(data.Fees);
+                $("#FeeSubjectcate").text(data.SubjecCategory);
+                $("#FeeCastCategory").text(data.CastCategory);
+                $("#FeeIsStatus").text(data.FeeStatus);
+                $("#bankName").text(data.PaymentType);
+                $("#PayName").text(data.PaymentHolderName);
+                $("#cardNum").text(data.CardNumber);
+                $("#Expires").text(data.Expires);
+                $("#NuthNum").text(data.NuthNum);
+            },
+            error: function (dataFee) {
+                alert('Fees Not Paid !!');
+            }
+
+        });
+
+    });
+
+</script>
+
+ 

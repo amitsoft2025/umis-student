@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Crypto.Utilities</name>
+    </assembly>
+    <members>
+        <member name="T:Crypto.Utilities.Guid">
+            <summary>
+            Class to improve native guid manipulation
+            </summary>
+        </member>
+        <member name="M:Crypto.Utilities.Guid.#ctor(System.String)">
+            <summary>
+            Constructor, string representation of a guid
+            </summary>
+            <param name="guid"></param>
+        </member>
+        <member name="M:Crypto.Utilities.Guid.Equals(System.Object)">
+            <summary>
+            Overrided, compares the guid to another guid or to its string representation
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Crypto.Utilities.Guid.GetHashCode">
+            <summary>
+            Generate hash code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Crypto.Utilities.Guid.ToString">
+            <summary>
+            Convert guid to its string representation
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

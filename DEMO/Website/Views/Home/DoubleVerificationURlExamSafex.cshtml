@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "DoubleVerificationURlExamSafex";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoubleVerificationURlSafex Exam Registration</title>
+</head>
+
+<body>
+    @if (TempData["responseString"] != null)
+    {
+        <div>@TempData["responseString"]</div><br /><br />
+    }
+
+    <div>
+        @using (Html.BeginForm("DoubleVerificationURlExamSafex", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+        {
+            <br />
+            @Html.TextBox("trxid", "", new { @class = "form-control", @required = "required", @placeholder = "Orderno" })
+
+            <br /> <br />
+            @Html.TextBox("password", "", new { @class = "form-control", @required = "required", @placeholder = "password" })
+
+            <br /> <br />
+            <input type="submit" value=" Loop " />
+
+        }
+
+    </div>
+
+    <div>
+        @using (Html.BeginForm("DoubleVerificationURlExamSafexByAppliRollno", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+        {
+            <br />
+            @*@Html.TextBox("trxid", "", new { @class = "form-control", @required = "required", @placeholder = "Orderno" })*@
+
+            <br /> <br />
+            @Html.TextBox("password", "", new { @class = "form-control", @required = "required", @placeholder = "password" })
+
+            <br /> <br />
+            @Html.TextBox("RollNo", "", new { @class = "form-control", @placeholder = "RollNo" })
+            <br /> <br />
+            <label>OR</label>
+            <br /> <br />
+            @Html.TextBox("ApplicationNo", "", new { @class = "form-control", @placeholder = "ApplicationNo" })
+
+            <br /> <br />
+
+            <br /> <br />
+            <input type="submit" value="Only See Status" />
+
+
+        }
+
+    </div>
+</body>
+</html>

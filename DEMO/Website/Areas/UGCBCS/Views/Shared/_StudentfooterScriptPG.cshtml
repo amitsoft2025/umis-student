@@ -1,0 +1,20 @@
+﻿<!-- Core JS -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
+
+<!-- Optional (only if needed) -->
+<script src="~/Content/js/plugins.js"></script>
+<script src="~/Content/js/main.js"></script>
+
+<script>
+    // Input validation
+    $("input[type='text']").on('keypress', function (event) {
+        var regex = /^[a-zA-Z0-9-,/. ]+$/;
+        var key = String.fromCharCode(event.which);
+        if (!regex.test(key)) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+ 

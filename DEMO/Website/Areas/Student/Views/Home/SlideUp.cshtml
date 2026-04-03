@@ -1,0 +1,569 @@
+﻿
+@using DataLayer
+@model Tuple<DataLayer.StudentAdmissionQualification, List<DataLayer.StudentPreviousQualification>, DataLayer.Login>
+@{
+    ViewBag.Title = "SlideUp";
+    Layout = "~/Areas/Student/Views/Shared/_LayoutStudent.cshtml";
+}
+<style>
+    .starvalid {
+        color: red;
+    }
+
+    .Clear {
+        padding: 4px !important;
+        font-size: 11px !important;
+    }
+
+    .Remove {
+        padding: 4px !important;
+        font-size: 11px !important;
+    }
+</style>
+<script>
+    var Coursecategory = '@ViewBag.Coursecategoryid';
+    var collegelist = '';
+    var gender = '@ViewBag.gender';
+    //debugger;
+    $(document).ready(function () {
+        $.ajax({
+            //  url: "/Student/Home/getcollegelist",
+            ////  data: { Coursecategoryid: Coursecategory },
+            //  data: { Coursecategoryid: Coursecategory },
+            //  type: "POST",
+            //  contentType: "application/json;charset=utf-8",
+            //  dataType: "json",
+            url: "/Student/Home/getcollegelist",
+            data: { Coursecategoryid: Coursecategory, isgender: gender },
+            cache: false,
+            type: "POST",
+            dataType: "json",
+            success: function (result) {
+                //  debugger;
+                $.each(result.data, function (key, value) {
+                    collegelist += '<option value="' + value.ID + '">' + value.CollegeCode + '</option>';
+                });
+            },
+            error: function (errormessage) {
+                showAlert(errormessage.responseText);
+            }
+        });
+    });
+</script>
+@{
+    if (TempData["selectsubmsg"] != null)
+    {
+        <div class="container-fluid">
+            <div class="alert-wrap1 shadow-inner wrap-alert-b">
+
+                <div class="alert alert-success " role="alert">
+                    <div>@TempData["selectsubmsg"]</div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+<style>
+    .DocumentUpload h3 {
+        margin-bottom: 20px !important;
+        margin-top: -30px !important;
+    }
+
+    .massages_innerblk {
+        border: 0px solid #ddd !important;
+        margin-bottom: 0px !important;
+        margin-top: -20px !important;
+    }
+</style>
+<div class="container-fluid">
+
+    <div class="sparkline8-list DocumentUpload">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12 ">
+
+                <div class="sparkline12-hd">
+                    @if (TempData["selectalready"] == null)
+                    {
+
+                        if (TempData["selectsubmsg"] == null)
+                        {
+                            if (ViewBag.sessionid != 39)
+                            {
+                               
+                                        
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                       
+                        <div class="sparkline12-graph document-table">
+                            <div class="basic-login-form-ad">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="all-form-element-inner">
+                                           
+                                            <div class="text-danger text-center">
+                                            </div>
+                                            <div class="text-center">
+                                                <h3>Your choices for  College and their Subject Priority Wise (Slide Up)</h3>
+                                            </div>
+                                            @using (Html.BeginForm())
+                                            {
+                                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer table-responsive">
+                                                    @Html.HiddenFor(model => model.Item1.ScopeIdentity, new { @id = "hid1" })
+                                                    <table ui-jq="dataTable" ui-options="dataTableOpt" class="table table-bordered table-condensed dataTable " id="subjecttable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Sr.No.
+                                                                </th>
+                                                                <th>
+                                                                   (College Code) College Name
+                                                                </th>
+                                                                <th>
+                                                                    Honours Subject
+                                                                </th>
+                                                                <th>
+                                                                    Subsidiary 1
+                                                                </th>
+                                                                <th>
+                                                                    Subsidiary 2
+                                                                </th>
+                                                                <th>
+                                                                    Composition  1
+                                                                </th>
+                                                                <th>
+                                                                    Composition  2
+                                                                </th>
+                                                                <th>
+                                                                    Action
+                                                                </th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{ int a = 1;}
+                                                            @foreach (DataLayer.Student_Admission_Choicesubject item in ViewBag.Choicesubject as List<DataLayer.Student_Admission_Choicesubject>)
+                                                            {
+                                                                <tr>
+                                                                    <td>@a</td>
+                                                                    <td>@item.collegeidlist
+                                                                  
+                                                                    </td>
+                                                                    <td>
+                                                                        @item.hounors_subjectidlist
+                                                                       
+                                                                    </td>
+                                                                    <td>
+                                                                        @item.Subsidiary1_subjectidlist
+                                                                      
+                                                                    </td>
+                                                                    <td>
+                                                                        @item.Subsidiary2_subjectidlist
+                                                                      
+                                                                    </td>
+                                                                    <td>
+                                                                        @item.Compulsory1_subjectidlist
+                                                                       
+                                                                    </td>
+                                                                    <td>
+                                                                        @item.Compulsory2_subjectidlist
+                                                                       
+                                                                    </td>
+                                                            <td>
+                                                                @if (ViewBag.IsSubmit == 1)// paid 300 rs check
+                                                                {
+                                                                    if (ViewBag.Statusrecruitny == true)//taken admisison in college
+                                                                    {
+                                                                        if (ViewBag.check_admissionopen == true)
+                                                                        {
+                                                                            if ( item.collegeid == ViewBag.collegeid && item.hounors_subjectid == ViewBag.streamcategoryid)
+                                                                            {
+                                                                                // already select choice not show
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                            <a class="btn btn-sm btn-primary myBtn login-submit-cs" style="padding:1px 4px 1px 6px;color:white" data-id="@item.ID" data-collegeid="@item.collegeid" data-hounors_subjectid="@item.hounors_subjectid" data-collegeidlist="@item.collegeidlist" data-hounors_subjectidlist="@item.hounors_subjectidlist">Check Seat Availability</a>
+                                                                            @*<button class="btn btn-primary" type="button"> </button>*@
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                @if (ViewBag.IsSubmit == 1)// paid 300 rs check
+                                                                {
+                                                                   
+                                                                        if (ViewBag.check_admissionopen == true)
+                                                                        {
+                                                                            if (item.collegeid == ViewBag.collegeid && item.hounors_subjectid == ViewBag.streamcategoryid)
+                                                                            {
+                                                                                <a>Selected</a>
+                                                                        }
+                                                                        else
+                                                                        {
+
+                                                                        }
+                                                                    }
+
+                                                                }
+                                                            </td>
+                                                                </tr>  a++;
+                                                            }
+                                                    </table>
+                                                </div>
+                                                        <div class="form-group-inner">
+                                                            <div class="login-btn-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-3"></div>
+                                                                    <div class="col-lg-12 pull-left sa-left left">
+                                                                        
+                                                                        @if (ViewBag.IsSubmit == 0)
+                                                                        {
+                                                                            if (ViewBag.check_admissionopen == true)
+                                                                            {
+                                                                                if (ViewBag.Statusrecruitny != true)
+                                                                                {
+                                                                                    
+                                                                                }
+                                                                            }
+                                                                            <br />                                                                            
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            if (ViewBag.check_admissionopen == true)
+                                                                            {
+                                                                                    
+                                                                            }
+                                                                           
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group-inner">
+                                                            <div class="login-btn-inner">
+                                                                <div class="row notification-part">
+                                                                    <div class="col-lg-3"></div><br /><br />
+                                                                    <div class="col-lg-12 pull-left sa-left left">
+                                                                        <ul>
+
+                                                                            <li>  <span class="starvalid">*</span> <strong>Note:</strong> 1. Slide Up option only for students who have taken admission (Slide Up admission is Optional). (केवल उन छात्रों के लिए स्लाइड विकल्प जिन्होंने प्रवेश लिया है | (स्लाइड अप वैकल्पिक है))   </li>
+                                                                            <li>  <span class="starvalid">*</span> <strong>Note:</strong> 2.  check Seat Available    .</li>
+                                                                            <li><span class="starvalid">*</span> <strong>Note:</strong> 3. if seat Available then proceed to next step , Lock your Seat. (यदि सीट उपलब्ध है तो अगले चरण पर जाएं, अपना सीट लॉक  करें )  </li>
+                                                                            <li><span class="starvalid">* <strong>Note:</strong> 4. If you lock the seat then your current seat or admission will be canceled and you will have to pay your Admission fees for your new choice again.(यदि आप सीट लॉक  करते हैं तो आपकी वर्तमान सीट या  प्रवेश रद्द कर दिया जायेगा  और आप फिर से अपनी नई पसंद के लिए अपनी प्रवेश फीस का भुगतान करना होगा    ।) </span> </li>
+
+                                                                            <li> <span class="starvalid">*</span> <strong>Note:</strong> A Student can slide up in only those colleges in which he/she has filled his/her choice in the admission form.
+
+                                                                             </li>
+                                                                            <li><span class="starvalid">*</span> <strong>Note:</strong> Slide up can be considered category wise and subject wise.</li>
+                                                                            <li> <span class="starvalid">*</span> <strong>Note:</strong> Slide up choice can be considered from first and second merit lists cut off.</li>
+                                                                            <li><span class="starvalid">*</span> <strong>Note:</strong> When any student locks his/her admission in previous college will be treated as cancelled and college admission fee will be reimbursed from previous college whether he/she later admission in new college or not.</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-12 text-center">
+                                    <div class="document-btn">
+                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("PreviousyearQualification", "Home")">Previous</a>
+                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("FeesSubmit", "Home")">Next</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                                                                }
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-offset1">
+    <div class="container-fluid">
+        <style>
+            .modal-edu-general .modal-body {
+                padding: 10px 70px !important;
+            }
+
+            /*.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+                padding: 2px !important;
+                font-size: smaller !important;
+            }*/
+        </style>
+        <div id="InformationproModalhdbgcledit" class="modal modal-edu-general fullwidth-popup-InformationproModal fade" role="dialog">
+            <div class="modal-dialog" style="">
+                <div class="modal-content">
+                    <div class="modal-header header-color-modal bg-color-2">
+                        <h4 class="modal-title">Slide Up(Check Seat Availibility )  <span id="headingnameadd"> </span> </h4>
+                        <div class="modal-close-area modal-close-df">
+                            <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                        </div>
+                    </div>
+                    <div class="modal-body" style="">
+                        <div class="row">
+                            <div class="row">
+                               
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <span class="starvalid">*</span>  College name 
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <div class="" id="" style="margin-top:0px">
+                                            <div class="">
+                                                <span id="collegename"> </span>
+                                                <input type="hidden" id="hnd_collegeid"/>
+                                                <input type="hidden" id="hnd_subjectid" />
+                                                <input type="hidden" id="choicetable_id" />
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <span class="starvalid">*</span> Honours Subject 
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="" id="" style="margin-top:0px">
+                                        <div class="">
+                                            <span id="honourssubjectname"> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <span class="starvalid">*</span>  Check Availibility
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="" id="" style="margin-top:0px">
+                                        <div class="">
+                                            <button type="button" id="btnseatcheck" class="btn btn-primary">Check Availbility</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="height:10px">
+                              
+
+                            </div>
+                           
+                            <div class="row" style="height:10px">
+                                &nbsp;
+                            </div>
+
+
+
+
+                            <div class="row" style="height:10px">
+                                &nbsp;
+
+                            </div>
+                            <div class="" >
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="row" style="height:10px">
+                                            &nbsp;
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-6" id="buttonShow" style="display:none">
+                                            <span class="starvalid" >
+                                                <strong>
+                                                    <label class="login2">Seat Available :</label>
+                                                    <label class="login2" id="seat1"> </label>
+                                                </strong> </span>
+                                         </div>
+                                        <div id="div_lock" style="display:none" >
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-6">
+                                                <a id="btnseat_savaeslidup" class="btn btn-sm btn-danger  login-submit-cs">Lock Seat </a>
+
+                                            </div>
+                                            <div>
+                                                <br /><br />
+                                                <div><span class="starvalid"><br /><br />* <strong>Note:</strong> यदि आप सीट लॉक  करते हैं तो आपकी वर्तमान सीट या  प्रवेश रद्द कर दिया जायेगा  और आप फिर से अपनी नई पसंद के लिए अपनी प्रवेश फीस का भुगतान करना होगा  । </span> </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        <div class="row" style="height:10px">
+                            &nbsp;
+
+                        </div>
+                    </div>
+                    <div class="modal-footer info-md">
+                        <a data-dismiss="modal" href="#">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ @if (ViewBag.check_admissionopen == true)
+ {
+<script>
+  $(document).on('click', '.myBtn', function () {
+    //  debugger;
+       
+      var id = $(this).data("id");
+      var collegeid = $(this).data("collegeid");
+      var hounors_subjectid = $(this).data("hounors_subjectid");
+      var collegeidlist = $(this).data("collegeidlist");
+      var hounors_subjectidlist = $(this).data("hounors_subjectidlist");
+      $('#buttonShow').attr("style", "display:none");
+      $('#div_lock').attr("style", "display:none");
+      $('#seat1').html('');
+      
+        if (id == "")
+        {
+            $("#collegename").val('');
+            $("#honourssubjectname").val('');
+            $("#hnd_subjectid").val('');
+            $("#hnd_collegeid").val('');
+            $("#choicetable_id").val('');
+            
+            return;
+        }
+        else
+        {
+            $("#collegename").html(collegeidlist);
+            $("#honourssubjectname").html(hounors_subjectidlist);
+            $("#hnd_subjectid").val(hounors_subjectid);
+            $("#hnd_collegeid").val(collegeid);
+            $("#choicetable_id").val(id);
+          
+     
+            var headdingvalue = "";
+            $("#headingnameadd").html(headdingvalue);
+            $("#InformationproModalhdbgcledit").modal();
+          
+
+        }
+  });
+
+ 
+  $('body').delegate('#btnseatcheck', 'click', function () {
+    //  debugger;
+      var collegeid = $('#hnd_collegeid').val();
+      var subjectid = $('#hnd_subjectid').val();
+      $('#buttonShow').attr("style", "display:none");
+      $('#div_lock').attr("style", "display:none");
+      if (collegeid == "")
+      {
+          showAlert('Please Select College  !!');
+          return;
+
+      }
+      if (subjectid == "")
+      {
+          showAlert('Please Select Subject  !!');
+          return;
+
+      }
+      showloader();
+      $.ajax({
+          url: "/Student/Home/savest_seatavailable_slideup/",
+          data: { hounors_subjectid: subjectid, collegeid: collegeid },
+          cache: false,
+          type: "POST",
+          dataType: "json",
+          success: function (data) {
+              debugger;
+              console.log(data.data);
+              hideloader();
+              if (data.data.status == true) 
+              {
+                
+                  $('#buttonShow').removeAttr("style");
+                  $('#div_lock').removeAttr("style");
+                  $('#seat1').html(data.data.TotalSeat);
+                  if (data.data.TotalSeat > 0)
+                  {
+                      $('#buttonShow').attr("style", "display:block");
+                      $('#div_lock').attr("style", "display:block");
+                  }
+                  else {
+                      $('#buttonShow').attr("style", "display:block");
+                      $('#div_lock').attr("style", "display:none");
+                  }
+              }
+              else 
+              {
+                  showAlert(data.data.Msg);
+                  hideloader();
+              }
+          },
+          error: function () {
+              hideloader();
+          }
+      });
+  });
+  $('body').delegate('#btnseat_savaeslidup', 'click', function () {
+      //debugger;
+      var collegeid = $('#hnd_collegeid').val();
+      var subjectid = $('#hnd_subjectid').val();
+      var choicetable_id=$('#choicetable_id').val();
+      if (collegeid == "") {
+          showAlert('Please Select College  !!');
+          return;
+
+      }
+      if (subjectid == "") {
+          showAlert('Please Select Subject  !!');
+          return;
+
+      }
+      var a =confirm('Are you Sure to Lock this Seat !!');
+      if(a==true)
+      {      //showloader();
+          $.ajax({
+              url: "/Student/Home/savest_slideup_admission/",
+              data: { hounors_subjectid: subjectid, collegeid: collegeid, percenatge: @ViewBag.Percentage, choicetable_id: choicetable_id },
+              cache: false,
+              type: "POST",
+              dataType: "json",
+              success: function (data) {
+                  //debugger;
+                  hideloader();
+                  console.log(data.data)
+                  if (data.data.status == true)
+                  {
+                 
+                      
+                      showAlert(data.data.Msg);
+                      location.reload();
+                  }
+                  else {
+                      showAlert(data.data.Msg);
+                      hideloader();
+                  }
+              },
+              error: function () {
+                  hideloader();
+              }
+          });
+      }
+  });
+
+
+         
+</script>
+ }
+<script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+

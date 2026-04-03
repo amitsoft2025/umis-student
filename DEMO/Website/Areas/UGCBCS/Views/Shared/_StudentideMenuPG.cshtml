@@ -1,0 +1,95 @@
+﻿@using Website.Models;
+@using DataLayer;
+
+<style>
+    body {
+        user-select: none; /* Prevent text selection */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+    }
+    .sidebar-modern {
+        padding: 10px;
+    }
+
+        .sidebar-modern ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-modern li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar-modern a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+            .sidebar-modern a:hover {
+                transform: translateX(5px);
+                background: rgba(0,0,0,0.05);
+            }
+
+        .sidebar-modern i {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+    .submenu-modern {
+        margin-left: 15px;
+        margin-top: 5px;
+        display: none;
+    }
+
+        .submenu-modern a {
+            font-size: 13px;
+            padding: 8px 10px;
+        }
+
+    .has-submenu.active + .submenu-modern {
+        display: block;
+    }
+</style>
+
+<div class="sidebar-modern">
+    <ul>
+
+        <!-- Dashboard -->
+        <li>
+            <a href="/dashboard">
+                <i class="fa fa-home"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <!-- Personal Detail -->
+        <li>
+            <a href="javascript:void(0)" class="has-submenu" onclick="toggleMenu(this)">
+                <i class="fa fa-user-circle"></i>
+                <span>Profile Section</span>
+            </a>
+
+            <ul class="submenu-modern">
+                <li><a href="/dashboard/basic"><i class="fa fa-angle-right"></i> Apply Admission </a></li>
+               
+            </ul>
+        </li>
+
+    
+
+    </ul>
+</div>
+
+<script>
+    function toggleMenu(el) {
+        el.classList.toggle("active");
+    }
+</script>

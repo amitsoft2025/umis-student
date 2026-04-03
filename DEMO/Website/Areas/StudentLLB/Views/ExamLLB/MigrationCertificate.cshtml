@@ -1,0 +1,193 @@
+﻿@model DataLayer.ExamForm
+@{
+    ViewBag.Title = "MigrationCertificate"; Layout = "~/Areas/StudentLLB/Views/Shared/_LayoutStudentLLB.cshtml";
+}
+
+
+<style>
+    .validation {
+        color: tomato;
+    }
+
+    .Minheight {
+        min-height: 450px;
+    }
+
+    .textdesign {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        padding-left: 50px;
+    }
+
+    .labletext {
+        font-weight: normal;
+    }
+
+    .spacedesign {
+        padding-bottom: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .textce {
+        text-align: center;
+    }
+
+    .btnstyle {
+        float: right;
+    }
+
+    .btntext {
+        color: white;
+    }
+</style>
+
+<script>
+    var username = '@DataLayer.ClsLanguage.GetCookies("enUserName")';
+    var password = '@DataLayer.ClsLanguage.GetCookies("enPassword")';
+</script>
+
+<div class="container-fluid">
+
+    <div class="row spacedesign">
+
+        @*<div class="panel panel-default">*@
+
+        @*<div class="panel-body">*@
+        @if (Model != null)
+        {
+            <div class="spacedesign" id="printreport">
+                <div style="border:3px solid #333; padding:15px; font-size:15px; font-family:Arial, Helvetica, sans-serif; width:768px; margin:auto;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="left" valign="top">Serial No: _________________</td>
+                            <td align="right" valign="top">Memo No: _________________</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" valign="top"><img src="~/images/mu-logo-white.png" width="350"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" valign="top"><h3>MIGRATION CERTIFICATE</h3></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" valign="middle" style="border-bottom:1px solid #333; padding:5px 0; height:40px;">@Model.StudentName</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="left" valign="middle" width="120">Student of the </td>
+                                        <td align="center" valign="middle" style="border-bottom:1px solid #333; padding:5px 0; height:40px;">@Model.CourseCategory</td>
+                                        <td align="center" valign="middle" width="120">College Name</td>
+                                        <td align="center" valign="middle" style="border-bottom:1px solid #333; padding:5px 0; height:40px;">@Model.CollegeName</td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" valign="middle">Registration No</td>
+                                        <td align="left" valign="middle" style="border-bottom:1px solid #333; padding:5px 0; height:40px;">@Model.RegistrationNo</td>
+                                        <td colspan="2" align="left" valign="middle">is informed that this university has no objection  to </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="middle">his/ her continuing studies at another University.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="center" valign="middle" width="300">Date of Issue:@System.DateTime.Now.ToString("dd MMM yyyy")</td>
+                                        <td align="center" valign="middle">&nbsp;</td>
+                                        <td align="center" valign="middle">&nbsp;</td>
+                                        <td align="center" valign="middle" width="300">Controller</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="left" valign="top">&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row textce">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center; padding-bottom:20px;">
+                    <a href="#" id="btnPrint" onclick="return printdiv();" class="btn btn-primary waves-effect waves-light">
+                        <i class="fa fa-print" aria-hidden="true"></i>
+                        Print
+                    </a>
+                </div>
+            </div>
+        }
+        @*</div>*@
+
+        @*</div>*@
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnPrint").click(function () {
+            var contents = $("#printreport").html();
+            //console.log(contents);
+            var frame1 = $('<iframe />');
+            frame1[0].name = "frame1";
+            frame1.css({ "position": "absolute", "top": "-1000000px" });
+            $("body").append(frame1);
+            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+            frameDoc.document.open();
+            //Create a new HTML document.
+            frameDoc.document.write('<html><head><title>.</title>');
+
+            frameDoc.document.write('</head><body>');
+            //Append the external CSS file.
+            frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+            //Append the DIV contents.
+            frameDoc.document.write(contents);
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                frame1.remove();
+            }, 500);
+        });
+    });
+</script>
+

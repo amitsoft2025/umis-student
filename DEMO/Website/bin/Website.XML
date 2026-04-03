@@ -1,0 +1,549 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Website</name>
+    </assembly>
+    <members>
+        <member name="M:Website.Areas.UGCBCS.Controllers.ExamUGCBCSController.BackExamFeesSubmit1">
+            add by jitendra 
+        </member>
+        <member name="M:Website.Areas.StudentPG.Controllers.ExamPGController.BackExamFeesSubmit1">
+            add by jitendra 
+        </member>
+        <member name="T:Website.Areas.Student.Controllers.LoginController">
+            <summary>LoginInvalid ApplicationID and password
+            
+            </summary>
+            
+        </member>
+        <member name="M:Website.Models.EncriptDecript.GeneratePassword(System.Int32,System.Int32)">
+            <summary>
+            Creates a pseudo-random password containing the number of character classes
+            defined by complexity, where 2 = alpha, 3 = alpha+num, 4 = alpha+num+special.
+            </summary>
+        </member>
+        <member name="F:DirecPay._Default11.Head1">
+            <summary>
+            Head1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.form1">
+            <summary>
+            form1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblMerchantId">
+            <summary>
+            lblMerchantId control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.merchantId">
+            <summary>
+            merchantId control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblColloboratorId">
+            <summary>
+            lblColloboratorId control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.collaboratorId">
+            <summary>
+            collaboratorId control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblOperatingMode">
+            <summary>
+            lblOperatingMode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.operatingMode">
+            <summary>
+            operatingMode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblCountry">
+            <summary>
+            lblCountry control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.CountryCode">
+            <summary>
+            CountryCode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblCurrency">
+            <summary>
+            lblCurrency control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.currency_Code">
+            <summary>
+            currency_Code control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblAmount">
+            <summary>
+            lblAmount control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.amt">
+            <summary>
+            amt control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblOrderNumber">
+            <summary>
+            lblOrderNumber control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.orderNumber">
+            <summary>
+            orderNumber control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblOtherDetails">
+            <summary>
+            lblOtherDetails control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.otherDetails">
+            <summary>
+            otherDetails control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblSuccessUrl">
+            <summary>
+            lblSuccessUrl control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.successUrl">
+            <summary>
+            successUrl control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.lblFailureUrl">
+            <summary>
+            lblFailureUrl control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.failureUrl">
+            <summary>
+            failureUrl control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.Label3">
+            <summary>
+            Label3 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtMerCustomerId">
+            <summary>
+            txtMerCustomerId control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.Label4">
+            <summary>
+            Label4 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtpayMode">
+            <summary>
+            txtpayMode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.Label5">
+            <summary>
+            Label5 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtAccessmedium">
+            <summary>
+            txtAccessmedium control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.Label6">
+            <summary>
+            Label6 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtTransSource">
+            <summary>
+            txtTransSource control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.requestparams">
+            <summary>
+            requestparams control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.billingDtls">
+            <summary>
+            billingDtls control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.shippingDtls">
+            <summary>
+            shippingDtls control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.Label2">
+            <summary>
+            Label2 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtbillingUserName">
+            <summary>
+            txtbillingUserName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtbillingCity">
+            <summary>
+            txtbillingCity control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtbillingState">
+            <summary>
+            txtbillingState control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtBillingPinCode">
+            <summary>
+            txtBillingPinCode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtBillingCountry">
+            <summary>
+            txtBillingCountry control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtBillingCountryCode">
+            <summary>
+            txtBillingCountryCode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtBillingAreaCode">
+            <summary>
+            txtBillingAreaCode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtBillingPhoneNO">
+            <summary>
+            txtBillingPhoneNO control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtBillingMobileNO">
+            <summary>
+            txtBillingMobileNO control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtBillingEmailID">
+            <summary>
+            txtBillingEmailID control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.Label1">
+            <summary>
+            Label1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingUserName">
+            <summary>
+            txtShippingUserName control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingAddress">
+            <summary>
+            txtShippingAddress control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingCity">
+            <summary>
+            txtShippingCity control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingState">
+            <summary>
+            txtShippingState control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingCountry">
+            <summary>
+            txtShippingCountry control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingPinCode">
+            <summary>
+            txtShippingPinCode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingCountryCode">
+            <summary>
+            txtShippingCountryCode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingAreaCode">
+            <summary>
+            txtShippingAreaCode control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingPhoneNo">
+            <summary>
+            txtShippingPhoneNo control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.txtShippingMobileNo">
+            <summary>
+            txtShippingMobileNo control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.chkConfirm">
+            <summary>
+            chkConfirm control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="F:DirecPay._Default11.Submit1">
+            <summary>
+            Submit1 control.
+            </summary>
+            <remarks>
+            Auto-generated field.
+            To modify move field declaration from designer file to code-behind file.
+            </remarks>
+        </member>
+        <member name="T:Generic_Handler_MVC.Handler">
+            <summary>
+            Summary description for Handler
+            </summary>
+        </member>
+        <member name="T:AmazonUploader">
+            <summary>
+            Summary description for AmazonUploader
+            </summary>
+        </member>
+    </members>
+</doc>

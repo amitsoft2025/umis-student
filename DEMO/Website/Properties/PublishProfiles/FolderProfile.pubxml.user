@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <History>False|2024-04-19T08:38:56.9839699Z;False|2024-04-19T10:22:59.5046624+05:30;False|2024-04-19T10:22:14.1817685+05:30;False|2024-04-19T10:17:06.9905333+05:30;False|2024-04-19T10:16:09.7609165+05:30;False|2024-04-19T10:15:38.7735785+05:30;False|2024-04-19T10:14:41.9168726+05:30;False|2024-04-19T10:13:24.5481654+05:30;False|2024-04-19T10:10:09.9420094+05:30;False|2024-04-19T10:06:36.2328712+05:30;False|2024-04-19T10:03:52.2772649+05:30;False|2024-04-19T10:02:53.5671148+05:30;False|2024-04-19T10:01:47.7673260+05:30;False|2024-04-19T10:00:46.7419689+05:30;False|2024-04-19T09:58:43.6649627+05:30;False|2024-04-18T19:11:29.6740621+05:30;False|2024-04-18T19:00:53.7880431+05:30;False|2024-04-18T17:27:17.2833953+05:30;</History>
+    <LastFailureDetails />
+    <_PublishTargetUrl>\\192.168.1.151\DotNetData\Himanshu\Demo University\Website\bin\app.publish\</_PublishTargetUrl>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,606 @@
+﻿
+@using DataLayer
+@model Tuple<DataLayer.StudentAdmissionQualification, List<DataLayer.StudentPreviousQualification>, DataLayer.Login>
+@{
+    ViewBag.Title = "NewSubject"; Layout = "~/Areas/StudentLLB/Views/Shared/_LayoutStudentLLB.cshtml";
+}
+<style>
+    .starvalid {
+        color: red;
+    }
+</style>
+<script>
+    var Coursecategory = '@ViewBag.Coursecategoryid';
+    var collegelist = '';
+    var gender = '@ViewBag.gender';
+    var hounors_subjectid='@ViewBag.hounors_subjectid';
+    var collegeid='@ViewBag.collegeid';
+</script>
+<style>
+    .starvalid {
+        color: red;
+    }
+
+    .spacebottom {
+        margin-bottom: 15px;
+    }
+
+    .spacebot {
+        padding-bottom: 15px;
+    }
+
+    .textsize {
+        font-size: 12px;
+    }
+
+    .form-group-inner label {
+        font-size: 18px;
+        color: #303030;
+        padding: 10px 0;
+    }
+
+    .fontnew {
+        font-size: 25px;
+        padding-left: 20px;
+    }
+</style>
+
+@{
+    if (TempData["selectsubmsg"] != null)
+    {
+        <div class="container-fluid">
+            <div class="alert-wrap1 shadow-inner wrap-alert-b">
+                <div class="alert alert-success " role="alert">
+                    <div>@TempData["selectsubmsg"]</div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@{
+    //ViewBag.check_admissionopen = false; 
+
+}
+<div class="container-fluid">
+    <div class="sparkline8-list DocumentUpload">
+        <div class="">
+            <div class="single-cards-item DocumentUpload">
+                @if (TempData["selectsubmsg"] == null)
+                {
+                    if (ViewBag.Statusrecruitny != true)
+                    {
+                        if (ViewBag.SpotadStatus != true)
+                        {<div id="SelectSub">
+                                <div class="row">
+                                    <div class="sparkline12-hd">
+                                        <div class="main-sparkline12-hd">
+                                            <h3 class="text-center">
+                                                Select Manaul Choice and Check Seat Availability(Spot Admission)
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="sparkline12-graph  sparkline8-list">
+                                        <div class="col-lg-6 col-lg-offset-3">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="all-form-element-inner">
+
+                                                            @using (Html.BeginForm("NewSubject", "HomeL", FormMethod.Post, new { id = "myform" }))
+                                                            {
+                                                                @Html.AntiForgeryToken()
+                                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                                if (Model != null)
+                                                                {
+                                                                    if (ViewBag.IsSubmit == 1)
+                                                                    {
+                                                                        if (ViewBag.check_admissionopen == true)
+                                                                        {
+
+                                                                            <div class="form-group-inner">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                        <label class="login2">Select College :</label>
+                                                                                        @Html.DropDownList("College", new SelectList(ViewBag.College, "ID", "CollegeCode"), "--Select College--", new { @class = "form-control custom-select-value College", @id = "College", @required = "required" })
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group-inner">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                        <label class="login2">Select  Stream:</label>
+                                                                                        <select class="form-control custom-select-value Subject " tabindex="-1" title="Select Course" id="Subject" name="Subject">
+                                                                                            <option value="">Select  Stream</option>
+                                                                                        </select>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group-inner" id="seatavaila">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                        <label class="login2">Seat Available :</label>
+                                                                                        <label class="login2" id="seat1"> </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group-inner" id="buttonShow" style="display:none">
+                                                                                <div class="login-btn-inner">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12 text-center">
+                                                                                            <div class="document-btn">
+                                                                                                <div class="login-horizental cancel-wp form-bc-ele">
+                                                                                                    @if (ViewBag.check_admissionopen == false)
+                                                                                                    {
+
+                                                                                                        <div>
+                                                                                                            Dated Closed
+
+                                                                                                        </div>
+
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {
+                                                                                                        <button class="btn btn-sm btn-primary login-submit-cs" type="button" id="btn">Seat Lock </button>
+                                                                                                    }
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <div class="form-group-inner">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                        <label class="login2">Date not opened</label>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (ViewBag.subsidiarySave == true)
+                        {
+                            <div id="SubsidiaryDiv">
+                                <div class="row">
+                                    <div class="sparkline12-hd">
+                                        <div class="main-sparkline12-hd">
+                                            <h3 class="text-center">
+                                                Subject Details
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="sparkline12-graph  sparkline8-list">
+                                        <div class="col-lg-6 col-lg-offset-3">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="all-form-element-inner">
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2"> Stream:</label>
+                                                                        @if (ViewBag.hounors_subjectName != null)
+                                                                        {
+                                                                            @ViewBag.hounors_subjectName
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                        <label class="login2">College Name:</label>
+                                                                        @if (ViewBag.CollegeName != null)
+                                                                        {
+                                                                            @ViewBag.CollegeName
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <a class="" id="submitapp" href="@Url.Action("Index", "HomeL")">Go to Dashboard</a>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    @if (ViewBag.IsFeeSubmit_spot == 0)
+                                                                    {
+                                                                        @*<button type="button" class="btn btn-primary waves-effect waves-light aligncenter" id="changechoice"> Change Choice</button>*@
+                                                                    }
+                                                                </div>
+                                                                <div class="form-group-inner">
+                                                                    <div class="login-btn-inner">
+                                                                        <div class="row notification-part">
+                                                                            <div class="col-lg-3"></div><br /><br />
+                                                                            <div class="col-lg-12 pull-left sa-left left">
+
+                                                                                <ul>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+
+                        }
+                    }
+                    else
+                    {
+                        <div id="">
+                            <div class="row">
+
+
+                            </div>
+                        </div>
+                        <div id="SubsidiaryDiv">
+                            <div class="row">
+                                <div class="sparkline12-hd">
+                                    <div class="main-sparkline12-hd">
+                                        <h3 class="text-center">
+                                            Subject Details
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="sparkline12-graph  sparkline8-list">
+                                    <div class="col-lg-6 col-lg-offset-3">
+                                        <div class="basic-login-form-ad">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="all-form-element-inner">
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <label class="login2"><strong>Stream : </strong></label>
+                                                                    @if (ViewBag.hounors_subjectName != null)
+                                                                    {
+                                                                        @ViewBag.hounors_subjectName
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <label class="login2"> <strong>College Name: </strong></label>
+                                                                    @if (ViewBag.CollegeName != null)
+                                                                    {
+                                                                        @ViewBag.CollegeName
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <a class="" id="submitapp" href="@Url.Action("Index", "HomeL")">Go to Dashboard</a>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                @if (ViewBag.IsFeeSubmit_spot == 0)
+                                                                {
+                                                                    @*<button type="button" class="btn btn-primary waves-effect waves-light aligncenter" id="changechoice"> Change Choice</button>*@
+                                                                }
+                                                            </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="login-btn-inner">
+                                                                    <div class="row notification-part">
+                                                                        <div class="col-lg-3"></div><br /><br />
+                                                                        <div class="col-lg-12 pull-left sa-left left">
+
+                                                                            <ul>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="form-group-inner">
+                    <div class="login-btn-inner">
+                        <div class="row notification-part">
+                            <div class="col-lg-3"></div><br /><br />
+                            <div class="col-lg-12 pull-left sa-left left">
+
+                                <ul>
+
+
+                                    <li>  <span class="starvalid">*</span> <strong>Note:</strong> 1. Select College and Subject to check Seat Available   .</li>
+                                    <li><span class="starvalid">*</span> <strong>Note:</strong>  After Seat Lock   , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+            $(".College").change(function (event) {
+                debugger;
+                var res = $(this).val();
+                var tr = $(this).closest("tr");
+                $('#Subject').find("option").remove();
+                $('#Subject').append($("<option></option>").val("").html("--Select Honours Subject--"));
+                if ($(this).val() == "") {
+                    return;
+                }
+                showloader();
+                $.ajax({
+                    url: "/StudentLLB/HomeL/getcollegesubjects/",
+                    data: { id: res },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        // debugger;
+                        $('#Subject').find("option").remove();
+                        $('#Subject').append($("<option></option>").val("").html("--Select Honours Subject--"));
+                        $.each(data.data, function (key, value) {
+                            //   debugger;
+                            $('#Subject').append($("<option></option>").val(value.StreamCategoryID).html(value.streamCategory));
+                        });
+                        hideloader();
+                    },
+                    error: function () {
+                        hideloader();
+                        //showAlert("error")
+                    }
+                });
+
+            });
+            $('body').delegate('.Subject', 'change', function () {
+                var res = $(this).val();
+                var collegeid = $('#College').val();
+                showloader();
+                $.ajax({
+                    url: "/StudentLLB/HomeL/getcollegesubjects_seatspot_availble/",
+                    data: { id: res, collegeid: collegeid },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        //debugger;
+                        $('#buttonShow').removeAttr("style");
+                        $('#seat1').html(data.data.TotalSeat);
+                        if (data.data.TotalSeat > 0) {
+                            $('#buttonShow').attr("style", "display:block");
+                        }
+                        else {
+                            $('#buttonShow').attr("style", "display:none");
+                        }
+                        hideloader();
+                    },
+                    error: function () {
+                        hideloader();
+                    }
+                });
+            });
+            $('body').delegate('#btn', 'click', function () {
+                debugger;
+                var collegeid = $('#College').val();
+                var subjectid = $('#Subject').val();
+
+                if (collegeid == "") {
+                    showAlert('Please Select College  !!');
+                    return;
+
+                }
+                if (subjectid == "") {
+                    showAlert('Please Select Subject  !!');
+                    return;
+
+                }
+                showloader();
+                $.ajax({
+                    url: "/StudentLLB/HomeL/savest_choicesubject_spot/",
+                    data: { hounors_subjectid: subjectid, collegeid: collegeid },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        //debugger;
+                        if (data.data.status == true) {
+                            showloader();
+                            //showAlert(data.data.Msg);
+                            // location.replace('/StudentPG/HomePG/NewSubject');
+                            window.location.reload();
+                        }
+                        else {
+
+                            showAlert(data.data.Msg);
+                            hideloader();
+                        }
+                    },
+                    error: function () {
+                        hideloader();
+                    }
+                });
+            });
+        </script>
+        <script>
+            $("#Subsidiary1").change(function (event) {
+                var res = $("#Subsidiary1").val();
+                $('#Susidiary2').find("option").remove();
+                $("#Susidiary2").append($("<option></option>").val("").html("--Select Subsidiary2--"));
+                var res = $(this).val();
+                if (res == "") {
+                    res = 0;
+                    return;
+                }
+                showloader();
+                $.ajax({
+                    url: "/StudentLLB/HomeL/getcollegesubsidiary2/",
+                    data: { collegeid: collegeid, subjectid: hounors_subjectid, subsidiary1: res },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+
+                        $('#Susidiary2').find("option").remove();
+                        $('#Susidiary2').append($("<option></option>").val("").html("Select Subsidiary2"));
+                        $.each(data.data, function (key, value) {
+                            $('#Susidiary2').append($("<option></option>").val(value.StreamCategoryID).html(value.streamCategory));
+                        });
+                        hideloader();
+                    },
+                    error: function () {
+                        hideloader();
+                        showAlert("error")
+                    }
+                });
+            });
+            $("#Compulsory1").change(function (event) {
+                $('#Compulsory2').find("option").remove();
+                $("#Compulsory2").append($("<option></option>").val("").html("--Select Compulsory1--"));
+                var res = $("#Compulsory1").val();
+                if (res == "") {
+                    res = 0;
+                    return;
+                }
+                showloader();
+                $.ajax({
+                    url: "/StudentLLB/HomeL/getcollegecompulsory2/",
+                    data: { collegeid: collegeid, compulsory1: res },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+
+
+                        $('#Compulsory2').find("option").remove();
+                        $('#Compulsory2').append($("<option></option>").val("").html("Select Composition 2"));
+                        $.each(data.data, function (key, value) {
+                            $('#Compulsory2').append($("<option></option>").val(value.StreamCategoryID).html(value.streamCategory));
+                        });
+                        hideloader();
+                    }
+                    ,
+                    error: function () {
+                        hideloader();
+                        // showAlert("error");
+                    }
+                });
+            });
+            $('body').delegate('#btnSavesub', 'click', function () {
+                debugger;
+                var Subsidiary1 = $('#Subsidiary1').val();
+                var Susidiary2 = $('#Susidiary2').val();
+                var Compulsory1 = $('#Compulsory1').val();
+                var Compulsory2 = $('#Compulsory2').val();
+                if (Subsidiary1 == "") {
+                    showAlert('Please Select Subsidiary1 Subject  !!');
+                    return;
+
+                }
+                if (Susidiary2 == "") {
+                    showAlert('Please Select Susidiary2 Subject  !!');
+                    return;
+
+                }
+                if (Compulsory1 == "") {
+                    showAlert('Please Select Susidiary2 Subject  !!');
+                    return;
+
+                }
+                if (Compulsory1 == "1063" || Compulsory1 == "1066" || Compulsory1 == "1067" || Compulsory1 == "1068" || Compulsory1 == "1069" || Compulsory1 == "1070") {
+
+                }
+                else {
+                    if (Compulsory2 == "") {
+                        showAlert('Please Select Compulsory2 Subject  !!');
+                        return;
+                    }
+                }
+
+                showloader();
+                $.ajax({
+                    url: "/StudentLLB/HomeL/savest_Susidiarychoicesubject_spot/",
+                    data: { Subsidiary1: Subsidiary1, Susidiary2: Susidiary2, Compulsory1: Compulsory1, Compulsory2: Compulsory2 },
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        //debugger;
+                        if (data.data.status == true) {
+                            showAlert(data.data.Msg);
+                            showloader();
+
+                            window.location.reload();
+                        }
+                        else {
+                            hideloader();
+                            showAlert(data.data.Msg);
+                        }
+                    },
+                    error: function () {
+                        hideloader();
+                    }
+                });
+            });
+            $('body').delegate('#changechoice', 'click', function () {
+                debugger;
+                showloader();
+                $.ajax({
+                    url: "/StudentLLB/HomeL/Changechoicesubject_spot/",
+                    cache: false,
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        //debugger;
+                        if (data.data.status == true) {
+                            showAlert(data.data.Msg);
+                            showloader();
+                            window.location.reload();
+                        }
+                        else {
+                            hideloader();
+                            showAlert(data.data.Msg);
+                        }
+                    },
+                    error: function () {
+                        hideloader();
+                    }
+                });
+            });
+        </script>
+    </div>
+</div>

@@ -1,0 +1,925 @@
+﻿@using DataLayer;
+@{
+    Layout = null;
+    ViewBag.Title = "Student B.Ed. Application Form";
+}
+<html class="no-js" lang="">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>@( ViewBag.Title + " - " + DataLayer.CommonSetting.ProjectName )</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="icon" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png" sizes="32x32">
+    <link rel="icon" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png">
+    <meta name="msapplication-TileImage" content="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png">
+
+
+    <!-- favicon
+    ============================================ -->
+    <!-- Google Fonts
+    ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.css">
+    <link rel="stylesheet" href="~/Content/css/owl.theme.css">
+    <link rel="stylesheet" href="~/Content/css/owl.transitions.css">
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/animate.css">
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <!-- meanmenu icon CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/meanmenu.min.css">
+    <!-- main CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/main.css">
+    <!-- educate icon CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/educate-custon-icon.css">
+    <!-- morrisjs CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/morrisjs/morris.css">
+    <!-- mCustomScrollbar CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- metisMenu CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" href="~/Content/css/metisMenu/metisMenu-vertical.css">
+    <!-- calendar CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="~/Content/css/calendar/fullcalendar.print.min.css">
+    <!-- touchspin CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/touchspin/jquery.bootstrap-touchspin.min.css">
+    <!-- datapicker CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/datapicker/datepicker3.css">
+    <!-- forms CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/form/themesaller-forms.css">
+    <!-- modals CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/modals.css">
+    <!-- style CSS forms CSS  ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/form/all-type-forms.css">
+    <!-- colorpicker CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/colorpicker/colorpicker.css">
+    <link rel="stylesheet" href="~/Content/css/select2/select2.min.css">
+    <!-- chosen CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/chosen/bootstrap-chosen.css">
+    <!-- select2 CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/select2/select2.min.css">
+
+    <!-- ionRangeSlider CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/ionRangeSlider/ion.rangeSlider.css">
+    <link rel="stylesheet" href="~/Content/css/ionRangeSlider/ion.rangeSlider.skinFlat.css">
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/data-table/bootstrap-table.css">
+    <link rel="stylesheet" href="~/Content/css/data-table/bootstrap-editable.css">
+    <!-- style CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/style.css">
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" href="~/Content/css/responsive.css">
+    <!-- modernizr JS
+    ============================================ -->
+    <script src="~/Content/js/vendor/modernizr-2.8.3.min.js"></script>
+
+    <style>
+        .header--row:not(.header--transparent).header-top .header--row-inner {
+            background-color: #e31e24;
+        }
+
+        element.style {
+        }
+
+        .header--row:not(.header--transparent).header-top .header--row-inner {
+            background-color: #e31e24;
+        }
+
+        .header-top .header--row-inner, .button, button, input[type="button"], input[type="reset"], input[type="submit"], .pagination .nav-links > *:hover, .pagination .nav-links span, .nav-menu-desktop.style-full-height .primary-menu-ul > li.current-menu-item > a, .nav-menu-desktop.style-full-height .primary-menu-ul > li.current-menu-ancestor > a, .nav-menu-desktop.style-full-height .primary-menu-ul > li > a:hover, .posts-layout .readmore-button:hover {
+            background-color: #05046c;
+        }
+
+        .header-top .dark-mode {
+            background: #235787;
+        }
+
+        .header--row .dark-mode {
+            color: rgba(255,255,255,.99);
+            background: rgba(0,0,0,.9);
+        }
+    </style>
+    <style>
+        label {
+            padding: 10px;
+        }
+
+        .starvalid {
+            color: red;
+        }
+    </style>
+    <script>
+
+    </script>
+
+    <script src="~/JS/Commonjs.js"></script>
+    <link href="~/Content/css/preloader/preloader-style.css" rel="stylesheet" />
+    <style>
+                /*!
+        // 3. Loader
+        // --------------------------------------------------*/
+                .loader {
+                    top: 0;
+                    left: 0;
+                    position: fixed;
+                    opacity: 0.8;
+                    z-index: 10000000;
+                    background: Black;
+                    height: 100%;
+                    width: 100%;
+                    margin: auto;
+                }
+
+                .strip-holder {
+                    top: 50%;
+                    -webkit-transform: translateY(-50%);
+                    -ms-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    left: 50%;
+                    margin-left: -50px;
+                    position: relative;
+                }
+
+                .strip-1,
+                .strip-2,
+                .strip-3 {
+                    width: 20px;
+                    height: 20px;
+                    background: #0072bc;
+                    position: relative;
+                    -webkit-animation: stripMove 2s ease infinite alternate;
+                    animation: stripMove 2s ease infinite alternate;
+                    -moz-animation: stripMove 2s ease infinite alternate;
+                }
+
+                .strip-2 {
+                    -webkit-animation-duration: 2.1s;
+                    animation-duration: 2.1s;
+                    background-color: #23a8ff;
+                }
+
+                .strip-3 {
+                    -webkit-animation-duration: 2.2s;
+                    animation-duration: 2.2s;
+                    background-color: #89d1ff;
+                }
+
+                @@-webkit-keyframes stripMove {
+                    0% {
+                        transform: translate3d(0px, 0px, 0px);
+                        -webkit-transform: translate3d(0px, 0px, 0px);
+                        -moz-transform: translate3d(0px, 0px, 0px);
+                    }
+
+                    50% {
+                        transform: translate3d(0px, 0px, 0px);
+                        -webkit-transform: translate3d(0px, 0px, 0px);
+                        -moz-transform: translate3d(0px, 0px, 0px);
+                        transform: scale(4, 1);
+                        -webkit-transform: scale(4, 1);
+                        -moz-transform: scale(4, 1);
+                    }
+
+                    100% {
+                        transform: translate3d(-50px, 0px, 0px);
+                        -webkit-transform: translate3d(-50px, 0px, 0px);
+                        -moz-transform: translate3d(-50px, 0px, 0px);
+                    }
+                }
+
+                @@-moz-keyframes stripMove {
+                    0% {
+                        transform: translate3d(-50px, 0px, 0px);
+                        -webkit-transform: translate3d(-50px, 0px, 0px);
+                        -moz-transform: translate3d(-50px, 0px, 0px);
+                    }
+
+                    50% {
+                        transform: translate3d(0px, 0px, 0px);
+                        -webkit-transform: translate3d(0px, 0px, 0px);
+                        -moz-transform: translate3d(0px, 0px, 0px);
+                        transform: scale(4, 1);
+                        -webkit-transform: scale(4, 1);
+                        -moz-transform: scale(4, 1);
+                    }
+
+                    100% {
+                        transform: translate3d(50px, 0px, 0px);
+                        -webkit-transform: translate3d(50px, 0px, 0px);
+                        -moz-transform: translate3d(50px, 0px, 0px);
+                    }
+                }
+
+                @@keyframes stripMove {
+                    0% {
+                        transform: translate3d(-50px, 0px, 0px);
+                        -webkit-transform: translate3d(-50px, 0px, 0px);
+                        -moz-transform: translate3d(-50px, 0px, 0px);
+                    }
+
+                    50% {
+                        transform: translate3d(0px, 0px, 0px);
+                        -webkit-transform: translate3d(0px, 0px, 0px);
+                        -moz-transform: translate3d(0px, 0px, 0px);
+                        transform: scale(4, 1);
+                        -webkit-transform: scale(4, 1);
+                        -moz-transform: scale(4, 1);
+                    }
+
+                    100% {
+                        transform: translate3d(50px, 0px, 0px);
+                        -webkit-transform: translate3d(50px, 0px, 0px);
+                        -moz-transform: translate3d(50px, 0px, 0px);
+                    }
+                }
+    </style>
+    <style>
+        .preloader-single {
+            height: 100% !important;
+        }
+    </style>
+
+
+    <style type="text/css">
+        @@font-face {
+            font-family: kruti dev;
+            src: url( '../../scripts/k010.TTF' ) format("truetype");
+        }
+
+        .hinditext {
+            font-family: kruti dev;
+            font-size: 21px;
+        }
+    </style>
+    <script type="text/javascript" src="HTTPS://www.google.com/jsapi"></script>
+
+    <script type="text/javascript" src="//google.com/jsapi"></script>
+    <script type="text/javascript" src="https://www.google.com/inputtools/"></script>
+
+    <script type="text/javascript">
+google.load("elements", "1", { packages: "transliteration" });
+    </script>
+
+    <script>
+function OnLoad() {
+
+    var options = {
+        sourceLanguage:
+            google.elements.transliteration.LanguageCode.ENGLISH,
+        destinationLanguage:
+            [google.elements.transliteration.LanguageCode.HINDI],
+        shortcutKey: 'ctrl+g',
+        transliterationEnabled: true
+    };
+
+    var control = new
+        google.elements.transliteration.TransliterationControl(options);
+    //control.makeTransliteratable(["firstnameHindi"]);
+    //control.makeTransliteratable(["middlenameHindi"]);
+    //control.makeTransliteratable(["lastnameHindi"]);
+    //control.makeTransliteratable(["fathernameHindi"]);
+    //control.makeTransliteratable(["mothernameHindi"]);
+
+} //end onLoad function
+
+google.setOnLoadCallback(OnLoad);
+
+    </script>
+
+    <script type="text/javascript" src="HTTPS://www.google.com/jsapi"></script>
+
+</head>
+
+<body>
+    <div class="top-heading">
+        <div class="container" data-item-id="html" data-section="header_html" style="transition-delay: 0.2s;">
+            <p><b><a href="https://www.DemoUniversity.ac.in/" style="color:white"><i class="fa fa-home"></i> Home</a> </b>&nbsp;&nbsp;&nbsp;<b>Address:
+                      </b>Science Block,Mazer College, Demo Campus, Demo – 121212 (Himachal) India</p>
+        </div>
+    </div>
+    <div class="header-col">
+        <div class="" data-item-id="html" data-section="header_html" style="transition-delay: 0.2s;">
+            <div class="">
+                <a href="https://www.DemoUniversity.ac.in/" class="logo-link" rel="home" itemprop="url" style="text-align:center">
+                    <center>  <img class="site-img-logo" src="~/Content/WEB/mu-logo-white.png" alt="Logo"> </center>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="all-content-wrapper" style="margin-left:0px !important">
+        <!-- Advanced Form Start -->
+        @if(ViewBag.check_admissionopen == true){
+        @*@if (1 == 1)
+        {*@
+            <div class="advanced-form-area mg-b-15 ">
+                <div class="container-fluid col-md-10 col-md-offset-1 col-sm-12" style="display:block" id="Instructionview">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="container sparkline10-list OnlineApplicationform-part" style="text-align: left;">
+                                <div class="sparkline10-hd">
+                                    <div class="main-sparkline10-hd">
+                                        <h1></h1>
+                                    </div>
+                                </div>
+                                <div class="sparkline10-graph">
+                                    <div class="input-knob-dial-wrap">
+                                        <div>
+                                            <div class="form-group-inner">
+                                                <div class="row login-btn-inner" style="margin:15px 0 !important">
+                                                    <div class="">
+                                                        <div class="OnlineApplicationform">
+
+
+
+                                                            @*<div class="new-btn-part">
+                                                                    <a href="#" class="NewUserBtn">New User Registration</a>
+                                                                    <a href="#" class="NewUserBtn ExistingBtn">Existing Login</a>
+                                                                </div>*@
+
+                                                            <h1>Important Dates:</h1>
+
+
+                                                            <ul class="normal-content">
+                                                                <li><i><img src="~/Img/check-icon.png"></i> Online Registration form for B.Ed. submission starts on 22th November 2019<img src="~/Content/img/new6.gif" /></li>
+                                                                <li><i><img src="~/Img/check-icon.png"></i> Last date for Online Submission is 09 th December 2019<img src="~/Content/img/new6.gif" /></li>
+                                                                <li><i><img src="~/Img/check-icon.png"></i>  If the candidate belongs to <b> General Economical Weaker Section</b> then its edit your basic details form and choose  If you are (General Economical Weaker Section/(यदि आप सामान्य आर्थिक कमजोर वर्ग हैं)? <b>(YES) <img src="~/Content/img/new6.gif" /></b></li>
+                                                                @*<li><i><img src="~/Img/check-icon.png"></i> New user can direclty apply through website and Existing can change/edit the information from Student login Panel if they want to changes/modification or something wrong in registration.<img src="~/Content/img/new6.gif" /></li>*@
+
+
+                                                            </ul>
+                                                            <h1>Notice & Announcements</h1>
+
+
+
+
+                                                            <ul class="normal-content">
+                                                                <li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/PGADMISSIONGUIDE.pdf" target="_blank">New Press Release date for Admission Guide<img src="~/Content/img/new6.gif" /></a></li>
+
+                                                                @*<li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/New Doc 2019-06-17 16.22.11_2.pdf" target="_blank">New Press Release date for Admission<img src="~/Content/img/new6.gif" /></a></li>*@
+                                                                @*<li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/Admission Notice.pdf" target="_blank">Press Release date for Admission</a></li>*@
+                                                                @*<li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/Advertisement.pdf" target="_blank">Advertisement</a></li>*@
+                                                                @*<li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/Guidelines- Munger University.pdf" target="_blank">Important Instructions for Submission of online Entrance Exam Form 2019</a></li>
+                                                                <li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/Pre-Instruction of Form.pdf" target="_blank">Procedure of Online Submission for Entrance Exam 2019</a></li>*@
+                                                                @*<li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/Details of Fee.pdf" target="_blank">Fee Details for Entrance Exam 2019</a></li>*@
+
+                                                                @*<li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/Subjectlist.pdf" target="_blank">Honours Subject List</a></li>
+                                                                <li><i><img src="~/Img/check-icon.png"></i><a href="~/UploadedFiles/Matric degree.pdf" target="_blank">Eligibility for Entrance Exam 2019</a></li>
+
+
+                                                                <li><i><img src="/Img/check-icon.png"></i><a href="/UploadedFiles/Seat allocation (Constituent Colleges).pdf" target="_blank">Seat allocation (Constituent Colleges)</a></li>
+
+                                                                <li><i><img src="/Img/check-icon.png"></i><a href="/UploadedFiles/Seat allocation (Affiliated Colleges).pdf" target="_blank">Seat allocation (Affiliated Colleges)</a></li>*@
+
+                                                                <li><i><img src="~/Img/check-icon.png"></i><a href="javascript:void;" style="cursor:default;">Helpdesk EmailID: helpdesk@DemoUniversity.com </a></li>
+                                                            </ul>
+
+
+                                                            <a href="#" class="click-btn" onclick="continuephase();">Click here to Proceed</a>
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                    @*<div class="login-horizental cancel-wp pull-left form-bc-ele col-md-offset-5">
+
+                                                            <div class="payment-adress col-lg-6">
+
+                                                                <center> <button class="btn btn-sm btn-primary login-submit-cs" type="button" onclick="continuephase();">Continue</button></center>
+                                                            </div>
+
+                                                        </div>*@
+                                                </div>
+
+                                            </div>
+                                            @* <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>*@
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid col-md-8 col-md-offset-2 col-sm-12" style="display:none" id="adminissiontype">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0 StudentSpplicationForm" style="text-align: left;">
+                                <div class="sparkline10-hd">
+                                    <div class="main-sparkline10-hd">
+                                        <h1></h1>
+                                    </div>
+                                </div>
+                                <div class="sparkline10-graph">
+                                    <div class="input-knob-dial-wrap">
+                                        <p>
+
+                                        </p>
+                                        <div>
+
+                                            <h3 style="text-align:center">Application Form -@ViewBag.CurrentSession  (Step - 1)</h3>
+
+
+                                            <div class="form-group-inner">
+                                                <div class="row login-btn-inner">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+                                                            <div class="col-lg-7">
+                                                                <div class="form-group">
+                                                                    <label>Admission  Category <span class="starvalid">*</span> :</label>
+                                                                    @Html.DropDownList("AdminissionType", new SelectList(ViewBag.Admissiontype, "CommonId", "title"), new { @class = "form-control", @id = "AdminissionType", @required = "required" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Programme <span class="starvalid">*</span>  :</label>
+                                                                    @Html.DropDownList("Educationtype", new SelectList(ViewBag.Educationtype, "CommonId", "title", ""), new { @class = "form-control", @id = "Educationtype", @required = "required" })
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Select Previous Stream <span class="starvalid">*</span>  :</label>
+                                                                    @Html.DropDownList("iastream", new SelectList(ViewBag.previousqua, "ID", "QualificationType"), "Select Previous Stream", new { @class = "form-control", @id = "iastream", @required = "required" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-5 text-center">
+                                                                <div class="edu-img" style="width:200px;"><img src="~/Img/admission-form.jpg"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+                                            @*<script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>*@
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="sparkline10-graph">
+                                    <div class="input-knob-dial-wrap">
+                                        <div class="all-form-element-inner">
+                                            <div class="form-group-inner">
+                                                <div class="row login-btn-inner">
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="product-payment-inner-st pt-0">
+
+                                                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                                                    <div class="row">
+
+                                                                        <div class="review-content-section">
+                                                                            <form class="dropzone dropzone-custom needsclick add-professors" method="post">
+                                                                                <div id="dropzone1" class="pro-ad">
+
+                                                                                    <div class="row">
+                                                                                        <div>
+
+                                                                                            
+                                                                                            <div class="col-md-6">
+                                                                                                <span class="form-group pt-10 mt-0">
+                                                                                                    <span><label>Date of birth (जन्म की तारीख)&nbsp;<span class="starvalid">*</span></label></span>
+
+                                                                                                    <div class="form-group" id="data_2" style="margin-top:0px">
+                                                                                                        <div class="mg-b-22 input-group date">
+                                                                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                                                            <input type="text" class="form-control" placeholder="dd/mm/yyyy" title="Date of Birth" id="dob" required="required" autocomplete="off" onkeypress="return false;">
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </span>
+                                                                                            </div>
+
+                                                                                            <div class="col-md-6">
+
+                                                                                                <span class="form-group pt-10 mt-0">
+                                                                                                    <span><label>Mobile No. (मोबाइल नंबर)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="mobileno" id="mobileno" type="text" class="form-control" placeholder="Mobile no." title="Mobile no" oninput="OnlyIntvalue(this);" maxlength="10" required="required">
+                                                                                                </span>
+                                                                                            </div>
+
+                                                                                            <div class="col-md-6">
+                                                                                                <span class="form-group pt-10 mt-0">
+                                                                                                    <span><label>Email Id (ईमेल आईडी)&nbsp;<span class="starvalid">*</span></label></span>
+                                                                                                    <input name="email" id="email" type="email" class="form-control" placeholder="Email Address" title="Email Address" required="required" maxlength="50">
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="dec-body checkbox-content">
+                                                                                        <input class="marginR10px ng-pristine ng-valid" type="checkbox" id="checkAgree" name="tnc"> I hereby declare that the information given in this application is true and any false statement detected any time even after my admission is liable for cancellation
+                                                                                        of my candidature without any refund of the deposited fees. I promise to abide by the rules and regulations of the Munger University . <br> <br>
+                                                                                        उम्मीदवार की
+                                                                                        घोषणा: मैं इसके द्वारा घोषणा करता/करती हूं
+                                                                                        कि इस आवेदन में दी गई जानकारी सही है और किसी
+
+                                                                                        भी गलत विवरण का पता लगने के बाद किसी भी समय
+                                                                                        मेरे @*<img src="~/Img/parwesh.png" />*@प्रवेश को शुल्क वापसी के बिना मेरे
+                                                                                        उम्मीदवारी को रद्द करने के लिए विश्वविद्यालय उत्तरदायी
+                                                                                        है। मैं तिलका मांझी भागलपुर विश्वविद्यालय,बिहार
+                                                                                        के नियमों और विनियमों का पालन करने का वचन
+                                                                                        देता/देती हूं।
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-5 col-sm-offset-3">
+                                                                                        <div class="payment-adress col-lg-6">
+                                                                                            <button type="button" class="btn btn-primary waves-effect waves-light" id="privious" onclick="Prevoius()">Previous</button>
+                                                                                            <script>
+
+                                                                                            </script>
+                                                                                        </div>
+                                                                                        <div class="payment-adress col-lg-6">
+                                                                                            <button type="button" class="btn btn-primary waves-effect waves-light" id="btnUpload" onclick="onsave()">Submit</button>
+                                                                                            <script>
+                                                                                            </script>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </form>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Advanced Form Start -->
+
+
+
+                </div>
+                <div class="text-xs-center" id="welcome" style="display:none">
+                    <div class="col-md-6 col-md-offset-3 col-sm-12">
+                        <div class="single-cards-item thankyou-msg-part">
+                            <div class="single-product-text">
+                                <a style="color:green;font-size:35px"><span class="fa fa-check "></span></a>
+                                <h4><a class="cards-hd-dn">Thank You For Registration!</a></h4>
+                                <div class="cards-dtn">
+                                    <strong>Please check your email</strong> for further instructions  how to complete your Next Steps.
+                                    <br /><br />
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <table class="table table-no-bordered thankyou-table">
+
+                                            <tr>
+                                                <td width="50%">
+                                                    Application No
+                                                </td>
+                                                <td>
+                                                    <span id="welnamename"></span>
+                                                    <span id="applicationno"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="50%">
+                                                    Password
+                                                </td>
+                                                <td>
+                                                    <span id="showpassword"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="50%">
+                                                    Mobile No
+                                                </td>
+                                                <td>
+                                                    <span id="welMobileno"></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 col-sm-12">
+                                        <div class="cards-dtn">
+                                            <p><a href="https://www.DemoUniversity.ac.in/">Go to Home Page</a></p>
+                                        </div>
+                                        <div class="cards-dtn">
+                                            <p><a href="/Student/Login">Click here to Login</a></p>
+                                        </div>
+                                        <div class="cards-dtn">
+                                            <p><a href="/BEd/BEdStudentApplicationForm">Again Fill From</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+        }
+        else
+
+        {
+
+
+            <div class="advanced-form-area mg-b-15 ">
+                <div class="container-fluid col-md-10 col-md-offset-1 col-sm-12 " style="display:block" id="">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0" style="text-align: left;">
+
+                                <div class="sparkline10-graph">
+                                    <div class="input-knob-dial-wrap">
+                                        <div>
+                                            <div class="form-group-inner">
+                                                <div class="row login-btn-inner" style="margin:15px !important">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                                        <div class="">
+
+                                                            <center>
+                                                                <a style="color:red;font-size:60px"><span class="fa fa-times "></span></a><br /><br />
+                                                                <h3>B.Ed. Admission for this Session Over Now</h3>
+
+                                                            </center>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+    @*<div id="PrimaryModalhdbgcl" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-footer">
+                        <a data-dismiss="modal" href="#">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+
+    <div class="loader" id="AjaxLoader" style="display:none;">
+        <div class="preloader-single shadow-inner">
+            <div class="ts_preloading_box">
+                <div id="ts-preloader-absolute22">
+                    <div class="tsperloader22" id="first_tsperloader22"></div>
+                    <div class="tsperloader22" id="second_tsperloader22"></div>
+                    <div class="tsperloader22" id="third_tsperloader22"></div>
+                </div>
+            </div>
+        </div>
+        <div class="strip-holder">
+            <div class="strip-1"></div>
+            <div class="strip-2"></div>
+            <div class="strip-3"></div>
+        </div>
+    </div>
+
+    <script>
+
+$(document)
+    .ajaxStart(function () {
+        $('#AjaxLoader').show();
+    })
+    .ajaxStop(function () {
+        $('#AjaxLoader').hide();
+    });
+function showloader() {
+    $('#AjaxLoader').show();
+}
+function hideloader() {
+    $('#AjaxLoader').hide();
+}
+    </script>
+    <script src="~/JS/StudentadminissionformBEd.js?id=@System.Configuration.ConfigurationManager.AppSettings["ScriptFileVersion"].ToString()"></script>
+    <!-- Advanced Form End-->
+    @*<script src="~/JS/Studentadminissionform.js"></script>*@
+    <!-- jquery
+    ============================================ -->
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- bootstrap JS
+    ============================================ -->
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <!-- wow JS
+    ============================================ -->
+    <script src="~/Content/js/wow.min.js"></script>
+    <!-- price-slider JS
+    ============================================ -->
+    <script src="~/Content/js/jquery-price-slider.js"></script>
+    <!-- meanmenu JS
+    ============================================ -->
+    <script src="~/Content/js/jquery.meanmenu.js"></script>
+    <!-- owl.carousel JS
+    ============================================ -->
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <!-- sticky JS
+    ============================================ -->
+    <script src="~/Content/js/jquery.sticky.js"></script>
+    <!-- scrollUp JS
+    ============================================ -->
+    <script src="~/Content/js/jquery.scrollUp.min.js"></script>
+    <!-- mCustomScrollbar JS
+    ============================================ -->
+    <script src="~/Content/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Content/js/scrollbar/mCustomScrollbar-active.js"></script>
+    <!-- metisMenu JS
+    ============================================ -->
+    <script src="~/Content/js/metisMenu/metisMenu.min.js"></script>
+    <script src="~/Content/js/metisMenu/metisMenu-active.js"></script>
+    <!-- pwstrength JS
+    ============================================ -->
+    <script src="~/Content/js/password-meter/pwstrength-bootstrap.min.js"></script>
+    <script src="~/Content/js/password-meter/zxcvbn.js"></script>
+    <script src="~/Content/js/password-meter/password-meter-active.js"></script>
+    <!-- data table JS
+    ============================================ -->
+    <script src="~/Content/js/data-table/bootstrap-table.js"></script>
+    <script src="~/Content/js/data-table/tableExport.js"></script>
+    <script src="~/Content/js/data-table/data-table-active.js"></script>
+    <script src="~/Content/js/data-table/bootstrap-table-editable.js"></script>
+    <script src="~/Content/js/data-table/bootstrap-editable.js"></script>
+    <script src="~/Content/js/data-table/bootstrap-table-resizable.js"></script>
+    <script src="~/Content/js/data-table/colResizable-1.5.source.js"></script>
+    <script src="~/Content/js/data-table/bootstrap-table-export.js"></script>
+    <!-- touchspin JS
+    ============================================ -->
+    <script src="~/Content/js/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="~/Content/js/touchspin/touchspin-active.js"></script>
+    <!-- colorpicker JS
+    ============================================ -->
+    <script src="~/Content/js/colorpicker/jquery.spectrum.min.js"></script>
+    <script src="~/Content/js/colorpicker/color-picker-active.js"></script>
+    <!-- datapicker JS
+    ============================================ -->
+    <script src="~/Content/js/datapicker/bootstrap-datepicker_back10year.js"></script>
+    <script src="~/Content/js/datapicker/datepicker-active.js"></script>
+    <!-- input-mask JS
+    ============================================ -->
+    <script src="~/Content/js/input-mask/jasny-bootstrap.min.js"></script>
+    <!-- chosen JS
+    ============================================ -->
+    <script src="~/Content/js/chosen/chosen.jquery.js"></script>
+    <script src="~/Content/js/chosen/chosen-active.js"></script>
+    <!-- select2 JS ============================================ -->
+    <script src="~/Content/js/select2/select2.full.min.js"></script>
+    <script src="~/Content/js/select2/select2-active.js"></script>
+
+    <!-- ionRangeSlider JS
+
+    ============================================ -->
+    <script src="~/Content/js/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="~/Content/js/ionRangeSlider/ion.rangeSlider.active.js"></script>
+    <!-- rangle-slider JS
+    ============================================ -->
+    <script src="~/Content/js/rangle-slider/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="~/Content/js/rangle-slider/jquery-ui-touch-punch.min.js"></script>
+    <script src="~/Content/js/rangle-slider/rangle-active.js"></script>
+    <!-- knob JS
+    ============================================ -->
+    <script src="~/Content/js/knob/jquery.knob.js"></script>
+    <script src="~/Content/js/knob/knob-active.js"></script>
+    <!-- tab JS
+    ============================================ -->
+    <script src="~/Content/js/tab.js"></script>
+    <!-- plugins JS
+    ============================================ -->
+    <script src="~/Content/js/plugins.js"></script>
+    <!-- main JS
+    ============================================ -->
+    <script src="~/Content/js/main.js"></script>
+    <script>
+        $.fn.regexMask = function (mask) {
+
+            $(this).keypress(function (event) {
+                if (!event.charCode) return true;
+                var part1 = this.value.substring(0, this.selectionStart);
+                var part2 = this.value.substring(this.selectionEnd, this.value.length);
+                if (!mask.test(part1 + String.fromCharCode(event.charCode) + part2))
+                    return false;
+            });
+        };
+
+        //$(document).ready(function () {
+
+        //    var mask = new RegExp('^[A-Za-z0-9@@. ]*$')
+        //    $("input[type='text']").regexMask(mask)
+        //});
+        $("input[type='text']").on('keypress', function (event) {
+            var regex = new RegExp("^[a-zA-Z0-9-,/. ]+$");
+            var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+            if (!regex.test(key)) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $(document).ready(function () {
+            var mask = new RegExp('^[A-Za-z0-9@@. ]*$')
+            $("input[type='email']").regexMask(mask)
+        });
+
+    </script>
+    <!-- tawk chat JS
+    ============================================ -->
+    <script type="text/javascript">
+$(document).ready(function () {
+    $('#Religion').change(function () {
+
+        if ($('#Religion').val() == '28') {
+            $('#ReligonOther').css('display', 'block');
+            $('#lblrgn').css('display', 'block');
+
+        }
+        else {
+            $('#ReligonOther').css('display', 'none');
+            $('#lblrgn').css('display', 'none');
+        }
+    });
+});
+    </script>
+
+</body>
+
+</html>
+
+

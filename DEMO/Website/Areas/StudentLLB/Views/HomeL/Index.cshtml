@@ -1,0 +1,1338 @@
+﻿@model DataLayer.BL_student_formcomplete
+@{
+    ViewBag.Title = "Student Dashboard"; Layout = "~/Areas/StudentLLB/Views/Shared/_LayoutStudentLLB.cshtml";
+}
+<style>
+    .single-product-text {
+        text-align: left !important;
+        min-height: 400px;
+    }
+
+    .header-height {
+        min-height: 10px;
+    }
+
+    .modal-header {
+        padding: 5px;
+        text-align: center;
+    }
+
+    .date-style {
+        font-size: 12px;
+    }
+
+    .single-product-text img {
+        width: 30px !important;
+        height: 30px !important;
+        margin-top: 0px !important;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="single-cards-item" style="text-align:left">
+                <div class="single-product-text dashboard-part">
+                    <div class="massages_mainarea">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="notification-part massages_innerblk">
+                                    <div class="mgs-heading">
+                                        Notification:
+                                    </div>
+                                    <div class="mgs-content">
+                                        <ul>
+                                            @if (ViewBag.sessionid == 39)
+                                            {
+
+
+
+                                                if (ViewBag.IsDocVerify == 1)
+                                                {
+
+
+                                                }
+
+                                                @*if (ViewBag.studentyear == 32)
+            {
+                <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3(L.L.B. Semester - 3)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+            }*@
+
+                                                @*if (ViewBag.IsDocVerify == 1)
+            {
+
+                if (ViewBag.studentyear == 31)
+                {
+                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>15/06/2022 </strong> से <strong> 24/06/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - I)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+                }
+
+                if (ViewBag.studentyear == 33)
+                {
+                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>15/06/2022 </strong> से <strong> 24/06/2022</strong> <strong> L.L.B.कोर्स सेमेस्टर 4(L.L.B. Semester - III)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+                }
+
+                if (ViewBag.studentyear == 35)
+                {
+                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>15/06/2022 </strong> से <strong> 24/06/2022</strong> <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - III)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+
+
+                }
+                if (ViewBag.isback2sem == 1)
+                {
+
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -2)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+
+                }
+
+                if (ViewBag.isbackpart4sem == 1)
+                {
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -4)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -4) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+
+                }
+
+            }*@
+
+                                                // for sessionid =41
+                                                if (Model.isfeesubmitt == true)// check  application fee
+                                                {
+                                                    if (ViewBag.isfeesubmitt == true)// check college admision fee
+                                                    {
+
+
+                                                        @*if (ViewBag.studentyear == 32)
+                    {
+                        <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>14/12/2022 </strong> से <strong> 20/12/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3rd(L.L.B. Semester - 3rd)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+                    }
+
+                    if (ViewBag.studentyear == 34)
+                    {
+                        <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>14/12/2022 </strong> से <strong> 20/12/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3rd(L.L.B. Semester - 3rd)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+                    }*@
+
+                                                        @*if (ViewBag.studentyear == 35)
+                                                        {
+                                                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>14/12/2022 </strong> से <strong> 20/12/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3rd(L.L.B. Semester - 3rd)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+                                                        }
+
+                                                        if (ViewBag.isbackpart5sem == 1)
+                                                        {
+
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>14/12/2022</strong> से <strong>20/12/2022</strong> तक  Exam form (LLB Semeter -1st)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc5 })">Click Here </a></li>
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>14/12/2022</strong> से <strong>20/12/2022</strong>  तक Backlog  Exam form (L.L.B Semeter -1st) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc5 })">Click Here </a></li>
+
+                                                        }*@
+
+                                                        if (ViewBag.studentyear == 35)
+                                                        {
+                                                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - 6)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                        }
+
+
+
+                                                        <!--if (ViewBag.Examfeesubmit == 1)
+                {
+
+                }
+                else
+                {-->
+                                                        @*<li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> Print Your Admit Card of L.L.B. 6-Semester Examination |<a id="PrintReciptenroll" href="@Url.Action("ExaminationAdmitCard", "ExamLLb")">Click Here </a></li>*@
+                                                        <!--<li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> आप <strong>15/06/2022</strong> से <strong>24/06/2022</strong> तक L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - II)  का  Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>
+                }-->
+                                                        @*if (ViewBag.isback2sem == 1)
+                    {
+
+                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -2)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+
+                    }*@
+
+                                                        @*if (ViewBag.isbackpart4sem == 1)
+                    {
+                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -4)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -4) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+
+                    }*@
+
+
+                                                        @*<li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>16/04/2022 </strong> से <strong> 18/04/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - II)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>*@
+
+
+                                                        <!--if (ViewBag.Examfeesubmit == 1)
+                {-->
+                                                        @*<li>1.<img src="~/Content/img/new6.gif"  width="20" style="float:left;height:20px !important"/> आप <strong>10/10/2020</strong> से <strong>15/10/2020</strong> तक L.L.B.कोर्स सेमेस्टर 1(L.L.B. Semester - I)  का  Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>
+                    <li>2.<img src="~/Content/img/new6.gif"  width="20" style="float:left;height:20px !important" /> आप <strong>16/10/2020</strong> से <strong>16/10/2020</strong> तक आप एग्जामिनेशन फीस  <strong>(500 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>*@
+
+                                                        <!--}
+                else
+                {-->
+                                                        @*<li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important"/> आप <strong>10/10/2020</strong> से <strong>15/10/2020</strong> तक L.L.B.कोर्स सेमेस्टर 1(L.L.B. Semester - I) का   Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>
+                    <li>2.<img src="~/Content/img/new6.gif"  width="20" style="float:left;height:20px !important" /> आप <strong>16/10/2020</strong> से <strong>17/10/2020</strong> तक आप एग्जामिनेशन फीस  <strong>(500 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>*@
+                                                        <!--}-->
+                                                        @*<li><strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />   29/11/2021  से  08/12/2021</strong>L.L.B कोर्स पार्ट I (L.L.B Part - I) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamLLB")">यहां क्लिक करें</a></li>*@
+
+                                                        <li>
+                                                            Upload the migration certificate before you get your registration number,(अपना पंजीकरण संख्या प्राप्त से पहले  माइग्रेशन प्रमाणपत्र अपलोड करें  |)<a href="@Url.Action("EnrollmentFeesSubmit", "ExamLLB")">यहां क्लिक करें</a>
+                                                        </li>
+
+                                                        if (ViewBag.enrollnmentno != "")
+                                                        {
+
+                                                            <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentLLB/examLLB/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                                        }
+                                                        <li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong></li>
+                                                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomeL")" style="float:right;">Click Here </a></li>
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /><strong>Fees Receipt  </strong>
+
+                                                            .<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")" style="float:right;color:blue">Click Here </a>
+                                                        </li>
+                                                    }
+                                                    else
+                                                    {
+                                                        if (ViewBag.IsAdmisApplied == true)
+                                                        {
+
+                                                            if (ViewBag.IsDocVerify == 1)
+                                                            {
+
+                                                                if (ViewBag.studentyear == 31)
+                                                                {
+                                                                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - 2)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                                }
+                                                                if (ViewBag.studentyear == 33)
+                                                                {
+                                                                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 4(L.L.B. Semester - 4)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                                }
+                                                                if (ViewBag.studentyear == 35)
+                                                                {
+                                                                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - 6)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                                }
+                                                                <!--if (ViewBag.studentyear == 30)
+                        {
+                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/01/2022 </strong> से <strong> 03/01/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 1(L.L.B. Semester - I)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                        }
+
+                        if (ViewBag.studentyear == 32)
+                        {
+                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/01/2022 </strong> से <strong> 03/01/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3(L.L.B. Semester - III)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                        }
+
+                        if (ViewBag.studentyear == 34)
+                        {
+
+                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Date extend<strong>01/01/2022 </strong> से <strong> 03/01/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 5(L.L.B. Semester - V)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+
+                        }
+
+                        if (ViewBag.isback1sem == 1)
+                        {
+                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>01/01/2022</strong> से <strong>03/01/2022</strong> तक Backlog Exam form (LLB Semeter -1)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>12/02/2021</strong> से <strong>13/02/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>*@
+
+                                                                <!--}
+                        if (ViewBag.isbackpart3sem == 1)
+                        {
+                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>01/01/2022</strong> से <strong>03/01/2022</strong> तक Backlog Exam form (LLB Semeter -3)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>12/02/2021</strong> से <strong>13/02/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>*@
+
+                                                                <!--}
+                        if (ViewBag.isbackpart5sem == 1)
+                        {
+                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>01/01/2022</strong> से <strong>03/01/2022</strong> तक Backlog Exam form (LLB Semeter -3)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc5 })">Click Here </a></li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>12/02/2021</strong> से <strong>13/02/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>*@
+
+                                                                <!--}-->
+                                                                //Spot Admission
+                                                                <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-06-2021 and 29-06-2021 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+
+                        <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (25-06-2021 10AM) से ओपन होगा (Spot Admission will open from (25-06-2021 10AM) | </strong></li>-->
+                                                                @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>25/06/2021   से 27/06/2021  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                        <li>-->
+                                                                @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@
+                                                                <!--</li>
+
+                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+                        <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                        <li>-->
+                                                                @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@<!--</li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>*@
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+                                                                <!--<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  डॉक्यूमेंट वेरीफाई करने और  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+
+                        <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+                                                                <!--<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+
+                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://docs.google.com/viewerng/viewer?url=https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/Admission-Notice.pdf&hl=en">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+
+                            <li>
+                                <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                            </li>*@
+
+                                                                <li>
+
+                                                                    <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Dear Student, Your Document has been verified.
+                                                                </li>
+                                                                if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                                {
+                                                                    <li>
+                                                                        <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Admission fees. @*Last Time of Fees Submisstion is <strong> @ViewBag.addmissionExtenddateValue</strong>*@
+
+                                                                        .<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")" style="float:right;color:blue">Click Here </a>
+                                                                    </li>
+                                                                }
+
+
+                                                            }
+                                                            else if (ViewBag.IsDocVerify == 0)
+                                                            {
+                                                                //Spot Admission
+                                                                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-06-2021 and 29-06-2021   </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+
+                                                                <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (25-06-2021 10AM) से ओपन होगा (Spot Admission will open from (25-06-2021 10AM) | </strong></li>-->
+                                                                @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                                <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>25/06/2021   से 27/06/2021  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                        <li>-->
+                                                                @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@<!--</li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+                                                                <!--<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/PG%20and%20LLB%20vacant%20seat%202020.pdf" target="_blank">Seat Availability</a></li>
+                        <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ।</li>*@
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+
+                                                                <!--<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>-->
+                                                                @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+                                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+
+                                                                <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+                                                                <li>
+                                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong>Note :</strong>
+
+                                                                    After promptly sending Email you can contact on the following Mob. No.
+                                                                    1.	08294967777 (admission in-charge of the college)
+                                                                    2.	09431422586 (Principal)
+                                                                    for any other query.
+                                                                </li>
+                                                                @*<li>
+                                <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                            </li>*@
+
+                                                                <li>
+                                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Dear Student, Document verification of Selected student start from
+                                                                    <strong>  @ViewBag.addmissionStartdateValuedoc  </strong> to <strong>
+                                                                        @ViewBag.addmissionExtenddateValuedoc
+                                                                    </strong>.
+                                                                </li>
+                                                                <li>
+                                                                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" /> @* Pleasevisit your respective college and
+                                verify your document.*@ Last Time of Fees submission is <strong> @ViewBag.addmissionExtenddateValue  </strong><strong> </strong>
+                                        .
+                                        </li>
+
+
+                                    }
+                                    else
+                                    {
+                                        <li><img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong> .</li>
+                                        <li>
+
+                                            <img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />Your documents are Rejected for LLB admission Courses  !!!
+                                            @if (ViewBag.rejectreason != "")
+                                            {
+                                                <div> Due to- @ViewBag.rejectreason Reason on  @ViewBag.IsDocVerifyDate.</div>
+                                            }
+                                        </li>
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    //Spot Admission
+
+                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (25-06-2021 10AM) से ओपन होगा (Spot Admission will open from (25-06-2021 10AM) | </strong></li>-->
+                                        @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>25/06/2021   से 27/06/2021  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/PG%20and%20LLB%20vacant%20seat%202020.pdf" target="_blank">Seat Availability</a></li>
+<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+<li>-->
+                                        @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@<!--</li>-->
+                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+                                        @*<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>*@
+                                        <!--<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+<li>-->
+                                        @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@
+                                        <!--</li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  डॉक्यूमेंट वेरीफाई करने और  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+
+<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>-->
+                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+
+
+
+
+                                        @*<li>1. अपना मूल विवरण भरना अनिवार्य है|(कृपया अपना नाम, पिता का नाम और माता का नाम सही ढंग से हिंदी और अंग्रेजी दोनों में भरें|)<a href="@Url.Action("BasicDetail", "HomeL")">यहां क्लिक करें</a></li>
+    <li>2. अपनी सीएलसी ( College Leaving Certificate ) और जाति प्रमाण पत्र (Caste Certificate) का विवरण अपलोड करना अनिवार्य है|)<a href="@Url.Action("DocumentUpload", "HomeL")">यहां क्लिक करें</a></li>
+    <li>3. अपनी 10 वीं ,12 वीं और यूजी की योग्यता का विवरण अपलोड करना अनिवार्य है।<a href="@Url.Action("PreviousyearQualificationO", "HomeL")">यहां क्लिक करें</a></li>
+    <li>4. कृपया अपने  L.L.B कोर्स  के लिए कॉलेज का चॉइस भरे |<a href="@Url.Action("SelectSubject", "HomeL")">यहां क्लिक करें</a></li>
+    <li>5. फॉर्म भरने के बाद, आपको पंजीकरण शुल्क के रूप में 300 रुपये का भुगतान करना अनिवार्य है |<a href="@Url.Action("FeesSubmit", "HomeL")">यहां क्लिक करें</a></li>*@
+                                        @*<li>6.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> Admission Reopen for session 2019-2022 from <strong>08/01/2020 to 11/01/2020</strong>(प्रवेश सत्र 2019-2022 के लिए खुल गया है |) .</li>*@
+                                    }
+                                }
+                                else if (ViewBag.sessionid == 41)
+                                {
+
+
+
+                                    if (ViewBag.IsDocVerify == 1)
+                                    {
+
+
+                                    }
+
+                                        @*if (ViewBag.studentyear == 32)
+    {
+        <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3(L.L.B. Semester - 3)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+    }*@
+
+                                        @*if (ViewBag.IsDocVerify == 1)
+    {
+
+        if (ViewBag.studentyear == 31)
+        {
+            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>15/06/2022 </strong> से <strong> 24/06/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - I)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+        }
+
+        if (ViewBag.studentyear == 33)
+        {
+            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>15/06/2022 </strong> से <strong> 24/06/2022</strong> <strong> L.L.B.कोर्स सेमेस्टर 4(L.L.B. Semester - III)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+        }
+
+        if (ViewBag.studentyear == 35)
+        {
+            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>15/06/2022 </strong> से <strong> 24/06/2022</strong> <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - III)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+
+
+        }
+        if (ViewBag.isback2sem == 1)
+        {
+
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -2)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+
+        }
+
+        if (ViewBag.isbackpart4sem == 1)
+        {
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -4)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -4) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+
+        }
+
+    }*@
+
+                                        // for sessionid =41
+                                        if (Model.isfeesubmitt == true)// check  application fee
+                                        {
+                                            if (ViewBag.isfeesubmitt == true)// check college admision fee
+                                            {
+
+
+                                                if (ViewBag.studentyear == 31)
+                                                {
+                                                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - 2)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                }
+                                                if (ViewBag.studentyear == 33)
+                                                {
+                                                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 4(L.L.B. Semester - 4)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                }
+                                                if (ViewBag.studentyear == 35)
+                                                {
+                                                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - 6)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                }
+
+
+
+
+                                                @*if (ViewBag.studentyear == 32)
+            {
+                <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>14/12/2022 </strong> से <strong> 20/12/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3rd(L.L.B. Semester - 3rd)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+            }
+
+            if (ViewBag.isback1sem == 1)
+            {
+
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>14/12/2022</strong> से <strong>20/12/2022</strong> तक  Exam form (LLB Semeter -1st)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>14/12/2022</strong> से <strong>20/12/2022</strong>  तक Backlog  Exam form (L.L.B Semeter -1st) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>
+
+            }*@
+
+
+                                                <!--if (ViewBag.Examfeesubmit == 1)
+        {
+
+        }
+        else
+        {-->
+                                                @*<li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> Print Your Admit Card of L.L.B. 6-Semester Examination |<a id="PrintReciptenroll" href="@Url.Action("ExaminationAdmitCard", "ExamLLb")">Click Here </a></li>*@
+                                                <!--<li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> आप <strong>15/06/2022</strong> से <strong>24/06/2022</strong> तक L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - II)  का  Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>
+        }-->
+                                                @*if (ViewBag.isback2sem == 1)
+            {
+
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -2)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+
+            }*@
+
+                                                @*if (ViewBag.isbackpart4sem == 1)
+            {
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -4)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -4) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc4 })">Click Here </a></li>
+
+            }*@
+
+
+                                                @*<li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>16/04/2022 </strong> से <strong> 18/04/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - II)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>*@
+
+
+                                                <!--if (ViewBag.Examfeesubmit == 1)
+        {-->
+                                                @*<li>1.<img src="~/Content/img/new6.gif"  width="20" style="float:left;height:20px !important"/> आप <strong>10/10/2020</strong> से <strong>15/10/2020</strong> तक L.L.B.कोर्स सेमेस्टर 1(L.L.B. Semester - I)  का  Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं  |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>
+            <li>2.<img src="~/Content/img/new6.gif"  width="20" style="float:left;height:20px !important" /> आप <strong>16/10/2020</strong> से <strong>16/10/2020</strong> तक आप एग्जामिनेशन फीस  <strong>(500 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>*@
+
+                                                <!--}
+        else
+        {-->
+                                                @*<li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important"/> आप <strong>10/10/2020</strong> से <strong>15/10/2020</strong> तक L.L.B.कोर्स सेमेस्टर 1(L.L.B. Semester - I) का   Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>
+            <li>2.<img src="~/Content/img/new6.gif"  width="20" style="float:left;height:20px !important" /> आप <strong>16/10/2020</strong> से <strong>17/10/2020</strong> तक आप एग्जामिनेशन फीस  <strong>(500 Rs)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>*@
+                                                <!--}-->
+                                                @*<li><strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />   29/11/2021  से  08/12/2021</strong>L.L.B कोर्स पार्ट I (L.L.B Part - I) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamLLB")">यहां क्लिक करें</a></li>*@
+
+                                                <li>
+                                                    Upload the migration certificate before you get your registration number,(अपना पंजीकरण संख्या प्राप्त से पहले  माइग्रेशन प्रमाणपत्र अपलोड करें  |)<a href="@Url.Action("EnrollmentFeesSubmit", "ExamLLB")">यहां क्लिक करें</a>
+                                                </li>
+
+                                                if (ViewBag.enrollnmentno != "")
+                                                {
+
+                                                    <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentLLB/examLLB/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                                }
+                                                <li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong></li>
+                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomeL")" style="float:right;">Click Here </a></li>
+                                                <li>
+                                                    <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /><strong>Fees Receipt  </strong>
+
+                                                    .<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")" style="float:right;color:blue">Click Here </a>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                if (ViewBag.IsAdmisApplied == true)
+                                                {
+
+                                                    if (ViewBag.IsDocVerify == 1)
+                                                    {
+
+                                                        if (ViewBag.studentyear == 31)
+                                                        {
+                                                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - 2)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                        }
+                                                        if (ViewBag.studentyear == 33)
+                                                        {
+                                                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 4(L.L.B. Semester - 4)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                        }
+                                                        if (ViewBag.studentyear == 35)
+                                                        {
+                                                            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - 6)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                                        }
+
+
+                                                        <!--if (ViewBag.studentyear == 30)
+                {
+                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/01/2022 </strong> से <strong> 03/01/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 1(L.L.B. Semester - I)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                }
+
+                if (ViewBag.studentyear == 32)
+                {
+                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/01/2022 </strong> से <strong> 03/01/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3(L.L.B. Semester - III)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                }
+
+                if (ViewBag.studentyear == 34)
+                {
+
+                    <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Date extend<strong>01/01/2022 </strong> से <strong> 03/01/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 5(L.L.B. Semester - V)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+
+                }
+
+                if (ViewBag.isback1sem == 1)
+                {
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>01/01/2022</strong> से <strong>03/01/2022</strong> तक Backlog Exam form (LLB Semeter -1)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>12/02/2021</strong> से <strong>13/02/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>*@
+
+                                                        <!--}
+                if (ViewBag.isbackpart3sem == 1)
+                {
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>01/01/2022</strong> से <strong>03/01/2022</strong> तक Backlog Exam form (LLB Semeter -3)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>12/02/2021</strong> से <strong>13/02/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>*@
+
+                                                        <!--}
+                if (ViewBag.isbackpart5sem == 1)
+                {
+                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>01/01/2022</strong> से <strong>03/01/2022</strong> तक Backlog Exam form (LLB Semeter -3)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc5 })">Click Here </a></li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>12/02/2021</strong> से <strong>13/02/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>*@
+
+                                                        <!--}-->
+                                                        //Spot Admission
+                                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-06-2021 and 29-06-2021 </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+
+                <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (25-06-2021 10AM) से ओपन होगा (Spot Admission will open from (25-06-2021 10AM) | </strong></li>-->
+                                                        @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>25/06/2021   से 27/06/2021  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                <li>-->
+                                                        @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@
+                                                        <!--</li>
+
+                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+                <li>-->
+                                                        @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@<!--</li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>*@
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+                                                        <!--<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  डॉक्यूमेंट वेरीफाई करने और  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+
+                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+                                                        <!--<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+
+                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://docs.google.com/viewerng/viewer?url=https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/Admission-Notice.pdf&hl=en">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+
+                    <li>
+                        <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                    </li>*@
+
+                                                        <li>
+
+                                                            <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Dear Student, Your Document has been verified.
+                                                        </li>
+                                                        if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                        {
+                                                            <li>
+                                                                <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Admission fees. @*Last Time of Fees Submisstion is <strong> @ViewBag.addmissionExtenddateValue</strong>*@
+
+                                                                .<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")" style="float:right;color:blue">Click Here </a>
+                                                            </li>
+                                                        }
+
+
+                                                    }
+                                                    else if (ViewBag.IsDocVerify == 0)
+                                                    {
+                                                        //Spot Admission
+                                                        <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Date Extend: 28-06-2021 and 29-06-2021   </strong>जिन छात्रों ने मध्यरात्रि 12 बजे तक सीट बुक कर ली है, उनका भुगतान लिंक आज के लिए खुला है</li>
+
+                                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (25-06-2021 10AM) से ओपन होगा (Spot Admission will open from (25-06-2021 10AM) | </strong></li>-->
+                                                        @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>25/06/2021   से 27/06/2021  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                <li>-->
+                                                        @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@<!--</li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+                                                        <!--<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/PG%20and%20LLB%20vacant%20seat%202020.pdf" target="_blank">Seat Availability</a></li>
+                <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ।</li>*@
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+
+                                                        <!--<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>-->
+                                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+                                                        <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+
+                                                        <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong>Note :</strong>
+
+                                                            After promptly sending Email you can contact on the following Mob. No.
+                                                            1.	08294967777 (admission in-charge of the college)
+                                                            2.	09431422586 (Principal)
+                                                            for any other query.
+                                                        </li>
+                                                        @*<li>
+                        <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                    </li>*@
+
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Dear Student, Document verification of Selected student start from
+                                                            <strong>  @ViewBag.addmissionStartdateValuedoc  </strong> to <strong>
+                                                                @ViewBag.addmissionExtenddateValuedoc
+                                                            </strong>.
+                                                        </li>
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" /> @* Pleasevisit your respective college and
+                        verify your document.*@ Last Time of Fees submission is <strong> @ViewBag.addmissionExtenddateValue  </strong><strong> </strong>
+                                        .
+                                        </li>
+
+
+                                    }
+                                    else
+                                    {
+                                        <li><img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong> .</li>
+                                        <li>
+
+                                            <img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />Your documents are Rejected for LLB admission Courses  !!!
+                                            @if (ViewBag.rejectreason != "")
+                                            {
+                                                <div> Due to- @ViewBag.rejectreason Reason on  @ViewBag.IsDocVerifyDate.</div>
+                                            }
+                                        </li>
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    //Spot Admission
+
+                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (25-06-2021 10AM) से ओपन होगा (Spot Admission will open from (25-06-2021 10AM) | </strong></li>-->
+                                        @*<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>*@
+                                        <!--<li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>25/06/2021   से 27/06/2021  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/PG%20and%20LLB%20vacant%20seat%202020.pdf" target="_blank">Seat Availability</a></li>
+<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+
+<li>-->
+                                        @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।*@<!--</li>-->
+                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="https://collegeportal.DemoUniversity.com/uploads/vacent%20Seat%202020.pdf" target="_blank">Seat Availability</a></li>*@
+                                        @*<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>*@
+                                        <!--<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> सीट रिजर्वेशन के लिए Seat Lock बटन पर क्लिक करें।</li>
+<li>-->
+                                        @*<img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं।*@
+                                        <!--</li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  डॉक्यूमेंट वेरीफाई करने और  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+<li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2021/06/notice-777.pdf">Notification for Admission in P.G, Semester-I / L.L.B. Part-I, Semester-I for Session – 2020-23 , Click Here  </a>  </li>
+
+<li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>-->
+                                        @*<li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  15 Dec to 17 Dec 2020 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>*@
+
+
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+
+
+
+
+                                        @*<li>1. अपना मूल विवरण भरना अनिवार्य है|(कृपया अपना नाम, पिता का नाम और माता का नाम सही ढंग से हिंदी और अंग्रेजी दोनों में भरें|)<a href="@Url.Action("BasicDetail", "HomeL")">यहां क्लिक करें</a></li>
+    <li>2. अपनी सीएलसी ( College Leaving Certificate ) और जाति प्रमाण पत्र (Caste Certificate) का विवरण अपलोड करना अनिवार्य है|)<a href="@Url.Action("DocumentUpload", "HomeL")">यहां क्लिक करें</a></li>
+    <li>3. अपनी 10 वीं ,12 वीं और यूजी की योग्यता का विवरण अपलोड करना अनिवार्य है।<a href="@Url.Action("PreviousyearQualificationO", "HomeL")">यहां क्लिक करें</a></li>
+    <li>4. कृपया अपने  L.L.B कोर्स  के लिए कॉलेज का चॉइस भरे |<a href="@Url.Action("SelectSubject", "HomeL")">यहां क्लिक करें</a></li>
+    <li>5. फॉर्म भरने के बाद, आपको पंजीकरण शुल्क के रूप में 300 रुपये का भुगतान करना अनिवार्य है |<a href="@Url.Action("FeesSubmit", "HomeL")">यहां क्लिक करें</a></li>*@
+                                        @*<li>6.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> Admission Reopen for session 2019-2022 from <strong>08/01/2020 to 11/01/2020</strong>(प्रवेश सत्र 2019-2022 के लिए खुल गया है |) .</li>*@
+                                    }
+                                }
+                                else if (ViewBag.sessionid == 42)
+                                {
+
+
+
+                                    if (ViewBag.studentyear == 31)
+                                    {
+                                        <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - 2)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                    }
+                                    if (ViewBag.studentyear == 33)
+                                    {
+                                        <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 4(L.L.B. Semester - 4)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                    }
+                                    if (ViewBag.studentyear == 35)
+                                    {
+                                        <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - 6)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                    }
+
+
+
+                                    if (ViewBag.IsDocVerify == 1)
+                                    {
+
+                                    }
+                                    // for sessionid =41
+                                    if (Model.isfeesubmitt == true)// check  application fee
+                                    {
+                                        if (ViewBag.isfeesubmitt == true)// check college admision fee
+                                        {
+
+
+
+
+                                            @*if (ViewBag.studentyear == 30)
+        {
+            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>14/12/2022 </strong> से <strong> 20/12/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 1(L.L.B. Semester - I)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+        }*@
+
+
+
+                                            @*<li><strong> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />    12/10/2022  से  21/10/2022</strong>L.L.B कोर्स पार्ट I Session (2021-24) (L.L.B Part - I) रजिस्ट्रेशन नंबर पाने के लिए  |<a href="@Url.Action("EnrollmentFeesSubmit", "ExamLLB")">यहां क्लिक करें</a></li>
+
+        <li>
+            Upload the migration certificate before you get your registration number,(अपना पंजीकरण संख्या प्राप्त से पहले  माइग्रेशन प्रमाणपत्र अपलोड करें  |)<a href="@Url.Action("EnrollmentFeesSubmit", "ExamLLB")">यहां क्लिक करें</a>
+        </li>*@
+
+                                            if (ViewBag.enrollnmentno != "")
+                                            {
+
+                                                <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentLLB/examLLB/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                            }
+                                            <li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong></li>
+                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomeL")" style="float:right;">Click Here </a></li>
+                                            <li>
+                                                <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /><strong>Fees Receipt  </strong>
+
+                                                .<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")" style="float:right;color:blue">Click Here </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            if (ViewBag.IsAdmisApplied == true)
+                                            {
+
+                                                if (ViewBag.IsDocVerify == 1)
+                                                {
+                                                    <li>
+                                                        <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Dear Student, Your Document has been verified.
+                                                    </li>
+                                                    if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                    {
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Admission fees. @*Last Time of Fees Submisstion is <strong> @ViewBag.addmissionExtenddateValue</strong>*@
+
+                                                            .<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")" style="float:right;color:blue">Click Here </a>
+                                                        </li>
+                                                    }
+
+
+                                                }
+                                                else if (ViewBag.IsDocVerify == 0)
+                                                {
+                                                    //Spot Admission
+
+                                                    <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (30-06-2022 10AM) से ओपन होगा (Spot Admission will open from (30-06-2022 10AM) | </strong></li>
+                                                    <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>
+                                                    <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>30/06/2022   से 02/07/2022  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।</li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+                                                    <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ।</li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+
+                                                    <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                                    <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  30 june to 02 june 2022 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>
+
+                                                    <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+
+                                                    <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://DemoUniversity.com/images/document/LL.B_._1st_scrutiny_list_2021-24_compressed_.pdf">Notification for Admission in  L.L.B. Part-I, Semester-I for Session – 2021-24 , Click Here  </a>  </li>
+                                                    @*<li>
+                    <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong>Note :</strong>
+
+                    After promptly sending Email you can contact on the following Mob. No.
+                    1.	08294967777 (admission in-charge of the college)
+                    2.	09431422586 (Principal)
+                    for any other query.
+                </li>*@
+                                                    @*<li>
+                    <img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /> <strong> Date Extend Note : <a target="_blank" href="~/UploadedFiles/New Document(23) 15-Jun-2021 13-11-06.pdf"> Click Here  </a>  </strong>
+                </li>*@
+
+                                                    <li>
+                                                        <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Dear Student, Document verification of Selected student start from
+                                                        <strong>  @ViewBag.addmissionStartdateValuedoc  </strong> to <strong>
+                                                            @ViewBag.addmissionExtenddateValuedoc
+                                                        </strong>.
+                                                    </li>
+                                                    <li>
+                                                        <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" /> @* Pleasevisit your respective college and
+                    verify your document.*@ Last Time of Fees submission is <strong> @ViewBag.addmissionExtenddateValue  </strong><strong> </strong>
+                                        .
+                                        </li>
+
+
+                                    }
+                                    else
+                                    {
+                                        <li><img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong> .</li>
+                                        <li>
+
+                                            <img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />Your documents are Rejected for LLB admission Courses  !!!
+                                            @if (ViewBag.rejectreason != "")
+                                            {
+                                                <div> Due to- @ViewBag.rejectreason Reason on  @ViewBag.IsDocVerifyDate.</div>
+                                            }
+                                        </li>
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    //Spot Admission
+
+                                        <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> Spot Admission अड्मिशन (06-06-2022 10AM) से ओपन होगा (Spot Admission will open from (06-06-2022 10AM) | </strong></li>
+                                        <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong>Spot Admission Open may be Started from 24-06-2021  </strong></li>
+                                        <li> <span class="starvalid"></span> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /><strong> <strong>06/06/2021   से 15/06/2021  </strong>तक</strong> स्पॉट एडमिशन खुला रहेगा | </li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />This is inform to all that Student panel has open for Spot Admission in LLB (1st Part) This Session from( सभी को सूचित करता हु कि छात्र पैनल  LLB (प्रथम भाग) में स्पॉट एडमिशन के लिए  खुला है ) <strong></strong></li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन शुल्क(Spot Registration Fees) जमा करने से पहले, यदि किसी छात्र को अपने मूल विवरण, जाति, पिछले वर्ष के अंक और पात्रता को अपडेट करना है, तो भुगतान करने से पहले ऐसा करें।</li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+                                        <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />स्पॉट एडमिशन के लिए  <a href="@Url.Action("NewSubject", "HomeL")">यहां क्लिक करें</a> और कॉलेज और विषय का चयन करें और फिर नेक्स्ट  पर क्लिक करें  (आप सीट केवल एक बार लॉक कर सकते है)।</li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास डॉक्यूमेंट वेरीफाई करने और कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे हैं ,उसके बाद  उनका सीट  फ्री/रिलीज़  कर दिया  जायेगा ।</li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> छात्र के पास  कॉलेज एडमिशन फीस जमा करने के लिए केवल 24 घंटे है ।</li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />छात्र कॉलेज की शेष सीट की जाँच करें। <a href="" target="_blank">Seat Availability</a></li>
+
+                                        <li> <img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />यदि छात्र कॉलेज प्रवेश शुल्क का भुगतान नहीं करता है, तो आप इस सीट के लिए अयोग्य हो जाते हैं और आपकी पंजीकरण फीस वापस नहीं होगी।</li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />After Seat Lock  , you have to come to the dashboard and pay the college fees.if you not pay college fees then your admission will be cancelled (स्पॉट सीट लॉक होने के बाद, आपको डैशबोर्ड पर आना होगा और कॉलेज की फीस का भुगतान करना होगा। यदि आप कॉलेज की फीस का भुगतान नहीं करते हैं तो आपका प्रवेश रद्द कर दिया जाएगा|)</li>
+                                        <li><img src="~/Content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />वो स्टूडेंट जिन्होंने  06 june to 15 june 2022 तक सीट ब्लॉक  करके  पेमेंट नहीं किआ है  , उनका सीट  २ बजे के बाद फ्री/रिलीज़  कर दिया  जायेगा  |</li>
+
+                                        <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+
+                                        <li><img src="~/Content/img/new6.gif" width="30" style="float:left;height:20px !important" /><a target="_blank" href="https://DemoUniversity.com/images/document/LL.B_._1st_scrutiny_list_2021-24_compressed_.pdf">Notification for Admission in  L.L.B. Part-I, Semester-I for Session – 2021-24 , Click Here  </a>  </li>
+
+
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                        <li>1. अपना मूल विवरण भरना अनिवार्य है|(कृपया अपना नाम, पिता का नाम और माता का नाम सही ढंग से हिंदी और अंग्रेजी दोनों में भरें|)<a href="@Url.Action("BasicDetail", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>2. अपनी सीएलसी ( College Leaving Certificate ) और जाति प्रमाण पत्र (Caste Certificate) का विवरण अपलोड करना अनिवार्य है|)<a href="@Url.Action("DocumentUpload", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>3. अपनी 10 वीं ,12 वीं और यूजी की योग्यता का विवरण अपलोड करना अनिवार्य है।<a href="@Url.Action("PreviousyearQualificationO", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>4. कृपया अपने  L.L.B कोर्स  के लिए कॉलेज का चॉइस भरे |<a href="@Url.Action("SelectSubject", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>5. फॉर्म भरने के बाद, आपको पंजीकरण शुल्क के रूप में 300 रुपये का भुगतान करना अनिवार्य है |<a href="@Url.Action("FeesSubmit", "HomeL")">यहां क्लिक करें</a></li>
+                                        @*<li>6.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> Admission Reopen for session 2019-2022 from <strong>08/01/2020 to 11/01/2020</strong>(प्रवेश सत्र 2019-2022 के लिए खुल गया है |) .</li>*@
+
+                                    }
+                                }
+                                else // session id 40
+                                {
+
+
+
+                                    // for sessoionid 40
+                                    if (Model.isfeesubmitt == true)// check  application fee
+                                    {
+                                        if (ViewBag.isfeesubmitt == true)// check college admision fee
+                                        {
+
+
+
+                                            if (ViewBag.studentyear == 31)
+                                            {
+                                                <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 2(L.L.B. Semester - 2)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                            }
+                                            if (ViewBag.studentyear == 33)
+                                            {
+                                                <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>01/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 4(L.L.B. Semester - 4)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                            }
+                                            if (ViewBag.studentyear == 35)
+                                            {
+                                                <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 6(L.L.B. Semester - 6)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+                                                <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+                                            }
+                                            @*if (ViewBag.studentyear == 32)
+        {
+            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>1/02/2023 </strong> से <strong> 11/02/2023</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3(L.L.B. Semester - 3)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>
+        }*@
+
+                                            @*if (ViewBag.studentyear == 34)
+        {
+            <li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>14/12/2022 </strong> से <strong> 20/12/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3rd(L.L.B. Semester - 3rd)</strong>  के लिए कॉलेज एग्जामिनेशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("ExamFeesSubmit", "ExamLLB")">  यहां क्लिक करें</a></li>
+        }
+
+        if (ViewBag.isback1sem == 1)
+        {
+
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>14/12/2022</strong> से <strong>20/12/2022</strong> तक  Exam form (LLB Semeter -1st)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>21/12/2022</strong> से <strong>23/12/2022</strong>  तक Backlog  Exam form (L.L.B Semeter -1st) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>
+
+        }
+
+        if (ViewBag.isbackpart3sem == 1)
+        {
+
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>14/12/2022</strong> से <strong>20/12/2022</strong> तक  Exam form (LLB Semeter -3st)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>
+            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>21/12/2022</strong> से <strong>23/12/2022</strong>  तक Backlog  Exam form (L.L.B Semeter -3rd) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc3 })">Click Here </a></li>
+        }*@
+
+
+                                            <!--if (ViewBag.Examfeesubmit == 1)
+    {
+
+    }
+    else
+    {-->
+                                            @*<li>1.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> Print Your Admit Card of L.L.B. 6-Semester Examination |<a id="PrintReciptenroll" href="@Url.Action("ExaminationAdmitCard", "ExamLLb")">Click Here </a></li>*@
+                                            <!--<li>2.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> आप <strong>15/06/2022</strong> से <strong>24/01/2022</strong> तक L.L.B.कोर्स सेमेस्टर 5(L.L.B. Semester - IV)  का  Exam Fees <strong>(500 Rs)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLb")">Click Here </a></li>
+    }
+
+    if (ViewBag.isback2sem == 1)
+    {
+
+        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>15/06/2022</strong> से <strong>24/06/2021</strong> तक  Exam form (LLB Semeter -2)  के  Exam Fees <strong>(500 Rs.)</strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/06/2022</strong> से <strong>27/06/2021</strong>  तक Backlog  Exam form (L.L.B Semeter -2) एग्जामिनेशन फीस  <strong>(500 Rs.)</strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "ExamLLB", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+
+    }-->
+                                            @*<li> <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>16/04/2022 </strong> से <strong> 18/04/2022</strong>  <strong> L.L.B.कोर्स सेमेस्टर 3(L.L.B. Semester - III)</strong>  के लिए कॉलेज एडमिशन शुल्क जमा कर सकते हैं |<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")"> यहां क्लिक करें</a></li>
+        <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> <strong>Note :</strong> पहले आप कॉलेज से फॉर्म वेरीफाई कराये उसके बाद  एडमिशन शुल्क जमा करें |</li>*@
+
+
+                                            if (ViewBag.enrollnmentno != "")
+                                            {
+
+                                                <li>Download Your Regsitration No Slip<a onclick="showreg();" href="/StudentLLB/examLLB/PrintDownloadenrollmentslipReceipt"> Click Here </a></li>
+                                            }
+                                            @*<li>College -<strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong></li>*@
+                                            <li>@*<img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />*@Print your ID Card <a href="@Url.Action("GenerateIDCard", "HomeL")" style="float:right;">Click Here </a></li>
+
+                                        }
+                                        else
+                                        {
+                                            if (ViewBag.IsAdmisApplied == true)
+                                            {
+                                                if (ViewBag.IsDocVerify == 1)
+                                                {
+
+
+
+
+
+                                                    <li><img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+                                                    <li>
+                                                        <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" /> Dear Student, Your Document has been verified.
+                                                    </li>
+                                                    if (ViewBag.addmissionExtenddate == true && ViewBag.addmissionStartdate == true)
+                                                    {
+                                                        <li>
+                                                            <img src="~/Content/img/new6.gif" width="20" style="float:left;height:20px !important" />Please pay your Admission fees. Last Time of Fees Submisstion is <strong> @ViewBag.addmissionExtenddateValue  </strong>
+
+                                                            .<a href="@Url.Action("AdmissionFeeSubmit", "HomeL")" style="float:right;color:blue">Click Here </a>
+                                                        </li>
+                                                    }
+                                                }
+                                                else if (ViewBag.IsDocVerify == 0)
+                                                {
+
+
+
+                                                    @*<li><img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong>  .</li>
+
+
+                <li>
+                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Dear Student, Document verification of Selected student start from
+                    <strong>  @ViewBag.addmissionStartdateValuedoc  </strong> to <strong>
+                        @ViewBag.addmissionExtenddateValuedoc
+                    </strong>.
+                </li>
+                <li>
+                    <img src="~/Content/img/new6.gif" width="30" style="float:left;;height:20px !important" />Please visit your respective college and
+                    verify your document. Last Time of Fees submission is <strong> @ViewBag.addmissionExtenddateValue  </strong><strong> </strong>
+                    .
+                </li>*@
+
+
+                                                }
+                                                else
+                                                {
+                                                    <li><img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />University wants to inform you that you are being shortlisted for the  <strong>@ViewBag.College</strong>, Course- <strong>@ViewBag.Course</strong> .</li>
+                                                    <li>
+
+                                                        <img src="~/Content/img/new6.gif" style="float:left;height:20px !important" />Your documents are Rejected for LLB admission Courses  !!!
+                                                        @if (ViewBag.rejectreason != "")
+                                                        {
+                                                            <div> Due to- @ViewBag.rejectreason Reason on  @ViewBag.IsDocVerifyDate.</div>
+                                                        }
+                                                    </li>
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+
+
+                                        <li>1. अपना मूल विवरण भरना अनिवार्य है|(कृपया अपना नाम, पिता का नाम और माता का नाम सही ढंग से हिंदी और अंग्रेजी दोनों में भरें|)<a href="@Url.Action("BasicDetail", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>2. अपनी सीएलसी ( College Leaving Certificate ) और जाति प्रमाण पत्र (Caste Certificate) का विवरण अपलोड करना अनिवार्य है|)<a href="@Url.Action("DocumentUpload", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>3. अपनी 10 वीं ,12 वीं और यूजी की योग्यता का विवरण अपलोड करना अनिवार्य है।<a href="@Url.Action("PreviousyearQualificationO", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>4. कृपया अपने  L.L.B कोर्स  के लिए कॉलेज का चॉइस भरे |<a href="@Url.Action("SelectSubject", "HomeL")">यहां क्लिक करें</a></li>
+                                        <li>5. फॉर्म भरने के बाद, आपको पंजीकरण शुल्क के रूप में 300 रुपये का भुगतान करना अनिवार्य है |<a href="@Url.Action("FeesSubmit", "HomeL")">यहां क्लिक करें</a></li>
+                                        @*<li>6.<img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> Admission Reopen for session 2019-2022 from <strong>08/01/2020 to 11/01/2020</strong>(प्रवेश सत्र 2019-2022 के लिए खुल गया है |) .</li>*@
+                                    }
+                                }
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div> <!--Col-->
+
+                        </div>
+                    </div>
+
+
+
+                    <h4><a class="" href="#">Instructions for Application Submission</a></h4>
+                    <span class="counter">
+                        Following are the stages for Application Submission  in the following order
+                    </span>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="cards-dtn">
+                                <h6></h6>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentLLB/HomeL/BasicDetail">
+                                    @if (Model.is_basic_complete == true)
+                                    {<div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon1"><i class="fa fa-info"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Basic Details</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6" style="">
+                            <div class="box-col">
+                                <a href="/StudentLLB/HomeL/DocumentUpload">
+                                    @if (Model.isdoccomplete == true)
+                                    {<div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon2"><i class="fa fa-upload"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Upload Documents @if (Model.isdoccomplete == true) { }</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentLLB/HomeL/PreviousyearQualificationO">
+                                    @if (Model.isqua_complete == true)
+                                    {<div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon3"><i class="fa fa-graduation-cap"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Upload Qualification @if (Model.isqua_complete == true) { }</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentLLB/HomeL/SelectSubject">
+                                    @if (Model.ischoice_complete == true)
+                                    {
+                                        <div class="check-icon"><i class="fa fa-check"></i></div>}
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon4"><i class="fa fa-book"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Choose Subject</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="box-col">
+                                <a href="/StudentLLB/HomeL/FeesSubmit">
+
+                                    @if (Model.isfeesubmitt == true)
+                                    {
+                                        <div class="check-icon">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+
+                                    }
+
+                                    <div class="row">
+                                        <div class="col-xs-3 text-left">
+                                            <div class="box-icon icon5"><i class="fa fa-money"></i></div>
+                                        </div>
+                                        <div class="col-xs-9 text-right"><span class="text-head">Payment of Fee</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    @*var photurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+ViewBag.stphoto)";
+    var signurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/" + ViewBag.stsign)";
+    var logo11 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/mu-logo-white.png")";
+    var registrar1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/registrarsign.jpg")";
+    $(function () {
+        rencodeImage(photurl1);
+        rencodeImage1(signurl1);
+        rencodeImage2(logo11);
+        //rencodeImage3(logo11);
+        rencodeImage4(registrar1);
+    });*@
+
+</script>
+<script type="text/javascript">
+                                    //function rencodeImage(src, callback) {
+                                    //    var canvas = document.createElement('canvas'),
+                                    //        ctx = canvas.getContext('2d'),
+                                    //        img = document.getElementById("userImage1");
+                                    //    img.onload = function () {
+                                    //        canvas.width = 160;
+                                    //        canvas.height = 150;
+                                    //        ctx.drawImage(img, 0, 0, 160, 150);
+                                    //        callback(canvas.toDataURL());
+                                    //    }
+                                    //    img.src = src;
+                                    //}
+                                    //function rencodeImage1(src, callback) {
+                                    //    var canvas = document.createElement('canvas'),
+                                    //        ctx = canvas.getContext('2d'),
+                                    //        img = document.getElementById("userSign1");
+                                    //    img.onload = function () {
+                                    //        canvas.width = 140;
+                                    //        canvas.height = 100;
+                                    //        ctx.drawImage(img, 0, 0, 140, 100);
+                                    //        callback(canvas.toDataURL());
+                                    //    }
+                                    //    img.src = src;
+                                    //}
+                                    //function rencodeImage2(src, callback) {
+                                    //    var canvas = document.createElement('canvas'),
+                                    //        ctx = canvas.getContext('2d'),
+                                    //        img = document.getElementById("logo11");
+                                    //    img.onload = function () {
+                                    //        canvas.width = 140;
+                                    //        canvas.height = 100;
+                                    //        ctx.drawImage(img, 0, 0, 140, 100);
+                                    //        callback(canvas.toDataURL());
+                                    //    }
+                                    //    img.src = src;
+                                    //}
+
+                                    //function rencodeImage4(src, callback) {
+
+                                    //    var canvas = document.createElement('canvas'),
+                                    //        ctx = canvas.getContext('2d'),
+                                    //        img = document.getElementById("registratrara11");
+                                    //    img.onload = function () {
+                                    //        canvas.width = 140;
+                                    //        canvas.height = 100;
+                                    //        ctx.drawImage(img, 0, 0, 140, 100);
+                                    //        callback(canvas.toDataURL());
+                                    //    }
+                                    //    img.src = src;
+                                    //}
+
+                                    //$(document).on('click', '#PrintReciptenroll', function () {
+                                    //    //debugger;
+                                    //    return;
+                                    //    ExportToPDFApplicationformfeesrec($('#divtoPrint'), [], '', PDFPageType.Portrait, 'RegistrationNoSlip');
+                                    //});
+                                    //function ExportToPDFApplicationformfeesrec(DivName, TableColumnHide, ReportHeading, PageType, Applicationform) {
+                                    //    // debugger;
+                                    //    /// <summary>Function to convert HTML to PDF.</summary>
+                                    //    /// <param name="DivName">Name of the Div  with selector which contains all the html to print.</param>
+                                    //    /// <param name="TableColumnHide" type="array">Pass array of columns to be hidden like [2,5,6] in a Table.</param>
+                                    //    /// <param name="ReportHeading">Heading of the Report</param>
+                                    //    /// <param name="PageType">Provide page type from enum PDFPageType </param>
+                                    //    /// <returns>PDF File</returns>
+                                    //    var PDFtable = DivName.find('table');
+                                    //    if (TableColumnHide) {
+                                    //        $.each(TableColumnHide, function (index, value) {
+                                    //            PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').hide();  //hiding the columns of the table inside Div
+                                    //        });
+                                    //    }
+                                    //    PDFtable.attr('border', '0');//applied 1 to table attribute border so we can get border in the Table
+                                    //    var printContents = '<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><div style="font-size: 25px;" ><center>' + ReportHeading + '</center></div><br />' + DivName.html() + '</body></html>';
+
+                                    //    $('body').prepend("<form method='post' action='/StudentLLB/HomeL/EnrollSlipdownload' id='tempForm2'><input type='hidden' name='data1' value='" + printContents + "' ><input type='hidden' name='dataname1' value='" + Applicationform + "' ><input type='hidden' name='PageType1' value='" + PageType + "' ></form>");
+                                    //    $('#tempForm2').submit();
+                                    //    $("tempForm2").remove();
+                                    //    if (TableColumnHide) {
+                                    //        $.each(TableColumnHide, function (index, value) {
+                                    //            PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').show(); // //Again Showing the columns of the table inside Div
+                                    //        });
+                                    //    }
+                                    //}
+                                    ///// <summary>Enum for Page Type</summary>
+                                    //var PDFPageType = {
+                                    //    Default: 'Default',
+                                    //    Portrait: 'Portrait',
+                                    //    Landscape: 'Landscape'
+                                    //}
+</script>

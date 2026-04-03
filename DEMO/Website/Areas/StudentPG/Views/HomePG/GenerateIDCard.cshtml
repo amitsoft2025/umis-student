@@ -1,0 +1,261 @@
+﻿@model DataLayer.EnrollmentRequest
+@{
+    ViewBag.Title = "GenerateIDCard";
+    Layout = "~/Areas/StudentPG/Views/Shared/_LayoutStudentPG.cshtml";
+}
+
+<style>
+    .minheight {
+        min-height: 600px;
+    }
+
+    .minheight1 {
+        min-height: 500px;
+    }
+
+    .right {
+        text-align: right;
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .paddingbottom {
+        padding-bottom: 20px;
+        padding-top: 40px;
+    }
+
+    .spacedesign {
+        padding-bottom: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .imgstyle {
+        width: 180px;
+        height: 40px;
+    }
+</style>
+<script>
+
+    $(function () {
+        $("#btnPrint").click(function () {
+            var contents = $("#dvContents").html();
+            console.log(contents);
+            var frame1 = $('<iframe />');
+            frame1[0].name = "frame1";
+            frame1.css({ "position": "absolute", "top": "-1000000px" });
+            $("body").append(frame1);
+            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+            frameDoc.document.open();
+            //Create a new HTML document.
+           // console.log(contents);
+            frameDoc.document.write('<html><head><title>.</title>');
+
+            frameDoc.document.write('</head><body>');
+            //Append the external CSS file.
+            frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+            //Append the DIV contents.
+            frameDoc.document.write(contents);
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                frame1.remove();
+            }, 500);
+        });
+    });
+</script>
+<div class="container-fluid ">
+    <div class="row">
+        <div class="container-fluid">
+            <h3 class="text-center">ID Card </h3>
+        </div>
+        
+    <div class=" minheight ">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-sm-12 col-xs-12  ">
+                <div class=" right paddingbottom">
+                    <a href="#" id="btnPrint" class="btn btn-primary waves-effect waves-light" onclick="return printdiv();">
+                        Print
+                    </a>
+                </div>
+            </div>
+                @if (Model != null)
+                {
+                    <div class=" sparkline8-list minheight1" id="dvContents">
+                        <div style="width:1030px; margin:auto; font-family:Arial, Helvetica, sans-serif;  padding:10px; margin-top:40px;border:0px solid #eee; font-size:12px; clear:both;">
+                            <div style="float:left; width:470px; padding:10px; margin:0 10px; border:1px solid #ccc; height: 260px; background-image:url(/images/idcard-bg.jpg); background-size:cover;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                        <tr>
+                                            <td width="100%" valign="top">
+                                                <table width="98%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <div style="text-align:center; font-size:12px;">
+                                                                    <div style="text-align: center;font-weight: bold; font-size:15px; line-height:10px; "><img src="~/images/logotree.png" style="width:65px; vertical-align: middle; "> &nbsp; @Model.collegeName </div>
+                                                                    <p style="margin-bottom:0; margin-top:10px;padding:0px">
+
+                                                                        @if (Model.is_affiliated == 0)
+                                                                        {
+                                                                        <p style="margin-bottom:0; margin-top:10px;padding:0px">(A Constitutent  Unit of Munger University Address.)</p> }
+                                                                        else
+                                                                        { <p style="margin-bottom:0; margin-top:10px;padding:0px">(An Affiliated Unit of Munger University Address.)</p>  }
+
+                                                                        <p style="padding:0px;margin:0px;margin-bottom:5px"><strong>Session:@Model.sessionname</strong></p>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td width="116" valign="top">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="100" valign="top" style="border:3px solid #333;">
+                                                                                    <img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.photo" width="100" onerror="this.src='../../images/noimage.png';" width="100" onerror="this.src='../../images/noimage.png';">
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td width="431" valign="top">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="21" style="padding:3px;">&nbsp;</td>
+                                                                                <td width="141" style="padding:3px 3px 3px 0;vertical-align:top"><strong>Name</strong></td>
+                                                                                <td width="14" style="padding:3px;">:</td>
+                                                                                <td width="218" style="padding:3px">
+                                                                                    @Model.Name
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="21" style="padding:0px;">&nbsp;</td>
+                                                                            <td style="padding:3px 3px 3px 0"><strong>Roll No</strong></td>
+                                                                            <td style="padding:3px;">:</td>
+                                                                            <td style="padding:3px">@Model.RollNo</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="padding:3px;">&nbsp;</td>
+                                                                            <td style="padding:3px 3px 3px 0;vertical-align:top"><strong> @(Model.Ftitle == 20 ? " Father's  Name" : (Model.Ftitle == 21 ? "  Husband's  Name" : " Father's Name") )</strong></td>
+                                                                            <td style="padding:3px;">:</td>
+                                                                            <td style="padding:3px">@Model.FatherName </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td style="padding:3px;">&nbsp;</td>
+                                                                            <td style="padding:3px 3px 3px 0;vertical-align:top"><strong>Mother’s Name</strong></td>
+                                                                            <td style="padding:3px;">:</td>
+                                                                            <td style="padding:3px">
+                                                                                @Model.MotherName
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding:3px;">&nbsp;</td>
+                                                                        <td style="padding:3px 3px 3px 0"><strong>Blood Group</strong></td>
+                                                                        <td style="padding:3px;">:</td>
+                                                                        <td style="padding:3px">@Model.bloodgroup</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding:3px;">&nbsp;</td>
+                                                                        <td style="padding:3px 3px 3px 0"><strong>Date of Birth</strong></td>
+                                                                        <td style="padding:3px;">:</td>
+                                                                        <td style="padding:3px">@Model.DOB</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <div style="float:left; width:470px; padding:10px; margin:0 10px; border:1px solid #ccc; height: 260px; background-image:url(/images/idcard-bg.jpg); background-size:cover;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td width="100%" valign="top">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="600" valign="top">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td style="padding:5px 5px 5px 0" width="40%"><strong>Date of Admission</strong></td>
+                                                                        <td style="padding:5px;" width="5%">:</td>
+                                                                        <td style="padding:5px" width="55%">@Model.EnrollmentGrantDate</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding:5px 5px 5px 0" width="40%"><strong>Course Name</strong></td>
+                                                                        <td style="padding:5px;" width="5%">:</td>
+                                                                        <td style="padding:5px" width="55%">
+                                                                            <span>@Model.CourseApplied</span>(@Model.streamCategory)
+
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="padding:5px 5px 5px 0" width="40%"><strong>Mob.</strong></td>
+                                                                        <td style="padding:5px;" width="5%">:</td>
+                                                                        <td style="padding:5px;" width="55%">@Model.Mobile</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding:5px 5px 5px 0" width="40%"><strong>Email</strong></td>
+                                                                        <td style="padding:5px;" width="5%">:</td>
+                                                                        <td style="padding:5px;" width="55%">@Model.Email</td>
+                                                                    </tr>
+                                                                    <tr style="min-height:100px !important">
+                                                                        <td style="padding:5px 5px 5px 0" width="40%" valign="top"><strong>Address</strong></td>
+                                                                        <td style="padding:5px;" width="5%" valign="top">:</td>
+                                                                        <td style="padding:5px" width="55%" valign="top">
+                                                                            <div style="min-height:70px">
+                                                                                @Model.Address
+
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td width="40" valign="top">
+                                                                            <img src="http://collegeportal.DemoUniversity.com/images/PrincipalSignature/@(Model.CollegeCode+".jpg")" class="imgstyle" width="180" height="40" onerror="this.src = '../../../images/white_img.png';">
+                                                                        </td>
+                                                                        <td style="padding:5px;">&nbsp;</td>
+                                                                        <td width="40" align="right" valign="top">
+                                                                            <img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.stsign" class="imgstyle" width="180" height="40" onerror="this.src = '../../images/white_img.png';">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="padding:5px 5px 5px 0">Principal’s  Signature </td>
+                                                                        <td style="padding:5px;">&nbsp;</td>
+                                                                        <td style="padding:5px" align="right">Student’s Signature</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+
+                    
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

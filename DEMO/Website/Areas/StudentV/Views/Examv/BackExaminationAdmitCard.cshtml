@@ -1,0 +1,305 @@
+﻿@model DataLayer.ExamForm
+@using DataLayer;
+@{
+    ViewBag.Title = "BackExaminationAdmitCard";
+    Layout = "~/Areas/StudentV/Views/Shared/_LayoutStudent.cshtml";
+
+}
+
+
+<style>
+
+</style>
+
+<script>
+</script>
+<div class="container-fluid">
+    <div class="sparkline12-list ">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 ">
+                <div class="sparkline12-hd">
+                    <div class="tab-content-details shadow-reset">
+                        <div class="row spacedesign">
+                            @if (Model != null)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:right; padding-bottom:20px;">
+                                        <a href="#" id="btnPrint" onclick="return printdiv();" class="btn btn-primary waves-effect waves-light">
+                                            <i class="fa fa-print" aria-hidden="true"></i>
+                                            Print
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="spacedesign">
+                                    <div style="width:100%; margin:auto; padding:0; font-size:14px; color:#333; font-family:Arial, Helvetica, sans-serif;padding:20px" id="printreport">
+
+
+                                        <div style="width:800px; margin:auto; padding:10px; border:1px solid #333; font-family:Arial, Helvetica, sans-serif; font-size:14px;">
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td align="left" valign="top">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" valign="top" style="font-family:20px; padding:5px 0;"><img src="@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/mu-logo-white.png")" width="250"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="center" valign="top" style="padding:5px 0;">@Model.CourseCategory , @Model.YearName,  COURSE EXAMINATION </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="center" valign="top" style="padding:5px 0;">
+                                                        Session @Model.SessionName
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="left" valign="top">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="center" valign="top" style="font-size:18px; padding:5px 0;">
+                                                        <strong style="display:inline-block; background-color:#000; color:#FFF; padding:8px 10px; border-radius:3px;">ADMIT CARD</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="left" valign="top">&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td align="left" valign="top" width="80%" style="padding-right:10px;">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td colspan="2" align="left" valign="top">
+                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                    <tr>
+                                                                                        <td align="left" valign="top" style="padding:15px 0 0;" width="127">Registration No.</td>
+                                                                                        <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" width="246">&nbsp;@Model.RegistrationNo</td>
+                                                                                        <td align="left" valign="top" style="padding:15px 0 0;" width="47">&nbsp;Year:</td>
+                                                                                        <td align="left" valign="top" style="padding:15px 0 0;  border-bottom:1px dotted #000;" width="218">&nbsp;@Model.Registrationyear</td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="31%" align="left" valign="top" style="padding:15px 0 0;">Name (Block letter in English)</td>
+                                                                            <td width="69%" align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;">@Model.StudentName.ToUpper()</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="left" valign="top" style="padding:15px 0 0;"> Date of birth</td>
+                                                                            <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;">&nbsp;@Model.DOB</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="left" valign="top" style="padding:15px 0 0;"> Father’s Name</td>
+                                                                            <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;">&nbsp;@Model.FatherName</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td align="left" valign="top" style="padding:15px 0 0;"> Mother's Name</td>
+                                                                            <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;">&nbsp;@Model.MotherName</td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                </td>
+                                                                <td align="right" valign="top" width="20%">
+                                                                    <div style="border:1px solid #333; width:110px; max-height:110px; padding:5px;margin:auto;"><img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.photo" width="110" height="110" style="max-height:100px"> </div>
+                                                                    <div style="border:1px solid #333;width:110px;padding:5px;margin:5px auto;">
+                                                                        <img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.sign" style="max-width:100%;">
+                                                                    </div>
+
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td align="left" valign="top" style="padding:0px 0 10px; font-weight:bold;">&nbsp;</td>
+                                                                <td align="left" valign="top">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="top" style="padding:0px 0 10px; font-weight:bold;">Subjects of Examination : @Model.HonoursSubject</td>
+                                                                <td align="left" valign="top">&nbsp;</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2" align="left" valign="top">
+                                                                    <table style="border-spacing:0;width:100%;">
+                                                                        <thead>
+                                                                        <th colspan="3" style="border:1px solid grey;border-bottom:none;padding:5px;background:#404040;color:#fff;font-size:16px;font-weight:500;">Subject Details</th>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                           
+
+                                                                            @{
+                                                                                if (ViewBag.subjectlist != null)
+                                                                                {
+
+                                                                                    foreach (var item in ViewBag.subjectlist as List<EaxmFeesSubmit>)
+                                                                                    {
+                                                                                        <tr>
+                                                                                            <td style="border-bottom:1px solid grey;border-right:1px solid grey;border-left:1px solid grey;padding:5px;border-top:1px solid grey;"><b>Core Course</b></td>
+                                                                                            <td style="border-bottom:1px solid grey;border-right:1px solid grey;border-left:1px solid grey;padding:5px;border-top:1px solid grey;">@item.SubjectCode - @item.SubjectName</td>
+
+                                                                                        </tr>
+                                                                                    }
+                                                                                   
+                                                                                }
+                                                                            }
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td align="left" valign="top">
+                                                                    &nbsp
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td align="left" valign="top">
+                                                                    &nbsp
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <tr>
+                                                                <td align="left" valign="top" style="padding:15px 0 10px; font-weight:bold;">To be filled by office :</td>
+                                                                <td align="left" valign="top">&nbsp;</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2" align="left" valign="top">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td align="left" valign="bottom" style="padding:10px 0 0;" width="90">Exam Roll No</td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0; border-bottom:1px dotted #000;" width="410">&nbsp;@Model.RollNo</td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;" width="165">is allowed to appear at the</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2" align="left" valign="top">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;" width="150">@Model.CourseCategory  </td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0; border-bottom:1px dotted #000;" width="450">&nbsp;@Model.YearName </td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;" width="50">&nbsp;Exam</td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;  border-bottom:1px dotted #000;" width="450">&nbsp;2019</td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;" width="188">&nbsp;Commencing on</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2" align="left" valign="top">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0; border-bottom:1px dotted #000;" width="150">&nbsp;<strong>30-Nov-2019</strong></td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;" width="10">&nbsp;at</td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;  border-bottom:1px dotted #000;" width="250">&nbsp;<strong>R.D. & D.J. COLLEGE, MUNGER</strong></td>
+                                                                            <td align="left" valign="top" style="padding:10px 0 0;" width="188">&nbsp;center, Munger University,Demo.</td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td align="left" valign="top">
+                                                                    &nbsp
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td align="left" valign="top">
+                                                                    &nbsp
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td align="left" valign="top">
+                                                                    &nbsp
+                                                                </td>
+                                                            </tr>
+
+
+                                                            <tr>
+                                                                <td colspan="3" align="left" valign="bottom" style="padding:15px 0 0;">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td align="center" valign="top" style="padding:5px 0;"><img src="@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/admitcard_LLB_Assitant.png")" width="150"></td>
+                                                                            <td align="center" valign="top" style="padding:5px 0;">@*<img src="@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/admitcard_LLBControllerofExamination.png")" width="150">*@</td>
+                                                                            <td align="center" valign="top" style="padding:5px 0;"><img src="@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/admitcard_LLBControllerofExamination.png")" width="150"></td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="33.33%" align="center" valign="top" style="padding:5px 0;">
+                                                                                Assistant<br>
+                                                                                (Exam. Section)
+                                                                            </td>
+                                                                            <td width="33.33%" align="center" valign="top" style="padding:5px 0;">
+                                                                                @*Controller of Examinations
+                                                                                    <br>Munger University, Demo*@
+                                                                            </td>
+
+                                                                            <td width="33.33%" align="center" valign="top" style="padding:5px 0;">
+                                                                                Controller of Examinations
+                                                                                <br>Munger University, Demo
+                                                                            </td>
+
+                                                                        </tr>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td colspan="2" align="left" valign="top">&nbsp;</td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                                                                }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnPrint").click(function () {
+            var contents = $("#printreport").html();
+            //console.log(contents);
+            var frame1 = $('<iframe />');
+            frame1[0].name = "frame1";
+            frame1.css({ "position": "absolute", "top": "-1000000px" });
+            $("body").append(frame1);
+            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+            frameDoc.document.open();
+            //Create a new HTML document.
+            frameDoc.document.write('<html><head><title>.</title>');
+
+            frameDoc.document.write('</head><body>');
+            //Append the external CSS file.
+            frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+            //Append the DIV contents.
+            frameDoc.document.write(contents);
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                frame1.remove();
+            }, 500);
+        });
+    });
+</script>

@@ -1,0 +1,326 @@
+﻿@model DataLayer.ExamForm
+@{
+    ViewBag.Title = "ExaminationAdmitCard"; Layout = "~/Areas/StudentBEd/Views/Shared/_LayoutStudentBEd.cshtml";
+
+
+<style>
+    .validation {
+        color: tomato;
+    }
+
+    .Minheight {
+        min-height: 450px;
+    }
+
+    .textdesign {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        padding-left: 50px;
+    }
+
+    .labletext {
+        font-weight: normal;
+    }
+
+    .spacedesign {
+        padding-bottom: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .textce {
+        text-align: center;
+    }
+
+    .btnstyle {
+        float: right;
+    }
+
+    .btntext {
+        color: white;
+    }
+</style>
+
+<script>
+    var username = '@DataLayer.ClsLanguage.GetCookies("enUserName")';
+    var password = '@DataLayer.ClsLanguage.GetCookies("enPassword")';
+</script>
+
+<div class="container-fluid">
+    <div class="sparkline12-list ">
+        <div class="row">
+            <div class="col-sm-12 col-xs-12 ">
+
+                <div class="sparkline12-hd">
+                    <div class="tab-content-details shadow-reset">
+                        <div class="row spacedesign">
+
+                            @*<div class="panel panel-default">*@
+
+                            @*<div class="panel-body">*@
+                            @if (Model != null)
+        {
+                            <div class="spacedesign">
+                                <div style="width:100%; margin:auto; padding:0; font-size:14px; color:#333; font-family:Arial, Helvetica, sans-serif; border:1px solid #333; padding:20px" id="printreport">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td colspan="3" align="center" valign="middle"><img src="~/images/mu-logo-white.png" width="300"></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+
+                                            <td width="23%" align="center" valign="middle"> &nbsp;</td>
+                                            <td width="55%" align="center" valign="middle" style="font-size:18px;"><strong>Examination Admit Card</strong></td>
+                                            <td width="22%" align="center" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        @*<tr>
+                                                <td width="23%" align="center" valign="middle"><div style="font-size:15px; padding:10px 5px; border:1px solid #000; width:100px; text-align:center;">Price: Rs 20/-</div></td>
+                                                <td width="55%" align="center" valign="middle" style="font-size:18px;"><strong>EXAMINATION FORM</strong></td>
+                                                <td width="22%" align="center" valign="middle">No:- 22401</td>
+                                            </tr>*@
+                                        <tr>
+                                            <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="center" valign="middle" style="border-top:1px solid #333;">&nbsp;</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3" align="center" valign="middle" style="font-size:16px;"><strong> Bachelor of @Model.CourseCategory @Model.YearName @Model.SessionName </strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top">Name of the college:</td>
+                                            <td align="left" valign="top">@Model.CollegeName</td>
+                                            <td rowspan="19" align="left" valign="top" style="padding:0 5px;">
+                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="center" style="border:1px solid #333;"><img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.photo" onerror="this.src = '../../../images/noimage.png';" width="100" style="max-height:130px;" alt="Passport Size Photo" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" valign="middle">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" style="border:1px solid #333; "><img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.sign" onerror="this.src = '../../../images/noimage.png';" width="70" style="max-height:130px;;" alt="अंग्रेजी में छात्र का हस्ताक्षर" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" valign="middle">&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Name of the student :</td>
+                                            <td align="left">@Model.StudentName</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">छात्र का नाम :</td>
+                                            <td align="left">@Model.StudentNameHindi</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Date of Birth :</td>
+                                            <td align="left">@Model.DOB</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Father's Name : </td>
+                                            <td align="left">@Model.FatherName</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Mother's Name : </td>
+                                            <td align="left">@Model.MotherName</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Student's Address :</td>
+                                            <td align="left">@Model.CurrentAddress</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Contact No. :</td>
+                                            <td align="left">@Model.MobileNo</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left"></td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Registration No:</td>
+                                            <td align="left">@Model.RegistrationNo</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left"></td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Roll No:</td>
+                                            <td align="left">@Model.RollNo</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left">&nbsp;</td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td colspan="2" align="left"></td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <td align="left">Exam Center:</td>
+                                            <td align="left" style="font-weight:bold;">@Model.ExamCenter</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left" valign="middle"><h3>Subject Taken :</h3></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #333;">
+                                                    <tr>
+                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Honours</th>
+                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Subsidiary - I</th>
+                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Subsidiary - II</th>
+                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333;">Compulsory</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333; height:100px;">@Model.HonoursSubject</td>
+                                                        <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333;">@Model.Subsidiary1Subject</td>
+                                                        <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333;">@Model.Subsidiary2Subject</td>
+                                                        <td align="center" valign="middle">@Model.Compulsory1Subject<br />@Model.Compulsory2Subject</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">
+                                                <label>
+                                                    @*<input type="checkbox" style="vertical-align:middle; display:inline-block;" id="checkboxid">
+                                                        <span style="vertical-align:middle; display:inline-block;"> I hereby declared that above details are correct and i have verified.</span>*@
+                                                </label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        @*<tr>
+                                                <td colspan="3" align="left" valign="middle">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td align="center" valign="top" width="25%">
+                                                                Assistant
+                                                                (College)
+                                                            </td>
+                                                            <td align="left" valign="top" width="50%">&nbsp;</td>
+                                                            <td align="center" valign="top" width="25%" style="padding:0 0 0 10px;">
+                                                                Principal's Signature <br>
+                                                                with stamp
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>*@
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align:center; padding-bottom:20px;">
+                                    <a href="#" id="btnPrint" onclick="return printdiv();" class="btn btn-primary waves-effect waves-light">
+                                        <i class="fa fa-print" aria-hidden="true"></i>
+                                        Print
+                                    </a>
+                                </div>
+                            </div>
+        }
+                            @*</div>*@
+
+                            @*</div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnPrint").click(function () {
+            var contents = $("#printreport").html();
+            //console.log(contents);
+            var frame1 = $('<iframe />');
+            frame1[0].name = "frame1";
+            frame1.css({ "position": "absolute", "top": "-1000000px" });
+            $("body").append(frame1);
+            var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+            frameDoc.document.open();
+            //Create a new HTML document.
+            frameDoc.document.write('<html><head><title>.</title>');
+
+            frameDoc.document.write('</head><body>');
+            //Append the external CSS file.
+            frameDoc.document.write('<link href="style.css" rel="stylesheet" type="text/css" />');
+            //Append the DIV contents.
+            frameDoc.document.write(contents);
+            frameDoc.document.write('</body></html>');
+            frameDoc.document.close();
+            setTimeout(function () {
+                window.frames["frame1"].focus();
+                window.frames["frame1"].print();
+                frame1.remove();
+            }, 500);
+        });
+    });
+</script>

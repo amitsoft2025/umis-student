@@ -1,0 +1,575 @@
+﻿
+@model DataLayer.BL_student_formcomplete
+@{
+    ViewBag.Title = "Student Dashboard";
+    Layout = "~/Areas/Student/Views/Shared/_LayoutStudent.cshtml";
+}
+<style>
+    .single-product-text {
+        text-align: left !important;
+        min-height: 400px;
+    }
+
+    .header-height {
+        min-height: 10px;
+    }
+
+    .modal-header {
+        padding: 5px;
+        text-align: center;
+    }
+
+    .date-style {
+        font-size: 12px;
+    }
+
+    .container-fluid.height50 {
+        height: 40px !important;
+    }
+</style>
+<style>
+    .single-product-text {
+        text-align: left !important;
+        min-height: 400px;
+    }
+
+    .header-height {
+        min-height: 10px;
+    }
+
+    .modal-header {
+        padding: 5px;
+        text-align: center;
+    }
+
+    .date-style {
+        font-size: 12px;
+    }
+
+    .single-product-text img {
+        width: 30px !important;
+        height: 30px !important;
+        margin-top: 0px !important;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            <div class="single-cards-item" style="text-align:left">
+
+                <div class="single-product-text dashboard-part">
+                    <div class="massages_mainarea">
+                        <div class="row">
+                            <div class="col-md-12">                                 
+                                    <div class="notification-part massages_innerblk">
+                                        <div class="mgs-heading">
+                                            Notification:
+                                        </div>
+                                        <div class="mgs-content">
+                                            <ul>
+
+
+                                                <li>(यदि आप पिछले वर्ष के अंक और योग्यता को अपडेट करते है तो   और आप फिर से अपनी नई पसंद के लिए अपने यूजी कोर्स विषय और कॉलेज का विवरण अपलोड करना अनिवार्य  करना होगा नहीं तो  प्रवेश रद्द कर दिया जायेगा )</li>
+
+                                                <li><i><img src="~/content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /></i> New user can direclty apply through website and Existing can change/edit from Student login Panel if they want to changes/modification or something wrong in registration like Basic Details,caste,qualifications.</li>
+                                                <li><img src="~/content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" /> जिन छात्र / छात्राएं का चयन पहले तथा दूसरे  सूची में नही हुआ या होने के बाद एडमिशन नहीं लिए  है  वो स्टूडेंट भी एडिट कर  सकते है </li>
+                                                <li><img src="~/content/img/new6.gif" width="20" height="20" style="float:left;height:20px !important" />5. आप <strong></strong>  पंजीकरण शुल्क जमा कर सकते हैं |</li>
+
+                                            </ul>
+
+
+                                            @if (ViewBag.StudentYear == 2 || ViewBag.StudentYear == 5 || ViewBag.StudentYear == 8)
+                                            {
+
+                                                <span>
+                                                    <b>    Please Pay Your Part-2 Fee  From 09-Jan-2023 to  14-Jan-2023 </b>
+
+                                                </span>
+                                                <a href="@Url.Action("AdmissionFeeSubmit", "Home")" style="float:right">Click Here </a>
+
+                                            }
+
+                                            @if (ViewBag.StudentYear == 1 || ViewBag.StudentYear == 4 || ViewBag.StudentYear == 7)
+                                            {
+
+                                                <span>
+                                                    <b>    Please Pay Your Part-1 Fee  From 09-Jan-2023 to  14-Jan-2023 </b>
+
+                                                </span>
+                                                <a href="@Url.Action("AdmissionFeeSubmit", "Home")" style="float:right">Click Here </a>
+
+                                            }
+
+
+                                            @if (ViewBag.studentyear == 2 || ViewBag.studentyear == 5 || ViewBag.studentyear == 8)
+                                            {
+                                            <li>
+                                                <img src="~/Content/img/new6.gif" width="20" style="float:left" />
+
+                                                <strong>Note </strong>: 1. From 16  Jan -2023 to 24 Jan-2023 (11.30 AM) (without Fine).
+                                                <strong>Note </strong>: 2. From 25  Jan -2023 to 27 Jan-2023 (11.30 AM) (with Late fine).
+                                                <a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "Exam")"> Pay Exam Fees Part 2  </a>
+
+                                                <img src="~/Content/img/new6.gif" width="20" style="float:left" />
+                                            </li>
+                                            <li>
+                                                <strong>Note </strong>:
+                                                <b style="color:red">कोई भी स्टूडेंट बिना एडमिशन फी के अगर एग्जाम फॉर्म भरते है तो उनका एडमिट कार्ड  रोक लिया जायेगा एग्जाम में से वंचित कर दिया जायेगा | यदि एडमिशन में कोई समस्या है तो कॉलेज से संपर्क करें।</b>
+                                                कोई भी स्टूडेंट बिना एडमिशन फी के अगर एग्जाम फॉर्म भरते है तो उनका एडमिट कार्ड  रोक लिया जायेगा एग्जाम में से वंचित कर दिया जायेगा | यदि कोई समस्या है तो कॉलेज से संपर्क करें।
+
+                                            </li>
+
+                                            }
+                                            @if (ViewBag.studentyear == 1 || ViewBag.studentyear == 4 || ViewBag.studentyear == 7)
+                                            {
+                                            <li>
+                                                <img src="~/Content/img/new6.gif" width="20" style="float:left" />
+
+                                                <strong>Note </strong>: 1. From 16  Jan -2023 to 24 Jan-2023 (11.30 AM) (without Fine).
+                                                <strong>Note </strong>: 2. From 25  Jan -2023 to 27 Jan-2023 (11.30 AM) (with Late fine).
+                                                <a id="PrintReciptenroll" href="@Url.Action("ExamFeesSubmit", "Exam")"> Pay Exam Fees Part 1  </a>
+
+                                                <img src="~/Content/img/new6.gif" width="20" style="float:left" />
+                                            </li>
+                                            <li>
+                                                <strong>Note </strong>:
+                                                <b style="color:red">कोई भी स्टूडेंट बिना एडमिशन फी के अगर एग्जाम फॉर्म भरते है तो उनका एडमिट कार्ड  रोक लिया जायेगा एग्जाम में से वंचित कर दिया जायेगा | यदि एडमिशन में कोई समस्या है तो कॉलेज से संपर्क करें।</b>
+                                                कोई भी स्टूडेंट बिना एडमिशन फी के अगर एग्जाम फॉर्म भरते है तो उनका एडमिट कार्ड  रोक लिया जायेगा एग्जाम में से वंचित कर दिया जायेगा | यदि कोई समस्या है तो कॉलेज से संपर्क करें।
+
+                                            </li>
+                                            }
+                                            @if (ViewBag.isback == 1)
+                                            {
+                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>16/01/2023</strong> से <strong>24/01/2023</strong> तक Backlog Exam form ( Part -1)  के  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "Exam", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>
+
+                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/01/2023</strong> से <strong>27/01/2023</strong>  तक Backlog  Exam form (Part -1) एग्जामिनेशन फीस  <strong></strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "Exam", new { courseyearidenc = ViewBag.courseyearidenc1 })">Click Here </a></li>
+
+                                            }
+                                            @if (ViewBag.isbackpart2 == 1)
+                                            {
+                                            <li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /> <strong>16/01/2023</strong> से <strong>24/01/2023</strong> तक Backlog Exam form ( Part -2)  के  Exam Fees <strong></strong> शुल्क जमा कर सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "Exam", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>
+
+                                            @*<li><img src="~/Content/img/new6.gif" width="20" style="float:left;width:20px !important;height:20px !important" /><strong>25/01/2023</strong> से <strong>27/01/2023</strong>  तक Backlog  Exam form (Part -2) एग्जामिनेशन फीस  <strong></strong> लेट फीस  <strong>(100 Rs)</strong> के साथ जमा  करा सकते हैं |<a id="PrintReciptenroll" href="@Url.Action("BAckExamFeesSubmit", "Exam", new { courseyearidenc = ViewBag.courseyearidenc2 })">Click Here </a></li>*@
+
+                                            }
+
+
+
+
+                                        </div> <!--Col-->
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        if ('@ViewBag.addmissionExtenddate' == 'True' && '@ViewBag.addmissionStartdate' == 'True') {
+            if ('@ViewBag.Status' == 'True') {
+                $("#InformationproModalhdbgcl").modal();
+            }
+        }
+
+    });
+
+</script>
+@*@{
+        Html.RenderAction("_AdmissionFee", "Home");
+    }*@
+<script>
+
+    check = function () {
+        //debugger;
+        var _validFileExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png", ".pdf"];
+        var arrInputs = document.getElementsByTagName("input");
+        for (var i = 0; i < arrInputs.length; i++) {
+            var oInput = arrInputs[i];
+            if (oInput.type == "file") {
+                var sFileName = oInput.value;
+                var sFileNamesize = document.getElementById('file').files[0].size;
+                if (sFileName.length > 0) {
+                    var blnValid = false;
+                    for (var j = 0; j < _validFileExtensions.length; j++) {
+                        var sCurExtension = _validFileExtensions[j];
+                        if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                            blnValid = true;
+                        }
+                    }
+                    if (!blnValid) {
+                        oInput.value = "";
+                        document.getElementById("append-big-btn").value = "";
+                        showAlert("Sorry, file is invalid ");
+                        return false;
+                    }
+                    else {
+                        if (sFileNamesize > 500000) {
+                            oInput.value = "";
+                            document.getElementById("append-big-btn").value = "";
+                            showAlert("File is too big!");
+                            break;
+                        }
+                    }
+
+                }
+                var fileSize = document.getElementById('file').files[0].size;
+
+            }
+        }
+
+        return true;
+    }
+    function submitapplication() {
+        debugger;
+        var ID = 0;
+        //showAlert(ID);
+        var FileURl;
+        var file;
+        if ($("#file").val() == "") {
+            showAlert('Please Select Document !!');
+            $("#sign").focus();
+            return false;
+        }
+        var fileUpload = $("#file").get(0);
+        var files = fileUpload.files;
+        var fileData = new FormData();
+        if (files.length > 0) {
+            for (var i = 0; i < files.length; i++) {
+                fileData.append("file", files[i]);
+            }
+        }
+        else {
+            //showAlert($('#hfile').val());
+            fileData.append("hfile", $('#hfile').val());
+        }
+        // debugger;
+        fileData.append('ID', ID);
+        res = 0;
+        showloader();
+        $.ajax({
+            url: '/Student/Home/ADDIncomecertificate',
+            type: "POST",
+            contentType: false, // Not to set any content header
+            processData: false, // Not to process data
+            data: fileData,
+            success: function (result) {
+                hideloader();
+                if (result.Status) {
+                    showAlert(result.Msg);
+                    hideloader();
+                    showloader();
+                    location.replace('/Student/Home/index');
+                }
+                else {
+                    hideloader();
+                    showAlert(result.Msg);
+
+                }
+            },
+            error: function (errormessage) {
+
+                hideloader();
+                showAlert(errormessage.responseText);
+            }
+
+
+        });
+
+
+    }
+
+</script>
+<script>
+    var photurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/"+ViewBag.stphoto)";
+    var signurl1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]+"/Student/Photoandsign/" + ViewBag.stsign)";
+    var logo11 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/logotree.png")";
+    var registrar1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/registrarsign.jpg")";
+    $(function () {
+        rencodeImage(photurl1);
+        rencodeImage1(signurl1);
+        rencodeImage2(logo11);
+        //rencodeImage3(logo11);
+        rencodeImage4(registrar1);
+    });
+
+</script>
+<script type="text/javascript">
+    function rencodeImage(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("userImage1");
+        img.onload = function () {
+            canvas.width = 160;
+            canvas.height = 150;
+            ctx.drawImage(img, 0, 0, 160, 150);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+    function rencodeImage1(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("userSign1");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+    function rencodeImage2(src, callback) {
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("logo11");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+
+    function rencodeImage4(src, callback) {
+
+        var canvas = document.createElement('canvas'),
+            ctx = canvas.getContext('2d'),
+            img = document.getElementById("registratrara11");
+        img.onload = function () {
+            canvas.width = 140;
+            canvas.height = 100;
+            ctx.drawImage(img, 0, 0, 140, 100);
+            callback(canvas.toDataURL());
+        }
+        img.src = src;
+    }
+
+    $(document).on('click', '#PrintReciptenroll', function () {
+        //debugger;
+        return;
+        ExportToPDFApplicationformfeesrec($('#divtoPrint'), [], '', PDFPageType.Portrait, 'RegistrationNoSlip');
+    });
+    function showreg() {
+        ExportToPDFApplicationformfeesrec($('#divtoPrint'), [], '', PDFPageType.Portrait, 'RegistrationNoSlip');
+    }
+
+    function ExportToPDFApplicationformfeesrec(DivName, TableColumnHide, ReportHeading, PageType, Applicationform) {
+        // debugger;
+        /// <summary>Function to convert HTML to PDF.</summary>
+        /// <param name="DivName">Name of the Div  with selector which contains all the html to print.</param>
+        /// <param name="TableColumnHide" type="array">Pass array of columns to be hidden like [2,5,6] in a Table.</param>
+        /// <param name="ReportHeading">Heading of the Report</param>
+        /// <param name="PageType">Provide page type from enum PDFPageType </param>
+        /// <returns>PDF File</returns>
+        var PDFtable = DivName.find('table');
+        if (TableColumnHide) {
+            $.each(TableColumnHide, function (index, value) {
+                PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').hide();  //hiding the columns of the table inside Div
+            });
+        }
+        PDFtable.attr('border', '0');//applied 1 to table attribute border so we can get border in the Table
+        var printContents = '<html><head><title></title><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head><body><div style="font-size: 25px;" ><center>' + ReportHeading + '</center></div><br />' + DivName.html() + '</body></html>';
+
+        $('body').prepend("<form method='post' action='/Student/Home/EnrollSlipdownload' id='tempForm2'><input type='hidden' name='data1' value='" + printContents + "' ><input type='hidden' name='dataname1' value='" + Applicationform + "' ><input type='hidden' name='PageType1' value='" + PageType + "' ></form>");
+        $('#tempForm2').submit();
+        $("tempForm2").remove();
+        if (TableColumnHide) {
+            $.each(TableColumnHide, function (index, value) {
+                PDFtable.find('td:nth-child(' + value + '),th:nth-child(' + value + ')').show(); // //Again Showing the columns of the table inside Div
+            });
+        }
+    }
+    /// <summary>Enum for Page Type</summary>
+    var PDFPageType = {
+        Default: 'Default',
+        Portrait: 'Portrait',
+        Landscape: 'Landscape'
+    }
+</script>
+@if (ViewBag.sessionid == 40)
+{
+    <div class="container-fluid" style="display:none">
+        <div class="sparkline8-list DocumentUpload">
+            <div style="display:none">
+                <div id="divtoPrint">
+                    <div style="width:640px; margin:auto; padding:0; font-size:14px; color:#333; font-family:Arial, Helvetica, sans-serif; border:5px solid #333; padding:20px ;background-image:url(https://portal.DemoUniversity.com/images/registrationslip_bg.jpg); background-repeat:no-repeat; background-size:cover;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td colspan="3" align="center" valign="middle"><img id="logo11" width="200"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align='center' valign='middle' style='font-size:25px;'>Munger University ,Bhagalpur ,Bihar</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align='center' valign='middle' style='font-size:12px;'>(Administrative Block Munger University ,Bhagalpur ,Bihar</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center" valign="middle" style="font-size:16px; text-transform:uppercase; border-bottom:1px solid #000; padding-bottom:13px"><strong>Registration Slip</strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2" valign="middle">Registration No: @ViewBag.enrollnmentno </td>
+                                <td width="182" align="left" valign="middle">Session : @ViewBag.Sessionname</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="2" valign="middle">College Roll No : @ViewBag.rollno</td>
+                                <td width="182" align="left" valign="middle">Course : @ViewBag.course</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="3" valign="middle">Subject: <strong>@ViewBag.Stream </strong></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="3" valign="middle">Subsidiary - 1:  @ViewBag.Subsidiary1_subject , Subsidiary- 2: @ViewBag.Subsidiary2_subject </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" colspan="3" valign="middle">
+                                    Composition: @ViewBag.Compulsory1_subject
+                                    <span>@(ViewBag.Compulsory2_subject == "" ? "(100 Marks)" : ("(50 Marks), " + ViewBag.Compulsory2_subject + "(50 Marks)") )</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="175" align="left" valign="top">Name :</td>
+                                <td width="283" align="left" valign="top">@ViewBag.studentname</td>
+                                <td rowspan="19" align="left" valign="top" style="padding:0 5px; width:150px;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="center" valign="middle" style="border:1px solid #333; height:150px;"><img id="userImage1" width="160" style=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" valign="middle">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" valign="middle" style="border:1px solid #333; height:50px;"><img id="userSign1" width="160" style="max-height:50px"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="2" align="left">&nbsp;</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="left">@(ViewBag.ftitle == 20 ? " Father Name" : (ViewBag.ftitle == 21 ? "  Husband  Name" : " Father Name") ) : </td>
+                                <td align="left">@ViewBag.fathername </td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="2" align="left">&nbsp;</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="left">Mother Name : </td>
+                                <td align="left">@ViewBag.mothername</td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="2" align="left">&nbsp;</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="left">Date of Birth :</td>
+                                <td align="left"> @ViewBag.DOb</td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="2" align="left">&nbsp;</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="left">Gender :</td>
+                                <td align="left">@ViewBag.Gender</td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="2" align="left">&nbsp;</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="left">Category :</td>
+                                <td align="left">@ViewBag.category</td>
+                            </tr>
+                            <tr valign="top">
+                                <td colspan="2" align="left">&nbsp;</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="left">Nationlity :</td>
+                                <td align="left">@ViewBag.Nationlity</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="right" valign="middle"><img id="registratrara11" style="max-height:50px"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="right" valign="top" width="25%" style="padding:0 25px 0 0px;">Registrar</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+}

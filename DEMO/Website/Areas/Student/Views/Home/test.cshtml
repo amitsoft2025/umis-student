@@ -1,0 +1,53 @@
+﻿
+
+@model DataLayer.BL_PrintAllRecord
+@{
+    ViewBag.Title = "test";
+    Layout = "~/Areas/Student/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h2>test</h2>
+@ViewBag.test 
+  <div class="static-table-list table-responsive">
+    @using (Html.BeginForm("PGSucess", "Home", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data",id= "myform" }))
+    {
+    
+    <div class="modal-area-button text-center">
+        <div class="document-btn">
+            <input type="hidden" name="encData" value="5aNGio4B/hZXYu68RS5a4sQBSPBCF32kOmfTQ2zgAWeZj2mqOjIGyvZYau1upDyRtjq29AO6Ok12V/ijZdj6nhLbeL4A7eF/OdAMNy//VhU7nCwnOXUZ9lx5KwGqTmEPUuX8XUQ4knuQSK0rLfUdLefl30dP/ZRfnyZJPejgW0iMJUJ5dBZEP+7oEQYD/xAevBO+oHWfp/4JlPYvm7deQAbxhsWy3YYGda1K/7UA/1BEpVIy6HG3ikb2tCLCQoU2"/>
+            
+            <button class="Danger danger-color" style="color: #fff;" id="submit"  value=""><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Sueccss</button>
+            
+          </div>
+    </div>
+
+    }
+      @using (Html.BeginForm("PGFailed", "Home", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data",id= "myform" }))
+      {
+
+      <div class="modal-area-button text-center">
+          <div class="document-btn">
+              <input type="hidden" name="encData" value="5aNGio4B/hZXYu68RS5a4sQBSPBCF32kOmfTQ2zgAWeZj2mqOjIGyvZYau1upDyRtjq29AO6Ok12V/ijZdj6nhLbeL4A7eF/OdAMNy//VhU7nCwnOXUZ9lx5KwGqTmEPUuX8XUQ4knuQSK0rLfUdLefl30dP/ZRfnyZJPejgW0iMJUJ5dBZEP+7oEQYD/xAevBO+oHWfp/4JlPYvm7deQAbxhsWy3YYGda1K/7UA/1BEpVIy6HG3ikb2tCLCQoU9" />
+
+              <button class="Danger danger-color" style="color: #fff;" id="submit" value=""><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;Failed</button>
+
+          </div>
+      </div>
+
+      }
+
+      @using (Html.BeginForm("PGFailed", "Home", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data",id= "myform" }))
+      {
+
+      <div class="modal-area-button text-center">
+          <div class="document-btn">
+              <input type="hidden" name="encData" value="5aNGio4B/hZXYu68RS5a4sQBSPBCF32kOmfTQ2zgAWeZj2mqOjIGyvZYau1upDyRtjq29AO6Ok12V/ijZdj6nhLbeL4A7eF/OdAMNy//VhU7nCwnOXUZ9lx5KwGqTmEPUuX8XUQ4knuQSK0rLfUdLefl30dP/ZRfnyZJPejgW0iMJUJ5dBZEP+7oEQYD/xAevBO+oHWfp/4JlPYvm7deQAbxhsWy3YYGda1K/7UA/1BEpVIy6HG3ikb2tCLCQoU5" />
+
+              <button class="Danger danger-color" style="color: #fff;" id="submit" value=""><i class="fa fa-money" aria-hidden="true"></i>&nbsp;&nbsp;‘Pending’</button>
+
+          </div>
+      </div>
+
+      }
+
+</div>

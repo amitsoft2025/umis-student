@@ -1,0 +1,1449 @@
+﻿=<!--<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>@( ViewBag.Title + " - " + DataLayer.CommonSetting.ProjectName )</title>-->
+    @*<link rel="icon" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png" sizes="32x32">
+    <link rel="icon" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png">*@
+    @*<meta name="msapplication-TileImage" content="https://www.DemoUniversity.ac.in/wp-content/uploads/2020/06/favicon.png">*@
+    <!--<link rel="icon" href="~/images/favicon.png" sizes="32x32">
+    <link rel="icon" href="~/images/favicon.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="~/images/favicon.png">
+    <meta name="msapplication-TileImage" content="~/images/favicon.png">
+
+    <link href="~/Content/css/preloader/preloader-style.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/result/css/styles.css" rel="stylesheet" />
+    <link href="~/Content/result/css/responsive.css" rel="stylesheet" />
+    <link href="~/Content/result/css/New.css" rel="stylesheet" />
+    <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+    <div class="loader" id="AjaxLoader" style="display:none;">
+        <div class="preloader-single shadow-inner">
+            <div class="ts_preloading_box">
+                <div id="ts-preloader-absolute22">
+                    <div class="tsperloader22" id="first_tsperloader22"></div>
+                    <div class="tsperloader22" id="second_tsperloader22"></div>
+                    <div class="tsperloader22" id="third_tsperloader22"></div>
+                </div>
+            </div>
+        </div>
+        <div class="strip-holder">
+            <div class="strip-1"></div>
+            <div class="strip-2"></div>
+            <div class="strip-3"></div>
+        </div>
+    </div>
+    <script>
+        $(document)
+            .ajaxStart(function () {
+                // $('#AjaxLoader').show();
+            })
+            .ajaxStop(function () {
+                //  $('#AjaxLoader').hide();
+            });
+        function showloader() {
+            $('#AjaxLoader').show();
+        }
+        function hideloader() {
+            $('#AjaxLoader').hide();
+        }
+    </script>
+    <script>
+        var logo1 = "@Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["siteUrl"] + "/images/mu-logo-white.png")";
+        $(function () {
+            // encodeImage(photurl);
+            //encodeImage1(signurl);
+            //encodeImage2(logo1);
+            // encodeImage3(logo1);
+        });
+    </script>
+    <script type="text/javascript">
+
+        //function encodeImage2(src, callback) {
+        //    var canvas = document.createElement('canvas'),
+        //        ctx = canvas.getContext('2d'),
+        //        img = document.getElementById("logo");
+        //    img.onload = function () {
+        //        canvas.width = 140;
+        //        canvas.height = 100;
+        //        ctx.drawImage(img, 0, 0, 140, 100);
+        //        callback(canvas.toDataURL());
+        //    }
+        //    img.src = src;
+        //}
+
+    </script>
+
+    <!-- / Yoast SEO plugin. -->
+    <!--<link rel="dns-prefetch" href="/">
+    <link rel="alternate" type="application/rss+xml" title="Munger University » Feed" href="/feed/">
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel="stylesheet" id="contact-form-7-css" href="~/Content/WEB/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" id="style-css" href="~/Content/WEB/style.css" type="text/css" media="all">
+    <link rel="stylesheet" id="rs-plugin-settings-css" href="~/Content/WEB/settings.css" type="text/css" media="all">
+    <style id="rs-plugin-settings-inline-css" type="text/css">
+        #rs-demo-id {
+        }
+
+        #rev_slider_1_1_wrapper .tp-loader.spinner2 {
+            background-color: #FFFFFF !important;
+        }
+
+        #rev_slider_1_1 .zeus.tparrows {
+            cursor: pointer;
+            min-width: 70px;
+            min-height: 70px;
+            position: absolute;
+            display: block;
+            z-index: 100;
+            border-radius: 50%;
+            overflow: hidden;
+            background: rgba(0,0,0,0.1);
+        }
+
+            #rev_slider_1_1 .zeus.tparrows:before {
+                font-family: "revicons";
+                font-size: 20px;
+                color: rgb(255, 255, 255);
+                display: block;
+                line-height: 70px;
+                text-align: center;
+                z-index: 2;
+                position: relative;
+            }
+
+            #rev_slider_1_1 .zeus.tparrows.tp-leftarrow:before {
+                content: "\e824";
+            }
+
+            #rev_slider_1_1 .zeus.tparrows.tp-rightarrow:before {
+                content: "\e825";
+            }
+
+        #rev_slider_1_1 .zeus .tp-title-wrap {
+            background: rgba(0,0,0,0.5);
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            position: absolute;
+            opacity: 0;
+            transform: scale(0);
+            -webkit-transform: scale(0);
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            border-radius: 50%;
+        }
+
+        #rev_slider_1_1 .zeus .tp-arr-imgholder {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background-position: center center;
+            background-size: cover;
+            border-radius: 50%;
+            transform: translatex(-100%);
+            -webkit-transform: translatex(-100%);
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+        }
+
+        #rev_slider_1_1 .zeus.tp-rightarrow .tp-arr-imgholder {
+            transform: translatex(100%);
+            -webkit-transform: translatex(100%);
+        }
+
+        #rev_slider_1_1 .zeus.tparrows:hover .tp-arr-imgholder {
+            transform: translatex(0);
+            -webkit-transform: translatex(0);
+            opacity: 1;
+        }
+
+        #rev_slider_1_1 .zeus.tparrows:hover .tp-title-wrap {
+            transform: scale(1);
+            -webkit-transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+    <link rel="stylesheet" id="wpos-magnific-style-css" href="~/Content/WEB/magnific-popup.css" type="text/css" media="all">
+    <link rel="stylesheet" id="wpos-slick-style-css" href="~/Content/WEB/slick.css" type="text/css" media="all">
+    <link rel="stylesheet" id="aigpl-public-css-css" href="~/Content/WEB/aigpl-public.css" type="text/css" media="all">
+    <link rel="stylesheet" id="tablepress-default-css" href="~/Content/WEB/tablepress-combined.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="js_composer_front-css" href="~/Content/WEB/js_composer.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="font-awesome-css" href="~/Content/WEB/font-awesome.min.css" type="text/css" media="all">
+    <link rel="stylesheet" id="customify-style-css" href="~/Content/WEB/style.min.css" type="text/css" media="all">
+    <style id="customify-style-inline-css" type="text/css">
+        .customify-container, .layout-contained, .site-framed .site, .site-boxed .site {
+            max-width: 1200px;
+        }
+
+        .header-top .header--row-inner, .button, button, input[type="button"], input[type="reset"], input[type="submit"], .pagination .nav-links > *:hover, .pagination .nav-links span, .nav-menu-desktop.style-full-height .primary-menu-ul > li.current-menu-item > a, .nav-menu-desktop.style-full-height .primary-menu-ul > li.current-menu-ancestor > a, .nav-menu-desktop.style-full-height .primary-menu-ul > li > a:hover, .posts-layout .readmore-button:hover {
+            background-color: #711a12;
+        }
+
+        .posts-layout .readmore-button {
+            color: #711a12;
+        }
+
+            .pagination .nav-links > *:hover, .pagination .nav-links span, .entry-single .tags-links a:hover, .entry-single .cat-links a:hover, .posts-layout .readmore-button, .posts-layout .readmore-button:hover {
+                border-color: #711a12;
+            }
+
+        .customify-builder-btn {
+            background-color: #711a12;
+        }
+
+        body {
+            color: #353535;
+        }
+
+        abbr, acronym {
+            border-bottom-color: #353535;
+        }
+
+        a {
+            color: #0091ff;
+        }
+
+            a:hover, a:focus, .link-meta:hover, .link-meta a:hover {
+                color: #711a12;
+            }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #353535;
+        }
+
+        #page-cover {
+            background-image: url("/wp-content/themes/sparkhost/assets/images/default-cover.jpg");
+        }
+
+        .header--row:not(.header--transparent).header-top .header--row-inner {
+            background-color: #0091ff;
+        }
+
+        .header--row:not(.header--transparent).header-main .header--row-inner {
+            background-color: rgba(227, 23, 109, 0.12);
+            
+       background-image: url("/images/background-city.png");
+            background-repeat: repeat;
+        }
+
+        .header--row:not(.header--transparent).header-bottom .header--row-inner {
+            background-color: #030342;
+        }
+
+        .sub-menu .li-duplicator {
+            display: none !important;
+        }
+
+        .header-search_icon-item .header-search-modal {
+            border-style: solid;
+        }
+
+        .header-search_icon-item .search-field {
+            border-style: solid;
+        }
+
+        .header--row .header-search_box-item .search-field {
+            border-style: solid;
+        }
+
+        .builder-item--primary-menu .nav-menu-desktop .primary-menu-ul > li > a {
+            color: #ffffff;
+            text-decoration-color: #ffffff;
+        }
+
+        .header--row:not(.header--transparent) .builder-item--primary-menu .nav-menu-desktop .primary-menu-ul > li > a:hover, .header--row:not(.header--transparent) .builder-item--primary-menu .nav-menu-desktop .primary-menu-ul > li.current-menu-item > a, .header--row:not(.header--transparent) .builder-item--primary-menu .nav-menu-desktop .primary-menu-ul > li.current-menu-ancestor > a, .header--row:not(.header--transparent) .builder-item--primary-menu .nav-menu-desktop .primary-menu-ul > li.current-menu-parent > a {
+            background-color: #0091ff;
+        }
+
+        a.item--button {
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            border-bottom-left-radius: 50px;
+        }
+
+        .builder-item--footer_copyright, .builder-item--footer_copyright p {
+            letter-spacing: 1.4px;
+        }
+
+        #page-cover .page-cover-inner {
+            min-height: 300px;
+        }
+
+        .header--row.header-top .customify-grid, .header--row.header-top .style-full-height .primary-menu-ul > li > a {
+            min-height: 33px;
+        }
+
+        .header--row.header-main .customify-grid, .header--row.header-main .style-full-height .primary-menu-ul > li > a {
+            min-height: 90px;
+        }
+
+        .header--row.header-bottom .customify-grid, .header--row.header-bottom .style-full-height .primary-menu-ul > li > a {
+            min-height: 40px;
+        }
+
+        .header--row .builder-first--html {
+            text-align: left;
+        }
+
+        .header--row .builder-item--logo, .builder-item.builder-item--group .item--inner.builder-item--logo {
+            margin-top: 8px;
+            margin-right: 0px;
+            margin-bottom: 10px;
+            margin-left: 0px;
+        }
+
+        .header--row .builder-first--logo {
+            text-align: center;
+        }
+
+        .header--row .builder-first--nav-icon {
+            text-align: right;
+        }
+
+        .header-search_icon-item .search-submit {
+            margin-left: -40px;
+        }
+
+        .header--row .header-search_box-item .search-submit {
+            margin-left: -40px;
+        }
+
+        .header--row .builder-first--search_box {
+            text-align: left;
+        }
+
+        .header--row .builder-first--primary-menu {
+            text-align: left;
+        }
+
+        .header--row .builder-first--button {
+            text-align: right;
+        }
+
+        .header-social-icons.customify-builder-social-icons li a {
+            font-size: 16px;
+        }
+
+        .footer--row .builder-first--footer_copyright {
+            text-align: center;
+        }
+
+        screen and (max-width:1024px) {
+            #page-cover .page-cover-inner;
+
+        {
+            min-height: 250px;
+        }
+
+        .header--row .builder-first--html {
+            text-align: center;
+        }
+
+        .header--row .builder-first--logo {
+            text-align: left;
+        }
+
+        .header--row .builder-first--nav-icon {
+            text-align: right;
+        }
+
+        .header-search_icon-item .search-submit {
+            margin-left: -40px;
+        }
+
+        .header--row .header-search_box-item .search-submit {
+            margin-left: -40px;
+        }
+
+        .header--row .builder-first--search_box {
+            text-align: right;
+        }
+
+        .header--row .builder-first--button {
+            text-align: left;
+        }
+
+        .footer--row .builder-first--footer_copyright {
+            text-align: center;
+        }
+
+        }
+
+        screen and (max-width:568px) {
+            #page-cover .page-cover-inner;
+
+        {
+            min-height: 200px;
+        }
+
+        /*.header--row.header-top .customify-grid, .header--row.header-top .style-full-height .primary-menu-ul > li > a {
+            min-height: 33px;
+        }
+
+        .header--row .builder-first--html {
+            text-align: center;
+        }
+
+        .header--row .builder-first--logo {
+            text-align: left;
+        }
+
+        .header--row .builder-first--nav-icon {
+            text-align: right;
+        }
+
+        .header-search_icon-item .search-submit {
+            margin-left: -40px;
+        }
+
+        .header--row .header-search_box-item .search-submit {
+            margin-left: -40px;
+        }
+
+        .header--row .builder-first--search_box {
+            text-align: right;
+        }
+
+        .header--row .builder-first--button {
+            text-align: left;
+        }*/
+
+        .footer--row .builder-first--footer_copyright {
+            text-align: center;
+        }
+
+        }
+    </style>
+    <link rel="stylesheet" id="igniteup-front-compulsory-css" href="~/Content/WEB/front-compulsory.css" type="text/css" media="all">
+    <script type="text/javascript" src="~/Content/WEB/jquery.js.download"></script>
+    <script type="text/javascript" src="~/Content/WEB/jquery-migrate.min.js.download"></script>
+    <script type="text/javascript" src="~/Content/WEB/jquery.themepunch.tools.min.js.download"></script>
+    <script type="text/javascript" src="~/Content/WEB/jquery.themepunch.revolution.min.js.download"></script>
+    <link rel="://api.w.org/" href="/wp-json/">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml">
+    <meta name="generator" content="WordPress 4.9.10">
+    <link rel="shortlink" href="/">
+    <link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=%3A%2F%2F.ac.in%2F">
+    <link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=%3A%2F%2F.ac.in%2F&amp;format=xml">
+
+    <link href="~/Content/result/css/styles.css" rel="stylesheet" />
+    <link href="~/Content/result/css/responsive.css" rel="stylesheet" />
+
+
+    <style type="text/css" id="wp-custom-css">
+        .widget-title {
+            font-size: 21px !important;
+        }
+
+        .widget-area .widget ul li {
+            margin: 0 0 .3em !important;
+        }
+
+        .widget-area .widget_nav_menu li a {
+            padding-bottom: 0.3em !important;
+        }
+
+        .ciw_address_content {
+            color: #fff;
+        }
+
+        .nav-menu-desktop .sub-menu li a:hover {
+            background: #0091ff;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-menu-desktop .menu li.current-menu-item > a {
+            color: rgba(255, 255, 255, 0.9);
+            background-color: #0091ff !important;
+        }
+
+        .page-title-wrapper h1:before, .page-title-wrapper h2:before {
+            content: '';
+            width: 3px;
+            line-height: 54px;
+            bottom: 25px;
+            height: auto;
+            position: absolute;
+            left: 0;
+            top: 25px;
+            margin-right: 22px;
+            background-color: #0091ff;
+        }
+
+        .post-navigation .nav-links {
+            display: none;
+        }
+
+        .social .fa {
+            padding: 8px;
+            font-size: 25px;
+            width: 41px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+            border-radius: 50%;
+        }
+
+            .social .fa:hover {
+                opacity: 0.8;
+            }
+
+        .social .fa-facebook {
+            background: #3B5998;
+            color: white;
+        }
+
+        .social .fa-twitter {
+            background: #55ACEE;
+            color: white;
+        }
+
+        .social .fa-google {
+            background: #dd4b39;
+            color: white;
+        }
+
+        .social .fa-linkedin {
+            background: #007bb5;
+            color: white;
+        }
+
+        .social .fa-youtube {
+            background: #bb0000;
+            color: white;
+        }
+
+        .social .fa-instagram {
+            background: #125688;
+            color: white;
+        }
+
+        .social .fa-pinterest {
+            background: #cb2027;
+            color: white;
+        }
+
+        .social .fa-skype {
+            background: #00aff0;
+            color: white;
+        }
+
+        .social .fa-android {
+            background: #a4c639;
+            color: white;
+        }
+    </style>
+    <style type="text/css" data-type="vc_shortcodes-custom-css">
+        .vc_custom_1542478463626 {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+        }
+
+        .vc_custom_1541439731917 {
+            background-color: #fff8e7 !important;
+        }
+
+        .vc_custom_1542523220111 {
+            margin-bottom: 0px !important;
+            padding-top: 20px !important;
+        }
+
+        .vc_custom_1541487552804 {
+            background: #fff8e7 url(://.ac.in/wp-content/uploads/2018/11/floral_pattern.png?id=7293) !important;
+        }
+
+        .vc_custom_1542478524592 {
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+
+        .vc_custom_1542552943183 {
+            margin-top: 0px !important;
+            margin-right: 0px !important;
+            margin-bottom: 0px !important;
+            margin-left: 0px !important;
+            padding-top: 0px !important;
+            padding-right: 0px !important;
+            padding-bottom: 0px !important;
+            padding-left: 0px !important;
+        }
+
+        .vc_custom_1543554687591 {
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+
+        .vc_custom_1543653797519 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1543504485896 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+            border-bottom-color: #999999 !important;
+        }
+
+        .vc_custom_1541435681672 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1543554739820 {
+            margin-top: 0px !important;
+            padding-top: 0px !important;
+        }
+
+        .vc_custom_1543504485896 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+            border-bottom-color: #999999 !important;
+        }
+
+        .vc_custom_1541830949772 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1541435681672 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1542523310387 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 5px !important;
+        }
+
+        .vc_custom_1541440712112 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1541440727013 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1541440760363 {
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1543504619952 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1541440771541 {
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1541433497060 {
+            margin-bottom: 0px !important;
+            border-bottom-width: 0px !important;
+            padding-bottom: 0px !important;
+        }
+
+        .vc_custom_1545814489734 {
+            margin-bottom: 0px !important;
+            padding-top: 10px !important;
+            padding-right: 10px !important;
+            padding-bottom: 10px !important;
+            padding-left: 10px !important;
+            background-color: #711a12 !important;
+        }
+
+        .vc_custom_1541487344153 {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            padding-right: 10px !important;
+            padding-bottom: 0px !important;
+            padding-left: 10px !important;
+            background-color: #ffffff !important;
+        }
+
+        .vc_custom_1541487275357 {
+            margin-top: 0px !important;
+        }
+
+        .vc_custom_1542546778820 {
+            margin-bottom: 0px !important;
+            padding-top: 10px !important;
+            padding-right: 10px !important;
+            padding-bottom: 10px !important;
+            padding-left: 10px !important;
+            background-color: #711a12 !important;
+        }
+
+        .vc_custom_1541487367509 {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            padding-right: 10px !important;
+            padding-bottom: 0px !important;
+            padding-left: 10px !important;
+            background-color: #ffffff !important;
+        }
+
+        .vc_custom_1541487275357 {
+            margin-top: 0px !important;
+        }
+
+        .vc_custom_1542546790886 {
+            margin-bottom: 0px !important;
+            padding-top: 10px !important;
+            padding-right: 10px !important;
+            padding-bottom: 10px !important;
+            padding-left: 10px !important;
+            background-color: #711a12 !important;
+        }
+
+        .vc_custom_1541487432860 {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            padding-right: 10px !important;
+            padding-bottom: 0px !important;
+            padding-left: 10px !important;
+            background-color: #ffffff !important;
+        }
+
+        .vc_custom_1541487275357 {
+            margin-top: 0px !important;
+        }
+
+        .vc_custom_1542546801557 {
+            margin-bottom: 0px !important;
+            padding-top: 10px !important;
+            padding-right: 10px !important;
+            padding-bottom: 10px !important;
+            padding-left: 10px !important;
+            background-color: #711a12 !important;
+        }
+
+        .vc_custom_1541487462234 {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            padding-right: 10px !important;
+            padding-bottom: 0px !important;
+            padding-left: 10px !important;
+            background-color: #ffffff !important;
+        }
+
+        .vc_custom_1541487275357 {
+            margin-top: 0px !important;
+        }
+
+        .vc_custom_1541503399235 {
+            padding-top: 0px !important;
+        }
+
+        .vc_custom_1542523572938 {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+    </style>
+    <noscript>
+        <style type="text/css">
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+    <style id="fit-vids-style">
+        .fluid-width-video-wrapper {
+            width: 100%;
+            position: relative;
+            padding: 0;
+        }
+
+            .fluid-width-video-wrapper iframe, .fluid-width-video-wrapper object, .fluid-width-video-wrapper embed {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+        .site-header .site-branding img {
+            max-width: 650px;
+        }
+
+        .dark-mode .customify-builder-social-icons.color-custom li a, .dark-mode .item--html a, .dark-mode .menu-mobile-toggle, .dark-mode .nav-menu > li > a, .dark-mode .search-icon {
+            color: #711a12;
+        }
+    </style>
+    <style>
+        header {
+            background-color: rgba(227, 23, 109, 0.12);
+       background-image: url("/images/background-city.png");
+            background-repeat: repeat;
+        }
+
+            header .navbar-inverse {
+                background-color: transparent;
+                border: none;
+                border-radius: 0px;
+                margin-bottom: 0px;
+            }
+
+            header .header_blk .navbar-brand {
+                max-width: 500px;
+                width: 100%;
+                height: auto;
+                padding: 15px 0px;
+            }
+
+            header .navbar-right {
+                margin-top: 35px;
+            }
+
+            header .navbar-inverse .navbar-nav li {
+                margin-left: 25px;
+            }
+
+                header .navbar-inverse .navbar-nav li:first-child {
+                    margin-left: 0px;
+                }
+
+                header .navbar-inverse .navbar-nav li a {
+                    color: #711a12;
+                    font-weight: bold;
+                    padding: 15px 0px;
+                }
+
+                    header .navbar-inverse .navbar-nav li a:hover {
+                        color: #0091ff;
+                    }
+
+        @@media screen and (max-width:1139px) {
+            header .header_blk .navbar-brand {
+                max-width: 420px;
+            }
+
+            header .navbar-right {
+                margin-top: 28px;
+            }
+        }
+
+        @@media (max-width: 992px) {
+            .navbar-header {
+                float: none;
+            }
+
+            .navbar-inverse .navbar-toggle .icon-bar {
+                background-color: #711a12 !important;
+            }
+
+
+            .navbar-toggle .icon-bar {
+                width: 24px;
+            }
+
+            navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+                background-color: #e8e8e8 !important;
+            }
+
+            .navbar-left, .navbar-right {
+                float: none !important;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .navbar-collapse {
+                border-top: 1px solid transparent;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+                padding: 0px;
+            }
+
+            .navbar-fixed-top {
+                top: 0;
+                border-width: 0 0 1px;
+            }
+
+            .navbar-collapse.collapse {
+                display: none !important;
+            }
+
+            .navbar-nav {
+                float: none !important;
+                margin-top: 7.5px;
+            }
+
+                .navbar-nav > li {
+                    float: none;
+                }
+
+                    .navbar-nav > li > a {
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                    }
+
+            .collapse.in {
+                display: block !important;
+            }
+
+            .navbar-inverse .navbar-toggle {
+                border: none;
+                margin: 20px 0px 0px;
+                padding: 0px;
+            }
+
+            .navbar-toggle .icon-bar {
+                width: 24px;
+            }
+
+            .navbar-inverse .navbar-toggle .icon-bar {
+                background-color: #711a12;
+            }
+
+            .navbar-toggle .icon-bar + .icon-bar {
+                margin-top: 5px;
+            }
+
+            .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+                background-color: transparent;
+            }
+
+            .navbar-inverse .navbar-collapse {
+                border-color: #d9d9d9;
+            }
+
+            header .header_blk .navbar-brand {
+                max-width: 350px;
+            }
+
+            header .navbar-right {
+                margin-top: 0px;
+            }
+
+            header .navbar-inverse .navbar-nav li {
+                margin-left: 0px;
+            }
+        }
+
+        @@media screen and (max-width:767px) {
+            header .header_blk .navbar-brand {
+                max-width: 250px;
+            }
+
+            .navbar-collapse {
+                padding: 0px 15px;
+            }
+
+            .navbar-inverse .navbar-toggle {
+                margin: 20px 0px 0px;
+            }
+        }
+
+        @@media screen and (max-width:1139px) {
+            .site-img-logo {
+                max-width: 400px !important;
+            }
+        }
+
+        @@media screen and (max-width:992px) {
+            .site-img-logo {
+                max-width: 300px !important;
+            }
+        }
+
+        @@media screen and (max-width:767px) {
+            .site-img-logo {
+                max-width: 250px !important;
+            }
+        }
+    </style>
+    <style>
+        header {
+            background-color: rgba(227, 23, 109, 0.12);
+              background-image: url("/images/background-city.png");
+            background-repeat: repeat;
+        }
+
+            header .navbar-inverse {
+                background-color: transparent;
+                border: none;
+                border-radius: 0px;
+                margin-bottom: 0px;
+            }
+
+            header .header_blk .navbar-brand {
+                max-width: 500px;
+                width: 100%;
+                height: auto;
+                padding: 15px 0px;
+            }
+
+            header .navbar-right {
+                margin-top: 35px;
+            }
+
+            header .navbar-inverse .navbar-nav li {
+                margin-left: 25px;
+            }
+
+                header .navbar-inverse .navbar-nav li:first-child {
+                    margin-left: 0px;
+                }
+
+                header .navbar-inverse .navbar-nav li a {
+                    color: #711a12;
+                    font-weight: bold;
+                    padding: 15px 0px;
+                    /*font-size:13px;*/
+                    letter-spacing: -0.7px;
+                }
+
+                    header .navbar-inverse .navbar-nav li a:hover {
+                        color: #0091ff;
+                    }
+
+      /*  @@media screen and (max-width:1139px) {
+            header .header_blk .navbar-brand {
+                max-width: 420px;
+            }
+
+            header .navbar-right {
+                margin-top: 28px;
+            }
+        }*/
+
+        @@media (max-width: 1200px) {
+            .navbar-header {
+                float: none;
+            }
+
+            .navbar-left, .navbar-right {
+                float: none !important;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .navbar-collapse {
+                border-top: 1px solid transparent;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+                padding: 0px;
+            }
+
+            .navbar-fixed-top {
+                top: 0;
+                border-width: 0 0 1px;
+            }
+
+            .navbar-collapse.collapse {
+                display: none !important;
+            }
+
+            .navbar-nav {
+                float: none !important;
+                margin-top: 7.5px;
+            }
+
+                .navbar-nav > li {
+                    float: none;
+                }
+
+                    .navbar-nav > li > a {
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                    }
+
+            .collapse.in {
+                display: block !important;
+            }
+
+            .navbar-inverse .navbar-toggle {
+                border: none;
+                margin: 20px 0px 0px;
+                padding: 0px;
+            }
+
+            .navbar-toggle .icon-bar {
+                width: 24px;
+            }
+
+            .navbar-inverse .navbar-toggle .icon-bar {
+                background-color: #711a12;
+            }
+
+            .navbar-toggle .icon-bar + .icon-bar {
+                margin-top: 5px;
+            }
+
+            .navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+                background-color: transparent;
+            }
+
+            .navbar-inverse .navbar-collapse {
+                border-color: #d9d9d9;
+            }
+
+            header .header_blk .navbar-brand {
+                max-width: 350px;
+            }
+
+            header .navbar-right {
+                margin-top: 0px;
+            }
+
+            header .navbar-inverse .navbar-nav li {
+                margin-left: 0px;
+            }
+        }
+
+
+
+        @@media screen and (max-width:767px) {
+            header .header_blk .navbar-brand {
+                max-width: 250px;
+            }
+
+            .navbar-collapse {
+                padding: 0px 15px;
+            }
+
+            .navbar-inverse .navbar-toggle {
+                margin: 20px 0px 0px;
+            }
+        }
+
+        @@media screen and (max-width:576px) {
+            header .header_blk .navbar-brand {
+                max-width: 210px;
+            }
+        }
+        .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        
+        border-color: #d9d9d9 !important;
+
+        }
+        @@media (max-width: 767px) {
+            .container {
+                width: auto !important; 
+            }
+        }
+    </style>
+    <style>
+/*--Demo style*/
+
+
+    </style>
+</head>
+<body data-rsssl="1" class="home page-template-default page page-id-6711 wp-custom-logo content sidebar_vertical_border site-full-width menu_sidebar_slide_left wpb-js-composer js-comp-ver-5.5.5 vc_responsive">
+    <div id="header-menu-sidebar" class="header-menu-sidebar menu-sidebar-panel dark-mode">
+        <div id="header-menu-sidebar-bg" class="header-menu-sidebar-bg">
+            <div id="header-menu-sidebar-inner" class="header-menu-sidebar-inner">
+                <div class="builder-item-sidebar mobile-item--html">
+                    <div class="item--inner" data-item-id="html" data-section="header_html" style="transition-delay: 0.2s;">
+                        <div class="builder-header-html-item item--html">
+                            <p><b>Address: </b>Comming Soon INDIA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="builder-item-sidebar mobile-item--primary-menu mobile-item--menu ">
+                    <div class="item--inner" data-item-id="primary-menu" data-section="header_menu_primary" style="transition-delay: 0.4s;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page" class="site box-shadow">
+        <a class="skip-link screen-reader-text" href="/#site-content">Skip to content</a>
+        <a class="close is-size-medium  close-panel close-sidebar-panel" href="/#">
+            <span class="hamburger hamburger--squeeze is-active">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"><span class="screen-reader-text">Menu</span></span>
+                </span>
+            </span>
+            <span class="screen-reader-text">Close</span>
+        </a>
+        <header id="masthead" class="site-header">
+            <div id="masthead-inner" class="site-header-inner">-->
+                @*<div class="header-top header--row layout-full-contained" id="cb-row--header-top" data-row-id="top" data-show-on="desktop mobile">
+                        <div class="header--row-inner header-top-inner dark-mode">
+                            <div class="customify-container">
+                                <div class="customify-grid cb-row--desktop hide-on-mobile hide-on-tablet customify-grid-middle">
+                                    <div class="customify-col-8_md-8_sm-8 builder-item builder-first--html" data-push-left="">
+                                        <div class="item--inner builder-item--html" data-section="header_html" data-item-id="html">
+                                            <div class="builder-header-html-item item--html">
+                                                <p><b>Address: </b>ADMINISTRATIVE BLOCK, (R.D. & D. J. COLLEGE CAMPUS), MUNGER – 121212 (BIHAR) INDIA</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="customify-col-4_md-4_sm-12 builder-item builder-first--button" data-push-left="">
+                                        <div class="item--inner builder-item--button" data-section="header_button" data-item-id="button">
+                                            <a href="https://www.DemoUniversity.ac.in/" class="item--button customify-btn customify-builder-btn is-icon-before"><i class=""></i>BACK TO MAIN WEBSITE >></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="cb-row--mobile hide-on-desktop customify-grid customify-grid-middle">
+                                    <div class="customify-col-8_md-8_sm-8 builder-item builder-first--button" data-push-left=""><div class="item--inner builder-item--button" data-section="header_button" data-item-id="button"><a href="https://www.DemoUniversity.ac.in/" class="item--button customify-btn customify-builder-btn is-icon-before"><i class=""></i> BACK TO MAIN WEBSITE</a></div></div>
+                                    <div class="customify-col-2_md-2_sm-2 builder-item builder-first--search_box" data-push-left="off-1">
+                                        <div class="item--inner builder-item--search_box" data-section="search_box" data-item-id="search_box">
+                                            <div class="header-search_box-item item--search_box">
+                                                <form role="search" class="header-search-form" action="/"></form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                @*<div class="header-col">
+                        <div class="" data-item-id="html" data-section="header_html" style="transition-delay: 0.2s;">
+                            <div class="">
+                                <a href="https://www.DemoUniversity.ac.in/" class="logo-link" rel="home" itemprop="url" style="text-align:center">
+                                    <center>  <img class="site-img-logo" src="~/Content/WEB/mu-logo-white.png" alt="Logo"> </center>
+                                </a>
+                            </div>
+                        </div>
+                    </div>*@
+
+                <!--<div id="page" class="site box-shadow">
+                    <a class="skip-link screen-reader-text" href="/#site-content">Skip to content</a>
+                    <a class="close is-size-medium  close-panel close-sidebar-panel" href="/#">
+                        <span class="hamburger hamburger--squeeze is-active">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"><span class="screen-reader-text">Menu</span></span>
+                            </span>
+                        </span>
+                        <span class="screen-reader-text">Close</span>
+                    </a>
+                    <header id="masthead" class="site-header">
+                        <div id="masthead-inner" class="site-header-inner">
+                            <div class="header-top header--row layout-full-contained" id="cb-row--header-top" data-row-id="top" data-show-on="desktop mobile">
+                                <div class="header--row-inner header-top-inner dark-mode">
+                                    <div class="customify-container">-->
+                                        <!--<div class="customify-grid cb-row--desktop hide-on-mobile hide-on-tablet customify-grid-middle">
+                                            <div class="customify-col-8_md-8_sm-8 builder-item builder-first--html" data-push-left="">-->-->
+                                        <!--@*<div class="item--inner builder-item--html" data-section="header_html" data-item-id="html">
+                                                <div class="builder-header-html-item item--html">
+                                                    <p><b>Address: </b>Comming Soon INDIA</p>
+                                                </div>
+                                            </div>*@-->
+                                        <!--<!--</div>-->-->
+                                        <!--@*<div class="customify-col-4_md-4_sm-12 builder-item builder-first--button" data-push-left="">
+                                                <div class="item--inner builder-item--button" data-section="header_button" data-item-id="button">
+                                                    <a href="https://www.DemoUniversity.ac.in/" class="item--button customify-btn customify-builder-btn is-icon-before"><i class=""></i>BACK TO MAIN WEBSITE >></a>
+                                                </div>
+
+                                            </div>*@-->
+                                        <!--<!--</div>-->-->
+                                        <!--@*<div class="cb-row--mobile hide-on-desktop customify-grid customify-grid-middle">
+                                                <div class="customify-col-8_md-8_sm-8 builder-item builder-first--button" data-push-left=""><div class="item--inner builder-item--button" data-section="header_button" data-item-id="button"><a href="https://www.DemoUniversity.ac.in/" class="item--button customify-btn customify-builder-btn is-icon-before"><i class=""></i> BACK TO MAIN WEBSITE</a></div></div>
+                                                <div class="customify-col-2_md-2_sm-2 builder-item builder-first--search_box" data-push-left="off-1">
+                                                    <div class="item--inner builder-item--search_box" data-section="search_box" data-item-id="search_box">
+                                                        <div class="header-search_box-item item--search_box">
+                                                            <form role="search" class="header-search-form" action="/"></form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <header>
+                                <div class="container">
+                                    <nav class="navbar navbar-inverse header_blk">-->
+                                        <!-- Brand and toggle get grouped for better mobile display -->
+                                        <!--<div class="navbar-header">
+                                            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                                                <span class="sr-only">Toggle navigation</span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </button>
+
+                                        </div>-->
+                                        <!-- Collection of nav links, forms, and other content for toggling -->
+                                       
+                                    <!--</nav>
+                                </div>
+                            </header>
+
+
+                        </div>
+                    </header>-->
+
+
+
+                    <!-- #content -->
+                <!--</div>
+            </div>
+        </header>-->
+
+
+
+        <!-- #content -->
+    <!--</div>
+    @RenderBody()
+
+
+
+    <footer class="site-footer" id="site-footer">
+        <div class="footer-bottom footer--row layout-full-contained" id="cb-row--footer-bottom" data-row-id="bottom" data-show-on="desktop">
+            <div class="footer--row-inner footer-bottom-inner dark-mode">
+                <div class="customify-container">
+                    <div class="customify-grid  customify-grid-top">
+                        <div class="customify-col-12_md-12_sm-12_xs-12 builder-item builder-first--footer_copyright" data-push-left="_sm-0">
+                            <div class="item--inner builder-item--footer_copyright" data-section="footer_copyright" data-item-id="footer_copyright">
+                                <div class="builder-footer-copyright-item footer-copyright">
+                                    <p>
+                                        Copyright © 2023- @System.DateTime.Now.Year <a href="/">Comming Soon University</a>, All Rights Reserved<br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Content/js/bootstrap.min.js"></script>-->
+
+
+    <!-- Header -->
+    <!--<header class="header">
+        <nav class="nav">
+            <a href="#" class="nav_logo">CodingLab</a>
+            <ul class="nav_items">
+                <li>
+                    <a class="nav_link" href="/Home/StudentApplicationForm">UG CBCH </a>
+                    <a class="nav_link" href="/Home/StudentApplicationForm">PG CBCH </a>
+                    <a class="nav_link" href="/Home/StudentApplicationForm">UG GENERAL </a>
+                    <a class="nav_link" href="/VOC/StproForm">UG VOCATIONAL </a>
+                    <a class="nav_link" href="/PG/PGStudentApplicationForm">PG COURSES </a>
+                    <a class="nav_link" href="/LLB/LLBStudentApplicationForm">LLB COURSES </a>
+                    <a class="nav_link" href="/LLB/LLBStudentApplicationForm">Other COURSES </a>
+                    <a class="nav_link" href="/"></a>
+                </li>
+            </ul>
+
+            <div id="navbarCollapse" class="navbar-collapse collapse">
+
+            </div>
+
+            <a class="button" href="/" id="form-open">STUDENT LOGIN</a>
+        </nav>
+    </header>-->
+    <!-- Home -->
+    <!--<section class="home">
+        <div class="form_container">
+            <i class="uil uil-times form_close"></i>-->
+            <!-- Login From -->
+            <!--<div class="form login_form">
+                <form action="#">
+                    <h2>Login</h2>
+                    <div class="input_box">
+                        <input type="email" placeholder="Enter your email" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Enter your password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="option_field">
+                        <span class="checkbox">
+                            <input type="checkbox" id="check" />
+                            <label for="check">Remember me</label>
+                        </span>
+                        <a href="#" class="forgot_pw">Forgot password?</a>
+                    </div>
+                    <button class="button">Login Now</button>
+                    <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+                </form>
+            </div>-->
+            <!-- Signup From -->
+            <!--<div class="form signup_form">
+                <form action="#">
+                    <h2>Signup</h2>
+                    <div class="input_box">
+                        <input type="email" placeholder="Enter your email" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Create password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Confirm password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <button class="button">Signup Now</button>
+                    <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+</html>-->

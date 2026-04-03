@@ -1,0 +1,715 @@
+﻿@model DataLayer.Login
+@{
+                /**/
+
+                /**/
+
+                /**/
+
+                ViewBag.Title = "BasicDetail";
+                Layout = "~/Areas/Student/Views/Shared/_LayoutStudent.cshtml";
+}
+<style>
+    label {
+        padding: 10px;
+    }
+
+    .starvalid {
+        color: red;
+    }
+</style>
+<script type="text/javascript">
+
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#userImage').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function show1(input) {
+        if (input.files && input.files[0]) {
+            var filerdr1 = new FileReader();
+            filerdr1.onload = function (e) {
+                $('#signImage').attr('src', e.target.result);
+            }
+            filerdr1.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script src="~/JS/Commonjs.js"></script>
+
+<div class="container-fluid">
+    <div class="all-content-wrapper" style="margin-left:0px !important">
+        <!-- Advanced Form Start -->
+        <div class="advanced-form-area mg-b-15">
+            @{
+
+                if (TempData["StMessage"] == null) { }
+                else
+                {
+                    <div class="alert-wrap1 shadow-inner wrap-alert-b">
+
+                        <div class="alert alert-success " role="alert" style="text-align:center !important">
+                            <div>@TempData["StMessage"]</div>
+
+                        </div>
+                    </div>
+                }
+            }
+            <div class="sparkline10-graph">
+                <div class="input-knob-dial-wrap">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <h3 style="text-align:center">Admission Form </h3>
+                            <div class="form-group-inner">
+                                <div class="row login-btn-inner">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0" style="text-align: left;">
+
+                                            <div class="sparkline10-graph">
+                                                <div class="input-knob-dial-wrap">
+                                                    <div class="row all-form-element-inner">
+                                                        <div class="form-group-inner">
+                                                            <div class="row login-btn-inner">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="product-payment-inner-st">
+                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                            <li class="active"><a href="#description">Basic Information</a></li>
+                                                                        </ul>
+                                                                        <div id="myTabContent" class="tab-content custom-product-edit">
+                                                                            <div class="product-tab-list tab-pane fade active in" id="description">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                        <div class="review-content-section">
+                                                                                            @using (Ajax.BeginForm("BasicDetail", "Home", FormMethod.Post,
+                                                                                                new AjaxOptions
+                                                                                                {
+                                                                                                    OnSuccess = "OnSuccess",
+                                                                                                    OnFailure = "OnFailure",
+                                                                                                    LoadingElementId = "progress"
+                                                                                                }, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data" }))
+                                                                                            {
+                                                                                                @Html.AntiForgeryToken()
+                                                                                                <div id="dropzone1" class="pro-ad">
+                                                                                                    <div class="row">
+
+
+                                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                                                                            <span class="starvalid">*</span>Admission  Category :
+                                                                                                            @Html.DropDownListFor(model => model.AdmisitionCategory, new SelectList(ViewBag.Admissiontype, "CommonId", "title"), "Select Adminission Type..", new { @class = "form-control", @id = "AdminissionType", @required = "required", @readonly = "readonly", @disabled = "disabled" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                                                                            <span class="starvalid">*</span>Programme type :
+                                                                                                            @Html.DropDownListFor(model => model.EducationType, new SelectList(ViewBag.Educationtype, "CommonId", "title", @ViewBag.eduid), "Select Programme Type..", new { @class = "form-control", @id = "Educationtype", @required = "required", @readonly = "readonly", @disabled = "disabled" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                                                                            <span class="starvalid">*</span>Select Course :
+                                                                                                            @Html.DropDownListFor(model => model.CourseCategory, new SelectList(ViewBag.Course, "CourseCategoryID", "CourseCategory"), "Select Course..", new { @class = "form-control", @id = "Coursetype", @required = "required", @readonly = "readonly", @disabled = "disabled" })
+
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <span><label class="col-md-12">(आवेदक का नाम अंग्रेजी में)</label></span>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Title</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.title, new SelectList(ViewBag.stitle, "CommonId", "title"), "Select Title..", new { @class = "form-control", @id = "title", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>First Name</label></span>
+                                                                                                            <input type="hidden" id="administype1">
+                                                                                                            <input type="hidden" id="educationtype1">
+                                                                                                            <input type="hidden" id="coursetype1">
+                                                                                                            <input type="hidden" id="stream1">
+                                                                                                            @Html.TextBoxFor(model => model.FirstName, "", new { @class = "form-control", @placeholder = "First Name", @required = "required" })
+                                                                                                            @Html.HiddenFor(model => model.Id, "")
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Middle Name</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MiddleName, "", new { @class = "form-control", @placeholder = "Middle Name" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Last Name</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.LastName, "", new { @class = "form-control", @placeholder = "Last Name" })
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <span><label class="col-md-12">(आवेदक का नाम हिन्दी में)</label></span>
+
+                                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                                                                            <span><label><span class="starvalid">*</span>पहला नाम </label></span>
+                                                                                                            <input type="hidden" id="administype1">
+                                                                                                            <input type="hidden" id="educationtype1">
+                                                                                                            <input type="hidden" id="coursetype1">
+                                                                                                            <input type="hidden" id="stream1">
+                                                                                                            @Html.TextBoxFor(model => model.FirstNameInHindi, "", new { @class = "form-control", @placeholder = "पहला नाम", @id = "FirstNameInHindi", @required = "required" })
+                                                                                                            @Html.HiddenFor(model => model.Id, "")
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                                                                            <span><label>मध्य नाम</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MiddleNameInHindi, "", new { @class = "form-control", @id = "MiddleNameInHindi", @placeholder = "मध्य नाम" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4">
+                                                                                                            <span><label><span class="starvalid">*</span>अंतिम नाम</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.LastNameInHindi, "", new { @class = "form-control", @id = "LastNameInHindi", @placeholder = "अंतिम नाम" })
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Sex (लिंग) </label></span>
+                                                                                                            @Html.DropDownListFor(model => model.Gender, new SelectList(ViewBag.Gender, "CommonId", "title", ""), "Select Gender ..", new { @class = "form-control", @id = "Gender", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+
+                                                                                                            <div class="form-group data-custon-pick" id="data_2" style="margin-top:0px">
+                                                                                                                <span><label><span class="starvalid">*</span>Date of birth (जन्म की तारीख)</label></span>
+                                                                                                                <div class="input-mark-inner mg-b-22 input-group date">
+
+                                                                                                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                                                                                    @Html.TextBoxFor(model => model.DOB, new { @class = "form-control", @id = "datepicker", @maxlenght = "10", @autocomplete = "off", @placeholder = "DD/MM/YYYY", @onkeypress = "return false;", @required = "required" })
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Category (श्रेणी)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.CastCategory, new SelectList(ViewBag.CasteCategory, "CommonId", "title", ""), "Select Caste ..", new { @class = "form-control", @id = "Cast", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Mobile No. (मोबाइल नंबर) </label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", @oninput = "OnlyIntvalue(this);", @Maxlength = "10", @placeholder = "Mobile no.", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Email Id (ईमेल आईडी) </label></span>
+                                                                                                            @Html.TextBoxFor(model => model.Email, "", new { @class = "form-control", @placeholder = "Email Address", @type = "email", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Blood Group (रक्त समूह)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.BloodGroup, new SelectList(ViewBag.bloodgroup, "bloodgrouid", "BloodGroup", ""), "Select Blood_Group ..", new { @class = "form-control", @id = "Blood_Group" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Nationality (राष्ट्रीयता)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.Nationality, new SelectList(ViewBag.Nationality, "CommonId", "title", ""), "Select Nationality ..", new { @class = "form-control", @id = "Nationality", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3" style="display:none;">
+                                                                                                            <span><label>Mother Tongue (मातृ भाषा)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.MotherTongue, new SelectList(ViewBag.MotherTongue, "CommonId", "title", ""), "Select MotherTongue ..", new { @class = "form-control", @id = "MotherTongue" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Religion (धर्म)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.Religion, new SelectList(ViewBag.Religion, "CommonId", "title", ""), "Select Religion ..", new { @class = "form-control", @id = "Religion", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="ReligonOther" style="display: none;">
+                                                                                                            <span><label><span class="starvalid">*</span>Mention your Religon (अपने धर्म का उल्लेख करें) </label></span>
+                                                                                                            @Html.TextBoxFor(model => model.ReligonOther, new { @class = "form-control", @Id = "txtReligonOther", @placeholder = "Mention your Religon (अपने धर्म का उल्लेख करें)" })
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="form-group col-md-12">
+                                                                                                            <ul id="myTabedu1" class="tab-review-design">
+                                                                                                                <li class="active"><a href="#description">Special Category (विशेष श्रेणी)</a></li>
+                                                                                                            </ul>
+
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
+                                                                                                            <span><label>If you are handicapped/(यदि आप विकलांग/दिव्यांग हैं)?</label></span>
+                                                                                                            @Html.RadioButtonFor(model => model.ishandicapped, "True", new { @class = "", @id = "ishandicapped" })Yes
+                                                                                                            @Html.RadioButtonFor(model => model.ishandicapped, "False", new { @class = "", @id = "ishandicapped" })No
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
+                                                                                                            <span><label>If you are Ex-Servicemen /(यदि आप पूर्व-सेवा मैन हैं)?</label></span>
+                                                                                                            @Html.RadioButtonFor(model => model.isex_service_man, "True", new { @class = "", @id = "isex_service_man" })Yes
+                                                                                                            @Html.RadioButtonFor(model => model.isex_service_man, "False", new { @class = "", @id = "isex_service_man" })No
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
+                                                                                                            <span><label>If you are NCC Candidate/(यदि आप एनसीसी कैंडिडेट हैं)?</label></span>
+                                                                                                            @Html.RadioButtonFor(model => model.is_ncc_candidate, "True", new { @class = "", @id = "is_ncc_candidate" })Yes
+                                                                                                            @Html.RadioButtonFor(model => model.is_ncc_candidate, "False", new { @class = "", @id = "is_ncc_candidate" })No
+                                                                                                        </div>
+
+                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="">
+                                                                                                            <span><label>If you are sports candidate/(यदि आप खेल उम्मीदवार हैं)?</label></span>
+                                                                                                            @Html.RadioButtonFor(model => model.IsSports, "True", new { @class = "", @id = "is_ncc_candidate" })Yes
+                                                                                                            @Html.RadioButtonFor(model => model.IsSports, "False", new { @class = "", @id = "is_ncc_candidate" })No
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                                            <span><label>If you are belong to staff /(यदि आप कर्मचारियों के हैं)?</label></span>
+                                                                                                            @Html.RadioButtonFor(model => model.IsStaff, "True", new { @class = "", @id = "is_ncc_candidate" })Yes
+                                                                                                            @Html.RadioButtonFor(model => model.IsStaff, "False", new { @class = "", @id = "is_ncc_candidate" })No
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <ul id="myTabedu1" class="tab-review-design">
+                                                                                                        <li class="active"><a href="#description"> Address Detail</a></li>
+                                                                                                    </ul>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Address/(पता)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.CurrentAddress, "", new { @class = "form-control", @placeholder = "Address", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>City/(शहर)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.CA_City, "", new { @class = "form-control", @placeholder = "city", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>PinCode/(पिन कोड)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.CA_PinCode, "", new { @class = "form-control", @placeholder = "PinCode", @id = "pincode", @oninput = "OnlyIntvalue(this);", @Maxlength = "6", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="form-group col-md-4" style="display:none">
+                                                                                                            <span class="form-group col-md-4"><label><span class="starvalid">*</span>Country</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.CA_Country, new SelectList(ViewBag.country, "ID", "Name", ""), new { @class = "form-control", @id = "Country", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>State/(राज्य)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.CA_State, new SelectList(ViewBag.CAState, "stateID", "statename"), "Select State..", new { @class = "form-control", @id = "State", @required = "required" })
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="form-group col-md-12">
+                                                                                                            <h5> Permanent  Address <input type="checkbox" value="" id="parmanentcheckbox" /> if(Your Permanent Address and Correspondence Address are Same)</h5>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Address/(पता)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.PA_Address, "", new { @class = "form-control", @placeholder = "PAddress", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>City/(शहर)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.PA_City, "", new { @class = "form-control", @placeholder = "Pcity", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>PinCode/(पिन कोड)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.PA_PinCode, "", new { @class = "form-control", @placeholder = "PPinCode", @oninput = "OnlyIntvalue(this);", @Maxlength = "6", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="form-group col-md-4" style="display:none">
+                                                                                                            <span class="form-group col-md-4"><label><span class="starvalid">*</span>Country</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.PA_Country, new SelectList(ViewBag.Pcountry, "ID", "name", ""), new { @class = "form-control", @id = "PCountry", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>State/(राज्य)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.CA_State, new SelectList(ViewBag.PAState, "stateID", "statename"), "Select State..", new { @class = "form-control", @id = "PState", @required = "required" })
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                                                            <li class="active"><a href="#description"> Father /Husband Details (पिता / पति का विवरण)</a></li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Title/(शीर्षक)</label></span>
+                                                                                                            @Html.DropDownListFor(model => model.Ftitle, new SelectList(ViewBag.ftitle, "CommonId", "title"), "Select Title..", new { @class = "form-control", @id = "Ftitle", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Name/(नाम अंग्रेजी में) </label></span>
+                                                                                                            @Html.TextBoxFor(model => model.FatherName, "", new { @class = "form-control", @placeholder = "Father Name", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Name/(नाम हिन्दी में) </label></span>
+                                                                                                            @Html.TextBoxFor(model => model.FatherNameInHindi, "", new { @class = "form-control", @placeholder = "नाम हिन्दी में", @id = "FatherNameInHindi", @required = "required" })
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Mobile No/(मोबाइल नंबर)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.FatherMobile, new { @class = "form-control", @oninput = "OnlyIntvalue(this);", @Maxlength = "10", @placeholder = "Father Mobile" })
+                                                                                                        </div>
+
+
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Email/(ईमेल)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.FatherEmail, "", new { @class = "form-control", @placeholder = "Father Email", @type = "email" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Qualification/(योग्यता)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.FatherQualification, "", new { @class = "form-control", @placeholder = "Father Qualification" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Occupation/(व्यवसाय)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.FatherOccupation, "", new { @class = "form-control", @placeholder = "Father Occupation" })
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                                                            <li class="active"><a href="#description">Mother Details (माँ का विवरण)</a></li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Name/(नाम अंग्रेजी में)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MotherName, "", new { @class = "form-control", @placeholder = "Mother Name", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label><span class="starvalid">*</span>Name/(नाम हिन्दी में) </label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MotherNameInHindi, "", new { @class = "form-control", @placeholder = "Name/(नाम हिन्दी में)", @id = "MotherNameInHindi", @required = "required" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Name/(मोबाइल)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MotherMobile, new { @class = "form-control", @oninput = "OnlyIntvalue(this);", @Maxlength = "10", @placeholder = "Mother Mobile" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Email/(ईमेल)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MotherEmail, "", new { @class = "form-control", @placeholder = "Mother Email", @type = "email" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Qualification/(योग्यता)</label></span>
+
+                                                                                                            @Html.TextBoxFor(model => model.MotherQualification, "", new { @class = "form-control", @placeholder = "Mother Qualification" })
+
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-3">
+                                                                                                            <span><label>Occupation/(व्यवसाय)</label></span>
+                                                                                                            @Html.TextBoxFor(model => model.MotherOccupation, "", new { @class = "form-control", @placeholder = "Mother Occupation" })
+
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <ul id="myTabedu1" class="tab-review-design">
+                                                                                                            <li class="active"><a href="#description">Photo And Signature Details/(फोटो और हस्ताक्षर का विवरण)</a></li>
+                                                                                                        </ul>
+                                                                                                        <div class="form-group col-md-6">
+                                                                                                            <span class="form-group col-md-4"><label>Upload Photo</label></span>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                                                    @if (Model != null)
+                                                                                                                    {
+                                                                                                                        if (Model.stphoto == null)
+                                                                                                                        {
+                                                                                                                            <img id="userImage" height="100px" width="100px" style="border:solid;width:100px !important;height:100px !important" src='~/Student/PhotoandSign/noimage.png' />
+
+                                                                                                                        }
+                                                                                                                        else
+
+                                                                                                                        {
+                                                                                                                            <img id="userImage" height="100px" width="100px" style="border:solid;width:100px !important;height:100px !important" src='@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.stphoto' />
+
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    else
+                                                                                                                    {
+                                                                                                                        <img id="userImage" height="100px" width="100px" style="border:solid;width:100px !important;height:100px !important" src='~/Student/PhotoandSign/noimage.png' />
+                                                                                                                    }
+                                                                                                                    <div class="file-upload-inner file-upload-inner-right ts-forms">
+                                                                                                                        <div class="input append-big-btn">
+                                                                                                                            <div class="file-button">
+                                                                                                                                Browse
+                                                                                                                                <input type="file" id="photo" onchange="document.getElementById('append-big-btn').value = this.value; checkphoto();" name="photo">
+                                                                                                                            </div>
+                                                                                                                            @Html.TextBoxFor(model => model.stphoto, "", new { @class = "form-control", @id = "append-big-btn", @placeholder = "no file selected", @readonly = "readonly" })
+
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <span class="form-group col-md-12"><span class="starvalid" style="font-size:small">* Allow File Extension (.jpg,.jpeg,.bmp,.jif,.png) File Size(50 KB Maximum)</span></span>
+                                                                                                        </div>
+                                                                                                        <div class="form-group col-md-6">
+                                                                                                            <span class="form-group col-md-4"><label>Upload Signature</label></span>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                                                    @if (Model != null)
+                                                                                                                    {
+                                                                                                                        if (Model.stsign == null)
+                                                                                                                        {
+                                                                                                                            <img id="userImage" style="border:solid;width:100px !important;height:100px !important" src='~/Student/PhotoandSign/noimage.png' />
+
+                                                                                                                        }
+                                                                                                                        else
+
+                                                                                                                        {
+                                                                                                                            <img id="userImage" style="border:solid;width:100px !important;height:100px !important" src='@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.stsign' />
+
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    else
+                                                                                                                    {
+                                                                                                                        <img id="userImage" style="border:solid;width:100px !important;height:100px !important" src='~/Student/PhotoandSign/noimage.png' />
+                                                                                                                    }
+                                                                                                                    <div class="file-upload-inner file-upload-inner-right ts-forms">
+                                                                                                                        <div class="input append-big-btn">
+                                                                                                                            <div class="file-button">
+                                                                                                                                Browse
+                                                                                                                                <input type="file" onchange="document.getElementById('append-big-btn2').value = this.value; checksigh();" id="sign" name="sign">
+                                                                                                                            </div>
+                                                                                                                            @*<input type="text" id="append-big-btn2" placeholder="no file selected" readonly="readonly">*@
+                                                                                                                            @Html.TextBoxFor(model => model.stsign, "", new { @class = "form-control", @id = "append-big-btn2", @placeholder = "no file selected", @readonly = "readonly" })
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <span class="form-group col-md-12"><span class="starvalid" style="font-size:small">* Allow File Extension (.jpg,.jpeg,.bmp,.jif,.png) File Size(50 KB Maximum)</span></span>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="dec-body" style="margin:15px !important">
+                                                                                                            <input class="marginR10px ng-pristine ng-valid" type="checkbox" id="checkAgree" name="tnc" checked="checked" disabled="disabled"> I hereby declare that the information given in this application is true and any false statement detected any time even after my admission is liable for cancellation
+                                                                                                            of my candidature without any refund of the deposited fees. I promise to abide by the rules and regulations of the Munger University, Bihar. उम्मीदवार की
+                                                                                                            घोषणा: मैं इसके द्वारा घोषणा करता/करती हूं
+                                                                                                            कि इस आवेदन में दी गई जानकारी सही है और किसी
+                                                                                                            भी गलत विवरण का पता लगने के बाद किसी भी समय
+                                                                                                            मेरे प्रवेश को शुल्क वापसी के बिना मेरे
+                                                                                                            उम्मीदवारी को रद्द करने के लिए विश्वविद्यालय उत्तरदायी
+                                                                                                            है। मैं मुंगेर विश्वविद्यालय, बिहार
+                                                                                                            के नियमों और विनियमों का पालन करने का वचन
+                                                                                                            देता/देती हूं।
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-12">
+                                                                                                            <div class="payment-adress">
+                                                                                                              @if (Model != null)
+                                                                                                              {
+                                                                                                                  if (Model.IsFeeSubmit == 0)
+                                                                                                                  {
+
+                                                                                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                                                                  }
+                                                                                                              }
+                                                                                                            
+
+
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-12">
+                                                                                                            <div class="" style="text-align:right">
+                                                                                                                <br /><br />
+                                                                                                                  <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("DocumentUpload","Home")" style="text-align:right">Next</a>
+
+
+
+
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+
+                                                                                                </div>
+
+
+
+
+
+                                                                                                @*</form>*@
+                                                                                            }
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script src="~/Content/js/vendor/jquery-1.12.4.min.js"></script>
+                            <script>
+                                $(function ()
+                                {
+                                    $("#Educationtype option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.eduid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Gender option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.genderid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#CastCategory option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.castid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+
+                                $(function ()
+                                {
+                                    $("#Blood_Group option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.bloodgroupid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#title option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.titileid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Ftitle option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.ftitileid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Nationality option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.Nationalityid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#Religion option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.Religionid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                                $(function ()
+                                {
+                                    $("#MotherTongue option").each(function ()
+                                    {
+                                        if ($(this).val() ==((@ViewBag.MotherTongueid)))
+                                        {
+                                            $(this).attr('selected', 'selected');
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-content-wrapper" style="margin-left:0px !important">
+                <!-- Advanced Form Start -->
+                <div class="container-fluid col-md-10 col-md-offset-1 col-sm-12" id="basicinfo" style="display:none">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="progress" class="modal">
+            <div class="center">
+                <img src="~/images/loader4.gif" /> loading...................
+            </div>
+        </div>
+        <script src="~/JS/Studentadminissionform.js"></script>
+        @*<script src="~/Content/js/datapicker/bootstrap-datepicker_back10year.js"></script>*@
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var abc=@Convert.ToInt16(DataLayer.CommonSetting.Religion.OtherReligion);
+        console.log("abc"+ abc);
+        if ($('#Religion').val() == abc) {
+            $('#ReligonOther').css('display', 'block');
+            $('#lblrgn').css('display', 'block');
+            $('#txtReligonOther').attr('required', 'required');
+        }
+
+        $('#Religion').change(function () {
+            debugger;
+            if ($('#Religion').val() == abc) {
+                $('#ReligonOther').css('display', 'block');
+                $('#txtReligonOther').attr('required', 'required');
+                $('#lblrgn').css('display', 'block');
+
+            }
+            else {
+                $('#ReligonOther').css('display', 'none');
+                $('#txtReligonOther').removeAttr('required');
+                $('#lblrgn').css('display', 'none');
+                $('#txtReligonOther').val('');
+            }
+        });
+    });
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript">
+    google.load("elements", "1", { packages: "transliteration" });
+</script>
+<script>
+    function OnLoad() {
+
+        var options = {
+            sourceLanguage:
+                google.elements.transliteration.LanguageCode.ENGLISH,
+            destinationLanguage:
+                [google.elements.transliteration.LanguageCode.HINDI],
+            shortcutKey: 'ctrl+g',
+            transliterationEnabled: true
+        };
+        debugger;
+
+        var control = new
+            google.elements.transliteration.TransliterationControl(options);
+        control.makeTransliteratable(["FirstNameInHindi"]);
+        control.makeTransliteratable(["MiddleNameInHindi"]);
+        control.makeTransliteratable(["LastNameInHindi"]);
+        control.makeTransliteratable(["FatherNameInHindi"]);
+        control.makeTransliteratable(["MotherNameInHindi"]);
+
+    } //end onLoad function
+
+    google.setOnLoadCallback(OnLoad);
+
+</script>

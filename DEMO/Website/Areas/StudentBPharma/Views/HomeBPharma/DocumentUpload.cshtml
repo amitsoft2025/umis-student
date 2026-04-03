@@ -1,0 +1,207 @@
+﻿﻿@model DataLayer.DocumentUpload
+@{
+    ViewBag.Title = "DocumentUpload";
+    Layout = "~/Areas/StudentBPharma/Views/Shared/_LayoutStudentBPharma.cshtml";
+}
+
+<script src="~/scripts/Resources/angular.js"></script>
+<script src="~/scripts/Resources/loading-bar.js"></script>
+<script src="~/scripts/Resources/ui-bootstrap-tpls-0.13.4.min.js"></script>
+<script src="~/scripts/Customjs/DocumentDetail.js?id=@System.Configuration.ConfigurationManager.AppSettings["DocumentDetail"]"></script>
+<script src="~/scripts/Customjs/DocumentUpload.js?id=@System.Configuration.ConfigurationManager.AppSettings["DocumentUpload"]"></script>
+<style>
+    .starvalid {
+        color: red;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="single-cards-item DocumentUpload">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 ">
+                <div class="sparkline12-hd">
+                    <div class="main-sparkline12-hd">
+                        <h3 class="text-center">Document Upload </h3>
+                    </div>
+
+
+                    <div class="sparkline12-graph">
+                        <div class="basic-login-form-ad">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="all-form-element-inner">
+                                        @*<form action="#">*@
+                                        <div class="text-danger text-center">
+                                            @if (TempData["Msg"] != null)
+                                            {
+                                                @TempData["Msg"];
+                                            }
+                                        </div>
+                                        @using (Html.BeginForm())
+                                        {
+                                            <div class="row">
+                                                <div class="col-lg-6 col-lg-offset-3">
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <label class="login2">Document </label>
+                                                                <div class="form-select-list">
+                                                                    @Html.DropDownListFor(model => model.DocumentType, new SelectList(ViewBag.Document, "Value", "Text", ViewBag.que), "--Select Document Type--", new { @class = "form-control custom-select-value", @id = "Document", @name = "Document", @required = "required" })
+                                                                    @if (Model != null)
+                                                                    {
+                                                                        @Html.HiddenFor(model => model.ID, new { @id = "hid" })
+                                                                    }
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-danger">
+                                                                <span id="Berr"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <label class="login2">Upload Document</label>
+                                                                <div class="file-upload-inner file-upload-inner-right ts-forms">
+                                                                    <div class="input append-big-btn">
+                                                                        <label class="icon-left" for="append-big-btn">
+                                                                            <i class=""></i>
+                                                                        </label>
+                                                                        <div class="file-button">
+                                                                            Browse
+                                                                            <input type="file" onchange="document.getElementById('append-big-btn').value = this.value; check(); encodeImagetoBase64(this);" id="file" name="file" required>
+                                                                        </div>
+                                                                        <input type="hidden" class="link">
+                                                                        <input type="text" id="append-big-btn" placeholder="no file selected" readonly onchange="check()" value="@Model.FileName">
+                                                                        <div class="text-danger file-text"> Allowed .ext is .jpg,.jpeg,.png,.pdf  ,Size should be less then 500KB </div>
+                                                                        @if (Model != null)
+                                                                        {
+                                                                            <input type="hidden" id="hfile" name="hfile" value="@Model.FileName">
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            if (@ViewBag.IsSubmit != 1)
+                                            {
+                                                if (ViewBag.check_admissionopen == true)
+                                                {
+                                                <div class="form-group-inner">
+                                                    <div class="login-btn-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3"></div>
+                                                            <div class="col-lg-9">
+                                                                <div class="login-horizental cancel-wp pull-left form-bc-ele">
+                                                                    <button class="btn btn-primary" type="button" onclick="resetapplication()">Reset</button>
+                                                                    <button class="btn btn-sm btn-primary login-submit-cs" type="button" onclick="submitapplication()">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                }
+                                            }
+                                        }
+                                        @*</form>*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="sparkline12-hd">
+                <div class="main-sparkline12-hd">
+                    @*<h3 class="text-center">Document Upload Details</h3>*@
+                </div>
+            </div>
+            <div class="col-lg-8 col-sm-12 col-xs-12 col-lg-offset-2 ">
+                <div ng-app="documentlistApp" ng-controller="documentlistCtrl">
+
+
+                    <div class="panel-body document-table">
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer table-responsive">
+                            <table ui-jq="dataTable" ui-options="dataTableOpt" class="table table-bordered table-condensed dataTable ">
+                                <thead>
+                                    <tr role="row">
+                                        <th width="70px">S. No.</th>
+                                        <th ng-click="sortBy('memberCode')">
+                                            Document
+                                            <span class="sortorder" ng-show="propertyName === 'memberCode'" ng-class="{reverse: reverse}"></span>
+
+                                        <th ng-click="sortBy('')">
+                                            View
+                                            <span class="sortorder" ng-show="propertyName === ''" ng-class="{reverse: reverse}"></span>
+                                        </th>
+                                        @if (@ViewBag.IsSubmit != 1)
+                                        {
+                                            <th ng-click="sortBy('')">
+                                                Action
+                                                <span class="sortorder" ng-show="propertyName === ''" ng-class="{reverse: reverse}"></span>
+                                            </th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*@{
+                                    int id = 1;
+                                    foreach (DataLayer.Country item in ViewBag.country as List<DataLayer.Country>)
+                                    {*@
+                                    <tr ng-repeat="qualidetail in qlist | filter:search  | orderBy:propertyName:reverse">
+                                        <td>{{ ((pageIndex-1)*pageSizeSelected)+$index+1 }}</td>
+                                        <td>{{qualidetail.documentTypeName}}</td>
+                                        <td>
+                                            @*<a title="View" href="~/Student/QualificationDocument/{{qualidetail.fileName}}" target="_blank" class="btn btn-info btn-sm  ">View</a>*@
+                                            <a title="View" href="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Document/{{qualidetail.fileName}}" target="_blank" class="btn btn-info btn-sm">View</a>
+                                        </td>
+                                        @if (@ViewBag.IsSubmit != 1)
+                                        {
+                                            if (ViewBag.check_admissionopen == true)
+                                            {
+                                            <td>
+                                                <a title="Edit" href="~/Student/Home/DocumentUpload/{{qualidetail.encriptedID}}" class="btn btn-success btn-sm fa fa-edit "></a>
+                                                <a title="Delete" href="~/Student/Home/DocumentDelete/{{qualidetail.encriptedID}}" class="btn btn-danger btn-sm fa fa-trash " onclick="return confirm('Are you sure?');"></a>
+                                            </td>
+                                            }
+                                        }
+                                    </tr>
+
+                                    @*}
+                                    }*@
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12 text-center">
+                <div class="document-btn">
+                    <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("BasicDetail","Home")">Previous</a>
+                    <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("PreviousyearQualification","Home")">Next</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

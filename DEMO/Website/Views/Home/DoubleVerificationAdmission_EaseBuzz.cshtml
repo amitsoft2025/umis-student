@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "DoubleVerificationAdmission_Safex";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DoubleVerificationURlSafex Admission Registration</title>
+</head>
+
+<body>
+    @if (TempData["responseString"] != null)
+    {
+        <div>@TempData["responseString"]</div><br /><br />
+    }
+
+<div>
+    @using (Html.BeginForm("DoubleVerificationAdmission_EaseBuzz", "Home", FormMethod.Post, new { id = "myform", enctype = "multipart/form-data" }))
+    {
+        <br />
+        @Html.TextBox("Amount", "", new { @class = "form-control", @required = "required", @placeholder = "Amount" })
+
+        <br /> <br />
+        @Html.TextBox("application", "", new { @class = "form-control", @required = "required", @placeholder = "ApplicationNo" })
+
+
+
+
+        <input type="submit" value=" Check Payment Status " />
+
+    }
+
+</div>
+
+
+     
+   
+</body>
+</html>
+
+

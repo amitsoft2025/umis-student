@@ -1,0 +1,696 @@
+﻿@model DataLayer.ExamForm
+@{
+    ViewBag.Title = "ExaminationFrom";
+    Layout = "~/Areas/Student/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+<style>
+    .validation {
+        color: tomato;
+    }
+
+    .Minheight {
+        min-height: 450px;
+    }
+
+    .textdesign {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        padding-left: 50px;
+    }
+
+    .labletext {
+        font-weight: normal;
+    }
+
+    .spacedesign {
+        padding-bottom: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .textce {
+        text-align: center;
+    }
+
+    .btnstyle {
+        float: right;
+    }
+
+    .btntext {
+        color: white;
+    }
+</style>
+<style>
+    .tab-content-details {
+        padding: 0px 100px !important;
+    }
+
+    #pageheading {
+        background-color: black;
+        padding: 10px;
+        color: white;
+        width: 200px;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+<script>
+    var username = '@DataLayer.ClsLanguage.GetCookies("enUserName")';
+    var password = '@DataLayer.ClsLanguage.GetCookies("enPassword")';
+</script>
+<div class="sparkline12-list DocumentUpload">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 ">
+
+            
+            <div class="container-fluid">
+
+                <div class="row spacedesign">
+
+                    @*<div class="panel panel-default">*@
+
+                    @*<div class="panel-body">*@
+                    if (Model != null)
+        {
+
+        <div style="width:100%; margin:auto; padding:0; font-size:14px; color:#333; font-family:Arial, Helvetica, sans-serif; border:1px solid #333; padding:20px">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td colspan="3" align="center" valign="middle"><img src="~/images/mu-logo-white.png" width="300"></td>
+
+                </tr>
+                <tr>
+                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+
+                    <td width="23%" align="center" valign="middle"> &nbsp;</td>
+                    <td width="55%" align="center" valign="middle" style="font-size:18px;"><strong> EXAMINATION FORM</strong></td>
+                    <td width="22%" align="center" valign="middle">&nbsp;</td>
+                </tr>
+                @*<tr>
+                        <td width="23%" align="center" valign="middle"><div style="font-size:15px; padding:10px 5px; border:1px solid #000; width:100px; text-align:center;">Price: Rs 20/-</div></td>
+                        <td width="55%" align="center" valign="middle" style="font-size:18px;"><strong>EXAMINATION FORM</strong></td>
+                        <td width="22%" align="center" valign="middle">No:- 22401</td>
+                    </tr>*@
+                <tr>
+                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center" valign="middle" style="border-top:1px solid #333;">&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td colspan="3" align="center" valign="middle" style="font-size:16px;"><strong> Bachelor of @Model.CourseCategory @Model.YearName @Model.SessionName </strong></td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="center" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="left" valign="top">Name of the college:</td>
+                    <td align="left" valign="top">@Model.CollegeName</td>
+                    <td rowspan="19" align="left" valign="top" style="padding:0 5px;">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="center" valign="middle" style="border:1px solid #333; height:150px;"><img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.photo" onerror="this.src = '../../../images/noimage.png';" alt="Passport Size Photo" /></td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="middle" style="border:1px solid #333; height:70px;"><img src="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Photoandsign/@Model.sign" onerror="this.src = '../../../images/noimage.png';" width="70" alt="अंग्रेजी में छात्र का हस्ताक्षर" /></td>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="middle">&nbsp;</td>
+                            </tr>
+                            @*<tr>
+                                    <td align="center" valign="middle" style="border:1px solid #333; height:70px;">Signature of Examiner in English</td>
+                                </tr>*@
+                        </table>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">Name of the student :</td>
+                    <td align="left">@Model.StudentName</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">छात्र का नाम :</td>
+                    <td align="left">@Model.StudentNameHindi</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">Date of Birth :</td>
+                    <td align="left">@Model.DOB</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">Father's Name : </td>
+                    <td align="left">@Model.FatherName</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">Mother's Name : </td>
+                    <td align="left">@Model.MotherName</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">Student's Address :</td>
+                    <td align="left">@Model.CurrentAddress</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">Contact No. :</td>
+                    <td align="left">@Model.MobileNo</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">&nbsp;</td>
+                </tr>
+                <tr valign="top">
+                    <td colspan="2" align="left">
+                        @*<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" valign="middle" width="50%">Registration No.</td>
+                                    <td  align="left" valign="middle" width="50%">@Model.RegistrationNo</td>
+
+                                </tr>
+                            </table>*@
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td align="left">Registration No:</td>
+                    <td align="left">@Model.RegistrationNo</td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left" valign="middle"><h3>Subject Taken :</h3></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #333;">
+                            <tr>
+                                <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Honours</th>
+                                <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Subsidiary - I</th>
+                                <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Subsidiary - II</th>
+                                <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333;">Compulsory</th>
+                            </tr>
+                            <tr>
+                                <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333; height:100px;">@Model.HonoursSubject</td>
+                                <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333;">@Model.Subsidiary1Subject</td>
+                                <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333;">@Model.Subsidiary2Subject</td>
+                                <td align="center" valign="middle">@Model.Compulsory1Subject<br />@Model.Compulsory2Subject</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">
+                        <label>
+                            <input type="checkbox" style="vertical-align:middle; display:inline-block;" id="checkboxid">
+                            <span style="vertical-align:middle; display:inline-block;"> I hereby declared that above details are correct and i have verified.</span>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                @*<tr>
+                        <td colspan="3" align="left" valign="middle">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center" valign="top" width="25%">
+                                        Assistant
+                                        (College)
+                                    </td>
+                                    <td align="left" valign="top" width="50%">&nbsp;</td>
+                                    <td align="center" valign="top" width="25%" style="padding:0 0 0 10px;">
+                                        Principal's Signature <br>
+                                        with stamp
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>*@
+                <tr>
+                    <td colspan="3" align="left" valign="middle" class="text-center">
+                        @if (ViewBag.check_admissionopen == true)
+                            {
+                            <a href="#" id="btnPrint" class="btn btn-primary waves-effect waves-light btntext" onclick="return Checkboxclick();">
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                                Pay Now
+                            </a>
+                            }
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="3" align="left" valign="middle">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <br /><br /><br />        <br /><br /><br />        <br /><br /><br />    <br /><br /><br /><hr />
+        <div class="sparkline8-hd">
+            <div class="tab-content-details shadow-reset">
+                <center>
+                    <h3 id="pageheading">
+
+                        Exam - Form
+
+                    </h3>
+                </center>
+
+            </div>
+            <div class="text-danger text-center">
+                @if (TempData["Msg"] != null)
+                {
+                    @TempData["Msg"];
+                }
+
+            </div>
+
+        </div>
+        <div class="sparkline8-graph fee-submit">
+            <div class="static-table-list table-responsive">
+                @using (Html.BeginForm("ExamFeesSubmit", "ExamPG", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data", id = "myform" }))
+                    {
+                    <div style="width:100%; margin:auto; padding:0; font-size:14px; color:#333; font-family:Arial, Helvetica, sans-serif; border:0px solid #333; padding:0px">
+
+                        <div style="width:800px; margin:auto; padding:0px; font-family:Arial, Helvetica, sans-serif; font-size:14px;">
+
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                                <tr>
+                                    <td align="left" valign="top">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top" style="font-size:18px; padding:5px 0;"><strong>PARTICULARS :</strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td width="28%" align="left" valign="top" style="padding:15px 0 0;">1. Registration No </td>
+                                                <td width="72%" align="left" valign="top" style="padding:0px 0 0; " ">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+
+                                                            <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" width="180">&nbsp;@Model.RegistrationNo</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;" width="200">&nbsp;Year of Registration:</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;  border-bottom:1px dotted #000;" width="218">&nbsp;2019</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="28%" align="left" valign="top" style="padding:15px 0 0;">2. Roll No </td>
+                                                <td width="72%" align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" ">&nbsp;@*@Model.Item1.objExamFrom.RollNo*@1190545</td>
+                                            </tr>
+
+                                            <tr>
+
+                                                <td align="left" valign="top" style="padding:15px 0 0;">3. Name in block Letter in English</td>
+                                                <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" ">&nbsp;@*@Model.Item1.objExamFrom.StudentName*@ prem</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="top" style="padding:15px 0 0;">4. Name in Devnagari</td>
+                                                <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" ">&nbsp;@Model.StudentNameHindi</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="top" style="padding:15px 0 0;">5. Name of Examination</td>
+                                                <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" ">&nbsp;@Model.CourseCategory</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td align="left" valign="top" style="padding:15px 0 0;">6. Date of birth</td>
+                                                <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" ">&nbsp;@Model.DOB</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="top" style="padding:15px 0 0;">7. Contact No</td>
+                                                <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" ">&nbsp;@Model.MobileNo</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" align="left" valign="top">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;" width="15%">7. @(Model.ftitle == 20 ? " Father's  Name" : (Model.ftitle == 21 ? "  Husband's  Name" : " Father's  Name") ): </td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" " width="35%">&nbsp;@Model.FatherName</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;" width="14%">Mother’s Name:</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" " width="36%">&nbsp;@Model.MotherName</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" align="left" valign="top">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;" width="93">8. Nationality:</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" width="197">&nbsp;@Model.Nationality</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;" width="66">&nbsp;Religion:</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;  border-bottom:1px dotted #000;" width="182">&nbsp;@Model.Religion</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;" width="76">&nbsp;Category:</td>
+                                                            <td align="left" valign="top" style="padding:15px 0 0;  border-bottom:1px dotted #000;" width="190">&nbsp;@Model.castecategoryname</td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" align="left" valign="top" style="padding:15px 0 0;">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="10%" rowspan="10" align="left" valign="top" style="padding:15px 0 0;">9. Address:</td>
+                                                            <td width="90%" align="left" valign="top">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <td width="20%" align="left" valign="top" style="padding:15px 0 0;">(a) Permanent</td>
+                                                                        <td width="80%" align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;">&nbsp;@Model.permanentAddress</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+
+
+
+                                                        <tr>
+                                                            <td align="left" valign="top">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <td width="20%" align="left" valign="top" style="padding:15px 0 0;">(b) Correspondence </td>
+                                                                        <td width="80%" align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;">&nbsp;@Model.CurrentAddress</td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="28%" align="left" valign="top" style="padding:15px 0 0;">10. College Name</td>
+                                                <td width="72%" align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" ">&nbsp;@Model.CollegeName</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" valign="top" style="padding:15px 0 0;"> 11. <strong>Subjects of Examination </strong> </td>
+                                                <td align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;" "><strong> &nbsp;@Model.HonoursSubject</strong> </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" align="left" valign="top">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="30%" align="left" valign="top" style="padding:15px 0 0;">12. @Html.DisplayFor(model => model.CourseCategory) @Html.DisplayFor(model => model.YearName)  Subject :</td>
+                                                            <td width="70%" align="left" valign="top" style="padding:15px 0 0; ">
+
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #333;">
+                                                                    <tr>
+                                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Honours</th>
+                                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Subsidiary - I</th>
+                                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333; border-right:1px solid #333;">Subsidiary - II</th>
+                                                                        <th align="center" valign="middle" style="padding:5px; border-bottom:1px solid #333;">Compulsory</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333; height:100px;">@Model.HonoursSubject</td>
+                                                                        <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333;">@Model.Subsidiary1Subject</td>
+                                                                        <td align="center" valign="middle" style="padding:5px; border-right:1px solid #333;">@Model.Subsidiary2Subject</td>
+                                                                        <td align="center" valign="middle">NRB Hindi<br />NRB English</td>
+                                                                    </tr>
+                                                                </table>
+
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                    <td colspan="2" align="left" valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="30%" align="left" valign="top" style="padding:15px 0 0;">13. Upload your caste certificate <BR />( जाति प्रमाण पत्र ) <BR />for fee concession :
+                                                                 </td>
+                                                                <td width="70%" align="left" valign="top" style="padding:15px 0 0; ">
+
+                                                                    <div>
+                                                                        <div class="">
+                                                                            <div class="">
+                                                                                @if (Model != null)
+                                                                                {
+                                                                                    if (Model.Item1.objExamFrom.fileupload == null || Model.Item1.objExamFrom.fileupload == "")
+                                                                                    {
+                                                                                        <div class="file-upload-inner file-upload-inner-right ts-forms">
+                                                                                            <div class="input append-big-btn">
+                                                                                                <label class="icon-left" for="append-big-btn">
+                                                                                                    <i class=""></i>
+                                                                                                </label>
+                                                                                                <div class="file-button">
+                                                                                                    Browse
+                                                                                                    <input type="file" onchange="document.getElementById('append-big-btn').value = this.value; check();" id="fileupload" name="fileupload" >
+                                                                                                </div>
+                                                                                                <input type="hidden" class="link">
+                                                                                                <input type="text" id="append-big-btn" placeholder="no file selected" readonly value="">
+                                                                                                <div class="text-danger textsize pt-10"> Allowed .ext is .jpg,.jpeg,.png,.pdf ,Size should be less then 500KB </div>
+                                                                                                @if (Model.Item1 != null)
+                                                                                                {
+                                                                                                    <input type="hidden" id="hfile" name="hfile" value="@Model.Item1.objExamFrom.fileupload">
+                                                                                                }
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                           <div>  <a target="_blank" href="@System.Configuration.ConfigurationManager.AppSettings["AmozonbucketPath"]/Student/Document/@Model.Item1.objExamFrom.fileupload">Show your Document</a> <button class="btn btn-primary" id="editfile" name="editfile" type="button" onclick="submitapplication()"> Edit your document </button></div>
+                                                                                    }
+                                                                                }
+                                                                                else
+                                                                                {
+
+                                                                                }
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+
+
+
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>*@
+
+
+
+                                            @if (Model.IsApplied == true)
+                                                {
+                                                <tr>
+                                                    <td colspan="2" align="left" valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="30%" align="left" valign="top" style="padding:15px 0 0;"> Present Status of Candidate: </td>
+                                                                <td width="70%" align="left" valign="top" style="padding:15px 0 0; border-bottom:1px dotted #000;">
+                                                                    <span style="border:0; border-bottom:1px dotted #000; width:100%;" /><div>
+                                                                        <strong>
+                                                                            Pending,  Please Go to College for Verify your form
+                                                                        </strong>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="left" valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="100%" colspan="2" calign="left" valign="top" style="padding:15px 0 0;">
+                                                                    <label>
+                                                                        <input type="checkbox" style="vertical-align:middle; display:inline-block;" name="checkboxid" id="checkboxid" checked disabled>
+                                                                        <span style="vertical-align:middle; display:inline-block;"> I hereby declared that above details are correct and i have verified.</span>
+                                                                    </label>
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="left" valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="100%" colspan="2" calign="left" valign="top" style="padding:15px 0 0;">
+                                                                    <div class="sparkline12-graph fee-submit">
+                                                                        <div class="static-table-list table-responsive">
+
+                                                                            <table class="table">
+
+                                                                                <tbody>
+
+
+                                                                                    <tr>
+                                                                                        <th class="blue-bg" width="400">Fee Status</th>
+                                                                                        <th>
+                                                                                            @if (Model.IsExamfeesubmit == 1)
+                                                                                                    {
+                                                                                                    <span style="color:green" id=""></span>
+                                                                                                    }
+                                                                                                    else
+                                                                                                    {  <span style="color:red"></span> }
+                                                                                        </th>
+                                                                                    </tr>
+
+                                                                                    <tr>
+                                                                                        <th class="blue-bg">Fees Amount</th>
+                                                                                        <th> </th>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th class="blue-bg">Late Amount</th>
+                                                                                        <th> </th>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th class="blue-bg">Processingfees (including GST)</th>
+                                                                                        <th></th>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th class="blue-bg">Total Amount</th>
+                                                                                        <th></th>
+                                                                                    </tr>
+
+                                                                                </tbody>
+                                                                            </table>
+
+
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                                                                                    }
+                                                                                                                    else
+                                                                                                                    {
+                                                <tr>
+                                                    <td colspan="2" align="left" valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="100%" colspan="2" calign="left" valign="top" style="padding:15px 0 0;">
+                                                                    <label>
+                                                                        <input type="checkbox" style="vertical-align:middle; display:inline-block;" name="checkboxid" id="checkboxid">
+                                                                        <span style="vertical-align:middle; display:inline-block;"> I hereby declared that above details are correct and i have verified.</span>
+                                                                    </label>
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" align="left" valign="top">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="100%" colspan="2" calign="left" valign="top" style="padding:15px 0 0;">
+                                                                    <div class="modal-area-button text-center">
+                                                                        <div class="document-btn">
+                                                                            <button class="Danger danger-color" style="color: #fff;" onclick="return Checkboxclick();" type="submit" name="applyadmissionform" value="applyadmissionform" id="applyadmissionform"><i class="fa fa-print"></i>&nbsp;&nbsp;Apply Examination form </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                                                                                    }
+                                            <tr>
+                                                <td colspan="3" align="left" valign="middle"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="left" valign="top">&nbsp;</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                                                                                                                    }
+            </div>
+        </div>
+                                                                                                                    }
+        @*</div>*@
+
+        @*</div>*@
+    </div>
+</div>
+            </div>
+        </div>
+</div>
+<script>
+    Checkboxclick = function () {
+        // debugger;
+        //$("#btnPrint").click(function (event) {
+        showloader();
+        if ($('#checkboxid').is(":checked")) {
+            hideloader();
+            $("#btnPrint").attr("href", " @Url.Action("ExamFeesSubmit", "Exam")");
+            return true;
+        }
+        else {
+            showAlert('Please verify your details by clicking on checkbox!!!! ');
+            hideloader();
+            return false;
+        }
+
+    }
+</script>
+

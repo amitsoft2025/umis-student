@@ -1,0 +1,665 @@
+﻿@using DataLayer
+@model Tuple<DataLayer.StudentAdmissionQualification, List<DataLayer.StudentPreviousQualification>, DataLayer.Login>
+@*@model Tuple<DataLayer.StudentAdmissionQualification, DataLayer.Login>*@
+
+
+@{
+    ViewBag.Title = "SelectSubject";
+    Layout = "~/Areas/StudentBPharma/Views/Shared/_LayoutStudentBPharma.cshtml";
+}
+<style>
+    .starvalid {
+        color: red;
+    }
+</style>
+
+<style>
+    .starvalid {
+        color: red;
+    }
+</style>
+<script>
+    var Coursecategory = '@ViewBag.Coursecategoryid';
+    var collegelist = '';
+    var gender = '@ViewBag.gender';
+    debugger;
+    $(document).ready(function () {
+        $.ajax({
+          //  url: "/Student/Home/getcollegelist",
+          ////  data: { Coursecategoryid: Coursecategory },
+          //  data: { Coursecategoryid: Coursecategory },
+          //  type: "POST",
+          //  contentType: "application/json;charset=utf-8",
+          //  dataType: "json",
+            url: "/StudentBPharma/HomeBPharma/getcollegelist",
+            data: { Coursecategoryid: Coursecategory, isgender: gender },
+            cache: false,
+            type: "POST",
+            dataType: "json",
+            success: function (result) {
+                debugger;
+                $.each(result.data, function (key, value) {
+                    collegelist += '<option value="' + value.ID + '">' + value.CollegeCode + '</option>';
+                });
+
+            },
+            error: function (errormessage) {
+                showAlert(errormessage.responseText);
+            }
+        });
+    });
+</script>
+@{
+    if (TempData["selectsubmsg"] != null)
+    {
+        <div class="container-fluid">
+            @*<div class="alert-wrap1 shadow-inner wrap-alert-b">
+
+                <div class="alert alert-success " role="alert">
+                    <div>@TempData["selectsubmsg"]</div>
+
+                </div>
+            </div>*@
+        </div>
+    }
+}
+<div class="container-fluid">
+
+    <div class="sparkline8-list DocumentUpload">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12 ">
+
+                <div class="sparkline12-hd">
+                    @if (TempData["selectalready"] == null)
+                    {
+
+                        if (TempData["selectsubmsg"] == null)
+                        {
+                            if (ViewBag.sessionid != 39)
+                            {
+                                <div class="main-sparkline12-hd sparkline8-list">
+                                    <center> <h3>Choose College   Priority Wise </h3> </center>
+
+                                </div>
+                                <div class="sparkline12-graph sparkline8-list">
+                                    <div class="basic-login-form-ad">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="all-form-element-inner">
+
+                                                    <div class="text-danger text-center">
+                                                        @if (TempData["Msg"] != null)
+                                                        {
+                                                            @TempData["Msg"];
+                                                        }
+                                                    </div>
+                                                    @using (Html.BeginForm())
+                                                    {
+                                                        <div class="form-group-inner">
+                                                            <div class="row">
+                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                    <label class="login2 pull-right pull-right-pro"><span class="starvalid">*</span>Previous Qualification</label>
+                                                                </div>
+                                                                <div class="col-lg-3 col-md- col-sm- col-xs-12">
+                                                                    <div class="form-select-list">
+                                                                        @Html.DropDownListFor(model => model.Item1.QualicationType, new SelectList(ViewBag.Qualification, "Value", "Text", ViewBag.que), new { @class = "", @id = "Qualification", @name = "Qualification", @required = "required", @disabled = "disabled", @style = "border:0px;background-color: white;" })
+                                                                        @if (Model.Item1 != null)
+                                                                        {
+                                                                            @Html.HiddenFor(model => model.Item1.ID, new { @id = "hid" })
+                                                                        }
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                    <label class="login2 pull-right pull-right-pro"><span class="starvalid">*</span> Selected Course</label>
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                                    @Html.DropDownListFor(model => model.Item3.CourseCategory, new SelectList(ViewBag.Course, "CourseCategoryID", "CourseCategory"), "Select Course..", new { @class = "", @id = "Coursetype", @required = "required", @disabled = "disabled", @style = "border:0px;background-color: white;" })
+
+
+                                                                </div>
+                                                                <div class="text-danger text-center">
+                                                                    <span id="Uerr"> </span>
+
+                                                                </div>
+                                                                <div class="text-danger">
+                                                                    <span id="Berr"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                <div class="form-group-inner">
+                                                                    <div class="row">
+
+                                                                    </div>
+                                                                </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                        <div class="sparkline12-graph sparkline8-list">
+                                            <div class="basic-login-form-ad">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="all-form-element-inner">
+
+                                                            @using (Html.BeginForm())
+                                                            {
+
+                                                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer document-table">
+                                                                    @Html.HiddenFor(model => model.Item1.ScopeIdentity, new { @id = "hid1" })
+                                                                    @*@if (Model.Item3.issame_stream == true)
+                                                                        {*@
+                                                                    <table ui-jq="dataTable" ui-options="dataTableOpt" class="table table-bordered table-condensed dataTable " id="subjecttable">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    College
+                                                                                </th>
+
+
+                                                                                <th>
+                                                                                    Clear
+                                                                                </th>
+                                                                                <th>
+                                                                                    Remove
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+
+                                                                            @foreach (var item in Model.Item2)
+                                                                            {
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        @Html.DropDownList("College", new SelectList(ViewBag.College, "ID", "CollegeCode"), "--Select College--", new { @class = "form-control custom-select-value College", @id = "College", @required = "required" })
+
+                                                                                    </td>
+
+
+                                                                                    <td>
+                                                                                        <input type="button" class="btn btn-primary Clear" name="clear" value="Clear" />
+                                                                                    </td>
+                                                                                    <td></td>
+                                                                                </tr>
+                                                                            }
+
+
+
+                                                                    </table>
+                                                                </div>
+                                                                <div class="form-group-inner">
+                                                                    <div class="login-btn-inner">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-3"></div>
+                                                                            <div class="col-lg-12 pull-left sa-left left">
+                                                                                <input type="button" class="btn btn-primary" id="addRow" name="addRow" value="Add New Choice" />
+                                                                                <br />
+                                                                                <b>
+                                                                                    <span class="starvalid">*</span>
+                                                                                    नोट :  <img src="~/Content/img/new6.gif" style="float:left" /> अगर आप विकल्प सेव नहीं करते हो तो  आपका फॉर्म रिजेक्ट हो जाएगा |
+                                                                                    <br /><span class="starvalid">*</span> Note: You can Select minimum 1 choice
+                                                                                </b>
+                                                                                <br />
+                                                                                <b>
+                                                                                    <span class="starvalid">*</span> Note: If you choose College then its mandatory to select Honours
+
+
+                                                                                </b>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group-inner">
+                                                                    <div class="login-btn-inner">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12 text-center">
+                                                                                <div class="document-btn">
+                                                                                    @if (ViewBag.check_admissionopen == true)
+                                                                                    {
+                                                                                        if (ViewBag.Statusrecruitny != true)
+                                                                                        {
+                                                                                            if (ViewBag.sessionid == 40)
+                                                                                            {
+                                                                                                @*<a class="btn btn-primary waves-effect waves-light" id="savechoice">Save</a>*@
+                                                                                            }
+                                                                                        }
+                                                                                    }
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            }
+                                                            @*</form>*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-12  text-center">
+                                                    <div class="document-btn">
+                                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("PreviousyearQualification", "HomeBPharma")">Previous</a>
+                                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("FeesSubmit", "HomeBPharma")">Next</a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="sparkline12-graph">
+                            <div class="basic-login-form-ad">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="all-form-element-inner">
+
+                                            <div class="text-danger text-center">
+                                                @if (TempData["Msg"] != null)
+                                                {
+                                                    @TempData["Msg"];
+                                                }
+                                            </div>
+                                            @using (Html.BeginForm())
+                                            {
+
+
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sparkline12-graph document-table">
+                            <div class="basic-login-form-ad">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="all-form-element-inner">
+                                            @*<form action="#">*@
+                                            <div class="text-danger text-center">
+                                            </div>
+                                            <div class="text-center">
+                                                <h3>Your choices for  College    Priority Wise </h3>
+                                            </div>
+                                            @using (Html.BeginForm())
+                                            {
+                                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer table-responsive">
+                                                    @Html.HiddenFor(model => model.Item1.ScopeIdentity, new { @id = "hid1" })
+                                                    <table ui-jq="dataTable" ui-options="dataTableOpt" class="table table-bordered table-condensed dataTable " id="subjecttable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>
+                                                                    Sr.No.
+                                                                </th>
+                                                                <th>
+                                                                    College Name
+                                                                </th>
+
+
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{ int a = 1;}
+                                                            @foreach (DataLayer.Student_Admission_Choicesubject item in ViewBag.Choicesubject as List<DataLayer.Student_Admission_Choicesubject>)
+                                                            {
+                                                                <tr>
+                                                                    <td>@a</td>
+                                                                    <td>@item.collegeidlist</td>
+
+
+                                                                </tr>  a++;
+                                                            }
+                                                    </table>
+                                                </div>
+                                                            <div class="form-group-inner">
+                                                                <div class="login-btn-inner">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-3"></div>
+                                                                        <div class="col-lg-12 pull-left sa-left left">
+                                                                            @*@if (ViewBag.editrecoer == true)*@
+                                                                            @if (1 == 0)
+                                                                            {
+                                                                                if (ViewBag.Statusrecruitny != true)
+                                                                                {
+                                                                                    if (ViewBag.sessionid == 40)
+                                                                                    {
+                                                                                        if (Model.Item3.IsFeeSubmit == 0)
+                                                                                        {
+                                                                                            @*<input type="button" class="btn btn-primary" id="changeschoices" name="changeschoices" value="Change Choices" />*@
+                                                                                        }
+                                                                                    }
+                                                                                }  <br />                                                                            <br />
+                                                                                @*<b>
+                                                                                        <br />
+                                                                                        <span class="starvalid">*</span> Note: If You change Choice but not fill Again Choice then Your Form  will be rejected
+
+                                                                                        <br />
+                                                                                        <span class="starvalid">*</span> Note: If You Want to Change Choices Then You need to  Fill All Choice Again !!
+                                                                                        <br /><br />  <span class="starvalid">*</span> Note: Kindly dont choose/select the below 5 colleges from the list if your are MALE student . These are the GIRL Colleges. In the event that Male Student select the Above Colleges, at that point his application will be rejected.!! <br />
+                                                                                       <br /> List Of Mahila College :-<br />
+                                                                                         1. B R M College, <BR />2. MAHILA COLLEGE KHAGARIA,<BR />3. MAHILA COLLEGE BARAHIYA <br />4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA,<br />5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI
+
+                                                                                        <br /><br /> <span class="starvalid">*</span> Note:
+                                                                                        If you want to choose Geography and Mathematic in
+                                                                                         Honours Subject and Subsidiarys Subjects then It is Mandatory to have Geography and Mathematic in your intermidiate else your application will be rejected.
+                                                                                    </b>*@
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                //if (Model.Item3.IsFeeSubmit == 0)
+                                                                                //{
+                                                                                if (ViewBag.check_admissionopen == true)
+                                                                                {
+                                                                                    if (ViewBag.Statusrecruitny != true)
+                                                                                    {
+                                                                                        if (ViewBag.sessionid == 40)
+                                                                                        {
+                                                                                            if (Model.Item3.IsFeeSubmit == 0)
+                                                                                            {
+                                                                                                @*<input type="button" class="btn btn-primary" id="changeschoices" name="changeschoices" value="Change Choices" />*@
+                                                                                            }
+                                                                                        }
+                                                                                    } <br />                                                                                    <br />
+                                                                                    @*<b>
+
+                                                                                            <span class="starvalid">*</span>
+                                                                                            नोट :  <img src="~/Content/img/new6.gif" style="float:left" />जिन  छात्र / छात्राएं का चयन पहले तथा दूसरे  सूची में नही हुआ है  वे अपना विकल्प चेंज कर  सकते है |
+
+                                                                                            <br />
+                                                                                            <span class="starvalid">*</span>
+                                                                                            नोट :  <img src="~/Content/img/new6.gif" style="float:left" /> अगर आप विकल्प परिवर्तन/चेंज  करते हो तो आपको पुनः विकल्प भरना होगा , अन्यथा आपका फॉर्म रिजेक्ट हो जाएगा |
+
+                                                                                            <br />
+                                                                                            <span class="starvalid">*</span> Note: <img src="~/Content/img/new6.gif" style="float:left" />If You change Choice but not fill Again Choice then Your Form  will be rejected.
+
+                                                                                            <br />
+                                                                                            <span class="starvalid">*</span> Note: If You Want to Change Choices Then You need to  Fill All Choice Again !!
+                                                                                            <br /><br />  <span class="starvalid">*</span> Note: Kindly dont choose/select the below 5 colleges from the list if your are MALE student . These are the GIRL Colleges. In the event that Male Student select the Above Colleges, at that point his application will be rejected.!! <br />
+                                                                                            <br /> List Of Mahila College :-<br />
+                                                                                            1. B R M College, <BR />2. MAHILA COLLEGE KHAGARIA,<BR />3. MAHILA COLLEGE BARAHIYA <br />4. SANJAY GANDHI MAHILA COLLEGE SHEIKHPURA,<br />5. SHYAMA PRASAD SINGH MAHILA COLLEGE JAMUI
+
+                                                                                            <br /><br /> <span class="starvalid">*</span> Note:
+                                                                                            If you want to choose Geography and Mathematic in
+                                                                                            Honours Subject and Subsidiarys Subjects then It is Mandatory to have Geography and Mathematic in your intermidiate else your application will be rejected.
+                                                                                        </b>*@
+                                                                                }
+                                                                                @*}*@
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                                }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-lg-12 text-center">
+                                    <div class="document-btn">
+                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("PreviousyearQualification", "HomeBPharma")">Previous</a>
+                                        <a class="btn btn-primary waves-effect waves-light" href="@Url.Action("FeesSubmit", "HomeBPharma")">Next</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                                                                }
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+                $('body').delegate('.College', 'change', function () {
+                    //$(".College").change(function (event) {
+                    debugger;
+                    var res = $(this).val();
+                    var tr = $(this).closest("tr");
+                    //tr.find('#Subject ').find("option").remove();
+                    //tr.find('#Subject ').append($("<option></option>").val("").html("--Select Subject--"));
+
+                    if ($(this).val() == "") {
+                        return;
+                    }
+
+                    //showloader();
+                    //$.ajax({
+                    //    url: "/StudentLLB/HomeL/getcollegesubjects/",
+                    //    data: { id: res },
+                    //    cache: false,
+                    //    type: "POST",
+                    //    dataType: "json",
+                    //    success: function (data)
+                    //    {
+                    //        debugger;
+
+                    //        tr.find('#Subject').find("option").remove();
+                    //        tr.find('#Subject').append($("<option></option>").val("").html("--Select Subject--"));
+                    //        $.each(data.data, function (key, value) {
+                    //            tr.find('#Subject').append($("<option></option>").val(value.StreamCategoryID).html(value.streamCategory));
+                    //        });
+                    //        hideloader();
+                    //    },
+                    //    error: function () {
+                    //        hideloader();
+                    //        //showAlert("error")
+                    //    }
+                    //});
+                });
+
+                //$('body').delegate('.Subject', 'change', function () {
+                //    //$(".Subject").change(function (event) {
+                //    var res = $(this).val();
+                //    var tr = $(this).closest("tr");
+                //    debugger;
+                //    if ($(this).val() == "") {
+                //        return;
+                //    }
+
+                //    var empTab = document.getElementById('subjecttable');
+                //    var rowindex = $(this).closest("tr").index();
+                //    var rowsubjectid = $(this).val();
+                //    var rowcollgeid = tr.find('#College').val();
+
+                //    var collegeitemvalues = $('Select[name="College"] ').map(function () {
+                //        return this.value
+                //    }).get();
+                //    //var honusreitemvalues = $('Select[name="Subject"] ').map(function () {
+                //    //    return this.value
+                //    //}).get();
+                //    var error = '';
+                //    if (rowindex > 0) {
+                //        if (collegeitemvalues.length > 0) {
+                //            for (var i = 0; i < collegeitemvalues.length; i++) {
+                //                if (i == rowindex)
+                //                { }
+                //                else
+                //                {
+                //                    if (collegeitemvalues[i] != '') {
+                //                        if (collegeitemvalues[i] == rowcollgeid && honusreitemvalues[i] == rowsubjectid) {
+                //                            error = 'you have already Selected this Honours Subjects for this College !!';
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //        }
+                //        if (error != '') {
+                //            showAlert(error);
+                //            $(this).val('');
+                //            return;
+                //        }
+                //    }
+
+
+
+                //});
+
+                $('body').delegate('.Clear', 'click', function () {
+                    //$(".Clear").click(function (event) {
+                    debugger;
+                    if ($(this).val() == "") {
+                        return;
+                    }
+                    var res = $(this).val();
+                    var tr = $(this).closest("tr");
+
+                    tr.find('#College').val('');
+
+
+
+                });
+                $("#addRow").click(function (event) {
+                    debugger;
+                    var html555 = '';
+                    var itemvalues = $('Select[name="College"]').map(function () {
+                        return this.value
+                    }).get();
+                    //var Subjectitemvaluescheck = $('Select[name="Subject"]').map(function () {
+                    //    return this.value
+                    //}).get();
+
+                    if (itemvalues.length > 0)
+                    {
+
+                    }
+                    if (itemvalues.length > 4) {
+
+                        showAlert('You can Add Maximum 4 Choice !!');
+                        return;
+
+                    }
+                    var saved = '';
+                    saved = collegelist;
+                    html555 += '<tr>';
+                    html555 += '<td><select class="form-control custom-select-value College" id="College" name="College" required="required">';
+                    html555 += ' <option value="">--Select College--</option>';
+                    html555 += '' + saved + '';
+                    html555 += '</select>';
+                    html555 += '</td>';
+                   // html555 += '<td>   <select class="form-control custom-select-value Subject " tabindex="-1" title="Select Course" id="Subject" name="Subject">     <option value="">Select Subject</option>   </select> </td>';
+                    //html555 += ' <td> <select class="form-control custom-select-value Susidiary1 " tabindex="-1" title="Select Susidiary1" id="Susidiary1" name="Susidiary1">     <option value="">Select Susidiary1</option>   </select></td>';
+                    //html555 += ' <td> <select class="form-control custom-select-value Susidiary2 " tabindex="-1" title="Select Susidiary2" id="Susidiary2" name="Susidiary2">                                                       <option value="">Select Susidiary2</option>           </select> </td>';
+                    //html555 += '<td>     <select class="form-control custom-select-value compulsory1 " tabindex="-1" title="Select compulsory1" id="compulsory1" name="compulsory1">                                              <option value="">Select compulsory1</option>                                </select></td>';
+                    //html555 += '  <td><select class="form-control custom-select-value compulsory2 " tabindex="-1" title="Select compulsory2" id="compulsory2" name="compulsory2">                                                    <option value="">Select compulsory2</option>                                                          </select>   </td>';
+                    html555 += '  <td><input type="button" class="btn btn-primary Clear" name="clear" value="Clear" />              </td>';
+                    html555 += '  <td><input type="button" class="btn btn-primary " name="Remove" value="Remove" onclick="removeRow(this);" /></td>';
+                    html555 += '</tr>';
+                    $("#subjecttable").append(html555);
+                    return;
+                });
+                $("#savechoice").click(function (event) {
+                    debugger;
+                    var Collegeitemvalues = $('Select[name="College"]').map(function () {
+                        return this.value
+                    }).get();
+                    //var Subjectitemvalues = $('Select[name="Subject"]').map(function () {
+                    //    return this.value
+                    //}).get();
+
+                    var hounors_subjectidlist = '';
+                    var collegeidlist = '';;
+                    var Subsidiary1_subjectidlist = '';
+                    var Subsidiary2_subjectidlist = '';
+                    var Compulsory1_subjectidlist = '';
+                    var Compulsory2_subjectidlist = '';
+                    if (Collegeitemvalues.length > 0)
+                    {
+
+                        for (var i = 0; i < Collegeitemvalues.length; i++)
+                        {
+                            if (Collegeitemvalues[i].length == 0 )
+                            {
+                                showAlert('Please Fill All Above Choice of College and Subject !!');
+                                return;
+                            }
+                            else
+                            {
+                                collegeidlist += (Collegeitemvalues[i] == "" ? "0" : Collegeitemvalues[i]) + ',';
+                                hounors_subjectidlist += '1140' + ',';
+
+                            }
+                        }
+                    }
+
+                    showloader();
+                    $.ajax({
+                        url: "/StudentBPharma/HomeBPharma/savest_choicesubject/",
+                        data: { hounors_subjectidlist: hounors_subjectidlist, collegeidlist: collegeidlist, Subsidiary1_subjectidlist: Subsidiary1_subjectidlist, Subsidiary2_subjectidlist: Subsidiary2_subjectidlist, Compulsory1_subjectidlist: Compulsory1_subjectidlist, Compulsory2_subjectidlist: Compulsory2_subjectidlist },
+                        cache: false,
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            hideloader();
+                            console.log(data.data);
+                            showAlert(data.data.Msg);
+                            showloader();
+                            $('option:selected', 'select[name="College"]').removeAttr('selected');
+
+                            location.replace('/StudentBPharma/HomeBPharma/SelectSubject');
+                            window.location.reload();
+                        },
+                        error: function () {
+                            hideloader();
+                            showAlert("error")
+                        }
+                    });
+                    return;
+                });
+                function removeRow(oButton) {
+                    var empTab = document.getElementById('subjecttable');
+                    empTab.deleteRow(oButton.parentNode.parentNode.rowIndex);       // BUTTON -> TD -> TR.
+                }
+                $("#changeschoices").click(function (event) {
+                    debugger;
+                    var a = confirm("Your All Choices will be Deleted and you need to fill All Choices Again ??");
+                    if (a == true) {
+                        showloader();
+                        $.ajax({
+                            url: "/StudentBPharma/HomeBPharma/againfillform/",
+                            data: {},
+                            cache: false,
+                            type: "POST",
+                            dataType: "json",
+                            success: function (data) {
+                                hideloader();
+                                showloader();
+                                $('option:selected', 'select[name="College"]').removeAttr('selected');
+                                location.replace('/StudentBPharma/HomeBPharma/SelectSubject');
+                                window.location.reload();
+                            },
+                            error: function () {
+                                hideloader();
+
+                            }
+                        });
+                    }
+                    else {
+
+                        return;
+                    }
+                });
+</script>
+

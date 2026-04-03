@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "test";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<h2>test</h2>
+
+@using (Html.BeginForm("PGPushResponsesbishwanathsinghlegalstudies", "Home", FormMethod.Post, new { @class = "dropzone dropzone-custom needsclick add-professors", enctype = "multipart/form-data", id = "myform" }))
+{
+
+
+    <div class="modal-area-button text-center">
+        <div class="document-btn">
+            <input type="hidden" name="pushRespData" value="sy6AhTsxAup4b0l6zeVfj5TGHVdxnrxMo+QNAW5VCYTgS9S4ObAdJ/7MbLRs9ZmeqpK/8FCiMiJspGLiqxf8jC6rn2p4HyDCOXoOZzsCqfWicwN8GemR1KerOE5qbKR3SfYOfKclA52HJOdvpG3+XurmXwWicJia6B6w6fqmr1aZRx1nYi/hev6k3+fjt6khX3CWPO8V2du+3CufdbKtIA==" />
+
+            <button class="Danger danger-color" style="color: #fff;" id="submit" value=""><i class="fa fa-money" aria-hidden="true"></i>
+            &nbsp;&nbsp;Push response</button>
+
+        </div>
+    </div>
+
+}

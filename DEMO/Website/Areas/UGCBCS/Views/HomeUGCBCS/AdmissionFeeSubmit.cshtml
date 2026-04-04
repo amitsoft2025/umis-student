@@ -1652,7 +1652,7 @@ window.onload = function () {
                                             <div class="card border-light shadow-sm d-inline-block p-3 bg-light">
                                                 <h6 class="mb-3 text-primary"><i class="fa fa-file-invoice"></i> Your Payment Receipt</h6>
                                                 <p class="mb-3">Click below to print your receipt for record and submission purposes.</p>
-                                                <button class="btn btn-outline-primary btn-lg" type="button" id="PrintRecipt">
+                                                <button class="btn btn-outline-primary btn-lg" type="button" id="exportPdfBtn">
                                                     <i class="fa fa-print me-2"></i> Print Receipt
                                                 </button>
                                             </div>
@@ -1772,7 +1772,7 @@ window.onload = function () {
 <div class="container-fluid" style="display:none">
     <div class="sparkline8-list DocumentUpload">
         <div style="display:none">
-            <div id="dvPrintRecipt">
+            <div id="dvPrintRecipt1">
 
                 @if (Model.Item1.yearname == "Semester - 1")
                 {
@@ -1891,7 +1891,542 @@ window.onload = function () {
         </div>
     </div>
 </div>
+<div style="display:none">
+    <div id="dvPrintRecipt">
+        <style>
 
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
+                font-family: 'Inter', sans-serif;
+                padding: 2rem 1.5rem;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            /* Receipt card container */
+            .receipt-container {
+                max-width: 880px;
+                width: 100%;
+                margin: 0 auto;
+                transition: all 0.2s ease;
+            }
+
+            /* Main receipt card */
+            .receipt-card {
+                background: #ffffff;
+                border-radius: 2rem;
+                box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0,0,0,0.05);
+                overflow: hidden;
+                transition: transform 0.2s;
+            }
+
+            /* Header section with college branding */
+            .receipt-header {
+                background: #0b2b40;
+                padding: 1.75rem 2rem;
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+                border-bottom: 4px solid #f7b32b;
+            }
+
+            .college-info h1 {
+                font-size: 1.55rem;
+                font-weight: 700;
+                letter-spacing: -0.3px;
+                line-height: 1.2;
+                color: #fff;
+            }
+
+            .college-info .tagline {
+                font-size: 0.8rem;
+                opacity: 0.85;
+                margin-top: 0.35rem;
+                font-weight: 400;
+            }
+
+            .receipt-badge {
+                background: rgba(255,255,255,0.15);
+                backdrop-filter: blur(4px);
+                padding: 0.5rem 1.2rem;
+                border-radius: 60px;
+                text-align: center;
+                border: 1px solid rgba(255,255,255,0.3);
+            }
+
+                .receipt-badge span:first-child {
+                    font-size: 1rem;
+                    letter-spacing: 1px;
+                    display: block;
+                    font-weight: 500;
+                }
+
+                .receipt-badge .receipt-number {
+                    font-size: 1.5rem;
+                    font-weight: 800;
+                    font-family: monospace;
+                    letter-spacing: 1px;
+                }
+
+            /* Title row */
+            .title-section {
+                padding: 1.2rem 2rem 0.5rem 2rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                flex-wrap: wrap;
+                border-bottom: 2px dashed #e2e8f0;
+            }
+
+                .title-section h2 {
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    color: #0f2c3d;
+                    letter-spacing: -0.5px;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                    .title-section h2 i {
+                        color: #f7b32b;
+                        font-size: 1.4rem;
+                    }
+
+            .status-chip {
+                background: #e6f9ed;
+                color: #1e7b48;
+                padding: 0.3rem 1rem;
+                border-radius: 40px;
+                font-weight: 700;
+                font-size: 0.85rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            /* Grid layout for main details */
+            .details-grid {
+                padding: 1.5rem 2rem;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                gap: 1.2rem;
+                background: #fefefe;
+            }
+
+            .info-group {
+                background: #f8fafc;
+                padding: 0.9rem 1.2rem;
+                border-radius: 1.25rem;
+                border: 1px solid #eef2f6;
+                transition: all 0.2s;
+            }
+
+            .info-label {
+                font-size: 1rem;
+                text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                color: #5b6e8c;
+                margin-bottom: 0.35rem;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .info-value {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #1a2c3e;
+                word-break: break-word;
+            }
+
+                .info-value strong {
+                    font-weight: 800;
+                    color: #0b2b40;
+                }
+
+            .subjects-section {
+                padding: 0.2rem 2rem 0.8rem 2rem;
+            }
+
+            .subject-badge-container {
+                background: #f1f5f9;
+                border-radius: 1.25rem;
+                padding: 1rem 1.5rem;
+                margin-top: 0.2rem;
+            }
+
+            .subject-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.2rem;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .subject-cat {
+                flex: 1;
+                min-width: 140px;
+            }
+
+                .subject-cat h4 {
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    color: #2c4b66;
+                    text-transform: uppercase;
+                    letter-spacing: 0.6px;
+                    margin-bottom: 0.4rem;
+                }
+
+            .subject-name {
+                font-weight: 600;
+                background: white;
+                padding: 0.3rem 0.9rem;
+                border-radius: 40px;
+                display: inline-block;
+                font-size: 1rem;
+                border: 1px solid #dee4ec;
+                color: #1e3a5f;
+            }
+
+            .empty-subject {
+                color: #8ba0bc;
+                font-style: italic;
+                font-size: 1rem;
+            }
+
+            /* fee + payment area */
+            .fee-payment-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                padding: 0.5rem 2rem 1.5rem 2rem;
+            }
+
+            .fee-box, .payment-box {
+                flex: 1;
+                background: #ffffff;
+                border-radius: 1.25rem;
+                border: 1px solid #e9edf2;
+                overflow: hidden;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            }
+
+            .box-header {
+                background: #f1f4f9;
+                padding: 0.8rem 1.2rem;
+                font-weight: 700;
+                color: #1f3b4c;
+                border-bottom: 1px solid #e2e8f0;
+                font-size: 1.2rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .fee-details, .payment-details {
+                padding: 1rem 1.2rem;
+            }
+
+            .fee-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 0.5rem 0;
+                border-bottom: 1px dashed #eef2f8;
+                font-size: 1rem;
+            }
+
+                .fee-row.total {
+                    font-weight: 800;
+                    color: #0f2c3d;
+                    border-bottom: none;
+                    margin-top: 0.3rem;
+                    font-size: 1.2rem;
+                }
+
+            .payment-detail-item {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+                font-size: 1rem;
+            }
+
+            .payment-label {
+                font-weight: 500;
+                color: #4a627a;
+            }
+
+            .payment-value {
+                font-weight: 600;
+                color: #1a2c3e;
+                font-family: monospace;
+            }
+
+            .txn-id {
+                background: #f8fafc;
+                padding: 0.2rem 0.4rem;
+                border-radius: 8px;
+                letter-spacing: 0.3px;
+            }
+
+            .sign-area {
+                margin-top: 1rem;
+                border-top: 1px solid #e2e8f0;
+                padding: 1rem 2rem 1.5rem 2rem;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .signature {
+                text-align: center;
+            }
+
+                .signature .sign-line {
+                    width: 180px;
+                    height: 2px;
+                    background: #cbd5e1;
+                    margin: 0.5rem auto 0.25rem;
+                }
+
+                .signature span {
+                    font-size: 0.7rem;
+                    color: #4b6b8f;
+                    font-weight: 500;
+                }
+
+            .qr-placeholder {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                background: #f9fbfd;
+                padding: 0.3rem 1rem;
+                border-radius: 60px;
+                border: 1px solid #e2edf7;
+            }
+
+                .qr-placeholder i {
+                    font-size: 1.8rem;
+                    color: #0b2b40;
+                }
+
+            .footer-note {
+                background: #f9fafb;
+                padding: 0.9rem 2rem;
+                text-align: center;
+                font-size: 0.7rem;
+                color: #6c86a3;
+                border-top: 1px solid #eef2f8;
+            }
+
+            @@media (max-width: 680px) {
+                body {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+
+            /* Print styles */
+            @@media print {
+                body {
+                    background: white;
+                    padding: 0;
+                    margin: 0;
+                    display: block;
+                }
+
+                .receipt-container {
+                    max-width: 100%;
+                    margin: 0;
+                    box-shadow: none;
+                }
+
+                .receipt-card {
+                    border-radius: 0;
+                    box-shadow: none;
+                    border: none;
+                    margin: 0;
+                }
+
+                .pdf-actions {
+                    display: none;
+                }
+
+                .btn-pdf {
+                    display: none;
+                }
+
+                .status-chip {
+                    background: #f0f0f0;
+                    color: black;
+                    border: 1px solid #aaa;
+                    print-color-adjust: exact;
+                }
+
+                .qr-placeholder, .footer-note {
+                    print-color-adjust: exact;
+                }
+
+                .receipt-header {
+                    background: #0b2b40;
+                    print-color-adjust: exact;
+                    -webkit-print-color-adjust: exact;
+                }
+
+                .info-group, .subject-badge-container, .fee-box, .payment-box {
+                    break-inside: avoid;
+                    page-break-inside: avoid;
+                }
+
+                .sign-area {
+                    break-inside: avoid;
+                }
+            }
+        </style>
+        <div class="receipt-container" id="receiptContainer">
+            <div class="receipt-card">
+                <!-- Header: College & Receipt ID -->
+                <div class="receipt-header">
+                    <div class="college-info">
+                        <h1>@Model.Item1.CollegeName</h1>
+                    </div>
+                    <div class="receipt-badge">
+                        <span>APPLICATION NO.</span>
+                        <div class="receipt-number">@Model.Item1.ApplicationNo</div>
+                    </div>
+                </div>
+
+                <!-- Title + success status -->
+                <div class="title-section">
+                    <h2><i class="fas fa-receipt"></i> Admission Fee Receipt</h2>
+                    <div class="status-chip"><i class="fas fa-check-circle"></i> @Model.Item1.FeeStatus</div>
+                </div>
+
+                <!-- Main details grid -->
+                <div class="details-grid">
+                    <div class="info-group">
+                        <div class="info-label"><i class="far fa-calendar-alt"></i> SESSION</div>
+                        <div class="info-value"><strong>@Model.Item1.Session</strong></div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label"><i class="fas fa-graduation-cap"></i> PROGRAMME</div>
+                        <div class="info-value"><strong>@Model.Item1.Title</strong> @Model.Item1.Course @Model.Item1.yearname</div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label"><i class="fas fa-tag"></i> CASTE CATEGORY</div>
+                        <div class="info-value"><span class="subject-name" style="background:#eef2ff;">@Model.Item1.CastCategort</span></div>
+                    </div>
+                    <div class="info-group">
+                        <div class="info-label"><i class="fas fa-university"></i> COLLEGE CAMPUS</div>
+                        <div class="info-value">@Model.Item1.CollegeName</div>
+                    </div>
+                </div>
+
+                <!-- Subjects: Major, Minor, Other Subjects (Economics) -->
+                <div class="subjects-section">
+                    <div class="subject-badge-container">
+                        <div class="subject-row">
+                            <div class="subject-cat">
+                                <h4><i class="fas fa-star-of-life"></i> MAJOR</h4>
+                                <div class="subject-name">Subject Name 1</div>
+                            </div>
+                            <div class="subject-cat">
+                                <h4><i class="fas fa-feather-alt"></i> MINOR</h4>
+                                <div class="subject-name">Subject Name 2 </div>
+                            </div>
+                            <div class="subject-cat">
+                                <h4><i class="fas fa-book-open"></i> OTHER SUBJECTS</h4>
+                                @if (othersubjectlist != null && othersubjectlist.Count > 0)
+                                {
+                                    foreach (var m in othersubjectlist)
+                                    {
+                                        <div class="subject-name" style="background:#eef9ff; border-color:#bbd4f0;">@m.SubjectName</div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="subject-name" style="background:#eef9ff; border-color:#bbd4f0;">Not Selected</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee + Payment details horizontal -->
+                <div class="fee-payment-row">
+                    <!-- Fee breakdown -->
+                    <div class="fee-box">
+                        <div class="box-header"><i class="fas fa-coins"></i> Fee Details</div>
+                        <div class="fee-details">
+                            <div class="fee-row"><span>Tuition / Admission Fee</span><span>₹ @Model.Item1.Fees</span></div>
+                            <div class="fee-row"><span>Processing &amp; Registration</span><span>₹ @Model.Item1.surcharge</span></div>
+                            <div class="fee-row total"><span><strong>Total Amount</strong></span><span><strong>₹ @(Convert.ToDecimal(Model.Item1.Fees) + Convert.ToDecimal(Model.Item1.surcharge))</strong></span></div>
+                            <div style="margin-top: 12px; font-size:1rem; color:#2c6e9e; background:#EFF6FF; padding:6px 8px; border-radius:12px;">
+                                <i class="fas fa-info-circle"></i> Zero fee applicable (full waiver / scholarship)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Transaction details -->
+                    <div class="payment-box">
+                        <div class="box-header"><i class="fas fa-credit-card"></i> Payment Details</div>
+                        <div class="payment-details">
+                            <div class="payment-detail-item">
+                                <span class="payment-label">Status</span>
+                                <span class="payment-value" style="color:#15803d;"><i class="fas fa-circle-check"></i> @Model.Item1.FeeStatus</span>
+                            </div>
+                            <div class="payment-detail-item">
+                                <span class="payment-label">Transaction ID</span>
+                                <span class="payment-value txn-id">@Model.Item1.clienttrxid</span>
+                            </div>
+                            <div class="payment-detail-item">
+                                <span class="payment-label">Bank Ref. No.</span>
+                                <span class="payment-value">@Model.Item1.banktrxid</span>
+                            </div>
+                            <div class="payment-detail-item">
+                                <span class="payment-label">Date &amp; Time</span>
+                                <span class="payment-value">@Model.Item1.banktxndate</span>
+                            </div>
+                            <div class="payment-detail-item">
+                                <span class="payment-label">Mode</span>
+                                <span class="payment-value"> @Model.Item1.PaymentType</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signature & authorized area -->
+                <div class="sign-area">
+                    <div class="signature">
+                        <div class="sign-line"></div>
+                        <span>Authorized Signatory</span><br>
+                        <span style="font-size:0.65rem;">Controller of Examinations</span>
+                    </div>
+                </div>
+
+                <!-- Footer note with extra details -->
+                <div class="footer-note">
+                    <i class="far fa-clock"></i> This is a computer-generated receipt. No signature required for online verification.
+                    <span style="display: inline-block; margin-left: 12px;"><i class="fas fa-print"></i> Print / Download for records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <style>
 
 /* MAIN */
@@ -2007,3 +2542,65 @@ window.onload = function () {
 }
 
 </style>
+<script>
+    (function () {
+        const exportBtn = document.getElementById('exportPdfBtn');
+
+        async function exportToPDF() {
+            // Show a loading state
+            const originalText = exportBtn.innerHTML;
+            exportBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Generating PDF...';
+            exportBtn.disabled = true;
+
+            try {
+                // Dynamically import html2pdf library (lightweight and reliable)
+                // Using CDN
+                if (typeof html2pdf === 'undefined') {
+                    await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js');
+                }
+
+                const element = document.getElementById('receiptContainer');
+                const opt = {
+                    margin: [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left (in units)
+                    filename: `Fee_Receipt.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, useCORS: true, letterRendering: true, logging: false },
+                    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+
+                // Call html2pdf to generate and download PDF
+                await html2pdf().set(opt).from(element).save();
+
+            } catch (error) {
+                console.error('PDF generation error:', error);
+                // Fallback: use browser print as PDF
+                const usePrintFallback = confirm('Advanced PDF generation failed. Would you like to use browser print (Save as PDF) instead?');
+                if (usePrintFallback) {
+                    window.print();
+                } else {
+                    alert('Could not generate PDF. Please try again or use Print (Ctrl+P) and select "Save as PDF".');
+                }
+            } finally {
+                exportBtn.innerHTML = originalText;
+                exportBtn.disabled = false;
+            }
+        }
+
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+                document.head.appendChild(script);
+            });
+        }
+
+        if (exportBtn) {
+            exportBtn.addEventListener('click', exportToPDF);
+        }
+
+        // Additional: optional support for printing via Ctrl+P as backup
+        console.log('Ready: Click "Export as PDF" to download receipt as PDF');
+    })();
+</script>
